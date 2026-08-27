@@ -24,7 +24,14 @@ import {
   updateVocabulary,
   type VocabularyInput,
 } from '../db/repositories';
-import { playClip, requestMicPermission, startRecording, type ActiveRecording } from '../audio';
+import {
+  getAudioFileInfo,
+  getRecordPermission,
+  playClip,
+  requestMicPermission,
+  startRecording,
+  type ActiveRecording,
+} from '../audio';
 import type { Category, Difficulty, VocabularyEntry } from '../core/types';
 
 interface Props {
@@ -86,6 +93,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
   const [newCategory, setNewCategory] = useState('');
   const [recording, setRecording] = useState<ActiveRecording | null>(null);
   const [saving, setSaving] = useState(false);
+  const [diag, setDiag] = useState<string[]>([]);
   const insets = useSafeAreaInsets();
 
   const refresh = useCallback(async () => {
@@ -143,17 +151,29 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
       if (recording) {
         const uri = await recording.stop();
         setRecording(null);
-        if (uri) setForm((f) => (f ? { ...f, audioUri: uri } : f));
+        setDiag((d) => [`Saved audio URI: ${uri ?? 'null'}`, ...d].slice(0, 8));
+        if (uri) {
+          setForm((f) => (f ? { ...f, audioUri: uri } : f));
+          const info = getAudioFileInfo(uri);
+          setDiag((d) => [
+            `File on disk: ${info.exists} — size ${info.size ?? '?'} bytes`,
+            ...d,
+          ].slice(0, 8));
+        }
       } else {
+        const perm = await getRecordPermission();
+        setDiag((d) => [`Record permission: ${perm.status}${perm.granted ? ' (granted)' : ''}`, ...d].slice(0, 8));
         const granted = await requestMicPermission();
         if (!granted) {
           Alert.alert('Microphone needed', 'Allow microphone access to record pronunciations.');
           return;
         }
         setRecording(await startRecording());
+        setDiag((d) => ['Recording started — speak, then stop.', ...d].slice(0, 8));
       }
-    } catch {
+    } catch (e) {
       setRecording(null);
+      setDiag((d) => [`Recording error: ${String(e)}`, ...d].slice(0, 8));
       Alert.alert('Recording error', 'Could not record audio. Please try again.');
     }
   }
@@ -320,7 +340,11 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
               <>
                 <Pressable
                   style={[styles.chip, styles.chipWithIcon]}
-                  onPress={() => playClip(form.audioUri!).catch(() => undefined)}
+                  onPress={() =>
+                    playClip(form.audioUri!, (e) =>
+                      setDiag((d) => [`Playback: ${e.kind} — ${e.message}`, ...d].slice(0, 8)),
+                    ).catch(() => undefined)
+                  }
                 >
                   <Ionicons name="play" size={16} color={colors.text} />
                   <Text style={styles.chipText}>Preview</Text>
@@ -337,6 +361,16 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
           </View>
           {!form.audioUri && !recording && (
             <Text style={styles.hint}>Optional — but audio helps a 7-year-old learn fastest.</Text>
+          )}
+
+          {diag.length > 0 && (
+            <View style={styles.diagBox}>
+              {diag.map((line, i) => (
+                <Text key={i} style={styles.diagLine}>
+                  {line}
+                </Text>
+              ))}
+            </View>
           )}
 
           <Text style={styles.label}>Picture</Text>
@@ -508,6 +542,15 @@ const styles = StyleSheet.create({
   },
   iconChipOn: { backgroundColor: colors.primary, borderColor: colors.primary },
   hint: { color: colors.muted, marginTop: 6, fontSize: 13 },
+  diagBox: {
+    backgroundColor: '#FFF4F0',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#E4C6BC',
+    padding: 8,
+    marginTop: 8,
+  },
+  diagLine: { fontSize: 11, color: '#8A4B38', fontFamily: 'monospace', marginVertical: 1 },
   formButtons: { marginTop: 16 },
   saveButton: {
     backgroundColor: colors.primary,

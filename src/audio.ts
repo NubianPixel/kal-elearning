@@ -16,24 +16,62 @@
 import {
   AudioModule,
   createAudioPlayer,
+  getRecordingPermissionsAsync,
   RecordingPresets,
   requestRecordingPermissionsAsync,
   setAudioModeAsync,
 } from 'expo-audio';
+import { File } from 'expo-file-system';
 
 /** Safety nudge to start playback if the load event is slow. */
 const LOAD_NUDGE_MS = 250;
 
-async function setPlaybackMode(): Promise<void> {
-  await setAudioModeAsync({
+/** Human-readable details about a recorded audio file, for diagnostics. */
+export interface AudioFileInfo {
+  exists: boolean;
+  size: number | null;
+  uri: string;
+}
+
+/** Check whether a recorded clip really exists on disk and its size. */
+export function getAudioFileInfo(uri: string): AudioFileInfo {
+  try {
+    const file = new File(uri);
+    return { exists: file.exists, size: file.size, uri };
+  } catch {
+    return { exists: false, size: null, uri };
+  }
+}
+
+/** Native record-permission status (iOS+Android). */
+export async function getRecordPermission(): Promise<{
+  granted: boolean;
+  status: string;
+}> {
+  try {
+    const resp = await getRecordingPermissionsAsync();
+    return { granted: resp.granted, status: resp.status };
+  } catch (e) {
+    return { granted: false, status: `unavailable: ${String(e)}` };
+  }
+}
+
+/** A playback event reported to the UI for diagnostics. */
+export interface PlaybackEvent {
+  kind: 'loaded' | 'playing' | 'finished' | 'error';
+  message: string;
+}
+
+function setPlaybackMode(): Promise<void> {
+  return setAudioModeAsync({
     allowsRecording: false,
     playsInSilentMode: true,
     shouldPlayInBackground: false,
   });
 }
 
-async function setRecordingMode(): Promise<void> {
-  await setAudioModeAsync({
+function setRecordingMode(): Promise<void> {
+  return setAudioModeAsync({
     allowsRecording: true,
     playsInSilentMode: true,
     shouldPlayInBackground: false,
@@ -41,12 +79,14 @@ async function setRecordingMode(): Promise<void> {
 }
 
 /**
- * Play a recorded pronunciation clip from a local file URI.
- * Waits for the player to report it is loaded before starting playback
- * (reliable on both iOS AVPlayer and Android ExoPlayer), then releases
- * the player once the clip finishes.
+ * Play a recorded pronunciation clip, reporting load/play/finish/error
+ * events for diagnostics. Waits for the player to report it is loaded
+ * before starting playback, then releases the player once finished.
  */
-export async function playClip(uri: string): Promise<void> {
+export async function playClip(
+  uri: string,
+  onEvent?: (e: PlaybackEvent) => void,
+): Promise<void> {
   await setPlaybackMode();
   const player = createAudioPlayer({ uri });
   let started = false;
@@ -62,9 +102,11 @@ export async function playClip(uri: string): Promise<void> {
   const subscription = player.addListener('playbackStatusUpdate', (status) => {
     if (!started && status.isLoaded) {
       started = true;
+      onEvent?.({ kind: 'loaded', message: `loaded, duration ${status.duration?.toFixed(2) ?? '?'}s` });
       player.play();
     }
     if (status.didJustFinish) {
+      onEvent?.({ kind: 'finished', message: 'playback finished' });
       subscription.remove();
       release();
     }
@@ -74,6 +116,7 @@ export async function playClip(uri: string): Promise<void> {
   setTimeout(() => {
     if (!started) {
       started = true;
+      onEvent?.({ kind: 'playing', message: 'forced play after load-nudge' });
       player.play();
     }
   }, LOAD_NUDGE_MS);
@@ -88,7 +131,10 @@ export interface ActiveRecording {
   stop: () => Promise<string | null>;
 }
 
-/** Start recording a pronunciation clip; returns a handle to stop it. */
+/**
+ * Start recording a pronunciation clip; returns a handle to stop it.
+ * Also reports permission/readiness for diagnostics.
+ */
 export async function startRecording(): Promise<ActiveRecording> {
   await setRecordingMode();
 
