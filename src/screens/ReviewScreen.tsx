@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, ActivityIndicator, ScrollView, Image } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
 import { colors, childButton, bigText, titleText } from '../theme';
-import { getReviewQueue, recordAnswer, type QueueItem } from '../db/repositories';
+import { getReviewQueue, recordAnswer, getDailyGoal, type QueueItem } from '../db/repositories';
 import { playClip } from '../audio';
 import { buildChoices, pickChoiceMode, type Choice, type ChoiceMode } from '../core/choices';
+import WordImage from '../components/WordImage';
 import type { VocabularyEntry } from '../core/types';
 
 interface Props {
@@ -56,7 +57,9 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
 
   const load = useCallback(async () => {
     setPhase('loading');
-    const q = await getReviewQueue(db, languageId);
+    // The daily goal (settings) caps how many new words are introduced today.
+    const goal = await getDailyGoal(db);
+    const q = await getReviewQueue(db, languageId, new Date(), goal);
     const entries = q.map((item) => item.entry);
     setQueue(q);
     setAllEntries(entries);
@@ -169,7 +172,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
         <Ionicons name="volume-high" size={72} color={colors.accent} />
         <Text style={styles.targetWord}>{current?.entry.targetText}</Text>
         {mode === 'text' && current?.entry.imageUri ? (
-          <Image source={{ uri: current.entry.imageUri }} style={styles.cardImage} />
+          <WordImage uri={current.entry.imageUri} style={styles.cardImage} />
         ) : null}
         <Text style={styles.tapHint}>
           {mode === 'image' ? 'Which picture is it?' : 'Tap to hear it!'}
@@ -201,7 +204,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
                 style={[styles.choiceImageWrap, { borderColor, backgroundColor: bgColor }]}
                 onPress={() => choose(i)}
               >
-                <Image source={{ uri: choice.entry.imageUri! }} style={styles.choiceImage} />
+                <WordImage uri={choice.entry.imageUri} style={styles.choiceImage} />
               </Pressable>
             );
           }

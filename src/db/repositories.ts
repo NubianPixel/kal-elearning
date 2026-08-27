@@ -350,6 +350,46 @@ export async function countMastered(db: SQLite.SQLiteDatabase, languageId: numbe
   return res?.n ?? 0;
 }
 
+// ---------------------------------------------------------------------------
+// Settings (key-value; local only)
+// ---------------------------------------------------------------------------
+
+export const DAILY_GOAL_KEY = 'daily_goal';
+export const DEFAULT_DAILY_GOAL = 5;
+
+export async function getSetting(
+  db: SQLite.SQLiteDatabase,
+  key: string,
+): Promise<string | null> {
+  const row = await db.getFirstAsync<{ value: string }>(
+    'SELECT value FROM settings WHERE key = ?',
+    [key],
+  );
+  return row?.value ?? null;
+}
+
+export async function setSetting(
+  db: SQLite.SQLiteDatabase,
+  key: string,
+  value: string,
+): Promise<void> {
+  await db.runAsync(
+    'INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value',
+    [key, value],
+  );
+}
+
+/** New words introduced per review day. */
+export async function getDailyGoal(db: SQLite.SQLiteDatabase): Promise<number> {
+  const raw = await getSetting(db, DAILY_GOAL_KEY);
+  const n = raw ? Number.parseInt(raw, 10) : NaN;
+  return Number.isFinite(n) && n > 0 ? n : DEFAULT_DAILY_GOAL;
+}
+
+export async function setDailyGoal(db: SQLite.SQLiteDatabase, goal: number): Promise<void> {
+  await setSetting(db, DAILY_GOAL_KEY, String(goal));
+}
+
 export interface DayActivity {
   /** Weekday label, e.g. 'Mon'. */
   label: string;

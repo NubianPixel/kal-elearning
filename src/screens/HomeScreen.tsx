@@ -3,6 +3,7 @@ import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, titleText, sectionTitle, mutedText } from '../theme';
+import { dailyProgressPct } from '../core/goals';
 import type { ProgressStats } from '../core/types';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
   onReview: () => void;
   onParentZone: () => void;
   loadStats: () => Promise<ProgressStats>;
+  loadGoal: () => Promise<number>;
 }
 
 function StatTile({
@@ -70,18 +72,19 @@ function ActionRow({
  * streak pill, deep-green hero card with progress + Continue, 2x2
  * stat tiles, and a "What should we do today?" action list.
  */
-export default function HomeScreen({ languageName, onReview, onParentZone, loadStats }: Props) {
+export default function HomeScreen({ languageName, onReview, onParentZone, loadStats, loadGoal }: Props) {
   const [stats, setStats] = useState<ProgressStats | null>(null);
+  const [goal, setGoal] = useState(5);
   const insets = useSafeAreaInsets();
 
   useEffect(() => {
     loadStats().then(setStats).catch(() => undefined);
-  }, [loadStats]);
+    loadGoal().then(setGoal).catch(() => undefined);
+  }, [loadStats, loadGoal]);
 
   const streak = stats?.streakDays ?? 0;
   const mastered = stats?.mastered ?? 0;
   const accuracy = stats?.accuracy30d == null ? '—' : `${Math.round(stats.accuracy30d * 100)}%`;
-  const pct = stats && stats.total > 0 ? Math.min(100, Math.round((mastered / stats.total) * 100)) : 0;
 
   return (
     <ScrollView
@@ -119,11 +122,18 @@ export default function HomeScreen({ languageName, onReview, onParentZone, loadS
         </View>
         <Text style={styles.heroLanguage}>{languageName}</Text>
         <View style={styles.heroProgressRow}>
-          <Text style={styles.heroProgressLabel}>Progress</Text>
-          <Text style={styles.heroProgressLabel}>{pct}%</Text>
+          <Text style={styles.heroProgressLabel}>Today</Text>
+          <Text style={styles.heroProgressLabel}>
+            {Math.min(stats?.reviewsToday ?? 0, goal)} of {goal} words
+          </Text>
         </View>
         <View style={styles.heroBarTrack}>
-          <View style={[styles.heroBarFill, { width: `${pct}%` }]} />
+          <View
+            style={[
+              styles.heroBarFill,
+              { width: `${dailyProgressPct(stats?.reviewsToday ?? 0, goal)}%` },
+            ]}
+          />
         </View>
       </View>
 

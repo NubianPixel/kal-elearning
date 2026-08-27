@@ -12,6 +12,7 @@ export function getDb(): Promise<SQLite.SQLiteDatabase> {
       await db.execAsync(SCHEMA_SQL);
       await migrateCategoryEmojiToIcon(db);
       await migrateVocabularyAddImage(db);
+      await migrateSeedIcons(db);
       await seedIfEmpty(db);
       return db;
     })();
@@ -80,6 +81,21 @@ async function migrateVocabularyAddImage(db: SQLite.SQLiteDatabase): Promise<voi
   await db.execAsync('ALTER TABLE vocabulary ADD COLUMN image_uri TEXT;');
 }
 
+/**
+ * v1.3 backfill: give seed words their starter illustrations on devices
+ * that seeded before the icon pack existed. Only fills words that still
+ * have no picture, so any photo the parent added is preserved.
+ */
+async function migrateSeedIcons(db: SQLite.SQLiteDatabase): Promise<void> {
+  for (const v of SEED_VOCABULARY) {
+    if (!v.icon) continue;
+    await db.runAsync(
+      "UPDATE vocabulary SET image_uri = ? WHERE target_text = ? AND (image_uri IS NULL OR image_uri = '')",
+      [`icon:${v.icon}`, v.targetText],
+    );
+  }
+}
+
 async function seedIfEmpty(db: SQLite.SQLiteDatabase): Promise<void> {
   const existing = await db.getFirstAsync<{ id: number }>(
     'SELECT id FROM languages WHERE code = ?',
@@ -104,9 +120,16 @@ async function seedIfEmpty(db: SQLite.SQLiteDatabase): Promise<void> {
 
   for (const v of SEED_VOCABULARY) {
     await db.runAsync(
-      `INSERT INTO vocabulary (language_id, category_id, target_text, translation, difficulty)
-       VALUES (?, ?, ?, ?, ?)`,
-      [lang.lastInsertRowId, categoryIds.get(v.category)!, v.targetText, v.translation, v.difficulty],
+      `INSERT INTO vocabulary (language_id, category_id, target_text, translation, difficulty, image_uri)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [
+        lang.lastInsertRowId,
+        categoryIds.get(v.category)!,
+        v.targetText,
+        v.translation,
+        v.difficulty,
+        v.icon ? `icon:${v.icon}` : null,
+      ],
     );
   }
 }

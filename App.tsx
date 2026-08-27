@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
 import { getDb } from './src/db/database';
-import { getProgressStats, listLanguages } from './src/db/repositories';
+import { getDailyGoal, getProgressStats, listLanguages } from './src/db/repositories';
 import HomeScreen from './src/screens/HomeScreen';
 import ReviewScreen from './src/screens/ReviewScreen';
 import AdminScreen from './src/screens/AdminScreen';
@@ -57,6 +57,7 @@ export default function App() {
             onReview={() => setScreen('review')}
             onParentZone={() => setScreen('dashboard')}
             loadStats={() => getProgressStats(db, language.id)}
+            loadGoal={() => getDailyGoal(db)}
           />
         )}
         {screen === 'review' && (

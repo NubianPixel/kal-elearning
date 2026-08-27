@@ -4,8 +4,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
 import { colors, titleText, sectionTitle, mutedText } from '../theme';
-import { getProgressStats, getWeeklyActivity, type DayActivity } from '../db/repositories';
+import { getProgressStats, getWeeklyActivity, getDailyGoal, setDailyGoal, type DayActivity } from '../db/repositories';
 import { MILESTONES } from '../core/progress';
+import { DAILY_GOAL_OPTIONS } from '../core/goals';
 import type { ProgressStats } from '../core/types';
 
 interface Props {
@@ -24,11 +25,13 @@ interface Props {
 export default function DashboardScreen({ db, languageId, languageName, onExit, onManageContent }: Props) {
   const [stats, setStats] = useState<ProgressStats | null>(null);
   const [week, setWeek] = useState<DayActivity[]>([]);
+  const [goal, setGoal] = useState(5);
   const insets = useSafeAreaInsets();
 
   const load = useCallback(async () => {
     setStats(await getProgressStats(db, languageId));
     setWeek(await getWeeklyActivity(db, languageId));
+    setGoal(await getDailyGoal(db));
   }, [db, languageId]);
 
   useEffect(() => {
@@ -163,6 +166,28 @@ export default function DashboardScreen({ db, languageId, languageName, onExit, 
             (spaced-repetition schedule).
           </Text>
 
+          {/* Daily goal setting */}
+          <View style={styles.goalCard}>
+            <Text style={sectionTitle}>Daily goal</Text>
+            <Text style={mutedText}>New words introduced each practice day</Text>
+            <View style={styles.goalChips}>
+              {DAILY_GOAL_OPTIONS.map((n) => (
+                <Pressable
+                  key={n}
+                  style={[styles.goalChip, goal === n && styles.goalChipOn]}
+                  onPress={() => {
+                    setGoal(n);
+                    setDailyGoal(db, n).catch(() => undefined);
+                  }}
+                >
+                  <Text style={goal === n ? styles.goalChipTextOn : styles.goalChipText}>
+                    {n} words
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          </View>
+
           <Pressable style={styles.manageRow} onPress={onManageContent}>
             <View style={[styles.actionIcon, { backgroundColor: colors.primarySoft }]}>
               <Ionicons name="create-outline" size={22} color={colors.primary} />
@@ -252,6 +277,25 @@ const styles = StyleSheet.create({
   medalTargetUnlocked: { color: '#C98A1B' },
   medalLabel: { fontSize: 9, fontWeight: '700', color: colors.text, textAlign: 'center' },
   note: { fontSize: 12, color: colors.muted, marginTop: 20, lineHeight: 18 },
+  goalCard: {
+    backgroundColor: colors.card,
+    borderRadius: 20,
+    padding: 16,
+    marginTop: 16,
+    gap: 8,
+  },
+  goalChips: { flexDirection: 'row', gap: 8, marginTop: 4 },
+  goalChip: {
+    borderWidth: 2,
+    borderColor: colors.primary,
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    backgroundColor: '#fff',
+  },
+  goalChipOn: { backgroundColor: colors.primary },
+  goalChipText: { color: colors.text, fontWeight: '700' },
+  goalChipTextOn: { color: '#fff', fontWeight: '700' },
   manageRow: {
     flexDirection: 'row',
     alignItems: 'center',

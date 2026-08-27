@@ -51,6 +51,11 @@ CREATE TABLE IF NOT EXISTS review_logs (
   time_spent_ms INTEGER
 );
 
+CREATE TABLE IF NOT EXISTS settings (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_vocabulary_language ON vocabulary(language_id);
 CREATE INDEX IF NOT EXISTS idx_card_states_due ON card_states(due_date);
 CREATE INDEX IF NOT EXISTS idx_review_logs_time ON review_logs(reviewed_at);
@@ -69,22 +74,27 @@ export const SEED_CATEGORIES: Array<{ name: string; icon: string }> = [
   { name: 'Words', icon: 'chatbubble-outline' },
 ];
 
+/** Starter content: the default language + a few words so the app is
+ *  usable immediately. `icon` is an Ionicons name used as the starter
+ *  illustration (stored as `icon:<name>` in image_uri); parents can
+ *  replace these with real photos in the admin screen. */
 export const SEED_VOCABULARY: Array<{
   category: string;
   targetText: string;
   translation: string;
   difficulty: 1 | 2 | 3;
+  icon?: string;
 }> = [
-  { category: 'Greetings', targetText: 'Dumela', translation: 'Hello', difficulty: 1 },
-  { category: 'Greetings', targetText: 'Tsamaya sentle', translation: 'Goodbye', difficulty: 2 },
-  { category: 'Words', targetText: 'Ee', translation: 'Yes', difficulty: 1 },
-  { category: 'Words', targetText: 'Nnyaa', translation: 'No', difficulty: 1 },
-  { category: 'Food', targetText: 'Metsi', translation: 'Water', difficulty: 1 },
-  { category: 'Food', targetText: 'Dijo', translation: 'Food', difficulty: 1 },
-  { category: 'Things', targetText: 'Buka', translation: 'Book', difficulty: 1 },
-  { category: 'Animals', targetText: 'Ntja', translation: 'Dog', difficulty: 1 },
-  { category: 'Animals', targetText: 'Katse', translation: 'Cat', difficulty: 1 },
-  { category: 'Family', targetText: 'Mma', translation: 'Mother', difficulty: 1 },
-  { category: 'Family', targetText: 'Rra', translation: 'Father', difficulty: 1 },
-  { category: 'Words', targetText: 'Ke a leboga', translation: 'Thank you', difficulty: 2 },
+  { category: 'Greetings', targetText: 'Dumela', translation: 'Hello', difficulty: 1, icon: 'hand-left-outline' },
+  { category: 'Greetings', targetText: 'Tsamaya sentle', translation: 'Goodbye', difficulty: 2, icon: 'log-out-outline' },
+  { category: 'Words', targetText: 'Ee', translation: 'Yes', difficulty: 1, icon: 'checkmark-circle-outline' },
+  { category: 'Words', targetText: 'Nnyaa', translation: 'No', difficulty: 1, icon: 'close-circle-outline' },
+  { category: 'Food', targetText: 'Metsi', translation: 'Water', difficulty: 1, icon: 'water-outline' },
+  { category: 'Food', targetText: 'Dijo', translation: 'Food', difficulty: 1, icon: 'restaurant-outline' },
+  { category: 'Things', targetText: 'Buka', translation: 'Book', difficulty: 1, icon: 'book-outline' },
+  { category: 'Animals', targetText: 'Ntja', translation: 'Dog', difficulty: 1, icon: 'paw-outline' },
+  { category: 'Animals', targetText: 'Katse', translation: 'Cat', difficulty: 1, icon: 'heart-outline' },
+  { category: 'Family', targetText: 'Mma', translation: 'Mother', difficulty: 1, icon: 'woman-outline' },
+  { category: 'Family', targetText: 'Rra', translation: 'Father', difficulty: 1, icon: 'man-outline' },
+  { category: 'Words', targetText: 'Ke a leboga', translation: 'Thank you', difficulty: 2, icon: 'happy-outline' },
 ];

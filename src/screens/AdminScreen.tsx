@@ -8,12 +8,12 @@ import {
   ScrollView,
   ActivityIndicator,
   Alert,
-  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import type * as SQLite from 'expo-sqlite';
+import WordImage from '../components/WordImage';
 import { colors, childButton, titleText } from '../theme';
 import {
   createCategory,
@@ -35,6 +35,30 @@ interface Props {
 }
 
 /** Empty form used for both "add" and "edit". */
+const ICON_CHOICES = [
+  'paw-outline',
+  'water-outline',
+  'book-outline',
+  'restaurant-outline',
+  'hand-left-outline',
+  'heart-outline',
+  'happy-outline',
+  'sad-outline',
+  'woman-outline',
+  'man-outline',
+  'people-outline',
+  'home-outline',
+  'car-sport-outline',
+  'airplane-outline',
+  'basketball-outline',
+  'leaf-outline',
+  'moon-outline',
+  'sunny-outline',
+  'musical-notes-outline',
+  'star-outline',
+] as const;
+
+type IoniconName = (typeof ICON_CHOICES)[number];
 function emptyForm(): VocabularyInput & { id?: number } {
   return {
     id: undefined,
@@ -318,7 +342,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
           <Text style={styles.label}>Picture</Text>
           <View style={styles.imageRow}>
             {form.imageUri ? (
-              <Image source={{ uri: form.imageUri }} style={styles.imageThumb} />
+              <WordImage uri={form.imageUri} style={styles.imageThumb} iconSize={26} />
             ) : (
               <View style={[styles.imageThumb, styles.imageThumbEmpty]}>
                 <Ionicons name="image-outline" size={26} color={colors.muted} />
@@ -339,6 +363,25 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
                 </Pressable>
               ) : null}
             </View>
+          </View>
+
+          <Text style={styles.hint}>…or pick a starter illustration:</Text>
+          <View style={styles.iconPicker}>
+            {ICON_CHOICES.map((name) => {
+              const selected = form.imageUri === `icon:${name}`;
+              return (
+                <Pressable
+                  key={name}
+                  style={[styles.iconChip, selected && styles.iconChipOn]}
+                  onPress={() =>
+                    setForm({ ...form, imageUri: selected ? null : `icon:${name}` })
+                  }
+                  accessibilityLabel={`Illustration ${name}`}
+                >
+                  <Ionicons name={name as React.ComponentProps<typeof Ionicons>['name']} size={20} color={selected ? '#fff' : colors.text} />
+                </Pressable>
+              );
+            })}
           </View>
           <Text style={styles.hint}>
             Words with pictures unlock tap-the-picture quizzes — great for pre-readers.
@@ -452,6 +495,18 @@ const styles = StyleSheet.create({
   },
   imageThumbEmpty: { alignItems: 'center', justifyContent: 'center' },
   imageButtons: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, flex: 1 },
+  iconPicker: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 6 },
+  iconChip: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: colors.primarySoft,
+    backgroundColor: colors.primarySoft,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  iconChipOn: { backgroundColor: colors.primary, borderColor: colors.primary },
   hint: { color: colors.muted, marginTop: 6, fontSize: 13 },
   formButtons: { marginTop: 16 },
   saveButton: {
