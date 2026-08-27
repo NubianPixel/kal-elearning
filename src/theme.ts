@@ -1,16 +1,23 @@
-/** Shared visual theme: child-friendly, high contrast, large targets. */
+/**
+ * Design system — extracted from the user's reference UI:
+ * warm cream background, deep-green hero cards, amber accents,
+ * white cards, dark pill tab bar with floating amber FAB.
+ */
 
 export const colors = {
-  background: '#FFF8E7',
-  primary: '#4C7A34',
-  primaryDark: '#38641F',
-  accent: '#F2A93B',
+  background: '#F6F4E8',
   card: '#FFFFFF',
-  text: '#2E2A20',
-  correct: '#4CAF50',
-  wrong: '#E57373',
-  muted: '#8A8574',
-  danger: '#C62828',
+  primary: '#3D7A5F',
+  primaryDark: '#2C5E48',
+  primarySoft: '#E3EDE4',
+  accent: '#F2B84B',
+  accentSoft: '#FBEFD4',
+  dark: '#1B1A16',
+  text: '#20211C',
+  muted: '#8B8B80',
+  correct: '#3D7A5F',
+  wrong: '#D96C5F',
+  danger: '#C4553F',
 };
 
 export const childButton = {
@@ -23,7 +30,13 @@ export const childButton = {
 };
 
 export const titleText = {
-  fontSize: 32,
+  fontSize: 30,
+  fontWeight: '800' as const,
+  color: colors.text,
+};
+
+export const sectionTitle = {
+  fontSize: 20,
   fontWeight: '800' as const,
   color: colors.text,
 };
@@ -33,3 +46,10 @@ export const bigText = {
   fontWeight: '700' as const,
   color: colors.text,
 };
+
+export const mutedText = {
+  fontSize: 13,
+  fontWeight: '600' as const,
+  color: colors.muted,
+};
+

@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import type * as SQLite from 'expo-sqlite';
-import { colors, childButton, titleText } from '../theme';
-import { getProgressStats } from '../db/repositories';
-import { MILESTONES, nextMilestone } from '../core/progress';
+import { colors, titleText, sectionTitle, mutedText } from '../theme';
+import { getProgressStats, getWeeklyActivity, type DayActivity } from '../db/repositories';
+import { MILESTONES } from '../core/progress';
 import type { ProgressStats } from '../core/types';
 
 interface Props {
@@ -15,52 +15,34 @@ interface Props {
   onManageContent: () => void;
 }
 
-function StatCard({
-  label,
-  value,
-  icon,
-}: {
-  label: string;
-  value: string;
-  icon: React.ComponentProps<typeof Ionicons>['name'];
-}) {
-  return (
-    <View style={styles.statCard}>
-      <Ionicons name={icon} size={24} color={colors.primary} />
-      <Text style={styles.statValue}>{value}</Text>
-      <Text style={styles.statLabel}>{label}</Text>
-    </View>
-  );
-}
-
 /**
- * Parent dashboard: concrete, queryable progress per the prompt's
- * success criteria — mastery counts, streak, accuracy, time spent,
- * and progress toward defined milestones.
+ * Parent dashboard, matching the reference design: green hero summary,
+ * weekly practice-activity bar chart, achievement medal row, and the
+ * stat grid. Concrete, queryable progress per the project prompt.
  */
 export default function DashboardScreen({ db, languageId, languageName, onExit, onManageContent }: Props) {
   const [stats, setStats] = useState<ProgressStats | null>(null);
+  const [week, setWeek] = useState<DayActivity[]>([]);
 
   const load = useCallback(async () => {
     setStats(await getProgressStats(db, languageId));
+    setWeek(await getWeeklyActivity(db, languageId));
   }, [db, languageId]);
 
   useEffect(() => {
     load().catch(() => undefined);
   }, [load]);
 
-  const milestone = stats ? nextMilestone(stats.mastered) : null;
-  const prevTarget = milestone
-    ? MILESTONES.filter((m) => m.target <= milestone.target).slice(-1)[0]?.target ?? 0
-    : 0;
-  const milestoneProgress =
-    stats && milestone ? Math.min(1, stats.mastered / milestone.target) : 1;
+  const maxCount = Math.max(1, ...week.map((d) => d.count));
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <View style={styles.headerRow}>
-        <Text style={titleText}>{languageName} Progress</Text>
-        <Pressable onPress={onExit} hitSlop={12} accessibilityLabel="Close dashboard">
+      <View style={styles.header}>
+        <View>
+          <Text style={titleText}>Progress</Text>
+          <Text style={mutedText}>{languageName} — all data on this device only</Text>
+        </View>
+        <Pressable onPress={onExit} hitSlop={12} accessibilityLabel="Back to home">
           <Ionicons name="close-circle" size={30} color={colors.muted} />
         </Pressable>
       </View>
@@ -69,53 +51,119 @@ export default function DashboardScreen({ db, languageId, languageName, onExit, 
         <ActivityIndicator size="large" color={colors.primary} style={{ marginTop: 40 }} />
       ) : (
         <>
-          <View style={styles.statsGrid}>
-            <StatCard icon="trophy-outline" label="Words mastered" value={`${stats.mastered}`} />
-            <StatCard icon="book-outline" label="Learning" value={`${stats.learning}`} />
-            <StatCard icon="flame" label="Day streak" value={`${stats.streakDays}`} />
-            <StatCard icon="stats-chart-outline" label="Accuracy (30d)" value={stats.accuracy30d === null ? '—' : `${Math.round(stats.accuracy30d * 100)}%`} />
-            <StatCard icon="timer-outline" label="Minutes practised" value={`${stats.minutesSpent}`} />
-            <StatCard icon="calendar-outline" label="Reviews today" value={`${stats.reviewsToday}`} />
+          {/* Green hero summary */}
+          <View style={styles.hero}>
+            <View style={styles.heroRow}>
+              <View style={styles.heroAvatar}>
+                <Ionicons name="person" size={26} color="#fff" />
+              </View>
+              <View style={styles.heroMeta}>
+                <Text style={styles.heroTitle}>Your learner</Text>
+                <View style={styles.heroChipsRow}>
+                  <View style={styles.heroChip}>
+                    <Ionicons name="book" size={11} color="#fff" />
+                    <Text style={styles.heroChipText}>{stats.total} words</Text>
+                  </View>
+                  <View style={styles.heroChip}>
+                    <Ionicons name="flame" size={11} color="#fff" />
+                    <Text style={styles.heroChipText}>{stats.streakDays}-day streak</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={styles.heroStatsRow}>
+              <View style={styles.heroStat}>
+                <Text style={styles.heroStatValue}>{stats.mastered}</Text>
+                <Text style={styles.heroStatLabel}>Mastered</Text>
+              </View>
+              <View style={styles.heroStatDivider} />
+              <View style={styles.heroStat}>
+                <Text style={styles.heroStatValue}>{stats.learning}</Text>
+                <Text style={styles.heroStatLabel}>Learning</Text>
+              </View>
+              <View style={styles.heroStatDivider} />
+              <View style={styles.heroStat}>
+                <Text style={styles.heroStatValue}>
+                  {stats.accuracy30d == null ? '—' : `${Math.round(stats.accuracy30d * 100)}%`}
+                </Text>
+                <Text style={styles.heroStatLabel}>Accuracy 30d</Text>
+              </View>
+              <View style={styles.heroStatDivider} />
+              <View style={styles.heroStat}>
+                <Text style={styles.heroStatValue}>{stats.minutesSpent}</Text>
+                <Text style={styles.heroStatLabel}>Minutes</Text>
+              </View>
+            </View>
           </View>
 
-          <View style={styles.milestoneCard}>
-            <View style={styles.milestoneTitleRow}>
-              {milestone && (
-                <Ionicons
-                  name={milestone.icon as React.ComponentProps<typeof Ionicons>['name']}
-                  size={20}
-                  color={colors.accent}
-                />
-              )}
-              <Text style={styles.milestoneTitle}>
-                {milestone ? `Next milestone: ${milestone.label}` : 'All milestones achieved!'}
-              </Text>
+          {/* Practice activity — weekly bar chart */}
+          <View style={styles.chartCard}>
+            <View style={styles.chartHeaderRow}>
+              <Text style={sectionTitle}>Practice Activity</Text>
+              <Text style={mutedText}>{stats.reviewsToday} today</Text>
             </View>
-            {milestone && (
-              <>
-                <View style={styles.barTrack}>
-                  <View style={[styles.barFill, { width: `${milestoneProgress * 100}%` }]} />
+            <View style={styles.chartArea}>
+              {week.map((d) => (
+                <View key={d.label + d.count} style={styles.chartCol}>
+                  <View style={styles.chartBarTrack}>
+                    <View
+                      style={[
+                        styles.chartBar,
+                        { height: `${Math.max(6, (d.count / maxCount) * 100)}%` },
+                        d.isToday ? styles.chartBarToday : null,
+                      ]}
+                    />
+                  </View>
+                  <Text style={[styles.chartLabel, d.isToday && styles.chartLabelToday]}>
+                    {d.label}
+                  </Text>
                 </View>
-                <Text style={styles.milestoneSub}>
-                  {stats.mastered} / {milestone.target} words mastered
-                </Text>
-              </>
-            )}
+              ))}
+            </View>
+          </View>
+
+          {/* Achievement medals */}
+          <Text style={[sectionTitle, styles.sectionSpacing]}>Achievement</Text>
+          <View style={styles.achievements}>
+            {MILESTONES.map((m) => {
+              const unlocked = stats.mastered >= m.target;
+              return (
+                <View key={m.label} style={styles.medal}>
+                  <View
+                    style={[
+                      styles.medalCircle,
+                      unlocked ? styles.medalUnlocked : styles.medalLocked,
+                    ]}
+                  >
+                    <Ionicons
+                      name={m.icon as React.ComponentProps<typeof Ionicons>['name']}
+                      size={22}
+                      color={unlocked ? '#fff' : '#B9B7A8'}
+                    />
+                  </View>
+                  <Text style={[styles.medalTarget, unlocked && styles.medalTargetUnlocked]}>
+                    {Math.min(stats.mastered, m.target)} of {m.target}
+                  </Text>
+                  <Text style={styles.medalLabel}>{m.label}</Text>
+                </View>
+              );
+            })}
           </View>
 
           <Text style={styles.note}>
-            A word counts as mastered after {3} correct reviews spaced {21}+ days apart
-            (spaced-repetition schedule). All data is stored on this device only.
+            A word counts as mastered after 3 correct reviews spaced 21+ days apart
+            (spaced-repetition schedule).
           </Text>
 
-          <Pressable style={[childButton, styles.refresh]} onPress={() => load().catch(() => undefined)}>
-            <Ionicons name="refresh" size={20} color="#fff" />
-            <Text style={styles.refreshText}>Refresh</Text>
-          </Pressable>
-
-          <Pressable style={[childButton, styles.manageButton]} onPress={onManageContent}>
-            <Ionicons name="create-outline" size={20} color="#fff" />
-            <Text style={styles.refreshText}>Manage words</Text>
+          <Pressable style={styles.manageRow} onPress={onManageContent}>
+            <View style={[styles.actionIcon, { backgroundColor: colors.primarySoft }]}>
+              <Ionicons name="create-outline" size={22} color={colors.primary} />
+            </View>
+            <View style={styles.actionText}>
+              <Text style={styles.manageTitle}>Manage words</Text>
+              <Text style={mutedText}>Add words, record audio</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={colors.muted} />
           </Pressable>
         </>
       )}
@@ -125,59 +173,93 @@ export default function DashboardScreen({ db, languageId, languageName, onExit, 
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
-  content: { padding: 20, paddingBottom: 48 },
-  headerRow: {
+  content: { padding: 20, paddingBottom: 140 },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 20,
+    marginTop: 8,
+  },
+  hero: { backgroundColor: colors.primary, borderRadius: 24, padding: 18, marginBottom: 16 },
+  heroRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 16 },
+  heroAvatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: 'rgba(255,255,255,0.18)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  heroMeta: { flex: 1 },
+  heroTitle: { fontSize: 16, fontWeight: '800', color: '#fff', marginBottom: 6 },
+  heroChipsRow: { flexDirection: 'row', gap: 8 },
+  heroChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: 'rgba(255,255,255,0.16)',
+    borderRadius: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  heroChipText: { color: '#fff', fontSize: 11, fontWeight: '700' },
+  heroStatsRow: { flexDirection: 'row', alignItems: 'center' },
+  heroStat: { flex: 1, alignItems: 'center' },
+  heroStatDivider: { width: 1, height: 28, backgroundColor: 'rgba(255,255,255,0.25)' },
+  heroStatValue: { fontSize: 20, fontWeight: '800', color: '#fff' },
+  heroStatLabel: { fontSize: 10, color: 'rgba(255,255,255,0.8)', marginTop: 2 },
+  chartCard: { backgroundColor: colors.card, borderRadius: 20, padding: 16 },
+  chartHeaderRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 14,
   },
-  close: { fontSize: 24 },
-  statsGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
-  statCard: {
-    width: '31.5%',
-    backgroundColor: colors.card,
-    borderRadius: 16,
-    padding: 12,
-    marginBottom: 12,
-    alignItems: 'center',
-    gap: 4,
-  },
-  statValue: { fontSize: 24, fontWeight: '800', color: colors.text },
-  statLabel: { fontSize: 11, color: colors.muted, textAlign: 'center' },
-  milestoneCard: {
-    backgroundColor: colors.card,
-    borderRadius: 16,
-    padding: 16,
-    marginTop: 8,
-  },
-  milestoneTitleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  milestoneTitle: { fontSize: 17, fontWeight: '800', color: colors.text },
-  milestoneSub: { fontSize: 13, color: colors.muted, marginTop: 6 },
-  barTrack: {
-    height: 12,
-    borderRadius: 6,
-    backgroundColor: '#EEE6D4',
-    marginTop: 10,
-  },
-  barFill: { height: 12, borderRadius: 6, backgroundColor: colors.accent },
-  note: { fontSize: 12, color: colors.muted, marginTop: 16, lineHeight: 18 },
-  refresh: {
+  chartArea: { flexDirection: 'row', alignItems: 'flex-end', gap: 10 },
+  chartCol: { flex: 1, alignItems: 'center', gap: 6 },
+  chartBarTrack: { height: 110, width: '100%', justifyContent: 'flex-end' },
+  chartBar: {
+    width: '100%',
+    borderRadius: 8,
     backgroundColor: colors.primary,
-    paddingVertical: 16,
+    opacity: 0.85,
+  },
+  chartBarToday: { backgroundColor: colors.accent, opacity: 1 },
+  chartLabel: { fontSize: 10, fontWeight: '700', color: colors.muted },
+  chartLabelToday: { color: colors.text },
+  sectionSpacing: { marginTop: 24, marginBottom: 12 },
+  achievements: { flexDirection: 'row', justifyContent: 'space-between' },
+  medal: { alignItems: 'center', width: '19%', gap: 4 },
+  medalCircle: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  medalUnlocked: { backgroundColor: colors.accent },
+  medalLocked: { backgroundColor: '#EEEBDD' },
+  medalTarget: { fontSize: 9, fontWeight: '800', color: colors.muted },
+  medalTargetUnlocked: { color: '#C98A1B' },
+  medalLabel: { fontSize: 9, fontWeight: '700', color: colors.text, textAlign: 'center' },
+  note: { fontSize: 12, color: colors.muted, marginTop: 20, lineHeight: 18 },
+  manageRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    backgroundColor: colors.card,
+    borderRadius: 18,
+    padding: 14,
     marginTop: 16,
-    flexDirection: 'row',
-    gap: 10,
   },
-  refreshText: { color: '#fff', fontWeight: '800', fontSize: 18 },
-  manageButton: {
-    backgroundColor: colors.accent,
-    paddingVertical: 16,
-    flexDirection: 'row',
-    gap: 10,
+  actionIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  actionText: { flex: 1 },
+  manageTitle: { fontSize: 15, fontWeight: '800', color: colors.text, marginBottom: 2 },
 });

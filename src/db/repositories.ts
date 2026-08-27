@@ -346,3 +346,49 @@ export async function countMastered(db: SQLite.SQLiteDatabase, languageId: numbe
   return res?.n ?? 0;
 }
 
+export interface DayActivity {
+  /** Weekday label, e.g. 'Mon'. */
+  label: string;
+  count: number;
+  isToday: boolean;
+}
+
+/** Reviews per day for the last 7 days (local calendar days, oldest first). */
+export async function getWeeklyActivity(
+  db: SQLite.SQLiteDatabase,
+  languageId: number,
+  now: Date = new Date(),
+): Promise<DayActivity[]> {
+  const start = new Date(now);
+  start.setDate(start.getDate() - 6);
+  start.setHours(0, 0, 0, 0);
+
+  const rows = await db.getAllAsync<{ reviewed_at: string }>(
+    `SELECT r.reviewed_at FROM review_logs r
+     JOIN vocabulary v ON v.id = r.vocabulary_id
+     WHERE v.language_id = ? AND r.reviewed_at >= ?`,
+    [languageId, start.toISOString()],
+  );
+
+  const buckets = new Map<string, number>();
+  for (const r of rows) {
+    const d = new Date(r.reviewed_at);
+    const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    buckets.set(key, (buckets.get(key) ?? 0) + 1);
+  }
+
+  const labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const days: DayActivity[] = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(start);
+    d.setDate(start.getDate() + i);
+    const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    days.push({
+      label: labels[d.getDay()],
+      count: buckets.get(key) ?? 0,
+      isToday: d.toDateString() === now.toDateString(),
+    });
+  }
+  return days;
+}
+

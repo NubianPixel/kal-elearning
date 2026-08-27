@@ -8,18 +8,18 @@ import HomeScreen from './src/screens/HomeScreen';
 import ReviewScreen from './src/screens/ReviewScreen';
 import AdminScreen from './src/screens/AdminScreen';
 import DashboardScreen from './src/screens/DashboardScreen';
+import TabBar from './src/components/TabBar';
 import { colors } from './src/theme';
 import type { Language } from './src/core/types';
 
 type Screen = 'home' | 'review' | 'dashboard' | 'admin';
 
 /**
- * App shell. Simple state-based navigation (4 screens, no deep-linking
- * needs) keeps the dependency footprint at zero-budget minimums.
+ * App shell. State-based navigation; the dark pill tab bar with the
+ * floating amber play FAB is shown on the two top-level tabs and hidden
+ * during focused full-screen tasks (review session, admin content entry).
  *
  * Privacy: no accounts, no analytics, no trackers — everything is local.
- * The "parent zone" is a plain gate for v1 (single-family device),
- * per the prompt's out-of-scope list.
  */
 export default function App() {
   const [db, setDb] = useState<SQLite.SQLiteDatabase | null>(null);
@@ -43,6 +43,8 @@ export default function App() {
       </View>
     );
   }
+
+  const showTabBar = screen === 'home' || screen === 'dashboard';
 
   return (
     <View style={styles.root}>
@@ -72,7 +74,16 @@ export default function App() {
           db={db}
           languageId={language.id}
           languageName={language.name}
-          onExit={() => setScreen('home')}
+          onExit={() => setScreen('dashboard')}
+        />
+      )}
+
+      {showTabBar && (
+        <TabBar
+          active={screen === 'home' ? 'home' : 'dashboard'}
+          onHome={() => setScreen('home')}
+          onParent={() => setScreen('dashboard')}
+          onPlay={() => setScreen('review')}
         />
       )}
     </View>
@@ -80,7 +91,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 },
+  root: { flex: 1, backgroundColor: colors.background },
   center: {
     flex: 1,
     backgroundColor: colors.background,
@@ -88,4 +99,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
 
