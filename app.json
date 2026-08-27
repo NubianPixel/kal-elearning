@@ -22,7 +22,13 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow KAL e-Learning to use the microphone to record pronunciation audio for learning words."
+        }
+      ]
     ]
   }
 }
