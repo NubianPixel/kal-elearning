@@ -274,6 +274,15 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
             placeholderTextColor={colors.muted}
           />
 
+          <Text style={styles.label}>Translation (English)</Text>
+          <TextInput
+            style={styles.input}
+            value={form.translation}
+            onChangeText={(t) => setForm({ ...form, translation: t })}
+            placeholder="e.g. Hello"
+            placeholderTextColor={colors.muted}
+          />
+
           <Text style={styles.label}>Category</Text>
           <View style={styles.chipsRow}>
             {categories.map((c) => (
