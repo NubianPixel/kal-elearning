@@ -24,7 +24,7 @@
     "plugins": [
       "expo-sqlite",
       [
-        "expo-av",
+        "expo-audio",
         {
           "microphonePermission": "Allow KAL e-Learning to use the microphone to record pronunciation audio for learning words."
         }
@@ -34,7 +34,9 @@
         {
           "photosPermission": "Allow KAL e-Learning to access your photos so you can add pictures to words."
         }
-      ]
+      ],
+      "expo-asset",
+      "expo-font"
     ]
   }
 }
