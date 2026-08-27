@@ -6,6 +6,11 @@
  *
  * Kept in one module so the player/recorder implementation can evolve
  * without touching screens.
+ *
+ * Session handling: we ALWAYS set an explicit audio mode before
+ * playback and after recording stops. Failing to restore the `.playback`
+ * mode leaves the session in the record category, which routes output to
+ * the earpiece / mutes it in silent mode (iOS) — so nothing is audible.
  */
 
 import {
@@ -16,31 +21,37 @@ import {
   setAudioModeAsync,
 } from 'expo-audio';
 
-/** Fallback release timer for playback (ms) in case the finish event
- *  never fires on some platforms. Pronunciation clips are short. */
-const PLAYBACK_RELEASE_FALLBACK_MS = 20000;
+/** Safety nudge to start playback if the load event is slow. */
+const LOAD_NUDGE_MS = 250;
 
-let configured = false;
-
-async function ensureAudioMode(): Promise<void> {
-  if (configured) return;
+async function setPlaybackMode(): Promise<void> {
   await setAudioModeAsync({
+    allowsRecording: false,
     playsInSilentMode: true,
     shouldPlayInBackground: false,
   });
-  configured = true;
 }
 
-/** Play a recorded pronunciation clip from a local file URI. */
+async function setRecordingMode(): Promise<void> {
+  await setAudioModeAsync({
+    allowsRecording: true,
+    playsInSilentMode: true,
+    shouldPlayInBackground: false,
+  });
+}
+
+/**
+ * Play a recorded pronunciation clip from a local file URI.
+ * Waits for the player to report it is loaded before starting playback
+ * (reliable on both iOS AVPlayer and Android ExoPlayer), then releases
+ * the player once the clip finishes.
+ */
 export async function playClip(uri: string): Promise<void> {
-  await ensureAudioMode();
+  await setPlaybackMode();
   const player = createAudioPlayer({ uri });
-  let released = false;
+  let started = false;
 
   const release = () => {
-    if (released) return;
-    released = true;
-    clearTimeout(fallbackTimer);
     try {
       player.remove();
     } catch {
@@ -48,15 +59,24 @@ export async function playClip(uri: string): Promise<void> {
     }
   };
 
-  const fallbackTimer = setTimeout(release, PLAYBACK_RELEASE_FALLBACK_MS);
   const subscription = player.addListener('playbackStatusUpdate', (status) => {
+    if (!started && status.isLoaded) {
+      started = true;
+      player.play();
+    }
     if (status.didJustFinish) {
       subscription.remove();
       release();
     }
   });
 
-  player.play();
+  // If the load event is slow to arrive, nudge playback so we never get stuck.
+  setTimeout(() => {
+    if (!started) {
+      started = true;
+      player.play();
+    }
+  }, LOAD_NUDGE_MS);
 }
 
 export async function requestMicPermission(): Promise<boolean> {
@@ -70,11 +90,7 @@ export interface ActiveRecording {
 
 /** Start recording a pronunciation clip; returns a handle to stop it. */
 export async function startRecording(): Promise<ActiveRecording> {
-  await ensureAudioMode();
-  await setAudioModeAsync({
-    allowsRecording: true,
-    playsInSilentMode: true,
-  });
+  await setRecordingMode();
 
   const recorder = new AudioModule.AudioRecorder(RecordingPresets.HIGH_QUALITY);
   await recorder.prepareToRecordAsync();
@@ -89,7 +105,8 @@ export async function startRecording(): Promise<ActiveRecording> {
         await recorder.stop();
         return recorder.uri;
       } finally {
-        await setAudioModeAsync({ allowsRecording: false });
+        // Restore a clean playback session so the recorded clip is audible.
+        await setPlaybackMode().catch(() => undefined);
       }
     },
   };
