@@ -17,8 +17,8 @@ export interface Category {
   id: number;
   languageId: number;
   name: string;
-  /** Optional emoji used as a visual cue for the child (minimal-text UI). */
-  emoji: string | null;
+  /** Optional Ionicons name used as a visual cue for the child (minimal-text UI). */
+  icon: string | null;
 }
 
 export type Difficulty = 1 | 2 | 3;

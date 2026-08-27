@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { colors, childButton, titleText, bigText } from '../theme';
 import type { ProgressStats } from '../core/types';
 
@@ -23,19 +24,30 @@ export default function HomeScreen({ languageName, onReview, onParentZone, loadS
 
   return (
     <View style={styles.container}>
-      <Text style={styles.hello}>
-        {stats && stats.streakDays > 0 ? `🔥 ${stats.streakDays} day${stats.streakDays === 1 ? '' : 's'} in a row!` : '🌟 Let’s learn!'}
-      </Text>
-      <Text style={titleText}>{languageName} ⭐</Text>
+      {stats && stats.streakDays > 0 ? (
+        <View style={styles.streakRow}>
+          <Ionicons name="flame" size={22} color={colors.accent} />
+          <Text style={styles.hello}>
+            {stats.streakDays} day{stats.streakDays === 1 ? '' : 's'} in a row!
+          </Text>
+        </View>
+      ) : (
+        <View style={styles.streakRow}>
+          <Ionicons name="sunny" size={22} color={colors.accent} />
+          <Text style={styles.hello}>Let’s learn!</Text>
+        </View>
+      )}
+      <Text style={titleText}>{languageName}</Text>
 
       <Pressable style={[childButton, styles.playButton]} onPress={onReview} accessibilityLabel="Start learning">
-        <Text style={styles.playEmoji}>🎉</Text>
+        <Ionicons name="play-circle" size={72} color="#fff" />
         <Text style={styles.playText}>Play & Learn!</Text>
       </Pressable>
 
       <View style={styles.footer}>
         <Pressable style={styles.parentButton} onPress={onParentZone} accessibilityLabel="Parent zone">
-          <Text style={styles.parentText}>Parent zone 🔒</Text>
+          <Ionicons name="lock-closed" size={16} color={colors.muted} />
+          <Text style={styles.parentText}>Parent zone</Text>
         </Pressable>
       </View>
     </View>
@@ -49,22 +61,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 24,
   },
+  streakRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    marginBottom: 8,
+  },
   hello: {
     fontSize: 20,
     color: colors.accent,
     fontWeight: '700',
     textAlign: 'center',
-    marginBottom: 8,
   },
   playButton: {
     backgroundColor: colors.primary,
     marginTop: 32,
-    paddingVertical: 32,
+    paddingVertical: 28,
+    gap: 8,
   },
-  playEmoji: { fontSize: 56 },
   playText: { fontSize: 32, fontWeight: '800', color: '#fff' },
   footer: { position: 'absolute', bottom: 24, right: 24 },
   parentButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
     borderWidth: 2,
     borderColor: colors.muted,
     borderRadius: 12,

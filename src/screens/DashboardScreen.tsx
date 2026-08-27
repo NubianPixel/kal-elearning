@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import type * as SQLite from 'expo-sqlite';
 import { colors, childButton, titleText } from '../theme';
 import { getProgressStats } from '../db/repositories';
@@ -14,10 +15,18 @@ interface Props {
   onManageContent: () => void;
 }
 
-function StatCard({ label, value, emoji }: { label: string; value: string; emoji: string }) {
+function StatCard({
+  label,
+  value,
+  icon,
+}: {
+  label: string;
+  value: string;
+  icon: React.ComponentProps<typeof Ionicons>['name'];
+}) {
   return (
     <View style={styles.statCard}>
-      <Text style={styles.statEmoji}>{emoji}</Text>
+      <Ionicons name={icon} size={24} color={colors.primary} />
       <Text style={styles.statValue}>{value}</Text>
       <Text style={styles.statLabel}>{label}</Text>
     </View>
@@ -51,8 +60,8 @@ export default function DashboardScreen({ db, languageId, languageName, onExit, 
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.headerRow}>
         <Text style={titleText}>{languageName} Progress</Text>
-        <Pressable onPress={onExit} hitSlop={12}>
-          <Text style={styles.close}>✖️</Text>
+        <Pressable onPress={onExit} hitSlop={12} accessibilityLabel="Close dashboard">
+          <Ionicons name="close-circle" size={30} color={colors.muted} />
         </Pressable>
       </View>
 
@@ -61,20 +70,27 @@ export default function DashboardScreen({ db, languageId, languageName, onExit, 
       ) : (
         <>
           <View style={styles.statsGrid}>
-            <StatCard emoji="🏆" label="Words mastered" value={`${stats.mastered}`} />
-            <StatCard emoji="📖" label="Learning" value={`${stats.learning}`} />
-            <StatCard emoji="🔥" label="Day streak" value={`${stats.streakDays}`} />
-            <StatCard emoji="🎯" label="Accuracy (30d)" value={stats.accuracy30d === null ? '—' : `${Math.round(stats.accuracy30d * 100)}%`} />
-            <StatCard emoji="⏱" label="Minutes practised" value={`${stats.minutesSpent}`} />
-            <StatCard emoji="📅" label="Reviews today" value={`${stats.reviewsToday}`} />
+            <StatCard icon="trophy-outline" label="Words mastered" value={`${stats.mastered}`} />
+            <StatCard icon="book-outline" label="Learning" value={`${stats.learning}`} />
+            <StatCard icon="flame" label="Day streak" value={`${stats.streakDays}`} />
+            <StatCard icon="stats-chart-outline" label="Accuracy (30d)" value={stats.accuracy30d === null ? '—' : `${Math.round(stats.accuracy30d * 100)}%`} />
+            <StatCard icon="timer-outline" label="Minutes practised" value={`${stats.minutesSpent}`} />
+            <StatCard icon="calendar-outline" label="Reviews today" value={`${stats.reviewsToday}`} />
           </View>
 
           <View style={styles.milestoneCard}>
-            <Text style={styles.milestoneTitle}>
-              {milestone
-                ? `Next milestone: ${milestone.emoji} ${milestone.label}`
-                : '🌟 All milestones achieved!'}
-            </Text>
+            <View style={styles.milestoneTitleRow}>
+              {milestone && (
+                <Ionicons
+                  name={milestone.icon as React.ComponentProps<typeof Ionicons>['name']}
+                  size={20}
+                  color={colors.accent}
+                />
+              )}
+              <Text style={styles.milestoneTitle}>
+                {milestone ? `Next milestone: ${milestone.label}` : 'All milestones achieved!'}
+              </Text>
+            </View>
             {milestone && (
               <>
                 <View style={styles.barTrack}>
@@ -93,11 +109,13 @@ export default function DashboardScreen({ db, languageId, languageName, onExit, 
           </Text>
 
           <Pressable style={[childButton, styles.refresh]} onPress={() => load().catch(() => undefined)}>
-            <Text style={styles.refreshText}>🔄 Refresh</Text>
+            <Ionicons name="refresh" size={20} color="#fff" />
+            <Text style={styles.refreshText}>Refresh</Text>
           </Pressable>
 
           <Pressable style={[childButton, styles.manageButton]} onPress={onManageContent}>
-            <Text style={styles.refreshText}>✏️ Manage words</Text>
+            <Ionicons name="create-outline" size={20} color="#fff" />
+            <Text style={styles.refreshText}>Manage words</Text>
           </Pressable>
         </>
       )}
@@ -123,8 +141,8 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 12,
     alignItems: 'center',
+    gap: 4,
   },
-  statEmoji: { fontSize: 24 },
   statValue: { fontSize: 24, fontWeight: '800', color: colors.text },
   statLabel: { fontSize: 11, color: colors.muted, textAlign: 'center' },
   milestoneCard: {
@@ -132,6 +150,11 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     marginTop: 8,
+  },
+  milestoneTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
   milestoneTitle: { fontSize: 17, fontWeight: '800', color: colors.text },
   milestoneSub: { fontSize: 13, color: colors.muted, marginTop: 6 },
@@ -143,7 +166,18 @@ const styles = StyleSheet.create({
   },
   barFill: { height: 12, borderRadius: 6, backgroundColor: colors.accent },
   note: { fontSize: 12, color: colors.muted, marginTop: 16, lineHeight: 18 },
-  refresh: { backgroundColor: colors.primary, paddingVertical: 16, marginTop: 16 },
+  refresh: {
+    backgroundColor: colors.primary,
+    paddingVertical: 16,
+    marginTop: 16,
+    flexDirection: 'row',
+    gap: 10,
+  },
   refreshText: { color: '#fff', fontWeight: '800', fontSize: 18 },
-  manageButton: { backgroundColor: colors.accent, paddingVertical: 16 },
+  manageButton: {
+    backgroundColor: colors.accent,
+    paddingVertical: 16,
+    flexDirection: 'row',
+    gap: 10,
+  },
 });

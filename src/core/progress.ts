@@ -41,16 +41,17 @@ export function computeStreak(isoDates: string[], today: Date = new Date()): num
 
 export interface Milestone {
   label: string;
-  emoji: string;
+  /** Ionicons glyph name. */
+  icon: string;
   target: number;
 }
 
 export const MILESTONES: Milestone[] = [
-  { label: 'First steps', emoji: '🌱', target: 5 },
-  { label: 'Word explorer', emoji: '🎈', target: 10 },
-  { label: 'Rising star', emoji: '⭐', target: 25 },
-  { label: 'Word champion', emoji: '🏆', target: 50 },
-  { label: 'Setswana hero', emoji: '🦁', target: 100 },
+  { label: 'First steps', icon: 'leaf', target: 5 },
+  { label: 'Word explorer', icon: 'rocket', target: 10 },
+  { label: 'Rising star', icon: 'star', target: 25 },
+  { label: 'Word champion', icon: 'trophy', target: 50 },
+  { label: 'Setswana hero', icon: 'medal', target: 100 },
 ];
 
 /** The next milestone the child has not yet reached, if any. */

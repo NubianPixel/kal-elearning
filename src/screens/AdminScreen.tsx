@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   Alert,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import type * as SQLite from 'expo-sqlite';
 import { colors, childButton, titleText } from '../theme';
 import {
@@ -176,13 +177,14 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.headerRow}>
         <Text style={titleText}>{languageName} — Admin</Text>
-        <Pressable onPress={onExit} hitSlop={12}>
-          <Text style={styles.close}>✖️</Text>
+        <Pressable onPress={onExit} hitSlop={12} accessibilityLabel="Close admin">
+          <Ionicons name="close-circle" size={30} color={colors.muted} />
         </Pressable>
       </View>
 
       <Pressable style={[childButton, styles.primaryAction]} onPress={startAdd}>
-        <Text style={styles.actionText}>➕ Add a word</Text>
+        <Ionicons name="add-circle" size={24} color="#fff" />
+        <Text style={styles.actionText}>Add a word</Text>
       </Pressable>
 
       {form && (
@@ -206,8 +208,15 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
                 style={[styles.chip, form.categoryId === c.id && styles.chipOn]}
                 onPress={() => setForm({ ...form, categoryId: c.id })}
               >
+                {c.icon ? (
+                  <Ionicons
+                    name={c.icon as React.ComponentProps<typeof Ionicons>['name']}
+                    size={16}
+                    color={form.categoryId === c.id ? '#fff' : colors.text}
+                  />
+                ) : null}
                 <Text style={form.categoryId === c.id ? styles.chipTextOn : styles.chipText}>
-                  {c.emoji ? `${c.emoji} ` : ''}{c.name}
+                  {c.name}
                 </Text>
               </Pressable>
             ))}
@@ -220,8 +229,9 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
               placeholder="New category name"
               placeholderTextColor={colors.muted}
             />
-            <Pressable style={styles.chip} onPress={addCategory}>
-              <Text style={styles.chipText}>➕ Add</Text>
+            <Pressable style={[styles.chip, styles.chipWithIcon]} onPress={addCategory}>
+              <Ionicons name="add" size={16} color={colors.text} />
+              <Text style={styles.chipText}>Add</Text>
             </Pressable>
           </View>
 
@@ -234,7 +244,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
                 onPress={() => setForm({ ...form, difficulty: d })}
               >
                 <Text style={form.difficulty === d ? styles.chipTextOn : styles.chipText}>
-                  {d === 1 ? '🙂 Easy' : d === 2 ? '😐 Medium' : '😅 Hard'}
+                  {d === 1 ? 'Easy' : d === 2 ? 'Medium' : 'Hard'}
                 </Text>
               </Pressable>
             ))}
@@ -243,20 +253,30 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
           <Text style={styles.label}>Pronunciation audio</Text>
           <View style={styles.chipsRow}>
             <Pressable style={[styles.chip, recording && styles.chipOn]} onPress={toggleRecord}>
+              <Ionicons
+                name={recording ? 'stop-circle' : 'mic'}
+                size={16}
+                color={recording ? '#fff' : colors.text}
+              />
               <Text style={recording ? styles.chipTextOn : styles.chipText}>
-                {recording ? '⏹ Stop recording' : '🎤 Record'}
+                {recording ? 'Stop recording' : 'Record'}
               </Text>
             </Pressable>
             {form.audioUri && !recording && (
               <>
                 <Pressable
-                  style={styles.chip}
+                  style={[styles.chip, styles.chipWithIcon]}
                   onPress={() => playClip(form.audioUri!).catch(() => undefined)}
                 >
-                  <Text style={styles.chipText}>▶️ Preview</Text>
+                  <Ionicons name="play" size={16} color={colors.text} />
+                  <Text style={styles.chipText}>Preview</Text>
                 </Pressable>
-                <Pressable style={styles.chip} onPress={() => setForm({ ...form, audioUri: null })}>
-                  <Text style={styles.chipText}>🗑 Remove</Text>
+                <Pressable
+                  style={[styles.chip, styles.chipWithIcon]}
+                  onPress={() => setForm({ ...form, audioUri: null })}
+                >
+                  <Ionicons name="trash-outline" size={16} color={colors.danger} />
+                  <Text style={styles.chipText}>Remove</Text>
                 </Pressable>
               </>
             )}
@@ -271,7 +291,8 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
               onPress={save}
               disabled={saving}
             >
-              <Text style={styles.actionText}>{saving ? 'Saving…' : '💾 Save word'}</Text>
+              <Ionicons name="save-outline" size={22} color="#fff" />
+              <Text style={styles.actionText}>{saving ? 'Saving…' : 'Save word'}</Text>
             </Pressable>
             <Pressable style={[childButton, styles.cancelButton]} onPress={() => setForm(null)}>
               <Text style={styles.cancelText}>Cancel</Text>
@@ -287,14 +308,19 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
             <Text style={styles.entryTarget}>{entry.targetText}</Text>
             <Text style={styles.entryTranslation}>
               {categoryName(entry.categoryId)} · {entry.translation}
-              {entry.audioUri ? ' · 🔊' : ''}
+              {entry.audioUri ? ' · audio recorded' : ''}
             </Text>
           </View>
-          <Pressable onPress={() => startEdit(entry)} hitSlop={8}>
-            <Text style={styles.entryAction}>✏️</Text>
+          <Pressable onPress={() => startEdit(entry)} hitSlop={8} accessibilityLabel="Edit word">
+            <Ionicons name="create-outline" size={22} color={colors.primary} />
           </Pressable>
-          <Pressable onPress={() => removeEntry(entry)} hitSlop={8}>
-            <Text style={styles.entryAction}>🗑</Text>
+          <Pressable
+            onPress={() => removeEntry(entry)}
+            hitSlop={8}
+            style={styles.entryDelete}
+            accessibilityLabel="Delete word"
+          >
+            <Ionicons name="trash-outline" size={22} color={colors.danger} />
           </Pressable>
         </View>
       ))}
@@ -320,8 +346,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 16,
   },
-  close: { fontSize: 24 },
-  primaryAction: { backgroundColor: colors.primary, paddingVertical: 20 },
+  primaryAction: {
+    backgroundColor: colors.primary,
+    paddingVertical: 20,
+    flexDirection: 'row',
+    gap: 10,
+  },
   actionText: { fontSize: 20, fontWeight: '800', color: '#fff' },
   form: { backgroundColor: colors.card, borderRadius: 16, padding: 16, marginTop: 16 },
   formTitle: { ...titleText, fontSize: 22, marginBottom: 8 },
@@ -343,7 +373,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     backgroundColor: '#fff',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
   },
+  chipWithIcon: { alignSelf: 'flex-start' },
   chipOn: { backgroundColor: colors.primary },
   chipText: { color: colors.text, fontWeight: '600' },
   chipTextOn: { color: '#fff', fontWeight: '600' },
@@ -351,7 +385,12 @@ const styles = StyleSheet.create({
   addCategoryInput: { flex: 1 },
   hint: { color: colors.muted, marginTop: 6, fontSize: 13 },
   formButtons: { marginTop: 16 },
-  saveButton: { backgroundColor: colors.primary, paddingVertical: 18 },
+  saveButton: {
+    backgroundColor: colors.primary,
+    paddingVertical: 18,
+    flexDirection: 'row',
+    gap: 10,
+  },
   disabled: { opacity: 0.5 },
   cancelButton: { backgroundColor: 'transparent', paddingVertical: 8 },
   cancelText: { color: colors.muted, fontWeight: '700', textAlign: 'center' },
@@ -367,6 +406,6 @@ const styles = StyleSheet.create({
   entryText: { flex: 1 },
   entryTarget: { fontSize: 17, fontWeight: '700', color: colors.text },
   entryTranslation: { fontSize: 13, color: colors.muted },
-  entryAction: { fontSize: 20, paddingHorizontal: 8 },
+  entryDelete: { paddingHorizontal: 8 },
 });
 

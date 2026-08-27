@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import type * as SQLite from 'expo-sqlite';
 import { colors, childButton, bigText, titleText } from '../theme';
 import { getReviewQueue, recordAnswer, type QueueItem } from '../db/repositories';
@@ -13,13 +14,14 @@ interface Props {
 }
 
 type Phase = 'loading' | 'card' | 'empty' | 'done';
+type PraiseIcon = 'star' | 'thumbs-up' | 'happy' | 'trophy' | 'heart' | 'sunny';
 
 interface Choice {
   translation: string;
   isCorrect: boolean;
 }
 
-const PRAISE = ['🌟', '🎉', '👏', '💪', '🦁', '✨'];
+const PRAISE: readonly PraiseIcon[] = ['star', 'thumbs-up', 'happy', 'trophy', 'heart', 'sunny'];
 
 function shuffle<T>(items: T[]): T[] {
   const copy = [...items];
@@ -53,7 +55,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
   const [stats, setStats] = useState({ total: 0, correct: 0 });
   const [allEntries, setAllEntries] = useState<VocabularyEntry[]>([]);
   const cardShownAt = useRef<number>(Date.now());
-  const [praise] = useState(() => PRAISE[Math.floor(Math.random() * PRAISE.length)]);
+  const [praise] = useState<PraiseIcon>(() => PRAISE[Math.floor(Math.random() * PRAISE.length)]);
 
   const load = useCallback(async () => {
     setPhase('loading');
@@ -125,9 +127,11 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
   if (phase === 'empty') {
     return (
       <View style={styles.center}>
-        <Text style={titleText}>All done for now! 🌟</Text>
+        <Ionicons name="checkmark-circle" size={72} color={colors.primary} />
+        <Text style={titleText}>All done for now!</Text>
         <Pressable style={[childButton, styles.nextButton]} onPress={onExit}>
-          <Text style={styles.nextText}>Home 🏠</Text>
+          <Ionicons name="home" size={26} color="#fff" />
+          <Text style={styles.nextText}>Home</Text>
         </Pressable>
       </View>
     );
@@ -136,13 +140,14 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
   if (phase === 'done') {
     return (
       <View style={styles.center}>
-        <Text style={styles.bigEmoji}>🎉</Text>
+        <Ionicons name="ribbon" size={80} color={colors.accent} />
         <Text style={titleText}>Great job!</Text>
         <Text style={styles.doneStats}>
           {stats.correct} of {stats.total} correct!
         </Text>
         <Pressable style={[childButton, styles.nextButton]} onPress={onExit}>
-          <Text style={styles.nextText}>Home 🏠</Text>
+          <Ionicons name="home" size={26} color="#fff" />
+          <Text style={styles.nextText}>Home</Text>
         </Pressable>
       </View>
     );
@@ -150,7 +155,10 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Text style={styles.counter}>Word {stats.total + 1} {answered ? praise : '👂'}</Text>
+      <View style={styles.counterRow}>
+        <Ionicons name={answered ? praise : 'ear'} size={20} color={colors.muted} />
+        <Text style={styles.counter}>Word {stats.total + 1}</Text>
+      </View>
 
       <Pressable
         style={styles.audioCard}
@@ -158,7 +166,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
           current?.entry.audioUri && playClip(current.entry.audioUri).catch(() => undefined)
         }
       >
-        <Text style={styles.bigEmoji}>🔊</Text>
+        <Ionicons name="volume-high" size={72} color={colors.accent} />
         <Text style={styles.targetWord}>{current?.entry.targetText}</Text>
         <Text style={styles.tapHint}>Tap to hear it!</Text>
       </Pressable>
@@ -187,14 +195,18 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
 
       {answered !== null && (
         <Pressable style={[childButton, styles.nextButton]} onPress={next}>
+          {answered === 'correct' && (
+            <Ionicons name={praise} size={26} color="#fff" />
+          )}
           <Text style={styles.nextText}>
-            {answered === 'correct' ? `Yes! ${praise}  Next ➡️` : 'Almost! Try the next one ➡️'}
+            {answered === 'correct' ? 'Yes! Next' : 'Almost! Try the next one'}
           </Text>
+          <Ionicons name="arrow-forward" size={26} color="#fff" />
         </Pressable>
       )}
 
-      <Pressable onPress={onExit} style={styles.exitButton}>
-        <Text style={styles.exitText}>✖️</Text>
+      <Pressable onPress={onExit} style={styles.exitButton} accessibilityLabel="Exit review">
+        <Ionicons name="close-circle" size={36} color={colors.muted} />
       </Pressable>
     </ScrollView>
   );
@@ -210,7 +222,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 24,
   },
-  counter: { fontSize: 18, fontWeight: '700', color: colors.muted, textAlign: 'center', marginBottom: 12 },
+  counterRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    marginBottom: 12,
+  },
+  counter: { fontSize: 18, fontWeight: '700', color: colors.muted },
   audioCard: {
     backgroundColor: colors.card,
     borderRadius: 32,
@@ -220,7 +239,6 @@ const styles = StyleSheet.create({
     paddingVertical: 28,
     marginBottom: 24,
   },
-  bigEmoji: { fontSize: 64 },
   targetWord: { ...titleText, fontSize: 44, marginTop: 8 },
   tapHint: { fontSize: 16, color: colors.muted, marginTop: 4 },
   choicesGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
@@ -236,10 +254,14 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   choiceText: { ...bigText, textAlign: 'center' },
-  nextButton: { backgroundColor: colors.primary, paddingVertical: 24 },
+  nextButton: {
+    backgroundColor: colors.primary,
+    paddingVertical: 24,
+    flexDirection: 'row',
+    gap: 10,
+  },
   nextText: { fontSize: 24, fontWeight: '800', color: '#fff' },
   doneStats: { ...bigText, marginVertical: 16 },
   exitButton: { alignSelf: 'center', marginTop: 8, padding: 16 },
-  exitText: { fontSize: 28 },
 });
 

@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS categories (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   language_id INTEGER NOT NULL REFERENCES languages(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
-  emoji TEXT,
+  icon TEXT,
   UNIQUE(language_id, name)
 );
 
@@ -59,13 +59,13 @@ CREATE INDEX IF NOT EXISTS idx_review_logs_time ON review_logs(reviewed_at);
  *  usable immediately; the parent records audio via the admin screen. */
 export const DEFAULT_LANGUAGE = { code: 'tn', name: 'Setswana' } as const;
 
-export const SEED_CATEGORIES: Array<{ name: string; emoji: string }> = [
-  { name: 'Greetings', emoji: '👋' },
-  { name: 'Family', emoji: '👨‍👩‍👦' },
-  { name: 'Animals', emoji: '🐶' },
-  { name: 'Food', emoji: '🍎' },
-  { name: 'Things', emoji: '📦' },
-  { name: 'Words', emoji: '💬' },
+export const SEED_CATEGORIES: Array<{ name: string; icon: string }> = [
+  { name: 'Greetings', icon: 'hand-left-outline' },
+  { name: 'Family', icon: 'people-outline' },
+  { name: 'Animals', icon: 'paw-outline' },
+  { name: 'Food', icon: 'nutrition-outline' },
+  { name: 'Things', icon: 'cube-outline' },
+  { name: 'Words', icon: 'chatbubble-outline' },
 ];
 
 export const SEED_VOCABULARY: Array<{

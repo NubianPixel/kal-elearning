@@ -41,7 +41,7 @@ export async function listCategories(
   languageId: number,
 ): Promise<Category[]> {
   return db.getAllAsync<Category>(
-    'SELECT id, language_id AS languageId, name, emoji FROM categories WHERE language_id = ? ORDER BY name',
+    'SELECT id, language_id AS languageId, name, icon FROM categories WHERE language_id = ? ORDER BY name',
     [languageId],
   );
 }
@@ -50,13 +50,13 @@ export async function createCategory(
   db: SQLite.SQLiteDatabase,
   languageId: number,
   name: string,
-  emoji: string | null,
+  icon: string | null,
 ): Promise<Category> {
   const res = await db.runAsync(
-    'INSERT INTO categories (language_id, name, emoji) VALUES (?, ?, ?)',
-    [languageId, name, emoji],
+    'INSERT INTO categories (language_id, name, icon) VALUES (?, ?, ?)',
+    [languageId, name, icon],
   );
-  return { id: res.lastInsertRowId, languageId, name, emoji };
+  return { id: res.lastInsertRowId, languageId, name, icon };
 }
 
 // ---------------------------------------------------------------------------
