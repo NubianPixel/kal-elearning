@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors } from '../theme';
 
 interface Props {
@@ -12,11 +13,15 @@ interface Props {
 
 /**
  * Dark pill tab bar with floating amber center FAB, matching the
- * reference design. Only the center FAB overlaps the pill.
+ * reference design. Positioned above the home-indicator safe area.
  */
 export default function TabBar({ active, onHome, onParent, onPlay }: Props) {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.wrap} pointerEvents="box-none">
+    <View
+      style={[styles.wrap, { bottom: insets.bottom + 8 }]}
+      pointerEvents="box-none"
+    >
       <View style={styles.pill}>
         <Pressable style={styles.tab} onPress={onHome} accessibilityLabel="Home tab">
           <Ionicons name="home" size={22} color={active === 'home' ? colors.accent : '#6E6E64'} />

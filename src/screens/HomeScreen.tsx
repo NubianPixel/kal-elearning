@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, titleText, sectionTitle, mutedText } from '../theme';
 import type { ProgressStats } from '../core/types';
 
@@ -71,6 +72,7 @@ function ActionRow({
  */
 export default function HomeScreen({ languageName, onReview, onParentZone, loadStats }: Props) {
   const [stats, setStats] = useState<ProgressStats | null>(null);
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     loadStats().then(setStats).catch(() => undefined);
@@ -82,7 +84,13 @@ export default function HomeScreen({ languageName, onReview, onParentZone, loadS
   const pct = stats && stats.total > 0 ? Math.min(100, Math.round((mastered / stats.total) * 100)) : 0;
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[
+        styles.content,
+        { paddingTop: insets.top + 12, paddingBottom: 140 + insets.bottom },
+      ]}
+    >
       <View style={styles.header}>
         <View>
           <Text style={titleText}>Dumela!</Text>

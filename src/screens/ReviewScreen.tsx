@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
 import { colors, childButton, bigText, titleText } from '../theme';
 import { getReviewQueue, recordAnswer, type QueueItem } from '../db/repositories';
@@ -56,6 +57,11 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
   const [allEntries, setAllEntries] = useState<VocabularyEntry[]>([]);
   const cardShownAt = useRef<number>(Date.now());
   const [praise] = useState<PraiseIcon>(() => PRAISE[Math.floor(Math.random() * PRAISE.length)]);
+  const insets = useSafeAreaInsets();
+  const safeEdges = {
+    paddingTop: insets.top + 16,
+    paddingBottom: insets.bottom + 24,
+  };
 
   const load = useCallback(async () => {
     setPhase('loading');
@@ -118,7 +124,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
 
   if (phase === 'loading') {
     return (
-      <View style={styles.center}>
+      <View style={[styles.center, safeEdges]}>
         <ActivityIndicator size="large" color={colors.primary} />
       </View>
     );
@@ -126,7 +132,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
 
   if (phase === 'empty') {
     return (
-      <View style={styles.center}>
+      <View style={[styles.center, safeEdges]}>
         <Ionicons name="checkmark-circle" size={72} color={colors.primary} />
         <Text style={titleText}>All done for now!</Text>
         <Pressable style={[childButton, styles.nextButton]} onPress={onExit}>
@@ -139,7 +145,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
 
   if (phase === 'done') {
     return (
-      <View style={styles.center}>
+      <View style={[styles.center, safeEdges]}>
         <Ionicons name="ribbon" size={80} color={colors.accent} />
         <Text style={titleText}>Great job!</Text>
         <Text style={styles.doneStats}>
@@ -154,7 +160,10 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[styles.content, safeEdges]}
+    >
       <View style={styles.counterRow}>
         <Ionicons name={answered ? praise : 'ear'} size={20} color={colors.muted} />
         <Text style={styles.counter}>Word {stats.total + 1}</Text>

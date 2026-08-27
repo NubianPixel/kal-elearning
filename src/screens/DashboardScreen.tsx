@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
 import { colors, titleText, sectionTitle, mutedText } from '../theme';
 import { getProgressStats, getWeeklyActivity, type DayActivity } from '../db/repositories';
@@ -23,6 +24,7 @@ interface Props {
 export default function DashboardScreen({ db, languageId, languageName, onExit, onManageContent }: Props) {
   const [stats, setStats] = useState<ProgressStats | null>(null);
   const [week, setWeek] = useState<DayActivity[]>([]);
+  const insets = useSafeAreaInsets();
 
   const load = useCallback(async () => {
     setStats(await getProgressStats(db, languageId));
@@ -36,7 +38,13 @@ export default function DashboardScreen({ db, languageId, languageName, onExit, 
   const maxCount = Math.max(1, ...week.map((d) => d.count));
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[
+        styles.content,
+        { paddingTop: insets.top + 12, paddingBottom: 140 + insets.bottom },
+      ]}
+    >
       <View style={styles.header}>
         <View>
           <Text style={titleText}>Progress</Text>

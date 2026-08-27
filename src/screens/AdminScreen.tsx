@@ -10,6 +10,7 @@ import {
   Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
 import { colors, childButton, titleText } from '../theme';
 import {
@@ -58,6 +59,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
   const [newCategory, setNewCategory] = useState('');
   const [recording, setRecording] = useState<ActiveRecording | null>(null);
   const [saving, setSaving] = useState(false);
+  const insets = useSafeAreaInsets();
 
   const refresh = useCallback(async () => {
     setLoading(true);
@@ -174,7 +176,13 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[
+        styles.content,
+        { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 32 },
+      ]}
+    >
       <View style={styles.headerRow}>
         <Text style={titleText}>{languageName} — Admin</Text>
         <Pressable onPress={onExit} hitSlop={12} accessibilityLabel="Close admin">
