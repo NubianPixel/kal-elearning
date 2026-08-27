@@ -71,6 +71,7 @@ export interface VocabularyInput {
   notes?: string | null;
   difficulty: Difficulty;
   audioUri?: string | null;
+  imageUri?: string | null;
 }
 
 export async function listVocabulary(
@@ -79,7 +80,7 @@ export async function listVocabulary(
 ): Promise<VocabularyEntry[]> {
   return db.getAllAsync<VocabularyEntry>(
     `SELECT id, language_id AS languageId, category_id AS categoryId,
-            target_text AS targetText, translation, notes, difficulty, audio_uri AS audioUri
+            target_text AS targetText, translation, notes, difficulty, audio_uri AS audioUri, image_uri AS imageUri
      FROM vocabulary WHERE language_id = ? ORDER BY category_id, target_text`,
     [languageId],
   );
@@ -90,8 +91,8 @@ export async function createVocabulary(
   input: VocabularyInput,
 ): Promise<number> {
   const res = await db.runAsync(
-    `INSERT INTO vocabulary (language_id, category_id, target_text, translation, notes, difficulty, audio_uri)
-     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO vocabulary (language_id, category_id, target_text, translation, notes, difficulty, audio_uri, image_uri)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       input.languageId,
       input.categoryId,
@@ -100,6 +101,7 @@ export async function createVocabulary(
       input.notes ?? null,
       input.difficulty,
       input.audioUri ?? null,
+      input.imageUri ?? null,
     ],
   );
   return res.lastInsertRowId;
@@ -112,7 +114,7 @@ export async function updateVocabulary(
 ): Promise<void> {
   await db.runAsync(
     `UPDATE vocabulary SET category_id = ?, target_text = ?, translation = ?,
-       notes = ?, difficulty = ?, audio_uri = ?,
+       notes = ?, difficulty = ?, audio_uri = ?, image_uri = ?,
        updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
      WHERE id = ?`,
     [
@@ -122,6 +124,7 @@ export async function updateVocabulary(
       input.notes ?? null,
       input.difficulty,
       input.audioUri ?? null,
+      input.imageUri ?? null,
       id,
     ],
   );
@@ -162,7 +165,8 @@ export async function getReviewQueue(
     last_reviewed_at: string | null;
   }>(
     `SELECT v.id, v.language_id AS languageId, v.category_id AS categoryId,
-            v.target_text AS targetText, v.translation, v.notes, v.difficulty, v.audio_uri AS audioUri,
+            v.target_text AS targetText, v.translation, v.notes, v.difficulty,
+            v.audio_uri AS audioUri, v.image_uri AS imageUri,
             cs.ease, cs.interval_days, cs.repetitions, cs.lapses, cs.due_date, cs.last_reviewed_at
      FROM vocabulary v
      LEFT JOIN card_states cs ON cs.vocabulary_id = v.id

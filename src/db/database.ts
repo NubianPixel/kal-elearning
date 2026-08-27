@@ -11,6 +11,7 @@ export function getDb(): Promise<SQLite.SQLiteDatabase> {
       await db.execAsync('PRAGMA foreign_keys = ON;');
       await db.execAsync(SCHEMA_SQL);
       await migrateCategoryEmojiToIcon(db);
+      await migrateVocabularyAddImage(db);
       await seedIfEmpty(db);
       return db;
     })();
@@ -67,6 +68,16 @@ async function migrateCategoryEmojiToIcon(db: SQLite.SQLiteDatabase): Promise<vo
   } finally {
     await db.execAsync('PRAGMA foreign_keys = ON;');
   }
+}
+
+/**
+ * v1.2 migration: vocabulary gained an optional picture column.
+ * ALTER TABLE ADD COLUMN is safe on any SQLite version.
+ */
+async function migrateVocabularyAddImage(db: SQLite.SQLiteDatabase): Promise<void> {
+  const cols = await db.getAllAsync<{ name: string }>('PRAGMA table_info(vocabulary)');
+  if (cols.length === 0 || cols.some((c) => c.name === 'image_uri')) return;
+  await db.execAsync('ALTER TABLE vocabulary ADD COLUMN image_uri TEXT;');
 }
 
 async function seedIfEmpty(db: SQLite.SQLiteDatabase): Promise<void> {

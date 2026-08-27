@@ -8,9 +8,11 @@ import {
   ScrollView,
   ActivityIndicator,
   Alert,
+  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import * as ImagePicker from 'expo-image-picker';
 import type * as SQLite from 'expo-sqlite';
 import { colors, childButton, titleText } from '../theme';
 import {
@@ -43,6 +45,7 @@ function emptyForm(): VocabularyInput & { id?: number } {
     notes: null,
     difficulty: 1,
     audioUri: null,
+    imageUri: null,
   };
 }
 
@@ -90,7 +93,25 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
       notes: entry.notes,
       difficulty: entry.difficulty,
       audioUri: entry.audioUri,
+      imageUri: entry.imageUri,
     });
+  }
+
+  async function pickImage() {
+    const granted = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!granted.granted) {
+      Alert.alert('Photos needed', 'Allow photo access to add pictures to words.');
+      return;
+    }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 0.7,
+    });
+    if (!result.canceled && result.assets[0]) {
+      setForm((f) => (f ? { ...f, imageUri: result.assets[0].uri } : f));
+    }
   }
 
   async function toggleRecord() {
@@ -128,6 +149,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
         notes: form.notes,
         difficulty: form.difficulty,
         audioUri: form.audioUri,
+        imageUri: form.imageUri,
       };
       if (form.id) {
         await updateVocabulary(db, form.id, input);
@@ -293,6 +315,35 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
             <Text style={styles.hint}>Optional — but audio helps a 7-year-old learn fastest.</Text>
           )}
 
+          <Text style={styles.label}>Picture</Text>
+          <View style={styles.imageRow}>
+            {form.imageUri ? (
+              <Image source={{ uri: form.imageUri }} style={styles.imageThumb} />
+            ) : (
+              <View style={[styles.imageThumb, styles.imageThumbEmpty]}>
+                <Ionicons name="image-outline" size={26} color={colors.muted} />
+              </View>
+            )}
+            <View style={styles.imageButtons}>
+              <Pressable style={[styles.chip, styles.chipWithIcon]} onPress={pickImage}>
+                <Ionicons name="images-outline" size={16} color={colors.text} />
+                <Text style={styles.chipText}>{form.imageUri ? 'Change' : 'Choose picture'}</Text>
+              </Pressable>
+              {form.imageUri ? (
+                <Pressable
+                  style={[styles.chip, styles.chipWithIcon]}
+                  onPress={() => setForm({ ...form, imageUri: null })}
+                >
+                  <Ionicons name="trash-outline" size={16} color={colors.danger} />
+                  <Text style={styles.chipText}>Remove</Text>
+                </Pressable>
+              ) : null}
+            </View>
+          </View>
+          <Text style={styles.hint}>
+            Words with pictures unlock tap-the-picture quizzes — great for pre-readers.
+          </Text>
+
           <View style={styles.formButtons}>
             <Pressable
               style={[childButton, styles.saveButton, (!form.targetText || !form.translation) && styles.disabled]}
@@ -316,7 +367,8 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
             <Text style={styles.entryTarget}>{entry.targetText}</Text>
             <Text style={styles.entryTranslation}>
               {categoryName(entry.categoryId)} · {entry.translation}
-              {entry.audioUri ? ' · audio recorded' : ''}
+              {entry.audioUri ? ' · audio' : ''}
+              {entry.imageUri ? ' · picture' : ''}
             </Text>
           </View>
           <Pressable onPress={() => startEdit(entry)} hitSlop={8} accessibilityLabel="Edit word">
@@ -391,6 +443,15 @@ const styles = StyleSheet.create({
   chipTextOn: { color: '#fff', fontWeight: '600' },
   addCategoryRow: { flexDirection: 'row', gap: 8, marginTop: 8, alignItems: 'center' },
   addCategoryInput: { flex: 1 },
+  imageRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  imageThumb: {
+    width: 80,
+    height: 60,
+    borderRadius: 12,
+    backgroundColor: colors.primarySoft,
+  },
+  imageThumbEmpty: { alignItems: 'center', justifyContent: 'center' },
+  imageButtons: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, flex: 1 },
   hint: { color: colors.muted, marginTop: 6, fontSize: 13 },
   formButtons: { marginTop: 16 },
   saveButton: {

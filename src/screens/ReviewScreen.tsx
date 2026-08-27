@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ActivityIndicator, ScrollView, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
 import { colors, childButton, bigText, titleText } from '../theme';
 import { getReviewQueue, recordAnswer, type QueueItem } from '../db/repositories';
 import { playClip } from '../audio';
+import { buildChoices, pickChoiceMode, type Choice, type ChoiceMode } from '../core/choices';
 import type { VocabularyEntry } from '../core/types';
 
 interface Props {
@@ -17,29 +18,18 @@ interface Props {
 type Phase = 'loading' | 'card' | 'empty' | 'done';
 type PraiseIcon = 'star' | 'thumbs-up' | 'happy' | 'trophy' | 'heart' | 'sunny';
 
-interface Choice {
-  translation: string;
-  isCorrect: boolean;
-}
-
 const PRAISE: readonly PraiseIcon[] = ['star', 'thumbs-up', 'happy', 'trophy', 'heart', 'sunny'];
 
-function shuffle<T>(items: T[]): T[] {
-  const copy = [...items];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
-function buildChoices(entry: VocabularyEntry, pool: VocabularyEntry[]): Choice[] {
-  const distractors = shuffle(
-    pool.filter((e) => e.id !== entry.id && e.translation !== entry.translation),
-  )
-    .slice(0, 3)
-    .map((e) => ({ translation: e.translation, isCorrect: false }));
-  return shuffle([{ translation: entry.translation, isCorrect: true }, ...distractors]);
+/** Advance to the next card: compute its choice mode + options, play audio. */
+function prepareCard(
+  item: QueueItem,
+  pool: VocabularyEntry[],
+  setMode: (m: ChoiceMode) => void,
+  setChoices: (c: Choice[]) => void,
+): void {
+  const mode = pickChoiceMode(item.entry, pool);
+  setMode(mode);
+  setChoices(buildChoices(item.entry, pool, mode));
 }
 
 /**
@@ -51,6 +41,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
   const [phase, setPhase] = useState<Phase>('loading');
   const [queue, setQueue] = useState<QueueItem[]>([]);
   const [choices, setChoices] = useState<Choice[]>([]);
+  const [mode, setMode] = useState<ChoiceMode>('text');
   const [picked, setPicked] = useState<number | null>(null);
   const [answered, setAnswered] = useState<'correct' | 'wrong' | null>(null);
   const [stats, setStats] = useState({ total: 0, correct: 0 });
@@ -72,7 +63,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
     if (q.length === 0) {
       setPhase('empty');
     } else {
-      setChoices(buildChoices(q[0].entry, entries));
+      prepareCard(q[0], entries, setMode, setChoices);
       setPhase('card');
       cardShownAt.current = Date.now();
       if (q[0].entry.audioUri) {
@@ -87,10 +78,10 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
 
   const current = queue[0];
 
-  function choose(translation: string) {
+  function choose(choiceIndex: number) {
     if (answered || !current) return;
-    setPicked(choices.findIndex((c) => c.translation === translation));
-    const correct = translation === current.entry.translation;
+    setPicked(choiceIndex);
+    const correct = choices[choiceIndex].isCorrect;
     setAnswered(correct ? 'correct' : 'wrong');
     setStats((s) => ({ total: s.total + 1, correct: s.correct + (correct ? 1 : 0) }));
   }
@@ -114,7 +105,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
     if (nextQueue.length === 0) {
       setPhase('done');
     } else {
-      setChoices(buildChoices(nextQueue[0].entry, allEntries));
+      prepareCard(nextQueue[0], allEntries, setMode, setChoices);
       cardShownAt.current = Date.now();
       if (nextQueue[0].entry.audioUri) {
         playClip(nextQueue[0].entry.audioUri).catch(() => undefined);
@@ -177,26 +168,50 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
       >
         <Ionicons name="volume-high" size={72} color={colors.accent} />
         <Text style={styles.targetWord}>{current?.entry.targetText}</Text>
-        <Text style={styles.tapHint}>Tap to hear it!</Text>
+        {mode === 'text' && current?.entry.imageUri ? (
+          <Image source={{ uri: current.entry.imageUri }} style={styles.cardImage} />
+        ) : null}
+        <Text style={styles.tapHint}>
+          {mode === 'image' ? 'Which picture is it?' : 'Tap to hear it!'}
+        </Text>
       </Pressable>
 
       <View style={styles.choicesGrid}>
         {choices.map((choice, i) => {
-          const bgColor =
+          const borderColor =
             answered === null
-              ? colors.card
+              ? colors.primary
               : choice.isCorrect
                 ? colors.correct
                 : i === picked
                   ? colors.wrong
+                  : colors.primary;
+          const bgColor =
+            answered === null
+              ? colors.card
+              : choice.isCorrect
+                ? colors.primarySoft
+                : i === picked
+                  ? '#FBE9E5'
                   : colors.card;
+          if (mode === 'image') {
+            return (
+              <Pressable
+                key={choice.entry.id}
+                style={[styles.choiceImageWrap, { borderColor, backgroundColor: bgColor }]}
+                onPress={() => choose(i)}
+              >
+                <Image source={{ uri: choice.entry.imageUri! }} style={styles.choiceImage} />
+              </Pressable>
+            );
+          }
           return (
             <Pressable
-              key={choice.translation + i}
-              style={[styles.choiceButton, { backgroundColor: bgColor }]}
-              onPress={() => choose(choice.translation)}
+              key={choice.entry.id}
+              style={[styles.choiceButton, { backgroundColor: bgColor, borderColor }]}
+              onPress={() => choose(i)}
             >
-              <Text style={styles.choiceText}>{choice.translation}</Text>
+              <Text style={styles.choiceText}>{choice.entry.translation}</Text>
             </Pressable>
           );
         })}
@@ -263,6 +278,21 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   choiceText: { ...bigText, textAlign: 'center' },
+  cardImage: {
+    width: 160,
+    height: 120,
+    borderRadius: 16,
+    marginTop: 12,
+  },
+  choiceImageWrap: {
+    width: '48.5%',
+    height: 120,
+    borderRadius: 20,
+    borderWidth: 3,
+    overflow: 'hidden',
+    marginBottom: 12,
+  },
+  choiceImage: { width: '100%', height: '100%' },
   nextButton: {
     backgroundColor: colors.primary,
     paddingVertical: 24,

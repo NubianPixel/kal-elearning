@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS vocabulary (
   notes TEXT,
   difficulty INTEGER NOT NULL DEFAULT 1 CHECK (difficulty IN (1, 2, 3)),
   audio_uri TEXT,
+  image_uri TEXT,
   created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
   updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
 );

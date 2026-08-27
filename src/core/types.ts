@@ -35,6 +35,8 @@ export interface VocabularyEntry {
   difficulty: Difficulty;
   /** Local file URI of the admin-recorded pronunciation clip, if any. */
   audioUri: string | null;
+  /** Local file URI of an illustrative picture chosen by the admin. */
+  imageUri: string | null;
 }
 
 /** SM-2 scheduling state for one vocabulary item, per device/profile. */
