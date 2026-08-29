@@ -69,7 +69,7 @@ function ActionRow({
 
 /**
  * Child home, matching the reference design: greeting header with
- * streak pill, deep-green hero card with progress + Continue, 2x2
+ * streak pill, dusty-rose hero card with progress + Continue, 2x2
  * stat tiles, and a "What should we do today?" action list.
  */
 export default function HomeScreen({ languageName, onReview, onParentZone, loadStats, loadGoal }: Props) {
@@ -109,7 +109,7 @@ export default function HomeScreen({ languageName, onReview, onParentZone, loadS
       <View style={styles.hero}>
         <View style={styles.heroTopRow}>
           <View style={styles.heroBadge}>
-            <Ionicons name="calendar-outline" size={12} color="#fff" />
+            <Ionicons name="calendar-outline" size={12} color={colors.dark} />
             <Text style={styles.heroBadgeText}>Daily practice</Text>
           </View>
           <Pressable
@@ -141,16 +141,16 @@ export default function HomeScreen({ languageName, onReview, onParentZone, loadS
       {/* 2x2 stat tiles */}
       <View style={styles.tiles}>
         <StatTile icon="trophy" value={`${mastered}`} label="Words Mastered" tint={colors.primary} soft={colors.primarySoft} />
-        <StatTile icon="flame" value={`${streak}`} label="Day Streak" tint="#C98A1B" soft={colors.accentSoft} />
+        <StatTile icon="flame" value={`${streak}`} label="Day Streak" tint={colors.primaryDeep} soft={colors.accentSoft} />
         <StatTile icon="stats-chart" value={accuracy} label="Accuracy" tint={colors.primary} soft={colors.primarySoft} />
-        <StatTile icon="timer-outline" value={`${stats?.minutesSpent ?? 0}`} label="Minutes Practised" tint="#C98A1B" soft={colors.accentSoft} />
+        <StatTile icon="timer-outline" value={`${stats?.minutesSpent ?? 0}`} label="Minutes Practised" tint={colors.primaryDeep} soft={colors.accentSoft} />
       </View>
 
       {/* Action list */}
       <Text style={[sectionTitle, styles.sectionSpacing]}>What should we do today?</Text>
       <ActionRow
         icon="mic"
-        tint="#fff"
+        tint={colors.dark}
         soft={colors.accent}
         title="Practice Daily Words"
         subtitle="Listen and pick the meaning"
@@ -212,12 +212,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
-    backgroundColor: 'rgba(255,255,255,0.16)',
+    backgroundColor: 'rgba(74,74,74,0.10)',
     borderRadius: 12,
     paddingHorizontal: 8,
     paddingVertical: 5,
   },
-  heroBadgeText: { color: '#fff', fontSize: 11, fontWeight: '700' },
+  heroBadgeText: { color: colors.dark, fontSize: 11, fontWeight: '700' },
   continueBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -228,19 +228,19 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
   },
   continueText: { fontSize: 13, fontWeight: '800', color: colors.text },
-  heroLanguage: { fontSize: 26, fontWeight: '800', color: '#fff', marginBottom: 14 },
+  heroLanguage: { fontSize: 26, fontWeight: '800', color: colors.dark, marginBottom: 14 },
   heroProgressRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 6,
   },
-  heroProgressLabel: { color: 'rgba(255,255,255,0.85)', fontSize: 12, fontWeight: '600' },
+  heroProgressLabel: { color: 'rgba(74,74,74,0.75)', fontSize: 12, fontWeight: '600' },
   heroBarTrack: {
     height: 7,
     borderRadius: 4,
-    backgroundColor: 'rgba(255,255,255,0.25)',
+    backgroundColor: 'rgba(74,74,74,0.15)',
   },
-  heroBarFill: { height: 7, borderRadius: 4, backgroundColor: '#fff' },
+  heroBarFill: { height: 7, borderRadius: 4, backgroundColor: colors.dark },
   tiles: {
     flexDirection: 'row',
     flexWrap: 'wrap',

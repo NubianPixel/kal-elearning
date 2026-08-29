@@ -257,7 +257,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
       </View>
 
       <Pressable style={[childButton, styles.primaryAction]} onPress={startAdd}>
-        <Ionicons name="add-circle" size={24} color="#fff" />
+        <Ionicons name="add-circle" size={24} color={colors.dark} />
         <Text style={styles.actionText}>Add a word</Text>
       </Pressable>
 
@@ -295,7 +295,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
                   <Ionicons
                     name={c.icon as React.ComponentProps<typeof Ionicons>['name']}
                     size={16}
-                    color={form.categoryId === c.id ? '#fff' : colors.text}
+                    color={form.categoryId === c.id ? colors.dark : colors.text}
                   />
                 ) : null}
                 <Text style={form.categoryId === c.id ? styles.chipTextOn : styles.chipText}>
@@ -339,7 +339,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
               <Ionicons
                 name={recording ? 'stop-circle' : 'mic'}
                 size={16}
-                color={recording ? '#fff' : colors.text}
+                color={recording ? colors.dark : colors.text}
               />
               <Text style={recording ? styles.chipTextOn : styles.chipText}>
                 {recording ? 'Stop recording' : 'Record'}
@@ -421,7 +421,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
                   }
                   accessibilityLabel={`Illustration ${name}`}
                 >
-                  <Ionicons name={name as React.ComponentProps<typeof Ionicons>['name']} size={20} color={selected ? '#fff' : colors.text} />
+                  <Ionicons name={name as React.ComponentProps<typeof Ionicons>['name']} size={20} color={selected ? colors.dark : colors.text} />
                 </Pressable>
               );
             })}
@@ -436,7 +436,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
               onPress={save}
               disabled={saving}
             >
-              <Ionicons name="save-outline" size={22} color="#fff" />
+              <Ionicons name="save-outline" size={22} color={colors.dark} />
               <Text style={styles.actionText}>{saving ? 'Saving…' : 'Save word'}</Text>
             </Pressable>
             <Pressable style={[childButton, styles.cancelButton]} onPress={() => setForm(null)}>
@@ -498,7 +498,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
   },
-  actionText: { fontSize: 20, fontWeight: '800', color: '#fff' },
+  actionText: { fontSize: 20, fontWeight: '800', color: colors.dark },
   form: { backgroundColor: colors.card, borderRadius: 16, padding: 16, marginTop: 16 },
   formTitle: { ...titleText, fontSize: 22, marginBottom: 8 },
   label: { fontWeight: '700', color: colors.text, marginTop: 12, marginBottom: 4 },
@@ -526,7 +526,7 @@ const styles = StyleSheet.create({
   chipWithIcon: { alignSelf: 'flex-start' },
   chipOn: { backgroundColor: colors.primary },
   chipText: { color: colors.text, fontWeight: '600' },
-  chipTextOn: { color: '#fff', fontWeight: '600' },
+  chipTextOn: { color: colors.dark, fontWeight: '600' },
   addCategoryRow: { flexDirection: 'row', gap: 8, marginTop: 8, alignItems: 'center' },
   addCategoryInput: { flex: 1 },
   imageRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
@@ -552,14 +552,14 @@ const styles = StyleSheet.create({
   iconChipOn: { backgroundColor: colors.primary, borderColor: colors.primary },
   hint: { color: colors.muted, marginTop: 6, fontSize: 13 },
   diagBox: {
-    backgroundColor: '#FFF4F0',
+    backgroundColor: '#FBEAEC',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#E4C6BC',
+    borderColor: '#E2B4BD',
     padding: 8,
     marginTop: 8,
   },
-  diagLine: { fontSize: 11, color: '#8A4B38', fontFamily: 'monospace', marginVertical: 1 },
+  diagLine: { fontSize: 11, color: '#B4778A', fontFamily: 'monospace', marginVertical: 1 },
   formButtons: { marginTop: 16 },
   saveButton: {
     backgroundColor: colors.primary,

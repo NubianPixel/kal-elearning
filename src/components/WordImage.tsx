@@ -19,7 +19,7 @@ export default function WordImage({ uri, style, iconSize = 56 }: Props) {
   if (!uri) {
     return (
       <View style={[styles.placeholder, style]}>
-        <Ionicons name="image-outline" size={iconSize} color="#B9B7A8" />
+        <Ionicons name="image-outline" size={iconSize} color="#C9AFB4" />
       </View>
     );
   }
@@ -27,7 +27,7 @@ export default function WordImage({ uri, style, iconSize = 56 }: Props) {
     const name = uri.slice(5) as React.ComponentProps<typeof Ionicons>['name'];
     return (
       <View style={[styles.placeholder, style]}>
-        <Ionicons name={name} size={iconSize} color={colors.primary} />
+        <Ionicons name={name} size={iconSize} color={colors.primaryDeep} />
       </View>
     );
   }

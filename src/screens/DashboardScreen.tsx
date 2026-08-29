@@ -63,21 +63,21 @@ export default function DashboardScreen({ db, languageId, languageName, onExit, 
         <ActivityIndicator size="large" color={colors.primary} style={{ marginTop: 40 }} />
       ) : (
         <>
-          {/* Green hero summary */}
+          {/* Rose hero summary */}
           <View style={styles.hero}>
             <View style={styles.heroRow}>
               <View style={styles.heroAvatar}>
-                <Ionicons name="person" size={26} color="#fff" />
+                <Ionicons name="person" size={26} color={colors.dark} />
               </View>
               <View style={styles.heroMeta}>
                 <Text style={styles.heroTitle}>Your learner</Text>
                 <View style={styles.heroChipsRow}>
                   <View style={styles.heroChip}>
-                    <Ionicons name="book" size={11} color="#fff" />
+                    <Ionicons name="book" size={11} color={colors.dark} />
                     <Text style={styles.heroChipText}>{stats.total} words</Text>
                   </View>
                   <View style={styles.heroChip}>
-                    <Ionicons name="flame" size={11} color="#fff" />
+                    <Ionicons name="flame" size={11} color={colors.dark} />
                     <Text style={styles.heroChipText}>{stats.streakDays}-day streak</Text>
                   </View>
                 </View>
@@ -150,7 +150,7 @@ export default function DashboardScreen({ db, languageId, languageName, onExit, 
                     <Ionicons
                       name={m.icon as React.ComponentProps<typeof Ionicons>['name']}
                       size={22}
-                      color={unlocked ? '#fff' : '#B9B7A8'}
+                      color={unlocked ? colors.dark : '#C9AFB4'}
                     />
                   </View>
                   <Text style={[styles.medalTarget, unlocked && styles.medalTargetUnlocked]}>
@@ -221,28 +221,28 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: 'rgba(255,255,255,0.18)',
+    backgroundColor: 'rgba(74,74,74,0.12)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   heroMeta: { flex: 1 },
-  heroTitle: { fontSize: 16, fontWeight: '800', color: '#fff', marginBottom: 6 },
+  heroTitle: { fontSize: 16, fontWeight: '800', color: colors.dark, marginBottom: 6 },
   heroChipsRow: { flexDirection: 'row', gap: 8 },
   heroChip: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
-    backgroundColor: 'rgba(255,255,255,0.16)',
+    backgroundColor: 'rgba(74,74,74,0.10)',
     borderRadius: 10,
     paddingHorizontal: 8,
     paddingVertical: 4,
   },
-  heroChipText: { color: '#fff', fontSize: 11, fontWeight: '700' },
+  heroChipText: { color: colors.dark, fontSize: 11, fontWeight: '700' },
   heroStatsRow: { flexDirection: 'row', alignItems: 'center' },
   heroStat: { flex: 1, alignItems: 'center' },
-  heroStatDivider: { width: 1, height: 28, backgroundColor: 'rgba(255,255,255,0.25)' },
-  heroStatValue: { fontSize: 20, fontWeight: '800', color: '#fff' },
-  heroStatLabel: { fontSize: 10, color: 'rgba(255,255,255,0.8)', marginTop: 2 },
+  heroStatDivider: { width: 1, height: 28, backgroundColor: 'rgba(74,74,74,0.20)' },
+  heroStatValue: { fontSize: 20, fontWeight: '800', color: colors.dark },
+  heroStatLabel: { fontSize: 10, color: 'rgba(74,74,74,0.75)', marginTop: 2 },
   chartCard: { backgroundColor: colors.card, borderRadius: 20, padding: 16 },
   chartHeaderRow: {
     flexDirection: 'row',
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     opacity: 0.85,
   },
-  chartBarToday: { backgroundColor: colors.accent, opacity: 1 },
+  chartBarToday: { backgroundColor: colors.primaryDeep, opacity: 1 },
   chartLabel: { fontSize: 10, fontWeight: '700', color: colors.muted },
   chartLabelToday: { color: colors.text },
   sectionSpacing: { marginTop: 24, marginBottom: 12 },
@@ -273,9 +273,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   medalUnlocked: { backgroundColor: colors.accent },
-  medalLocked: { backgroundColor: '#EEEBDD' },
+  medalLocked: { backgroundColor: '#F3E1E3' },
   medalTarget: { fontSize: 9, fontWeight: '800', color: colors.muted },
-  medalTargetUnlocked: { color: '#C98A1B' },
+  medalTargetUnlocked: { color: colors.primaryDeep },
   medalLabel: { fontSize: 9, fontWeight: '700', color: colors.text, textAlign: 'center' },
   note: { fontSize: 12, color: colors.muted, marginTop: 20, lineHeight: 18 },
   goalCard: {
@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
   },
   goalChipOn: { backgroundColor: colors.primary },
   goalChipText: { color: colors.text, fontWeight: '700' },
-  goalChipTextOn: { color: '#fff', fontWeight: '700' },
+  goalChipTextOn: { color: colors.dark, fontWeight: '700' },
   manageRow: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -1,20 +1,23 @@
 /**
- * Design system — extracted from the user's reference UI:
- * warm cream background, deep-green hero cards, amber accents,
- * white cards, dark pill tab bar with floating amber FAB.
+ * Design system — blush palette:
+ * #FFF5F5 background, #F7D6D0 soft pink, #E2B4BD dusty rose (brand),
+ * #4A4A4A charcoal for text and dark surfaces. White cards, dark pill
+ * tab bar with floating rose FAB, Ionicons only — zero emojis.
+ *
+ * Correct/wrong/danger stay semantic (answer feedback), not decorative.
  */
-
 export const colors = {
-  background: '#F6F4E8',
+  background: '#FFF5F5',
   card: '#FFFFFF',
-  primary: '#3D7A5F',
-  primaryDark: '#2C5E48',
-  primarySoft: '#E3EDE4',
-  accent: '#F2B84B',
-  accentSoft: '#FBEFD4',
-  dark: '#1B1A16',
-  text: '#20211C',
-  muted: '#8B8B80',
+  primary: '#E2B4BD',
+  primaryDark: '#C98F9C', // derived deeper rose — pressed states, borders
+  primaryDeep: '#B4778A', // derived deepest rose — icons/tints on soft pink
+  primarySoft: '#F7D6D0',
+  accent: '#E2B4BD',
+  accentSoft: '#FBEAEC',
+  dark: '#4A4A4A',
+  text: '#4A4A4A',
+  muted: '#A89297',
   correct: '#3D7A5F',
   wrong: '#D96C5F',
   danger: '#C4553F',

@@ -12,7 +12,7 @@ interface Props {
 }
 
 /**
- * Dark pill tab bar with floating amber center FAB, matching the
+ * Dark charcoal pill tab bar with floating rose center FAB, matching the
  * reference design. Positioned above the home-indicator safe area.
  */
 export default function TabBar({ active, onHome, onParent, onPlay }: Props) {
@@ -24,7 +24,7 @@ export default function TabBar({ active, onHome, onParent, onPlay }: Props) {
     >
       <View style={styles.pill}>
         <Pressable style={styles.tab} onPress={onHome} accessibilityLabel="Home tab">
-          <Ionicons name="home" size={22} color={active === 'home' ? colors.accent : '#6E6E64'} />
+          <Ionicons name="home" size={22} color={active === 'home' ? colors.accent : '#C0A9AE'} />
           <Text style={[styles.tabLabel, active === 'home' && styles.tabLabelActive]}>Home</Text>
         </Pressable>
 
@@ -34,7 +34,7 @@ export default function TabBar({ active, onHome, onParent, onPlay }: Props) {
           <Ionicons
             name="person"
             size={22}
-            color={active === 'dashboard' ? colors.accent : '#6E6E64'}
+            color={active === 'dashboard' ? colors.accent : '#C0A9AE'}
           />
           <Text style={[styles.tabLabel, active === 'dashboard' && styles.tabLabelActive]}>
             Parent
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   tab: { alignItems: 'center', gap: 3 },
-  tabLabel: { fontSize: 11, fontWeight: '700', color: '#6E6E64' },
+  tabLabel: { fontSize: 11, fontWeight: '700', color: '#C0A9AE' },
   tabLabelActive: { color: colors.accent },
   centerGap: { width: 84 },
   fab: {
