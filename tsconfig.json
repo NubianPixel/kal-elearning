@@ -3,5 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "types": ["jest"]
-  }
+  },
+  // Replicates expo/tsconfig.base.json's exclude list (config dir-relative)
+  // plus metro.config.ts — build tooling, not app code, so the type-check
+  // ignores it (it also needs Node globals this project doesn't compile with).
+  "exclude": ["node_modules", "metro.config.js", "metro.config.ts", "android", "ios"]
 }

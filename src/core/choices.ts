@@ -16,14 +16,13 @@ export interface Choice {
 
 export type ChoiceMode = 'text' | 'image';
 
-/** Number of answer options shown to the child. */
+/** Number of answer options shown to the child by default (medium/hard). */
 export const CHOICE_COUNT = 4;
 
-/**
- * Image mode needs the correct word plus at least this many other
- * illustrated words to build a full grid of choices.
- */
-export const IMAGE_MODE_MIN_DISTRACTORS = CHOICE_COUNT - 1;
+/** Number of distractors needed for a full grid of `count` options. */
+export function imageModeDistractorCount(count: number): number {
+  return count - 1;
+}
 
 export function shuffle<T>(items: T[]): T[] {
   const copy = [...items];
@@ -41,14 +40,15 @@ export function shuffle<T>(items: T[]): T[] {
 export function pickChoiceMode(
   entry: Pick<VocabularyEntry, 'id' | 'imageUri'>,
   pool: VocabularyEntry[],
+  count: number = CHOICE_COUNT,
 ): ChoiceMode {
   if (!entry.imageUri) return 'text';
   const illustratedOthers = pool.filter((e) => e.id !== entry.id && e.imageUri);
-  return illustratedOthers.length >= IMAGE_MODE_MIN_DISTRACTORS ? 'image' : 'text';
+  return illustratedOthers.length >= imageModeDistractorCount(count) ? 'image' : 'text';
 }
 
 /**
- * Build CHOICE_COUNT shuffled options including exactly one correct one.
+ * Build `count` shuffled options including exactly one correct one.
  * Text mode prefers distractors with distinct translations (no trivially
  * duplicated answers); image mode only uses illustrated entries.
  */
@@ -56,13 +56,15 @@ export function buildChoices(
   entry: VocabularyEntry,
   pool: VocabularyEntry[],
   mode: ChoiceMode,
+  count: number = CHOICE_COUNT,
 ): Choice[] {
   const candidates = pool.filter((e) => e.id !== entry.id);
   const correct: Choice = { entry, isCorrect: true };
+  const distractorNeeded = imageModeDistractorCount(count);
 
   if (mode === 'image') {
     const distractors = shuffle(candidates.filter((e) => e.imageUri))
-      .slice(0, IMAGE_MODE_MIN_DISTRACTORS)
+      .slice(0, distractorNeeded)
       .map((e): Choice => ({ entry: e, isCorrect: false }));
     return shuffle([correct, ...distractors]);
   }
@@ -70,14 +72,14 @@ export function buildChoices(
   const seen = new Set([entry.translation]);
   const distractors: Choice[] = [];
   for (const e of shuffle(candidates)) {
-    if (distractors.length >= IMAGE_MODE_MIN_DISTRACTORS) break;
+    if (distractors.length >= distractorNeeded) break;
     if (seen.has(e.translation)) continue;
     seen.add(e.translation);
     distractors.push({ entry: e, isCorrect: false });
   }
-  if (distractors.length < IMAGE_MODE_MIN_DISTRACTORS) {
+  if (distractors.length < distractorNeeded) {
     for (const e of shuffle(candidates)) {
-      if (distractors.length >= IMAGE_MODE_MIN_DISTRACTORS) break;
+      if (distractors.length >= distractorNeeded) break;
       if (distractors.some((d) => d.entry.id === e.id)) continue;
       distractors.push({ entry: e, isCorrect: false });
     }

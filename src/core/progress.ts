@@ -2,6 +2,8 @@
  * Progress / milestone helpers — pure functions over review-log dates.
  */
 
+import { ladderPosition } from './gamification';
+
 /** Days between two UTC calendar dates. */
 export function daysBetween(a: Date, b: Date): number {
   const utcA = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
@@ -56,5 +58,5 @@ export const MILESTONES: Milestone[] = [
 
 /** The next milestone the child has not yet reached, if any. */
 export function nextMilestone(masteredCount: number): Milestone | null {
-  return MILESTONES.find((m) => masteredCount < m.target) ?? null;
+  return ladderPosition(MILESTONES, masteredCount, (m) => m.target).next;
 }

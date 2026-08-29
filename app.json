@@ -35,6 +35,19 @@
           "photosPermission": "Allow KAL e-Learning to access your photos so you can add pictures to words."
         }
       ],
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Allow KAL e-Learning to use the microphone to record pronunciation audio and check spoken words.",
+          "speechRecognitionPermission": "Allow KAL e-Learning to use speech recognition to check your pronunciation."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow KAL e-Learning to use Face ID so only a parent can open the Parent Zone."
+        }
+      ],
       "expo-asset",
       "expo-font"
     ]

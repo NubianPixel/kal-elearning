@@ -6,6 +6,7 @@
 import type * as SQLite from 'expo-sqlite';
 import { schedule, qualityFromAnswer, type Sm2State } from '../core/sm2';
 import { computeStreak } from '../core/progress';
+import { CHOICE_COUNT } from '../core/choices';
 import type {
   CardState,
   Category,
@@ -393,6 +394,13 @@ export async function getMistakeWords(
 export const DAILY_GOAL_KEY = 'daily_goal';
 export const DEFAULT_DAILY_GOAL = 5;
 
+/** Which of the five palettes (src/theme) is active. */
+export const THEME_KEY = 'theme';
+
+/** Gate the Parent Zone behind Face ID / fingerprint when set to '1'. */
+export const BIOMETRIC_KEY = 'biometric_lock';
+
+
 export async function getSetting(
   db: SQLite.SQLiteDatabase,
   key: string,
@@ -424,6 +432,53 @@ export async function getDailyGoal(db: SQLite.SQLiteDatabase): Promise<number> {
 
 export async function setDailyGoal(db: SQLite.SQLiteDatabase, goal: number): Promise<void> {
   await setSetting(db, DAILY_GOAL_KEY, String(goal));
+}
+
+// ---------------------------------------------------------------------------
+// Child difficulty (parent setting) + gamification XP
+// ---------------------------------------------------------------------------
+
+/** Difficulty knobs the parent chooses for the child. */
+export type DifficultySetting = 'easy' | 'medium' | 'hard';
+
+export const DIFFICULTY_KEY = 'difficulty';
+export const DEFAULT_DIFFICULTY: DifficultySetting = 'medium';
+
+/** How many answer options to show for each review card by difficulty. */
+export function choiceCountForDifficulty(d: DifficultySetting): number {
+  return d === 'easy' ? CHOICE_COUNT - 1 : CHOICE_COUNT;
+}
+
+export async function getDifficulty(
+  db: SQLite.SQLiteDatabase,
+): Promise<DifficultySetting> {
+  const raw = await getSetting(db, DIFFICULTY_KEY);
+  return raw === 'easy' || raw === 'medium' || raw === 'hard' ? raw : DEFAULT_DIFFICULTY;
+}
+
+export async function setDifficulty(
+  db: SQLite.SQLiteDatabase,
+  value: DifficultySetting,
+): Promise<void> {
+  await setSetting(db, DIFFICULTY_KEY, value);
+}
+
+export const XP_KEY = 'xp';
+export const DEFAULT_XP = 0;
+
+/** Total lifetime XP the child has earned (stored in the settings table). */
+export async function getXp(db: SQLite.SQLiteDatabase): Promise<number> {
+  const raw = await getSetting(db, XP_KEY);
+  const n = raw ? Number.parseInt(raw, 10) : NaN;
+  return Number.isFinite(n) && n >= 0 ? n : DEFAULT_XP;
+}
+
+/** Add XP and return the new total. */
+export async function addXp(db: SQLite.SQLiteDatabase, delta: number): Promise<number> {
+  const current = await getXp(db);
+  const next = Math.max(0, current + delta);
+  await setSetting(db, XP_KEY, String(next));
+  return next;
 }
 
 export interface DayActivity {

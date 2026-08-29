@@ -4,15 +4,20 @@
  * supported replacement for the deprecated expo-av); everything is
  * stored on-device (local file URI), fully offline.
  *
- * Kept in one module so the player/recorder implementation can evolve
- * without touching screens.
+ * Single-player manager: only ONE clip plays at a time anywhere in the
+ * app. Starting a new clip (or a sound effect) cleanly releases the
+ * previous player so no audio ever leaks or overlaps. Provides a
+ * play/pause toggle plus a tiny state subscription so any icon in the
+ * UI can flip between play and pause while its own clip is playing.
  *
  * Session handling: we ALWAYS set an explicit audio mode before
- * playback and after recording stops. Failing to restore the `.playback`
- * mode leaves the session in the record category, which routes output to
+ * playback AND re-assert the playback mode after recording stops
+ * (`ensurePlaybackMode`). Failing to restore the `.playback` mode
+ * leaves the session in the record category, which routes output to
  * the earpiece / mutes it in silent mode (iOS) — so nothing is audible.
  */
 
+import { useEffect, useState, useCallback } from 'react';
 import {
   AudioModule,
   createAudioPlayer,
@@ -21,10 +26,8 @@ import {
   requestRecordingPermissionsAsync,
   setAudioModeAsync,
 } from 'expo-audio';
+import type { AudioPlayer } from 'expo-audio';
 import { File } from 'expo-file-system';
-
-/** Safety nudge to start playback if the load event is slow. */
-const LOAD_NUDGE_MS = 250;
 
 /** Human-readable details about a recorded audio file, for diagnostics. */
 export interface AudioFileInfo {
@@ -79,48 +82,280 @@ function setRecordingMode(): Promise<void> {
 }
 
 /**
- * Play a recorded pronunciation clip, reporting load/play/finish/error
- * events for diagnostics. Waits for the player to report it is loaded
- * before starting playback, then releases the player once finished.
+ * Re-assert the playback audio session. Call this when a screen mounts
+ * (or right after any recording session) so output is never left routed
+ * to the earpiece / muted by a stale record-mode session.
+ */
+export function ensurePlaybackMode(): Promise<void> {
+  return setPlaybackMode().catch(() => undefined);
+}
+
+// ---------------------------------------------------------------------------
+// Single-player clip manager
+// ---------------------------------------------------------------------------
+
+export type ClipState = 'playing' | 'paused' | 'ended' | 'stopped';
+
+export interface ClipEvent {
+  uri: string;
+  state: ClipState;
+}
+
+interface ActiveClip {
+  uri: string;
+  player: AudioPlayer;
+  playing: boolean;
+  onEvent?: (e: PlaybackEvent) => void;
+  giveUp: ReturnType<typeof setTimeout> | null;
+  released: boolean;
+}
+
+/** The one clip currently loaded (playing, paused or finishing). */
+let active: ActiveClip | null = null;
+
+const listeners = new Set<(e: ClipEvent) => void>();
+
+function emit(uri: string, state: ClipState): void {
+  const event: ClipEvent = { uri, state };
+  for (const listener of [...listeners]) {
+    try {
+      listener(event);
+    } catch {
+      // A subscriber must never break playback.
+    }
+  }
+}
+
+/** Subscribe to clip play/pause/end events anywhere in the app. Returns an unsubscribe fn. */
+export function subscribeClips(listener: (e: ClipEvent) => void): () => void {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+}
+
+/** Current state for a specific uri ('stopped' when nothing/another clip is active). */
+export function clipStateFor(uri: string): ClipState {
+  if (active && active.uri === uri) return active.playing ? 'playing' : 'paused';
+  return 'stopped';
+}
+
+/** Release the active player (if any) and notify listeners. */
+export function stopActiveClip(): void {
+  const clip = active;
+  if (!clip) return;
+  active = null;
+  clip.released = true;
+  if (clip.giveUp) clearTimeout(clip.giveUp);
+  try {
+    clip.player.remove();
+  } catch {
+    // Already released — safe to ignore.
+  }
+  emit(clip.uri, 'stopped');
+}
+
+/**
+ * Start playing a local pronunciation clip. Any currently-playing clip is
+ * stopped first. Playback starts only once the player truthfully reports
+ * it is loaded (via the player's own status event, with a give-up timer
+ * as a fallback) — the old "play() before loaded" nudge would silently
+ * die on slow Android loads.
  */
 export async function playClip(
   uri: string,
   onEvent?: (e: PlaybackEvent) => void,
 ): Promise<void> {
   await setPlaybackMode();
+  startClip(uri, (e) => {
+    if (e.kind === 'error') console.warn(`[audio] playClip(${uri}):`, e.message);
+    onEvent?.(e);
+  });
+}
+
+function startClip(uri: string, onEvent?: (e: PlaybackEvent) => void): void {
+  stopActiveClip();
   const player = createAudioPlayer({ uri });
   let started = false;
 
-  const release = () => {
+  const clip: ActiveClip = {
+    uri,
+    player,
+    playing: false,
+    onEvent,
+    giveUp: null,
+    released: false,
+  };
+  active = clip;
+
+  const tryStart = () => {
+    if (clip.released || started) return;
     try {
-      player.remove();
+      if (!player.isLoaded) return;
     } catch {
-      // Already released — safe to ignore.
+      return;
+    }
+    started = true;
+    if (clip.giveUp) clearTimeout(clip.giveUp);
+    onEvent?.({ kind: 'loaded', message: `loaded, duration ${player.duration.toFixed(1)}s` });
+    clip.playing = true;
+    emit(uri, 'playing');
+    onEvent?.({ kind: 'playing', message: 'playback started' });
+    try {
+      player.play();
+    } catch {
+      onEvent?.({ kind: 'error', message: 'play() failed' });
+      stopActiveClip();
     }
   };
 
-  const subscription = player.addListener('playbackStatusUpdate', (status) => {
-    if (!started && status.isLoaded) {
-      started = true;
-      onEvent?.({ kind: 'loaded', message: `loaded, duration ${status.duration?.toFixed(2) ?? '?'}s` });
-      player.play();
+  clip.giveUp = setTimeout(() => {
+    if (!started && !clip.released) {
+      onEvent?.({ kind: 'error', message: 'clip never became ready' });
+      stopActiveClip();
     }
+  }, 10000);
+
+  const subscription = player.addListener('playbackStatusUpdate', (status) => {
+    if (clip.released) return;
+    if (status.isLoaded) tryStart();
     if (status.didJustFinish) {
+      clip.playing = false;
+      emit(uri, 'ended');
       onEvent?.({ kind: 'finished', message: 'playback finished' });
-      subscription.remove();
-      release();
+      const finished = active;
+      active = null;
+      if (finished) {
+        finished.released = true;
+        if (finished.giveUp) clearTimeout(finished.giveUp);
+      }
+      try {
+        subscription.remove();
+      } catch {
+        // Fine.
+      }
+      try {
+        player.remove();
+      } catch {
+        // Fine.
+      }
     }
   });
-
-  // If the load event is slow to arrive, nudge playback so we never get stuck.
-  setTimeout(() => {
-    if (!started) {
-      started = true;
-      onEvent?.({ kind: 'playing', message: 'forced play after load-nudge' });
-      player.play();
-    }
-  }, LOAD_NUDGE_MS);
+  tryStart();
 }
+
+/**
+ * Play the clip, or pause it when it is already playing. Returns true when
+ * the clip is now playing (i.e. the UI should show a pause icon).
+ */
+export function toggleClip(uri: string, onEvent?: (e: PlaybackEvent) => void): boolean {
+  if (active && active.uri === uri && active.playing) {
+    try {
+      active.player.pause();
+    } catch {
+      stopActiveClip();
+      return false;
+    }
+    active.playing = false;
+    emit(uri, 'paused');
+    return false;
+  }
+  if (active && active.uri === uri && !active.playing) {
+    // Paused — resume.
+    active.playing = true;
+    emit(uri, 'playing');
+    try {
+      active.player.play();
+    } catch {
+      stopActiveClip();
+      return false;
+    }
+    return true;
+  }
+  void playClip(uri, onEvent);
+  return true;
+}
+
+// ---------------------------------------------------------------------------
+// Correct / wrong sound effects (bundled WAV resources)
+// ---------------------------------------------------------------------------
+
+type EffectKind = 'correct' | 'wrong';
+
+/**
+ * One player per effect kind, created once and reused for every tap
+ * (rewound to the start each time) instead of building a fresh player +
+ * re-requiring the asset on every correct/wrong answer.
+ */
+const effectPlayers = new Map<EffectKind, { player: AudioPlayer; ready: boolean }>();
+
+function getEffectPlayer(kind: EffectKind): { player: AudioPlayer; ready: boolean } {
+  let entry = effectPlayers.get(kind);
+  if (!entry) {
+    const assetId =
+      kind === 'correct'
+        ? (require('../assets/sounds/correct.wav') as number)
+        : (require('../assets/sounds/wrong.wav') as number);
+    entry = { player: createAudioPlayer({ assetId }), ready: false };
+    effectPlayers.set(kind, entry);
+  }
+  return entry;
+}
+
+export function playEffect(kind: EffectKind): void {
+  void (async () => {
+    try {
+      await setPlaybackMode();
+    } catch (e) {
+      console.warn(`[audio] setPlaybackMode failed before "${kind}" effect:`, e);
+    }
+    stopActiveClip();
+    const entry = getEffectPlayer(kind);
+    const { player } = entry;
+
+    const start = () => {
+      try {
+        player.seekTo(0);
+        player.play();
+      } catch (e) {
+        console.warn(`[audio] play() threw for "${kind}" effect:`, e);
+      }
+    };
+
+    if (entry.ready || player.isLoaded) {
+      entry.ready = true;
+      start();
+      return;
+    }
+
+    // First tap only: the freshly-created player hasn't finished loading
+    // yet, so poll briefly until it has (with a give-up timer).
+    let started = false;
+    const poll = setInterval(() => {
+      if (started) return;
+      try {
+        if (!player.isLoaded) return;
+      } catch {
+        return;
+      }
+      started = true;
+      entry.ready = true;
+      clearInterval(poll);
+      clearTimeout(giveUp);
+      start();
+    }, 100);
+    const giveUp = setTimeout(() => {
+      if (!started) {
+        clearInterval(poll);
+        console.warn(`[audio] "${kind}" effect never became ready (asset/focus issue?)`);
+      }
+    }, 3000);
+  })();
+}
+
+// ---------------------------------------------------------------------------
+// Recording (admin screen)
+// ---------------------------------------------------------------------------
 
 export async function requestMicPermission(): Promise<boolean> {
   const { granted } = await requestRecordingPermissionsAsync();
@@ -157,3 +392,38 @@ export async function startRecording(): Promise<ActiveRecording> {
     },
   };
 }
+
+// ---------------------------------------------------------------------------
+// React hook — flip a play/pause icon for a single clip uri
+// ---------------------------------------------------------------------------
+
+/**
+ * `{ playing, toggle }` for one clip. `playing` is true while THIS uri is
+ * the one currently making sound, so a button can swap its icon and stop
+ * the clip by tapping again.
+ */
+export function useClipToggle(
+  uri: string | null | undefined,
+): { playing: boolean; toggle: () => void } {
+  const [playing, setPlaying] = useState<boolean>(() =>
+    uri ? clipStateFor(uri) === 'playing' : false,
+  );
+
+  useEffect(() => {
+    if (!uri) {
+      setPlaying(false);
+      return undefined;
+    }
+    setPlaying(clipStateFor(uri) === 'playing');
+    return subscribeClips((e) => {
+      if (e.uri === uri) setPlaying(e.state === 'playing');
+    });
+  }, [uri]);
+
+  const toggle = useCallback(() => {
+    if (uri) toggleClip(uri);
+  }, [uri]);
+
+  return { playing, toggle };
+}
+

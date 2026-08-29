@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import type * as SQLite from 'expo-sqlite';
 import WordImage from '../components/WordImage';
-import { colors, childButton, titleText } from '../theme';
+import {
+  childButton,
+  makeTextStyles,
+  THEMES,
+  THEME_LABELS,
+  THEME_ORDER,
+  useTheme,
+  type ThemeColors,
+} from '../theme';
 import {
   createCategory,
   createVocabulary,
@@ -30,6 +38,7 @@ import {
   playClip,
   requestMicPermission,
   startRecording,
+  stopActiveClip,
   type ActiveRecording,
 } from '../audio';
 import type { Category, Difficulty, VocabularyEntry } from '../core/types';
@@ -65,7 +74,6 @@ const ICON_CHOICES = [
   'star-outline',
 ] as const;
 
-type IoniconName = (typeof ICON_CHOICES)[number];
 function emptyForm(): VocabularyInput & { id?: number } {
   return {
     id: undefined,
@@ -82,8 +90,8 @@ function emptyForm(): VocabularyInput & { id?: number } {
 
 /**
  * Parent/admin screen: full CRUD for vocabulary entries plus one-tap
- * recording of pronunciation clips. Scoped strictly to content and
- * progress management — nothing else is privileged here.
+ * recording of pronunciation clips, and the app appearance picker.
+ * Scoped strictly to content, progress and settings management.
  */
 export default function AdminScreen({ db, languageId, languageName, onExit }: Props) {
   const [entries, setEntries] = useState<VocabularyEntry[]>([]);
@@ -95,21 +103,26 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
   const [saving, setSaving] = useState(false);
   const [diag, setDiag] = useState<string[]>([]);
   const insets = useSafeAreaInsets();
+  const { colors: c, name: themeName, setTheme } = useTheme();
+  const styles = useMemo(() => makeStyles(c), [c]);
+  const t = useMemo(() => makeTextStyles(c), [c]);
 
   const refresh = useCallback(async () => {
     setLoading(true);
-    const [v, c] = await Promise.all([
+    const [v, cats] = await Promise.all([
       listVocabulary(db, languageId),
       listCategories(db, languageId),
     ]);
     setEntries(v);
-    setCategories(c);
+    setCategories(cats);
     setLoading(false);
   }, [db, languageId]);
 
   useEffect(() => {
     refresh().catch(() => setLoading(false));
   }, [refresh]);
+
+  useEffect(() => stopActiveClip, []);
 
   function startAdd() {
     setForm({ ...emptyForm(), languageId });
@@ -231,15 +244,16 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
   }
 
   const categoryName = (id: number | null) =>
-    categories.find((c) => c.id === id)?.name ?? 'Uncategorised';
+    categories.find((cat) => cat.id === id)?.name ?? 'Uncategorised';
 
   if (loading) {
     return (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" color={colors.primary} />
+      <View style={[styles.center, { backgroundColor: c.background }]}>
+        <ActivityIndicator size="large" color={c.primary} />
       </View>
     );
   }
+
 
   return (
     <ScrollView
@@ -250,16 +264,44 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
       ]}
     >
       <View style={styles.headerRow}>
-        <Text style={titleText}>{languageName} — Admin</Text>
+        <Text style={t.titleText}>{languageName} — Admin</Text>
         <Pressable onPress={onExit} hitSlop={12} accessibilityLabel="Close admin">
-          <Ionicons name="close-circle" size={30} color={colors.muted} />
+          <Ionicons name="close-circle" size={30} color={c.muted} />
         </Pressable>
       </View>
 
       <Pressable style={[childButton, styles.primaryAction]} onPress={startAdd}>
-        <Ionicons name="add-circle" size={24} color={colors.dark} />
+        <Ionicons name="add-circle" size={24} color={c.onPrimary} />
         <Text style={styles.actionText}>Add a word</Text>
       </Pressable>
+
+      {/* Appearance picker */}
+      <Text style={styles.listTitle}>Appearance</Text>
+      <Text style={styles.hint}>Pick the colors your child sees.</Text>
+      <View style={styles.chipsRow}>
+        {THEME_ORDER.map((name) => {
+          const theme = THEMES[name];
+          const active = name === themeName;
+          return (
+            <Pressable
+              key={name}
+              style={[styles.chip, styles.themeChip, active && styles.chipOn]}
+              onPress={() => setTheme(name)}
+              accessibilityLabel={`Theme ${THEME_LABELS[name]}`}
+            >
+              <View style={styles.swatchRow}>
+                <View style={[styles.swatch, { backgroundColor: theme.background }]} />
+                <View style={[styles.swatch, { backgroundColor: theme.primary }]} />
+                <View style={[styles.swatch, { backgroundColor: theme.accent }]} />
+                <View style={[styles.swatch, { backgroundColor: theme.dark }]} />
+              </View>
+              <Text style={active ? styles.chipTextOn : styles.chipText}>
+                {THEME_LABELS[name]}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
 
       {form && (
         <View style={styles.form}>
@@ -269,37 +311,38 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
           <TextInput
             style={styles.input}
             value={form.targetText}
-            onChangeText={(t) => setForm({ ...form, targetText: t })}
+            onChangeText={(text) => setForm({ ...form, targetText: text })}
             placeholder="e.g. Dumela"
-            placeholderTextColor={colors.muted}
+            placeholderTextColor={c.muted}
           />
 
           <Text style={styles.label}>Translation (English)</Text>
           <TextInput
             style={styles.input}
             value={form.translation}
-            onChangeText={(t) => setForm({ ...form, translation: t })}
+            onChangeText={(text) => setForm({ ...form, translation: text })}
             placeholder="e.g. Hello"
-            placeholderTextColor={colors.muted}
+            placeholderTextColor={c.muted}
           />
+
 
           <Text style={styles.label}>Category</Text>
           <View style={styles.chipsRow}>
-            {categories.map((c) => (
+            {categories.map((cat) => (
               <Pressable
-                key={c.id}
-                style={[styles.chip, form.categoryId === c.id && styles.chipOn]}
-                onPress={() => setForm({ ...form, categoryId: c.id })}
+                key={cat.id}
+                style={[styles.chip, form.categoryId === cat.id && styles.chipOn]}
+                onPress={() => setForm({ ...form, categoryId: cat.id })}
               >
-                {c.icon ? (
+                {cat.icon ? (
                   <Ionicons
-                    name={c.icon as React.ComponentProps<typeof Ionicons>['name']}
+                    name={cat.icon as React.ComponentProps<typeof Ionicons>['name']}
                     size={16}
-                    color={form.categoryId === c.id ? colors.dark : colors.text}
+                    color={form.categoryId === cat.id ? c.onPrimary : c.text}
                   />
                 ) : null}
-                <Text style={form.categoryId === c.id ? styles.chipTextOn : styles.chipText}>
-                  {c.name}
+                <Text style={form.categoryId === cat.id ? styles.chipTextOn : styles.chipText}>
+                  {cat.name}
                 </Text>
               </Pressable>
             ))}
@@ -310,10 +353,10 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
               value={newCategory}
               onChangeText={setNewCategory}
               placeholder="New category name"
-              placeholderTextColor={colors.muted}
+              placeholderTextColor={c.muted}
             />
             <Pressable style={[styles.chip, styles.chipWithIcon]} onPress={addCategory}>
-              <Ionicons name="add" size={16} color={colors.text} />
+              <Ionicons name="add" size={16} color={c.text} />
               <Text style={styles.chipText}>Add</Text>
             </Pressable>
           </View>
@@ -339,7 +382,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
               <Ionicons
                 name={recording ? 'stop-circle' : 'mic'}
                 size={16}
-                color={recording ? colors.dark : colors.text}
+                color={recording ? c.onPrimary : c.text}
               />
               <Text style={recording ? styles.chipTextOn : styles.chipText}>
                 {recording ? 'Stop recording' : 'Record'}
@@ -355,14 +398,14 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
                     ).catch(() => undefined)
                   }
                 >
-                  <Ionicons name="play" size={16} color={colors.text} />
+                  <Ionicons name="play" size={16} color={c.text} />
                   <Text style={styles.chipText}>Preview</Text>
                 </Pressable>
                 <Pressable
                   style={[styles.chip, styles.chipWithIcon]}
                   onPress={() => setForm({ ...form, audioUri: null })}
                 >
-                  <Ionicons name="trash-outline" size={16} color={colors.danger} />
+                  <Ionicons name="trash-outline" size={16} color={c.danger} />
                   <Text style={styles.chipText}>Remove</Text>
                 </Pressable>
               </>
@@ -382,18 +425,19 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
             </View>
           )}
 
+
           <Text style={styles.label}>Picture</Text>
           <View style={styles.imageRow}>
             {form.imageUri ? (
               <WordImage uri={form.imageUri} style={styles.imageThumb} iconSize={26} />
             ) : (
               <View style={[styles.imageThumb, styles.imageThumbEmpty]}>
-                <Ionicons name="image-outline" size={26} color={colors.muted} />
+                <Ionicons name="image-outline" size={26} color={c.muted} />
               </View>
             )}
             <View style={styles.imageButtons}>
               <Pressable style={[styles.chip, styles.chipWithIcon]} onPress={pickImage}>
-                <Ionicons name="images-outline" size={16} color={colors.text} />
+                <Ionicons name="images-outline" size={16} color={c.text} />
                 <Text style={styles.chipText}>{form.imageUri ? 'Change' : 'Choose picture'}</Text>
               </Pressable>
               {form.imageUri ? (
@@ -401,7 +445,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
                   style={[styles.chip, styles.chipWithIcon]}
                   onPress={() => setForm({ ...form, imageUri: null })}
                 >
-                  <Ionicons name="trash-outline" size={16} color={colors.danger} />
+                  <Ionicons name="trash-outline" size={16} color={c.danger} />
                   <Text style={styles.chipText}>Remove</Text>
                 </Pressable>
               ) : null}
@@ -421,7 +465,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
                   }
                   accessibilityLabel={`Illustration ${name}`}
                 >
-                  <Ionicons name={name as React.ComponentProps<typeof Ionicons>['name']} size={20} color={selected ? colors.dark : colors.text} />
+                  <Ionicons name={name as React.ComponentProps<typeof Ionicons>['name']} size={20} color={selected ? c.onPrimary : c.text} />
                 </Pressable>
               );
             })}
@@ -436,7 +480,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
               onPress={save}
               disabled={saving}
             >
-              <Ionicons name="save-outline" size={22} color={colors.dark} />
+              <Ionicons name="save-outline" size={22} color={c.onPrimary} />
               <Text style={styles.actionText}>{saving ? 'Saving…' : 'Save word'}</Text>
             </Pressable>
             <Pressable style={[childButton, styles.cancelButton]} onPress={() => setForm(null)}>
@@ -445,6 +489,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
           </View>
         </View>
       )}
+
 
       <Text style={styles.listTitle}>Words ({entries.length})</Text>
       {entries.map((entry) => (
@@ -458,7 +503,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
             </Text>
           </View>
           <Pressable onPress={() => startEdit(entry)} hitSlop={8} accessibilityLabel="Edit word">
-            <Ionicons name="create-outline" size={22} color={colors.primary} />
+            <Ionicons name="create-outline" size={22} color={c.primary} />
           </Pressable>
           <Pressable
             onPress={() => removeEntry(entry)}
@@ -466,7 +511,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
             style={styles.entryDelete}
             accessibilityLabel="Delete word"
           >
-            <Ionicons name="trash-outline" size={22} color={colors.danger} />
+            <Ionicons name="trash-outline" size={22} color={c.danger} />
           </Pressable>
         </View>
       ))}
@@ -477,111 +522,115 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.background },
-  content: { padding: 20, paddingBottom: 48 },
-  center: {
-    flex: 1,
-    backgroundColor: colors.background,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  primaryAction: {
-    backgroundColor: colors.primary,
-    paddingVertical: 20,
-    flexDirection: 'row',
-    gap: 10,
-  },
-  actionText: { fontSize: 20, fontWeight: '800', color: colors.dark },
-  form: { backgroundColor: colors.card, borderRadius: 16, padding: 16, marginTop: 16 },
-  formTitle: { ...titleText, fontSize: 22, marginBottom: 8 },
-  label: { fontWeight: '700', color: colors.text, marginTop: 12, marginBottom: 4 },
-  input: {
-    borderWidth: 1,
-    borderColor: colors.muted,
-    borderRadius: 10,
-    padding: 12,
-    fontSize: 16,
-    color: colors.text,
-    backgroundColor: '#fff',
-  },
-  chipsRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  chip: {
-    borderWidth: 2,
-    borderColor: colors.primary,
-    borderRadius: 20,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    backgroundColor: '#fff',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-  },
-  chipWithIcon: { alignSelf: 'flex-start' },
-  chipOn: { backgroundColor: colors.primary },
-  chipText: { color: colors.text, fontWeight: '600' },
-  chipTextOn: { color: colors.dark, fontWeight: '600' },
-  addCategoryRow: { flexDirection: 'row', gap: 8, marginTop: 8, alignItems: 'center' },
-  addCategoryInput: { flex: 1 },
-  imageRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  imageThumb: {
-    width: 80,
-    height: 60,
-    borderRadius: 12,
-    backgroundColor: colors.primarySoft,
-  },
-  imageThumbEmpty: { alignItems: 'center', justifyContent: 'center' },
-  imageButtons: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, flex: 1 },
-  iconPicker: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 6 },
-  iconChip: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: colors.primarySoft,
-    backgroundColor: colors.primarySoft,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  iconChipOn: { backgroundColor: colors.primary, borderColor: colors.primary },
-  hint: { color: colors.muted, marginTop: 6, fontSize: 13 },
-  diagBox: {
-    backgroundColor: '#FBEAEC',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#E2B4BD',
-    padding: 8,
-    marginTop: 8,
-  },
-  diagLine: { fontSize: 11, color: '#B4778A', fontFamily: 'monospace', marginVertical: 1 },
-  formButtons: { marginTop: 16 },
-  saveButton: {
-    backgroundColor: colors.primary,
-    paddingVertical: 18,
-    flexDirection: 'row',
-    gap: 10,
-  },
-  disabled: { opacity: 0.5 },
-  cancelButton: { backgroundColor: 'transparent', paddingVertical: 8 },
-  cancelText: { color: colors.muted, fontWeight: '700', textAlign: 'center' },
-  listTitle: { ...titleText, fontSize: 20, marginTop: 24, marginBottom: 8 },
-  entryRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.card,
-    borderRadius: 12,
-    padding: 12,
-    marginBottom: 8,
-  },
-  entryText: { flex: 1 },
-  entryTarget: { fontSize: 17, fontWeight: '700', color: colors.text },
-  entryTranslation: { fontSize: 13, color: colors.muted },
-  entryDelete: { paddingHorizontal: 8 },
-});
+
+const makeStyles = (c: ThemeColors) =>
+  StyleSheet.create({
+    container: { flex: 1, backgroundColor: c.background },
+    content: { padding: 20, paddingBottom: 48 },
+    center: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    headerRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: 16,
+    },
+    primaryAction: {
+      backgroundColor: c.primary,
+      paddingVertical: 20,
+      flexDirection: 'row',
+      gap: 10,
+    },
+    actionText: { fontSize: 20, fontWeight: '800', color: c.onPrimary },
+    form: { backgroundColor: c.card, borderRadius: 16, padding: 16, marginTop: 16 },
+    formTitle: { ...makeTextStyles(c).titleText, fontSize: 22, marginBottom: 8 },
+    label: { fontWeight: '700', color: c.text, marginTop: 12, marginBottom: 4 },
+    input: {
+      borderWidth: 1,
+      borderColor: c.muted,
+      borderRadius: 10,
+      padding: 12,
+      fontSize: 16,
+      color: c.text,
+      backgroundColor: c.card,
+    },
+    chipsRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+    chip: {
+      borderWidth: 2,
+      borderColor: c.primary,
+      borderRadius: 20,
+      paddingHorizontal: 12,
+      paddingVertical: 8,
+      backgroundColor: c.card,
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 6,
+    },
+    chipWithIcon: { alignSelf: 'flex-start' },
+    chipOn: { backgroundColor: c.primary },
+    chipText: { color: c.text, fontWeight: '600' },
+    chipTextOn: { color: c.onPrimary, fontWeight: '600' },
+    themeChip: { flexDirection: 'column', alignItems: 'center', gap: 6 },
+    swatchRow: { flexDirection: 'row', gap: 3 },
+    swatch: { width: 14, height: 14, borderRadius: 7 },
+    addCategoryRow: { flexDirection: 'row', gap: 8, marginTop: 8, alignItems: 'center' },
+    addCategoryInput: { flex: 1 },
+    imageRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+    imageThumb: {
+      width: 80,
+      height: 60,
+      borderRadius: 12,
+      backgroundColor: c.primarySoft,
+    },
+    imageThumbEmpty: { alignItems: 'center', justifyContent: 'center' },
+    imageButtons: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, flex: 1 },
+    iconPicker: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 6 },
+    iconChip: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      borderWidth: 2,
+      borderColor: c.primarySoft,
+      backgroundColor: c.primarySoft,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    iconChipOn: { backgroundColor: c.primary, borderColor: c.primary },
+    hint: { color: c.muted, marginTop: 6, fontSize: 13 },
+    diagBox: {
+      backgroundColor: c.accentSoft,
+      borderRadius: 10,
+      borderWidth: 1,
+      borderColor: c.primary,
+      padding: 8,
+      marginTop: 8,
+    },
+    diagLine: { fontSize: 11, color: c.primaryDeep, fontFamily: 'monospace', marginVertical: 1 },
+    formButtons: { marginTop: 16 },
+    saveButton: {
+      backgroundColor: c.primary,
+      paddingVertical: 18,
+      flexDirection: 'row',
+      gap: 10,
+    },
+    disabled: { opacity: 0.5 },
+    cancelButton: { backgroundColor: 'transparent', paddingVertical: 8 },
+    cancelText: { color: c.muted, fontWeight: '700', textAlign: 'center' },
+    listTitle: { ...makeTextStyles(c).titleText, fontSize: 20, marginTop: 24, marginBottom: 8 },
+    entryRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: c.card,
+      borderRadius: 12,
+      padding: 12,
+      marginBottom: 8,
+    },
+    entryText: { flex: 1 },
+    entryTarget: { fontSize: 17, fontWeight: '700', color: c.text },
+    entryTranslation: { fontSize: 13, color: c.muted },
+    entryDelete: { paddingHorizontal: 8 },
+  });
 
