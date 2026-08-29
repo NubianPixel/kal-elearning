@@ -354,6 +354,42 @@ export async function countMastered(db: SQLite.SQLiteDatabase, languageId: numbe
 // Settings (key-value; local only)
 // ---------------------------------------------------------------------------
 
+/** New words introduced per review day, and free-practice session size. */
+export const FREE_SESSION_LIMIT = 12;
+
+/**
+ * Words the learner has answered incorrectly in the last `days` window,
+ * returned as ready-made queue items for a dedicated "practice mistakes"
+ * session. Free practice mode only — does not advance the SM-2 schedule.
+ */
+export async function getMistakeWords(
+  db: SQLite.SQLiteDatabase,
+  languageId: number,
+  days = 30,
+  limit: number = FREE_SESSION_LIMIT,
+): Promise<VocabularyEntry[]> {
+  const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+  return db.getAllAsync<VocabularyEntry>(
+    `SELECT DISTINCT
+        v.id AS id,
+        v.language_id AS languageId,
+        v.category_id AS categoryId,
+        v.target_text AS targetText,
+        v.translation AS translation,
+        v.notes AS notes,
+        v.difficulty AS difficulty,
+        v.audio_uri AS audioUri,
+        v.image_uri AS imageUri
+     FROM review_logs r
+     JOIN vocabulary v ON v.id = r.vocabulary_id
+     WHERE v.language_id = ? AND r.quality < 3 AND r.reviewed_at >= ?
+     ORDER BY r.reviewed_at DESC
+     LIMIT ?`,
+    [languageId, since, limit],
+  );
+}
+
+
 export const DAILY_GOAL_KEY = 'daily_goal';
 export const DEFAULT_DAILY_GOAL = 5;
 

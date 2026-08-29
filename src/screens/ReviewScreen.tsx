@@ -4,9 +4,17 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
 import { colors, childButton, bigText, titleText } from '../theme';
-import { getReviewQueue, recordAnswer, getDailyGoal, type QueueItem } from '../db/repositories';
+import {
+  getReviewQueue,
+  getMistakeWords,
+  listVocabulary,
+  recordAnswer,
+  getDailyGoal,
+  FREE_SESSION_LIMIT,
+  type QueueItem,
+} from '../db/repositories';
 import { playClip } from '../audio';
-import { buildChoices, pickChoiceMode, type Choice, type ChoiceMode } from '../core/choices';
+import { buildChoices, pickChoiceMode, shuffle, type Choice, type ChoiceMode } from '../core/choices';
 import WordImage from '../components/WordImage';
 import type { VocabularyEntry } from '../core/types';
 
@@ -14,9 +22,12 @@ interface Props {
   db: SQLite.SQLiteDatabase;
   languageId: number;
   onExit: () => void;
+  onOpenParentArea?: () => void;
+  onFreeSessionEnd?: (correct: number, total: number) => void;
 }
 
-type Phase = 'loading' | 'card' | 'empty' | 'done';
+type Phase = 'loading' | 'card' | 'menu';
+type MenuMode = 'empty' | 'done';
 type PraiseIcon = 'star' | 'thumbs-up' | 'happy' | 'trophy' | 'heart' | 'sunny';
 
 const PRAISE: readonly PraiseIcon[] = ['star', 'thumbs-up', 'happy', 'trophy', 'heart', 'sunny'];
@@ -38,7 +49,7 @@ function prepareCard(
  * automatically when a card appears. The child taps one of four big
  * English meaning buttons — no reading of the target language required.
  */
-export default function ReviewScreen({ db, languageId, onExit }: Props) {
+export default function ReviewScreen({ db, languageId, onExit, onOpenParentArea, onFreeSessionEnd }: Props) {
   const [phase, setPhase] = useState<Phase>('loading');
   const [queue, setQueue] = useState<QueueItem[]>([]);
   const [choices, setChoices] = useState<Choice[]>([]);
@@ -47,6 +58,8 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
   const [answered, setAnswered] = useState<'correct' | 'wrong' | null>(null);
   const [stats, setStats] = useState({ total: 0, correct: 0 });
   const [allEntries, setAllEntries] = useState<VocabularyEntry[]>([]);
+  const [freeMode, setFreeMode] = useState(false);
+  const [menuMode, setMenuMode] = useState<MenuMode>('empty');
   const cardShownAt = useRef<number>(Date.now());
   const [praise] = useState<PraiseIcon>(() => PRAISE[Math.floor(Math.random() * PRAISE.length)]);
   const insets = useSafeAreaInsets();
@@ -63,8 +76,9 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
     const entries = q.map((item) => item.entry);
     setQueue(q);
     setAllEntries(entries);
-    if (q.length === 0) {
-      setPhase('empty');
+        if (q.length === 0) {
+      setMenuMode('empty');
+      setPhase('menu');
     } else {
       prepareCard(q[0], entries, setMode, setChoices);
       setPhase('card');
@@ -76,8 +90,90 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
   }, [db, languageId]);
 
   useEffect(() => {
-    load().catch(() => setPhase('empty'));
+    load().catch(() => {
+      setMenuMode('empty');
+      setPhase('menu');
+    });
   }, [load]);
+
+  /** Start a free practice round from ALL words (ignores schedule). */
+  const startFree = useCallback(async () => {
+    setPhase('loading');
+    try {
+      const all = await listVocabulary(db, languageId);
+      const picked = shuffle(all).slice(0, FREE_SESSION_LIMIT);
+      if (picked.length === 0) {
+        setMenuMode('empty');
+        setPhase('menu');
+        return;
+      }
+      const items: QueueItem[] = picked.map((e) => ({
+        entry: e,
+        isNew: false,
+        state: {
+          vocabularyId: e.id,
+          ease: 2.5,
+          intervalDays: 0,
+          repetitions: 0,
+          lapses: 0,
+          dueDate: new Date(0).toISOString(),
+          lastReviewedAt: null,
+        },
+      }));
+      setFreeMode(true);
+      setAllEntries(picked);
+      setStats({ total: 0, correct: 0 });
+      setQueue(items);
+      prepareCard(items[0], picked, setMode, setChoices);
+      setPhase('card');
+      cardShownAt.current = Date.now();
+      if (items[0].entry.audioUri) {
+        playClip(items[0].entry.audioUri).catch(() => undefined);
+      }
+        } catch {
+      setMenuMode('empty');
+      setPhase('menu');
+    }
+  }, [db, languageId]);
+
+  /** Start a free practice round from previously-wrong answers only. */
+  const startMistakes = useCallback(async () => {
+    setPhase('loading');
+    try {
+      const wrong = await getMistakeWords(db, languageId);
+      if (wrong.length === 0) {
+        setMenuMode('empty');
+        setPhase('menu');
+        return;
+      }
+      const items: QueueItem[] = wrong.map((e) => ({
+        entry: e,
+        isNew: false,
+        state: {
+          vocabularyId: e.id,
+          ease: 2.5,
+          intervalDays: 0,
+          repetitions: 0,
+          lapses: 0,
+          dueDate: new Date(0).toISOString(),
+          lastReviewedAt: null,
+        },
+      }));
+      setFreeMode(true);
+      setAllEntries(wrong);
+      setStats({ total: 0, correct: 0 });
+      setQueue(items);
+      prepareCard(items[0], wrong, setMode, setChoices);
+      setPhase('card');
+      cardShownAt.current = Date.now();
+      if (items[0].entry.audioUri) {
+        playClip(items[0].entry.audioUri).catch(() => undefined);
+      }
+    } catch {
+      setMenuMode('empty');
+      setPhase('menu');
+    }
+  }, [db, languageId]);
 
   const current = queue[0];
 
@@ -93,10 +189,13 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
     if (!current) return;
     const timeSpentMs = Date.now() - cardShownAt.current;
     const answer = answered === 'correct' ? 'good' : 'again';
-    try {
-      await recordAnswer(db, current.entry.id, answer, timeSpentMs);
-    } catch {
-      // The review flow must never be blocked by a persistence hiccup.
+    // Free practice must NOT change the spaced-repetition schedule.
+    if (!freeMode) {
+      try {
+        await recordAnswer(db, current.entry.id, answer, timeSpentMs);
+      } catch {
+        // The review flow must never be blocked by a persistence hiccup.
+      }
     }
 
     const rest = queue.slice(1);
@@ -106,7 +205,9 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
     setPicked(null);
 
     if (nextQueue.length === 0) {
-      setPhase('done');
+      setMenuMode('done');
+      onFreeSessionEnd?.(stats.correct, stats.total);
+      setPhase('menu');
     } else {
       prepareCard(nextQueue[0], allEntries, setMode, setChoices);
       cardShownAt.current = Date.now();
@@ -124,31 +225,75 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
     );
   }
 
-  if (phase === 'empty') {
+  if (phase === 'menu') {
     return (
       <View style={[styles.center, safeEdges]}>
-        <Ionicons name="checkmark-circle" size={72} color={colors.primary} />
-        <Text style={titleText}>All done for now!</Text>
-        <Pressable style={[childButton, styles.nextButton]} onPress={onExit}>
-          <Ionicons name="home" size={26} color="#fff" />
-          <Text style={styles.nextText}>Home</Text>
-        </Pressable>
-      </View>
-    );
-  }
+        {menuMode === 'done' ? (
+          <>
+            <Ionicons name="ribbon" size={80} color={colors.accent} />
+            <Text style={titleText}>Great job!</Text>
+            <Text style={styles.doneStats}>
+              {stats.correct} of {stats.total} correct!
+            </Text>
+          </>
+        ) : (
+          <>
+            <Ionicons name="checkmark-circle" size={72} color={colors.primary} />
+            <Text style={titleText}>All done for now!</Text>
+          </>
+        )}
 
-  if (phase === 'done') {
-    return (
-      <View style={[styles.center, safeEdges]}>
-        <Ionicons name="ribbon" size={80} color={colors.accent} />
-        <Text style={titleText}>Great job!</Text>
-        <Text style={styles.doneStats}>
-          {stats.correct} of {stats.total} correct!
-        </Text>
-        <Pressable style={[childButton, styles.nextButton]} onPress={onExit}>
-          <Ionicons name="home" size={26} color="#fff" />
-          <Text style={styles.nextText}>Home</Text>
-        </Pressable>
+        <View style={styles.menuButtons}>
+          {!freeMode && (
+            <Pressable
+              style={[childButton, styles.menuButton]}
+              onPress={startFree}
+              accessibilityLabel="Flashcards — practice all words"
+            >
+              <Ionicons name="reader-outline" size={24} color={colors.dark} />
+              <Text style={styles.menuButtonText}>Flashcards</Text>
+            </Pressable>
+          )}
+          {!freeMode && (
+            <Pressable
+              style={[childButton, styles.menuButton]}
+              onPress={load}
+              accessibilityLabel="Daily practice — due words"
+            >
+              <Ionicons name="calendar-number-outline" size={24} color={colors.dark} />
+              <Text style={styles.menuButtonText}>Daily practice</Text>
+            </Pressable>
+          )}
+          <Pressable
+            style={[childButton, styles.menuButton]}
+            onPress={startMistakes}
+            accessibilityLabel="Practice mistakes — recently wrong words"
+          >
+            <Ionicons name="bicycle-outline" size={24} color={colors.dark} />
+            <Text style={styles.menuButtonText}>Mistakes</Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.menuButtons}>
+          {onOpenParentArea && (
+            <Pressable
+              style={[childButton, styles.nextButton]}
+              onPress={onOpenParentArea}
+              accessibilityLabel="Parent dashboard"
+            >
+              <Ionicons name="person-outline" size={26} color="#fff" />
+              <Text style={styles.nextText}>Parent</Text>
+            </Pressable>
+          )}
+          <Pressable
+            style={[childButton, styles.nextButton]}
+            onPress={onExit}
+            accessibilityLabel="Home"
+          >
+            <Ionicons name="home" size={26} color="#fff" />
+            <Text style={styles.nextText}>Home</Text>
+          </Pressable>
+        </View>
       </View>
     );
   }
@@ -157,6 +302,7 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
     <ScrollView
       style={styles.container}
       contentContainerStyle={[styles.content, safeEdges]}
+      scrollIndicatorInsets={{ top: safeEdges.paddingTop, bottom: safeEdges.paddingBottom, left: 0, right: 0 }}
     >
       <View style={styles.counterRow}>
         <Ionicons name={answered ? praise : 'ear'} size={20} color={colors.muted} />
@@ -302,8 +448,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
   },
+  freeButton: {
+    backgroundColor: colors.accent,
+    paddingVertical: 20,
+    flexDirection: 'row',
+    gap: 10,
+  },
+  freeText: { fontSize: 22, fontWeight: '800', color: colors.dark },
   nextText: { fontSize: 24, fontWeight: '800', color: '#fff' },
   doneStats: { ...bigText, marginVertical: 16 },
+  menuButtons: {
+    flexDirection: 'row',
+    gap: 12,
+    justifyContent: 'center',
+    marginTop: 24,
+    flexWrap: 'wrap',
+  },
+  menuButton: {
+    backgroundColor: colors.accent,
+    paddingHorizontal: 18,
+    paddingVertical: 16,
+    borderRadius: 20,
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
+    flex: 1,
+    minWidth: 120,
+  },
+  menuButtonText: { fontSize: 15, fontWeight: '800', color: colors.dark },
   exitButton: { alignSelf: 'center', marginTop: 8, padding: 16 },
 });
 

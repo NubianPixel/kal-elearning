@@ -61,7 +61,12 @@ export default function App() {
           />
         )}
         {screen === 'review' && (
-          <ReviewScreen db={db} languageId={language.id} onExit={() => setScreen('home')} />
+          <ReviewScreen
+            db={db}
+            languageId={language.id}
+            onExit={() => setScreen('home')}
+            onOpenParentArea={() => setScreen('dashboard')}
+          />
         )}
         {screen === 'dashboard' && (
           <DashboardScreen

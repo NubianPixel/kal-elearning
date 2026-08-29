@@ -45,8 +45,9 @@ export default function DashboardScreen({ db, languageId, languageName, onExit, 
       style={styles.container}
       contentContainerStyle={[
         styles.content,
-        { paddingTop: insets.top + 12, paddingBottom: 140 + insets.bottom },
+        { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 24 },
       ]}
+      scrollIndicatorInsets={{ top: insets.top + 12, bottom: insets.bottom + 24, left: 0, right: 0 }}
     >
       <View style={styles.header}>
         <View>
