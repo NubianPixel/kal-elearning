@@ -25,8 +25,7 @@ export default function SplashScreen({ onDone }: { onDone: () => void }) {
   const overlay = useRef(new Animated.Value(1)).current;
   const iconScale = useRef(new Animated.Value(0)).current;
   const line = useRef(new Animated.Value(0)).current;
-  const tagOpacity = useRef(new Animated.Value(0)).current;
-  const tagSpacing = useRef(new Animated.Value(6)).current;
+    const tagOpacity = useRef(new Animated.Value(0)).current;
   const ripple1 = useRef(new Animated.Value(0)).current;
   const ripple2 = useRef(new Animated.Value(0)).current;
   /** One opacity/offset pair per letter of the title. */
@@ -82,18 +81,11 @@ export default function SplashScreen({ onDone }: { onDone: () => void }) {
         easing: Easing.out(Easing.cubic),
         useNativeDriver: true,
       }),
-      Animated.timing(tagOpacity, {
+            Animated.timing(tagOpacity, {
         toValue: 1,
         duration: 550,
         delay: 250 + TITLE.length * 45 + 350,
         useNativeDriver: true,
-      }),
-      Animated.timing(tagSpacing, {
-        toValue: 3,
-        duration: 550,
-        delay: 250 + TITLE.length * 45 + 350,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: false,
       }),
     ]);
 
@@ -180,8 +172,8 @@ export default function SplashScreen({ onDone }: { onDone: () => void }) {
       <Animated.View style={[styles.divider, { transform: [{ scaleX: line }] }]} />
 
       {/* Tagline */}
-      <Animated.Text
-        style={[styles.tagline, { opacity: tagOpacity, letterSpacing: tagSpacing }]}
+            <Animated.Text
+        style={[styles.tagline, { opacity: tagOpacity }]}
       >
         {TAGLINE}
       </Animated.Text>
@@ -255,12 +247,13 @@ const makeStyles = (c: ThemeColors) =>
       backgroundColor: c.primary,
       marginTop: 14,
     },
-    tagline: {
+        tagline: {
       marginTop: 10,
       fontSize: 15,
       fontWeight: '600',
       color: c.muted,
       textTransform: 'uppercase',
+      letterSpacing: 3,
     },
   });
 
