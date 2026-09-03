@@ -22,13 +22,14 @@ import AdminScreen from './src/screens/AdminScreen';
 import DashboardScreen from './src/screens/DashboardScreen';
 import StoryScreen from './src/screens/StoryScreen';
 import RevisionDeck from './src/components/RevisionDeck';
+import TypingScreen from './src/screens/TypingScreen';
 import TabBar from './src/components/TabBar';
 import AppHeader from './src/components/AppHeader';
 import SplashScreen from './src/components/SplashScreen';
 import { ThemeProvider, useTheme, isThemeName, type ThemeName } from './src/theme';
 import type { Language } from './src/core/types';
 
-type Screen = 'home' | 'learn' | 'review' | 'dashboard' | 'admin' | 'story' | 'revision';
+type Screen = 'home' | 'learn' | 'review' | 'dashboard' | 'admin' | 'story' | 'revision' | 'typing';
 
 /**
  * App shell. State-based navigation; the dark pill tab bar (with the
@@ -89,7 +90,8 @@ const HEADER_TITLES: Record<Screen, { title: string; subtitle?: string }> = {
   dashboard: { title: 'Parent Zone', subtitle: 'Settings & progress' },
   admin: { title: 'Manage Words', subtitle: 'Add, record and edit' },
   story: { title: 'Story Time', subtitle: 'Listen and read along' },
-  revision: { title: 'Revise', subtitle: 'Slide through your words' },
+    revision: { title: 'Revise', subtitle: 'Slide through your words' },
+  typing: { title: 'Type the Meaning', subtitle: 'Spell the English answer' },
 };
 
 function Shell({ db, language, screen, setScreen }: ShellProps) {
@@ -154,8 +156,9 @@ function Shell({ db, language, screen, setScreen }: ShellProps) {
             languageName={language.name}
             onReview={() => setScreen('review')}
             onLearn={() => setScreen('learn')}
-            onRevise={() => setScreen('revision')}
+                        onRevise={() => setScreen('revision')}
             onStory={() => setScreen('story')}
+            onTyping={() => setScreen('typing')}
             onParentZone={() => void enterParentZone()}
             loadStats={() => getProgressStats(db, language.id)}
             loadGoal={() => getDailyGoal(db)}
@@ -167,8 +170,9 @@ function Shell({ db, language, screen, setScreen }: ShellProps) {
           <ReviewScreen
             db={db}
             languageId={language.id}
-            onExit={() => setScreen('home')}
+                        onExit={() => setScreen('home')}
             onRevise={() => setScreen('revision')}
+            onTyping={() => setScreen('typing')}
           />
         )}
         {screen === 'story' && (
@@ -178,11 +182,18 @@ function Shell({ db, language, screen, setScreen }: ShellProps) {
             onExit={() => setScreen('home')}
           />
         )}
-        {screen === 'revision' && (
+                 {screen === 'revision' && (
           <RevisionDeck
             db={db}
             languageId={language.id}
             onBack={() => setScreen('home')}
+          />
+        )}
+        {screen === 'typing' && (
+          <TypingScreen
+            db={db}
+            languageId={language.id}
+            onExit={() => setScreen('home')}
           />
         )}
         {screen === 'dashboard' && (

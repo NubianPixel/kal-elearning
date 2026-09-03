@@ -13,8 +13,9 @@ interface Props {
   languageName: string;
   onReview: () => void;
   onLearn: () => void;
-  onRevise: () => void;
+    onRevise: () => void;
   onStory: () => void;
+  onTyping: () => void;
   onParentZone: () => void;
   loadStats: () => Promise<ProgressStats>;
   loadGoal: () => Promise<number>;
@@ -91,8 +92,9 @@ export default function HomeScreen({
   languageName,
   onReview,
   onLearn,
-  onRevise,
+    onRevise,
   onStory,
+  onTyping,
   onParentZone,
   loadStats,
   loadGoal,
@@ -225,6 +227,15 @@ export default function HomeScreen({
           title="Story Time"
           subtitle="Listen and follow along, word by word"
           onPress={onStory}
+          styles={styles}
+        />
+        <ActionRow
+          icon="create-outline"
+          tint={c.onAccent}
+          soft={c.accent}
+          title="Type the Meaning"
+          subtitle="Spell the English answer"
+          onPress={onTyping}
           styles={styles}
         />
         <ActionRow
