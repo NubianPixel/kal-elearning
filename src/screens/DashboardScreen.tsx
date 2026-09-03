@@ -68,7 +68,7 @@ const DAILY_GOAL_LABELS: Record<number, string> = {
  * the App.tsx shell level), so this screen feels like a cohesive part
  * of the app — never like leaving it.
  */
-export default function DashboardScreen({ db, languageId, languageName, onExit, onManageContent }: Props) {
+export default function DashboardScreen({ db, languageId, onExit, onManageContent }: Props) {
   const [section, setSection] = useState<Section>('overview');
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<ProgressStats | null>(null);

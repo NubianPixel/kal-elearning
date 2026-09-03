@@ -17,9 +17,6 @@ import WordImage from '../components/WordImage';
 import {
   childButton,
   makeTextStyles,
-  THEMES,
-  THEME_LABELS,
-  THEME_ORDER,
   useTheme,
   type ThemeColors,
 } from '../theme';
@@ -103,7 +100,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
   const [saving, setSaving] = useState(false);
   const [diag, setDiag] = useState<string[]>([]);
   const insets = useSafeAreaInsets();
-  const { colors: c, name: themeName, setTheme } = useTheme();
+  const { colors: c } = useTheme();
   const styles = useMemo(() => makeStyles(c), [c]);
   const t = useMemo(() => makeTextStyles(c), [c]);
 
@@ -274,34 +271,6 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
         <Ionicons name="add-circle" size={24} color={c.onPrimary} />
         <Text style={styles.actionText}>Add a word</Text>
       </Pressable>
-
-      {/* Appearance picker */}
-      <Text style={styles.listTitle}>Appearance</Text>
-      <Text style={styles.hint}>Pick the colors your child sees.</Text>
-      <View style={styles.chipsRow}>
-        {THEME_ORDER.map((name) => {
-          const theme = THEMES[name];
-          const active = name === themeName;
-          return (
-            <Pressable
-              key={name}
-              style={[styles.chip, styles.themeChip, active && styles.chipOn]}
-              onPress={() => setTheme(name)}
-              accessibilityLabel={`Theme ${THEME_LABELS[name]}`}
-            >
-              <View style={styles.swatchRow}>
-                <View style={[styles.swatch, { backgroundColor: theme.background }]} />
-                <View style={[styles.swatch, { backgroundColor: theme.primary }]} />
-                <View style={[styles.swatch, { backgroundColor: theme.accent }]} />
-                <View style={[styles.swatch, { backgroundColor: theme.dark }]} />
-              </View>
-              <Text style={active ? styles.chipTextOn : styles.chipText}>
-                {THEME_LABELS[name]}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </View>
 
       {form && (
         <View style={styles.form}>
@@ -573,9 +542,6 @@ const makeStyles = (c: ThemeColors) =>
     chipOn: { backgroundColor: c.primary },
     chipText: { color: c.text, fontWeight: '600' },
     chipTextOn: { color: c.onPrimary, fontWeight: '600' },
-    themeChip: { flexDirection: 'column', alignItems: 'center', gap: 6 },
-    swatchRow: { flexDirection: 'row', gap: 3 },
-    swatch: { width: 14, height: 14, borderRadius: 7 },
     addCategoryRow: { flexDirection: 'row', gap: 8, marginTop: 8, alignItems: 'center' },
     addCategoryInput: { flex: 1 },
     imageRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
