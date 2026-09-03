@@ -22,6 +22,7 @@ import AdminScreen from './src/screens/AdminScreen';
 import DashboardScreen from './src/screens/DashboardScreen';
 import TabBar from './src/components/TabBar';
 import AppHeader from './src/components/AppHeader';
+import SplashScreen from './src/components/SplashScreen';
 import { ThemeProvider, useTheme, isThemeName, type ThemeName } from './src/theme';
 import type { Language } from './src/core/types';
 
@@ -89,6 +90,9 @@ const HEADER_TITLES: Record<Screen, { title: string; subtitle?: string }> = {
 
 function Shell({ db, language, screen, setScreen }: ShellProps) {
   const { colors: c } = useTheme();
+  /** Animated splash shows once on launch, over everything, then unmounts. */
+  const [splash, setSplash] = useState(true);
+  const hideSplash = useCallback(() => setSplash(false), []);
 
   /**
    * Entering the Parent Zone from outside it (Home/Learn/Review) is gated
@@ -121,6 +125,8 @@ function Shell({ db, language, screen, setScreen }: ShellProps) {
   }, [db, setScreen]);
 
   if (!db || !language) {
+    // Splash doubles as the loading screen while the database opens.
+    if (splash) return <SplashScreen onDone={hideSplash} />;
     return (
       <View style={[styles.center, { backgroundColor: c.background }]}>
         <ActivityIndicator size="large" color={c.primary} />
@@ -184,6 +190,8 @@ function Shell({ db, language, screen, setScreen }: ShellProps) {
         onParent={() => void enterParentZone()}
         onPlay={() => (screen === 'review' ? setScreen('home') : setScreen('review'))}
       />
+
+      {splash && <SplashScreen onDone={hideSplash} />}
     </View>
   );
 }
