@@ -208,11 +208,11 @@ export default function DashboardScreen({ db, languageId, onExit, onManageConten
                 <Text style={styles.progressTileLabel}>Day Streak</Text>
               </View>
               <View style={[styles.progressTile, { backgroundColor: c.primarySoft }]}>
-                <Ionicons name="trophy" size={24} color={c.primaryDeep} />
+                <Ionicons name="book" size={24} color={c.primaryDeep} />
                 <Text style={styles.progressTileValue}>{masteredCount}</Text>
                 <Text style={styles.progressTileLabel}>Words Mastered</Text>
               </View>
-                        </View>
+            </View>
           </View>
 
           {/* League card */}
@@ -257,7 +257,7 @@ export default function DashboardScreen({ db, languageId, onExit, onManageConten
             </View>
           ) : null}
 
-                    {/* Weekly activity heatbar */}
+          {/* Weekly activity heatbar */}
           <View style={styles.card}>
             <Text style={t.sectionTitle}>Last 7 days</Text>
             <View style={styles.heatbar}>
@@ -401,7 +401,7 @@ export default function DashboardScreen({ db, languageId, onExit, onManageConten
           onBack={() => setSection('overview')}
           colors={c}
         >
-                    <RadioGroup<ThemeName>
+          <RadioGroup<ThemeName>
             options={[...THEME_ORDER]}
             labels={THEME_LABELS}
             value={themeName}
@@ -426,7 +426,7 @@ export default function DashboardScreen({ db, languageId, onExit, onManageConten
           colors={c}
         >
           <RadioGroup<number>
-                        options={[...DAILY_GOAL_OPTIONS]}
+            options={[...DAILY_GOAL_OPTIONS]}
             labels={DAILY_GOAL_LABELS}
             value={dailyGoal}
             onChange={updateGoal}
