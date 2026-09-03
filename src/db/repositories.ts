@@ -13,6 +13,8 @@ import type {
   Difficulty,
   Language,
   ProgressStats,
+  Story,
+  StoryLine,
   VocabularyEntry,
 } from '../core/types';
 
@@ -525,5 +527,134 @@ export async function getWeeklyActivity(
     });
   }
   return days;
+}
+
+// ---------------------------------------------------------------------------
+// Stories (Story Time)
+// ---------------------------------------------------------------------------
+
+function storyFromRow(r: {
+  id: number;
+  language_id: number;
+  title: string;
+  icon: string | null;
+  created_at: string;
+}): Story {
+  return {
+    id: r.id,
+    languageId: r.language_id,
+    title: r.title,
+    icon: r.icon,
+    createdAt: r.created_at,
+  };
+}
+
+function lineFromRow(r: {
+  id: number;
+  story_id: number;
+  position: number;
+  text_st: string;
+  text_en: string | null;
+  audio_st: string | null;
+  audio_en: string | null;
+}): StoryLine {
+  return {
+    id: r.id,
+    storyId: r.story_id,
+    position: r.position,
+    textSt: r.text_st,
+    textEn: r.text_en,
+    audioSt: r.audio_st,
+    audioEn: r.audio_en,
+  };
+}
+
+/** All stories for a language, oldest first. */
+export async function listStories(
+  db: SQLite.SQLiteDatabase,
+  languageId: number,
+): Promise<Story[]> {
+  const rows = await db.getAllAsync<Parameters<typeof storyFromRow>[0]>(
+    'SELECT * FROM stories WHERE language_id = ? ORDER BY created_at, id',
+    [languageId],
+  );
+  return rows.map(storyFromRow);
+}
+
+export async function createStory(
+  db: SQLite.SQLiteDatabase,
+  languageId: number,
+  title: string,
+  icon: string | null,
+): Promise<Story> {
+  const res = await db.runAsync(
+    'INSERT INTO stories (language_id, title, icon) VALUES (?, ?, ?)',
+    [languageId, title, icon],
+  );
+  const row = await db.getFirstAsync<Parameters<typeof storyFromRow>[0]>(
+    'SELECT * FROM stories WHERE id = ?',
+    [res.lastInsertRowId],
+  );
+  return storyFromRow(row!);
+}
+
+export async function deleteStory(db: SQLite.SQLiteDatabase, id: number): Promise<void> {
+  await db.runAsync('DELETE FROM stories WHERE id = ?', [id]);
+}
+
+/** Lines of a story in reading order. */
+export async function listStoryLines(
+  db: SQLite.SQLiteDatabase,
+  storyId: number,
+): Promise<StoryLine[]> {
+  const rows = await db.getAllAsync<Parameters<typeof lineFromRow>[0]>(
+    'SELECT * FROM story_lines WHERE story_id = ? ORDER BY position, id',
+    [storyId],
+  );
+  return rows.map(lineFromRow);
+}
+
+export interface StoryLineInput {
+  textSt: string;
+  textEn: string | null;
+  audioSt: string | null;
+  audioEn: string | null;
+}
+
+/** Append a line at the end of a story. */
+export async function createStoryLine(
+  db: SQLite.SQLiteDatabase,
+  storyId: number,
+  input: StoryLineInput,
+): Promise<StoryLine> {
+  const max = await db.getFirstAsync<{ m: number | null }>(
+    'SELECT MAX(position) AS m FROM story_lines WHERE story_id = ?',
+    [storyId],
+  );
+  const position = (max?.m ?? -1) + 1;
+  const res = await db.runAsync(
+    'INSERT INTO story_lines (story_id, position, text_st, text_en, audio_st, audio_en) VALUES (?, ?, ?, ?, ?, ?)',
+    [storyId, position, input.textSt, input.textEn, input.audioSt, input.audioEn],
+  );
+  const row = await db.getFirstAsync<Parameters<typeof lineFromRow>[0]>(
+    'SELECT * FROM story_lines WHERE id = ?',
+    [res.lastInsertRowId],
+  );
+  return lineFromRow(row!);
+}
+
+export async function updateStoryLine(
+  db: SQLite.SQLiteDatabase,
+  id: number,
+  input: StoryLineInput,
+): Promise<void> {
+  await db.runAsync(
+    'UPDATE story_lines SET text_st = ?, text_en = ?, audio_st = ?, audio_en = ? WHERE id = ?',
+    [input.textSt, input.textEn, input.audioSt, input.audioEn, id],
+  );
+}
+
+export async function deleteStoryLine(db: SQLite.SQLiteDatabase, id: number): Promise<void> {
+  await db.runAsync('DELETE FROM story_lines WHERE id = ?', [id]);
 }
 

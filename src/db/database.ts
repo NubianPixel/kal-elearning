@@ -1,5 +1,5 @@
 import * as SQLite from 'expo-sqlite';
-import { SCHEMA_SQL, DEFAULT_LANGUAGE, SEED_CATEGORIES, SEED_VOCABULARY } from './schema';
+import { SCHEMA_SQL, DEFAULT_LANGUAGE, SEED_CATEGORIES, SEED_VOCABULARY, SEED_STORY } from './schema';
 
 let dbPromise: Promise<SQLite.SQLiteDatabase> | null = null;
 
@@ -14,6 +14,7 @@ export function getDb(): Promise<SQLite.SQLiteDatabase> {
       await migrateVocabularyAddImage(db);
       await migrateSeedIcons(db);
       await seedIfEmpty(db);
+      await seedStoriesIfEmpty(db);
       return db;
     })();
   }
@@ -130,6 +131,37 @@ async function seedIfEmpty(db: SQLite.SQLiteDatabase): Promise<void> {
         v.difficulty,
         v.icon ? `icon:${v.icon}` : null,
       ],
+    );
+  }
+}
+
+/**
+ * Story seeding: runs on every open (not just first install) so existing
+ * installs also get the starter story. Only inserts when the default
+ * language has no stories at all, so parent-authored stories are safe.
+ */
+async function seedStoriesIfEmpty(db: SQLite.SQLiteDatabase): Promise<void> {
+  const lang = await db.getFirstAsync<{ id: number }>(
+    'SELECT id FROM languages WHERE code = ?',
+    [DEFAULT_LANGUAGE.code],
+  );
+  if (!lang) return;
+
+  const existing = await db.getFirstAsync<{ n: number }>(
+    'SELECT COUNT(*) AS n FROM stories WHERE language_id = ?',
+    [lang.id],
+  );
+  if ((existing?.n ?? 0) > 0) return;
+
+  const story = await db.runAsync(
+    'INSERT INTO stories (language_id, title, icon) VALUES (?, ?, ?)',
+    [lang.id, SEED_STORY.title, SEED_STORY.icon],
+  );
+  for (let i = 0; i < SEED_STORY.lines.length; i++) {
+    const line = SEED_STORY.lines[i];
+    await db.runAsync(
+      'INSERT INTO story_lines (story_id, position, text_st, text_en) VALUES (?, ?, ?, ?)',
+      [story.lastInsertRowId, i, line.textSt, line.textEn],
     );
   }
 }

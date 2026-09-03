@@ -82,3 +82,26 @@ export interface ProgressStats {
   minutesSpent: number;
   reviewsToday: number;
 }
+
+/** A story for the child's Story Time mode. */
+export interface Story {
+  id: number;
+  languageId: number;
+  title: string;
+  /** Optional Ionicons name used as the story's cover art. */
+  icon: string | null;
+  createdAt: string;
+}
+
+/** One line of a story: Setswana text with optional English translation
+ *  and parent-recorded audio for either language. Lines play in order and
+ *  their words are highlighted one-by-one as the audio speaks. */
+export interface StoryLine {
+  id: number;
+  storyId: number;
+  position: number;
+  textSt: string;
+  textEn: string | null;
+  audioSt: string | null;
+  audioEn: string | null;
+}

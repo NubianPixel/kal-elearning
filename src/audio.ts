@@ -63,6 +63,8 @@ export async function getRecordPermission(): Promise<{
 export interface PlaybackEvent {
   kind: 'loaded' | 'playing' | 'finished' | 'error';
   message: string;
+  /** Clip length in milliseconds, present on 'loaded' events. */
+  durationMs?: number;
 }
 
 function setPlaybackMode(): Promise<void> {
@@ -197,7 +199,11 @@ function startClip(uri: string, onEvent?: (e: PlaybackEvent) => void): void {
     }
     started = true;
     if (clip.giveUp) clearTimeout(clip.giveUp);
-    onEvent?.({ kind: 'loaded', message: `loaded, duration ${player.duration.toFixed(1)}s` });
+    onEvent?.({
+      kind: 'loaded',
+      message: `loaded, duration ${player.duration.toFixed(1)}s`,
+      durationMs: Math.round(player.duration * 1000),
+    });
     clip.playing = true;
     emit(uri, 'playing');
     onEvent?.({ kind: 'playing', message: 'playback started' });

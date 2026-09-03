@@ -13,6 +13,8 @@ interface Props {
   languageName: string;
   onReview: () => void;
   onLearn: () => void;
+  onRevise: () => void;
+  onStory: () => void;
   onParentZone: () => void;
   loadStats: () => Promise<ProgressStats>;
   loadGoal: () => Promise<number>;
@@ -89,6 +91,8 @@ export default function HomeScreen({
   languageName,
   onReview,
   onLearn,
+  onRevise,
+  onStory,
   onParentZone,
   loadStats,
   loadGoal,
@@ -206,12 +210,21 @@ export default function HomeScreen({
           styles={styles}
         />
         <ActionRow
-          icon="bar-chart-outline"
-          tint={c.primary}
+          icon="albums-outline"
+          tint={c.primaryDeep}
+          soft={c.accentSoft}
+          title="Revise Words"
+          subtitle="Slide through cards, pick a category"
+          onPress={onRevise}
+          styles={styles}
+        />
+        <ActionRow
+          icon="book-outline"
+          tint={c.primaryDeep}
           soft={c.primarySoft}
-          title="See My Progress"
-          subtitle="For mom and dad"
-          onPress={onParentZone}
+          title="Story Time"
+          subtitle="Listen and follow along, word by word"
+          onPress={onStory}
           styles={styles}
         />
         <ActionRow
@@ -219,7 +232,7 @@ export default function HomeScreen({
           tint={c.primary}
           soft={c.primarySoft}
           title="Parent Zone"
-          subtitle="Add words and record audio"
+          subtitle="Add words, stories and record audio"
           onPress={onParentZone}
           styles={styles}
         />

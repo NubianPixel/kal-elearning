@@ -36,6 +36,7 @@ interface Props {
   db: SQLite.SQLiteDatabase;
   languageId: number;
   onExit: () => void;
+  onRevise: () => void;
 }
 
 type Phase = 'loading' | 'card' | 'menu';
@@ -98,7 +99,7 @@ function toQueueItems(entries: VocabularyEntry[]): QueueItem[] {
  * but their order is shuffled, and flashcards always use the full word
  * list so the child sees the same questions time after time.
  */
-export default function ReviewScreen({ db, languageId, onExit }: Props) {
+export default function ReviewScreen({ db, languageId, onExit, onRevise }: Props) {
   const [phase, setPhase] = useState<Phase>('loading');
   const [menuMode, setMenuMode] = useState<MenuMode>('ready');
   const [queue, setQueue] = useState<QueueItem[]>([]);
@@ -440,6 +441,17 @@ export default function ReviewScreen({ db, languageId, onExit }: Props) {
         </View>
 
         <Text style={[t.sectionTitle, styles.sectionSpacing]}>Choose a game</Text>
+
+        <Pressable style={styles.modeRow} onPress={onRevise}>
+          <View style={[styles.modeIcon, { backgroundColor: c.primarySoft }]}>
+            <Ionicons name="albums-outline" size={22} color={c.primaryDeep} />
+          </View>
+          <View style={styles.modeText}>
+            <Text style={styles.modeTitle}>Revise words</Text>
+            <Text style={t.mutedText}>Slide through cards by category</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color={c.muted} />
+        </Pressable>
 
         <Pressable style={styles.modeRow} onPress={startFree}>
           <View style={[styles.modeIcon, { backgroundColor: c.accentSoft }]}>

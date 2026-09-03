@@ -56,6 +56,26 @@ CREATE TABLE IF NOT EXISTS settings (
   value TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS stories (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  language_id INTEGER NOT NULL REFERENCES languages(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  icon TEXT,
+  created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+);
+
+CREATE TABLE IF NOT EXISTS story_lines (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  story_id INTEGER NOT NULL REFERENCES stories(id) ON DELETE CASCADE,
+  position INTEGER NOT NULL,
+  text_st TEXT NOT NULL,
+  text_en TEXT,
+  audio_st TEXT,
+  audio_en TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_story_lines_story ON story_lines(story_id, position);
+
 CREATE INDEX IF NOT EXISTS idx_vocabulary_language ON vocabulary(language_id);
 CREATE INDEX IF NOT EXISTS idx_card_states_due ON card_states(due_date);
 CREATE INDEX IF NOT EXISTS idx_review_logs_time ON review_logs(reviewed_at);
@@ -98,3 +118,22 @@ export const SEED_VOCABULARY: Array<{
   { category: 'Family', targetText: 'Rra', translation: 'Father', difficulty: 1, icon: 'man-outline' },
   { category: 'Words', targetText: 'Ke a leboga', translation: 'Thank you', difficulty: 2, icon: 'happy-outline' },
 ];
+
+/** Starter story so Story Time works immediately. The parent records the
+ *  per-line audio in the Parent Zone; until then words highlight at a
+ *  gentle default reading pace. */
+export const SEED_STORY: {
+  title: string;
+  icon: string;
+  lines: Array<{ textSt: string; textEn: string }>;
+} = {
+  title: 'Ntja le Katse',
+  icon: 'paw-outline',
+  lines: [
+    { textSt: 'Ntja le katse ke diphologolo tsa gae.', textEn: 'The dog and the cat are pets.' },
+    { textSt: 'Ntja o bua: Woof, woof!', textEn: 'The dog says: Woof, woof!' },
+    { textSt: 'Katse o bua: Meow!', textEn: 'The cat says: Meow!' },
+    { textSt: 'Ba ja dijo mmogo.', textEn: 'They eat food together.' },
+    { textSt: 'Ba nna mmogo ka lorato.', textEn: 'They live together with love.' },
+  ],
+};

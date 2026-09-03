@@ -3,7 +3,7 @@ import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme, type ThemeColors } from '../theme';
 
-const TITLE = 'KAL-elearning';
+const TITLE = 'KAL-learning';
 const TAGLINE = 'Back to Basics';
 
 /**

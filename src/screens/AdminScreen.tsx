@@ -14,6 +14,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import type * as SQLite from 'expo-sqlite';
 import WordImage from '../components/WordImage';
+import StoryManagerScreen from './StoryManagerScreen';
 import { childButton, makeTextStyles, useTheme, type ThemeColors } from '../theme';
 import {
   createCategory,
@@ -95,7 +96,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
   const [entries, setEntries] = useState<VocabularyEntry[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState<'list' | 'form'>('list');
+  const [page, setPage] = useState<'list' | 'form' | 'stories'>('list');
   const [form, setForm] = useState<(VocabularyInput & { id?: number }) | null>(null);
   const [search, setSearch] = useState('');
   const [filterCat, setFilterCat] = useState<number | 'all'>('all');
@@ -504,6 +505,18 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
     );
   }
 
+  /* ==================== PAGE: STORIES ==================== */
+
+  if (page === 'stories') {
+    return (
+      <StoryManagerScreen
+        db={db}
+        languageId={languageId}
+        onBack={() => setPage('list')}
+      />
+    );
+  }
+
   /* ==================== PAGE: WORDS LIBRARY ==================== */
 
   return (
@@ -522,6 +535,18 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
           <View style={styles.countPill}>
             <Text style={styles.countPillText}>{entries.length}</Text>
           </View>
+        </View>
+
+        <View style={styles.segmentRow}>
+          <Pressable
+            style={[styles.segment, styles.segmentOn]}
+            onPress={() => setPage('list')}
+          >
+            <Text style={styles.segmentTextOn}>Words</Text>
+          </Pressable>
+          <Pressable style={styles.segment} onPress={() => setPage('stories')}>
+            <Text style={styles.segmentText}>Stories</Text>
+          </Pressable>
         </View>
 
         <View style={styles.searchBox}>
@@ -690,6 +715,18 @@ const makeStyles = (c: ThemeColors) =>
     countPillText: { color: c.primaryDeep, fontWeight: '800', fontSize: 14 },
 
     /* Search */
+    segmentRow: {
+      flexDirection: 'row',
+      backgroundColor: c.card,
+      borderRadius: 12,
+      padding: 3,
+      gap: 3,
+      marginBottom: 10,
+    },
+    segment: { flex: 1, paddingVertical: 9, borderRadius: 10, alignItems: 'center' },
+    segmentOn: { backgroundColor: c.primary },
+    segmentText: { color: c.muted, fontWeight: '700', fontSize: 14 },
+    segmentTextOn: { color: c.onPrimary, fontWeight: '800', fontSize: 14 },
     searchBox: {
       flexDirection: 'row',
       alignItems: 'center',

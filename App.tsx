@@ -20,13 +20,15 @@ import LearnScreen from './src/screens/LearnScreen';
 import ReviewScreen from './src/screens/ReviewScreen';
 import AdminScreen from './src/screens/AdminScreen';
 import DashboardScreen from './src/screens/DashboardScreen';
+import StoryScreen from './src/screens/StoryScreen';
+import RevisionDeck from './src/components/RevisionDeck';
 import TabBar from './src/components/TabBar';
 import AppHeader from './src/components/AppHeader';
 import SplashScreen from './src/components/SplashScreen';
 import { ThemeProvider, useTheme, isThemeName, type ThemeName } from './src/theme';
 import type { Language } from './src/core/types';
 
-type Screen = 'home' | 'learn' | 'review' | 'dashboard' | 'admin';
+type Screen = 'home' | 'learn' | 'review' | 'dashboard' | 'admin' | 'story' | 'revision';
 
 /**
  * App shell. State-based navigation; the dark pill tab bar (with the
@@ -86,6 +88,8 @@ const HEADER_TITLES: Record<Screen, { title: string; subtitle?: string }> = {
   review: { title: 'Practice', subtitle: 'Flashcards and games' },
   dashboard: { title: 'Parent Zone', subtitle: 'Settings & progress' },
   admin: { title: 'Manage Words', subtitle: 'Add, record and edit' },
+  story: { title: 'Story Time', subtitle: 'Listen and read along' },
+  revision: { title: 'Revise', subtitle: 'Slide through your words' },
 };
 
 function Shell({ db, language, screen, setScreen }: ShellProps) {
@@ -150,6 +154,8 @@ function Shell({ db, language, screen, setScreen }: ShellProps) {
             languageName={language.name}
             onReview={() => setScreen('review')}
             onLearn={() => setScreen('learn')}
+            onRevise={() => setScreen('revision')}
+            onStory={() => setScreen('story')}
             onParentZone={() => void enterParentZone()}
             loadStats={() => getProgressStats(db, language.id)}
             loadGoal={() => getDailyGoal(db)}
@@ -162,6 +168,21 @@ function Shell({ db, language, screen, setScreen }: ShellProps) {
             db={db}
             languageId={language.id}
             onExit={() => setScreen('home')}
+            onRevise={() => setScreen('revision')}
+          />
+        )}
+        {screen === 'story' && (
+          <StoryScreen
+            db={db}
+            languageId={language.id}
+            onExit={() => setScreen('home')}
+          />
+        )}
+        {screen === 'revision' && (
+          <RevisionDeck
+            db={db}
+            languageId={language.id}
+            onBack={() => setScreen('home')}
           />
         )}
         {screen === 'dashboard' && (
