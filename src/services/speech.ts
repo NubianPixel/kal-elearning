@@ -10,6 +10,7 @@
  */
 
 import { ensurePlaybackMode } from '../audio';
+import { requireOptionalNativeModule } from 'expo-modules-core';
 
 type SpeechModule = typeof import('expo-speech-recognition');
 
@@ -18,7 +19,14 @@ let cached: SpeechModule | null | undefined;
 function getModule(): SpeechModule | null {
   if (cached !== undefined) return cached;
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // Non-throwing probe: returns null when the native module is absent
+    // (e.g. inside Expo Go), avoiding the loud "Cannot find native module
+    // 'ExpoSpeechRecognition'" error that the module's own require throws.
+    const probe = requireOptionalNativeModule('ExpoSpeechRecognition');
+    if (!probe) {
+      cached = null;
+      return cached;
+    }
     const mod = require('expo-speech-recognition') as SpeechModule;
     cached = mod?.ExpoSpeechRecognitionModule ? mod : null;
   } catch {
