@@ -9,7 +9,7 @@
  * Correct/wrong/danger stay semantic (answer feedback), not decorative.
  */
 
-import React, {
+import {
   createContext,
   useCallback,
   useContext,
