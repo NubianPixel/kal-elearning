@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { cardShadow, makeTextStyles, useTheme, type ThemeColors } from '../theme';
@@ -22,30 +22,36 @@ interface Props {
   loadXp: () => Promise<number>;
 }
 
-function StatChip({
+function StatCard({
   icon,
   value,
   label,
-  tint,
-  soft,
+  bg,
+  onBg,
+  onBgFaint,
+  width,
   styles,
 }: {
   icon: React.ComponentProps<typeof Ionicons>['name'];
   value: string;
   label: string;
-  tint: string;
-  soft: string;
+  bg: string;
+  onBg: string;
+  onBgFaint: string;
+  width: number;
   styles: Record<string, object>;
 }) {
   return (
-    <View style={styles.statChip}>
-      <View style={[styles.statIcon, { backgroundColor: soft }]}>
-        <Ionicons name={icon} size={14} color={tint} />
+    <View style={[styles.statCard, { backgroundColor: bg, width }]}>
+      <View style={[styles.statBadge, { backgroundColor: onBgFaint }]}>
+        <Ionicons name={icon} size={12} color={onBg} />
+        <Text style={[styles.statBadgeText, { color: onBg }]} numberOfLines={1}>
+          {label}
+        </Text>
       </View>
-      <View style={styles.statTextWrap}>
-        <Text style={styles.statValue} numberOfLines={1}>{value}</Text>
-        <Text style={styles.statLabel} numberOfLines={1}>{label}</Text>
-      </View>
+      <Text style={[styles.statValueBig, { color: onBg }]} numberOfLines={1}>
+        {value}
+      </Text>
     </View>
   );
 }
@@ -88,7 +94,7 @@ export default function HomeScreen({
   languageName,
   onReview,
   onLearn,
-    onRevise,
+  onRevise,
   onStory,
   onTyping,
   onParentZone,
@@ -103,6 +109,9 @@ export default function HomeScreen({
   const styles = useMemo(() => makeStyles(c), [c]);
   const t = useMemo(() => makeTextStyles(c), [c]);
   const insets = useSafeAreaInsets();
+  const { width: screenW } = useWindowDimensions();
+  const statCardWidth = Math.round(screenW * 0.62);
+  const statCardStep = statCardWidth + 12;
 
   useEffect(() => {
     loadStats().then(setStats).catch(() => undefined);
@@ -182,20 +191,29 @@ export default function HomeScreen({
           right: 0,
         }}
       >
-        {/* One-line stat strip — everything at a glance, no scrolling */}
-        <View style={styles.statStrip}>
-          <StatChip icon="trophy" value={`${mastered}`} label="Mastered" tint={c.primary} soft={c.primarySoft} styles={styles} />
-          <StatChip icon="flame" value={`${streak}`} label="Streak" tint={c.primaryDeep} soft={c.accentSoft} styles={styles} />
-          <StatChip icon="stats-chart" value={accuracy} label="Accuracy" tint={c.primary} soft={c.primarySoft} styles={styles} />
-          <StatChip
+        {/* Swipeable stat carousel — user flips through; each card a different
+            theme surface, styled like the hero card above. */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          snapToInterval={statCardStep}
+          decelerationRate="fast"
+          contentContainerStyle={styles.statCarousel}
+        >
+          <StatCard icon="trophy" value={`${mastered}`} label="Words mastered" bg={c.primary} onBg={c.onPrimary} onBgFaint={c.onPrimaryFaint} width={statCardWidth} styles={styles} />
+          <StatCard icon="flame" value={`${streak}`} label="Day streak" bg={c.primaryDark} onBg={c.onPrimary} onBgFaint={c.onPrimaryFaint} width={statCardWidth} styles={styles} />
+          <StatCard icon="stats-chart" value={accuracy} label="30-day accuracy" bg={c.accent} onBg={c.onAccent} onBgFaint={c.onPrimaryFaint} width={statCardWidth} styles={styles} />
+          <StatCard
             icon={league.icon as React.ComponentProps<typeof Ionicons>['name']}
             value={league.name}
-            label="League"
-            tint={c.primaryDeep}
-            soft={c.accentSoft}
+            label="Current league"
+            bg={c.dark}
+            onBg={c.onDark}
+            onBgFaint="rgba(255,255,255,0.18)"
+            width={statCardWidth}
             styles={styles}
           />
-        </View>
+        </ScrollView>
 
         {/* 3x2 action grid — every activity reachable on one screen */}
         <Text style={[t.sectionTitle, styles.sectionSpacing]}>What should we do today?</Text>
@@ -283,31 +301,28 @@ const makeStyles = (c: ThemeColors) =>
       marginBottom: 6,
     },
     heroProgressLabel: { color: c.onPrimaryMuted, fontSize: 12, fontWeight: '600' },
-    statStrip: {
-      flexDirection: 'row',
-      gap: 8,
+    statCarousel: {
+      paddingHorizontal: 20,
+      gap: 12,
+      paddingRight: 40,
     },
-    statChip: {
-      flex: 1,
+    statCard: {
+      borderRadius: 24,
+      padding: 18,
+      justifyContent: 'space-between',
+      ...cardShadow(c, 'lg'),
+    },
+    statBadge: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 7,
-      backgroundColor: c.card,
-      borderRadius: 14,
+      alignSelf: 'flex-start',
+      gap: 5,
+      borderRadius: 12,
       paddingHorizontal: 8,
-      paddingVertical: 9,
-      ...cardShadow(c, 'sm'),
+      paddingVertical: 5,
     },
-    statIcon: {
-      width: 26,
-      height: 26,
-      borderRadius: 13,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    statTextWrap: { flex: 1 },
-    statValue: { fontSize: 14, fontWeight: '800', color: c.text },
-    statLabel: { fontSize: 9, fontWeight: '600', color: c.muted, marginTop: 1 },
+    statBadgeText: { fontSize: 11, fontWeight: '700' },
+    statValueBig: { fontSize: 28, fontWeight: '800', marginTop: 14 },
     sectionSpacing: { marginTop: 20, marginBottom: 10 },
     grid: {
       flexDirection: 'row',
