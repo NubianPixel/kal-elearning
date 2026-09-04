@@ -158,36 +158,45 @@ export async function getReviewQueue(
   newLimit = 5,
 ): Promise<QueueItem[]> {
   const nowIso = now.toISOString();
-  const rows = await db.getAllAsync<{
-    entry: VocabularyEntry;
-    ease: number | null;
-    interval_days: number | null;
-    repetitions: number | null;
-    lapses: number | null;
-    due_date: string | null;
-    last_reviewed_at: string | null;
-  }>(
-    `SELECT v.id, v.language_id AS languageId, v.category_id AS categoryId,
+  const rows = await db.getAllAsync<
+    VocabularyEntry & {
+      ease: number | null;
+      interval_days: number | null;
+      repetitions: number | null;
+      lapses: number | null;
+      due_date: string | null;
+      last_reviewed_at: string | null;
+    }
+  >(`SELECT v.id, v.language_id AS languageId, v.category_id AS categoryId,
             v.target_text AS targetText, v.translation, v.notes, v.difficulty,
             v.audio_uri AS audioUri, v.image_uri AS imageUri,
             cs.ease, cs.interval_days, cs.repetitions, cs.lapses, cs.due_date, cs.last_reviewed_at
-     FROM vocabulary v
-     LEFT JOIN card_states cs ON cs.vocabulary_id = v.id
-     WHERE v.language_id = ?
-       AND (cs.vocabulary_id IS NULL OR cs.due_date <= ?)
-     ORDER BY CASE WHEN cs.vocabulary_id IS NULL THEN 1 ELSE 0 END,
-              COALESCE(cs.due_date, '1970-01-01T00:00:00.000Z'),
-              v.id`,
-    [languageId, nowIso],
-  );
+       FROM vocabulary v
+       LEFT JOIN card_states cs ON cs.vocabulary_id = v.id
+       WHERE v.language_id = ?
+         AND (cs.vocabulary_id IS NULL OR cs.due_date <= ?)
+       ORDER BY CASE WHEN cs.vocabulary_id IS NULL THEN 1 ELSE 0 END,
+                COALESCE(cs.due_date, '1970-01-01T00:00:00.000Z'),
+                v.id`, [languageId, nowIso]);
 
   const due: QueueItem[] = [];
   const fresh: QueueItem[] = [];
   for (const row of rows) {
     const isNew = row.ease === null;
+    const entry: VocabularyEntry = {
+      id: row.id,
+      languageId: row.languageId,
+      categoryId: row.categoryId,
+      targetText: row.targetText,
+      translation: row.translation,
+      notes: row.notes,
+      difficulty: row.difficulty as VocabularyEntry['difficulty'],
+      audioUri: row.audioUri,
+      imageUri: row.imageUri,
+    };
     const state: CardState = isNew
       ? {
-          vocabularyId: row.entry.id,
+          vocabularyId: entry.id,
           ease: 2.5,
           intervalDays: 0,
           repetitions: 0,
@@ -196,15 +205,15 @@ export async function getReviewQueue(
           lastReviewedAt: null,
         }
       : {
-          vocabularyId: row.entry.id,
+          vocabularyId: entry.id,
           ease: row.ease!,
           intervalDays: row.interval_days!,
           repetitions: row.repetitions!,
-          lapses: row.lapses!,
+                    lapses: row.lapses!,
           dueDate: row.due_date!,
           lastReviewedAt: row.last_reviewed_at,
         };
-    (isNew ? fresh : due).push({ entry: row.entry, state, isNew });
+    (isNew ? fresh : due).push({ entry, state, isNew });
   }
   return [...due, ...fresh.slice(0, newLimit)];
 }
@@ -389,6 +398,40 @@ export async function getMistakeWords(
      ORDER BY r.reviewed_at DESC
      LIMIT ?`,
     [languageId, since, limit],
+  );
+}
+
+/** Daily challenge pool: due words first, then never-practised, then learned words.
+ *  Always yields content — used by the home "Daily Word Challenge" so a session
+ *  can never come up empty on a library that has words in it. */
+export async function getDailyChallengeWords(
+  db: SQLite.SQLiteDatabase,
+  languageId: number,
+  limit: number = 10,
+): Promise<VocabularyEntry[]> {
+  return db.getAllAsync<VocabularyEntry>(
+    `SELECT
+        v.id AS id,
+        v.language_id AS languageId,
+        v.category_id AS categoryId,
+        v.target_text AS targetText,
+        v.translation AS translation,
+        v.notes AS notes,
+        v.difficulty AS difficulty,
+        v.audio_uri AS audioUri,
+        v.image_uri AS imageUri
+     FROM vocabulary v
+     LEFT JOIN card_states cs ON cs.vocabulary_id = v.id
+     WHERE v.language_id = ?
+     ORDER BY
+       CASE
+         WHEN cs.due_date IS NULL THEN 0          -- never seen: highest priority
+         WHEN cs.due_date <= datetime('now') THEN 1  -- due: next
+         ELSE 2                                    -- not due: last resort
+       END,
+       RANDOM()
+     LIMIT ?`,
+    [languageId, limit],
   );
 }
 

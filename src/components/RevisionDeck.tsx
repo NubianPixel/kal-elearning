@@ -12,7 +12,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
-import { makeTextStyles, useTheme, type ThemeColors } from '../theme';
+import { cardShadow, makeTextStyles, useTheme, type ThemeColors } from '../theme';
 import { playClip, stopActiveClip } from '../audio';
 import { listCategories, listVocabulary } from '../db/repositories';
 import type { Category, Difficulty, VocabularyEntry } from '../core/types';
@@ -270,11 +270,7 @@ const makeStyles = (c: ThemeColors) =>
       borderRadius: 28,
       padding: 20,
       alignItems: 'center',
-      shadowColor: c.shadow,
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.1,
-      shadowRadius: 10,
-      elevation: 5,
+      ...cardShadow(c, 'md'),
     },
     cardTopRow: {
       flexDirection: 'row',

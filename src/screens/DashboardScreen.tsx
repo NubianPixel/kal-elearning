@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as LocalAuthentication from 'expo-local-authentication';
 import type * as SQLite from 'expo-sqlite';
-import { makeTextStyles, THEMES, THEME_LABELS, THEME_ORDER, useTheme, type ThemeColors, type ThemeName } from '../theme';
+import { cardShadow, makeTextStyles, THEMES, THEME_LABELS, THEME_ORDER, useTheme, type ThemeColors, type ThemeName } from '../theme';
 import { TAB_BAR_SPACE } from '../components/TabBar';
 import ProgressBar from '../components/ProgressBar';
 import { DAILY_GOAL_OPTIONS } from '../core/goals';
@@ -294,7 +294,7 @@ export default function DashboardScreen({ db, languageId, onExit, onManageConten
             tint={c.primary}
             soft={c.primarySoft}
             title="Security & lock"
-            subtitle={lockEnabled ? 'Biometric lock on' : 'Protect the Parent Zone'}
+            subtitle={lockEnabled ? 'Biometric lock on' : 'Protect Settings'}
             onPress={() => setSection('security')}
             colors={c}
           />
@@ -346,7 +346,7 @@ export default function DashboardScreen({ db, languageId, onExit, onManageConten
       {section === 'security' && (
         <SettingPage
           title="Security"
-          subtitle="Protect the Parent Zone with biometrics"
+          subtitle="Protect Settings with biometrics"
           onBack={() => setSection('overview')}
           colors={c}
         >
@@ -609,11 +609,7 @@ const makeStyles = (c: ThemeColors) =>
       borderRadius: 22,
       padding: 18,
       marginBottom: 16,
-      shadowColor: c.shadow,
-      shadowOpacity: 0.06,
-      shadowRadius: 10,
-      shadowOffset: { width: 0, height: 4 },
-      elevation: 2,
+      ...cardShadow(c, 'md'),
     },
     cardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
     progressGrid: {
@@ -665,11 +661,7 @@ const makeStyles = (c: ThemeColors) =>
       borderRadius: 16,
       padding: 14,
       marginBottom: 10,
-      shadowColor: c.shadow,
-      shadowOpacity: 0.04,
-      shadowRadius: 6,
-      shadowOffset: { width: 0, height: 2 },
-      elevation: 1,
+      ...cardShadow(c, 'sm'),
     },
     settingIconWrap: {
       width: 40,

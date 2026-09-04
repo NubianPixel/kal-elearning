@@ -68,7 +68,12 @@ export default function App() {
   );
 
   return (
-    <ThemeProvider initial={themeName} onChange={persistTheme}>
+    // Remounts exactly once, when the persisted theme finishes loading from
+    // DB (db flips null -> set in the same batched update as themeName) —
+    // ThemeProvider's `initial` is only read on ITS first mount, so without
+    // this key it would permanently lock onto the 'blush' default rendered
+    // before the async read resolves. Never remounts again after that.
+    <ThemeProvider key={db ? 'ready' : 'loading'} initial={themeName} onChange={persistTheme}>
       <SafeAreaProvider>
         <Shell db={db} language={language} screen={screen} setScreen={setScreen} />
       </SafeAreaProvider>
@@ -84,10 +89,10 @@ interface ShellProps {
 }
 
 const HEADER_TITLES: Record<Screen, { title: string; subtitle?: string }> = {
-  home: { title: 'Dumela!', subtitle: 'Let’s play and learn' },
+  home: { title: 'Dumela!', subtitle: 'Let’s learn Setswana' },
   learn: { title: 'Learn', subtitle: 'Pictures, words and saying them' },
   review: { title: 'Practice', subtitle: 'Flashcards and games' },
-  dashboard: { title: 'Parent Zone', subtitle: 'Settings & progress' },
+  dashboard: { title: 'Settings', subtitle: 'Settings & progress' },
   admin: { title: 'Manage Words', subtitle: 'Add, record and edit' },
   story: { title: 'Story Time', subtitle: 'Listen and read along' },
     revision: { title: 'Revise', subtitle: 'Slide through your words' },
@@ -118,7 +123,7 @@ function Shell({ db, language, screen, setScreen }: ShellProps) {
         ]);
         if (hasHardware && isEnrolled) {
           const result = await LocalAuthentication.authenticateAsync({
-            promptMessage: 'Unlock Parent Zone',
+            promptMessage: 'Unlock Settings',
           });
           if (!result.success) return;
         }
@@ -148,7 +153,11 @@ function Shell({ db, language, screen, setScreen }: ShellProps) {
   return (
     <View style={[styles.root, { backgroundColor: c.background }]}>
       <StatusBar style={c.statusBar} />
-      <AppHeader title={header.title} subtitle={header.subtitle} />
+      <AppHeader
+        title={header.title}
+        subtitle={header.subtitle}
+        titleVariant={screen === 'home' ? 'display' : 'default'}
+      />
 
       <View style={styles.body}>
         {screen === 'home' && (

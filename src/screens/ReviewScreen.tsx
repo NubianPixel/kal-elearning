@@ -3,10 +3,11 @@ import { View, Text, Pressable, StyleSheet, ActivityIndicator, ScrollView } from
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
-import { makeTextStyles, useTheme, childButton, type ThemeColors } from '../theme';
+import { cardShadow, makeTextStyles, useTheme, primaryButton, type ThemeColors } from '../theme';
 import {
   getReviewQueue,
   getMistakeWords,
+  getDailyChallengeWords,
   listVocabulary,
   recordAnswer,
   getDailyGoal,
@@ -210,10 +211,17 @@ export default function ReviewScreen({ db, languageId, onExit, onRevise, onTypin
       setChoiceCount(count);
       const q = shuffle(await getReviewQueue(db, languageId, new Date(), await getDailyGoal(db)));
       if (q.length === 0) {
-        setMenuMode('caughtup');
-        setHasDue(false);
-        setDueCount(0);
-        setPhase('menu');
+        // Nothing due today — fall back to a mixed challenge deck so the
+        // Daily Word Challenge always has content (never "all caught up").
+        const fallback = shuffle(await getDailyChallengeWords(db, languageId));
+        if (fallback.length === 0) {
+          setMenuMode('caughtup');
+          setHasDue(false);
+          setDueCount(0);
+          setPhase('menu');
+          return;
+        }
+        beginSession(toQueueItems(fallback), fallback, count, true);
         return;
       }
       beginSession(q, q.map((item) => item.entry), count, false);
@@ -432,7 +440,7 @@ export default function ReviewScreen({ db, languageId, onExit, onRevise, onTypin
             </Text>
           ) : null}
 
-          <Pressable style={[childButton, styles.ctaButton]} onPress={cta.onPress}>
+          <Pressable style={[primaryButton, styles.ctaButton]} onPress={cta.onPress}>
             <Ionicons name="play" size={30} color={c.onAccent} />
             <View style={styles.ctaTextWrap}>
               <Text style={styles.ctaText}>{cta.label}</Text>
@@ -765,11 +773,7 @@ const makeStyles = (c: ThemeColors) =>
       backgroundColor: c.card,
       alignItems: 'center',
       justifyContent: 'center',
-      shadowColor: c.shadow,
-      shadowOpacity: 0.08,
-      shadowRadius: 6,
-      shadowOffset: { width: 0, height: 2 },
-      elevation: 2,
+      ...cardShadow(c, 'sm'),
     },
     // Extra room below the real card for the two decorative cards to peek
     // out — matches the larger of their two `bottom` offsets below.
@@ -777,11 +781,7 @@ const makeStyles = (c: ThemeColors) =>
     stackCard: {
       position: 'absolute',
       borderRadius: 28,
-      shadowColor: c.shadow,
-      shadowOpacity: 0.06,
-      shadowRadius: 10,
-      shadowOffset: { width: 0, height: 4 },
-      elevation: 2,
+      ...cardShadow(c, 'md'),
     },
     // `top` + `bottom` (instead of a guessed `height`) makes each card
     // exactly match the real card's actual rendered height, however tall
@@ -794,11 +794,7 @@ const makeStyles = (c: ThemeColors) =>
       alignItems: 'center',
       padding: 16,
       paddingTop: 14,
-      shadowColor: c.shadow,
-      shadowOpacity: 0.1,
-      shadowRadius: 14,
-      shadowOffset: { width: 0, height: 6 },
-      elevation: 4,
+      ...cardShadow(c, 'lg'),
     },
     numberBadge: {
       position: 'absolute',
@@ -845,11 +841,7 @@ const makeStyles = (c: ThemeColors) =>
       alignItems: 'center',
       padding: 10,
       marginBottom: 10,
-      shadowColor: c.shadow,
-      shadowOpacity: 0.06,
-      shadowRadius: 8,
-      shadowOffset: { width: 0, height: 3 },
-      elevation: 2,
+      ...cardShadow(c, 'sm'),
     },
     choiceImageWrap: {
       width: '48.5%',
@@ -857,11 +849,7 @@ const makeStyles = (c: ThemeColors) =>
       borderRadius: 22,
       borderWidth: 3,
       marginBottom: 10,
-      shadowColor: c.shadow,
-      shadowOpacity: 0.06,
-      shadowRadius: 8,
-      shadowOffset: { width: 0, height: 3 },
-      elevation: 2,
+      ...cardShadow(c, 'sm'),
     },
     choiceImageClip: {
       width: '100%',

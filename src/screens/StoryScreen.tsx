@@ -10,7 +10,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
-import { useTheme, type ThemeColors } from '../theme';
+import { cardShadow, useTheme, type ThemeColors } from '../theme';
 import { TAB_BAR_SPACE } from '../components/TabBar';
 import { playClip, stopActiveClip } from '../audio';
 import { listStories, listStoryLines } from '../db/repositories';
@@ -274,7 +274,7 @@ export default function StoryScreen({ db, languageId, onExit }: Props) {
             <Ionicons name="book-outline" size={44} color={c.muted} />
             <Text style={styles.emptyTitle}>No stories yet</Text>
             <Text style={styles.emptyHint}>
-              Add stories in the Parent Zone under Manage Words → Stories.
+              Add stories in Settings under Manage Words → Stories.
             </Text>
           </View>
         ) : (
@@ -423,11 +423,7 @@ const makeStyles = (c: ThemeColors) =>
       borderRadius: 18,
       padding: 16,
       marginBottom: 12,
-      shadowColor: c.shadow,
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.08,
-      shadowRadius: 6,
-      elevation: 3,
+      ...cardShadow(c, 'sm'),
     },
     storyIcon: {
       width: 56,
@@ -527,11 +523,7 @@ const makeStyles = (c: ThemeColors) =>
       backgroundColor: c.card,
       alignItems: 'center',
       justifyContent: 'center',
-      shadowColor: c.shadow,
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.12,
-      shadowRadius: 5,
-      elevation: 4,
+      ...cardShadow(c, 'md'),
     },
     ctrlMain: {
       width: 68,
@@ -540,11 +532,7 @@ const makeStyles = (c: ThemeColors) =>
       backgroundColor: c.accent,
       alignItems: 'center',
       justifyContent: 'center',
-      shadowColor: c.shadow,
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.25,
-      shadowRadius: 8,
-      elevation: 6,
+      ...cardShadow(c, 'lg'),
     },
   });
 

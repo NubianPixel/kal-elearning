@@ -37,7 +37,7 @@ export default function TabBar({ active, onHome, onLearn, onParent, onPlay }: Pr
   }> = [
     { key: 'home', icon: 'home', label: 'Home', onPress: onHome },
     { key: 'learn', icon: 'school-outline', label: 'Learn', onPress: onLearn },
-    { key: 'dashboard', icon: 'person', label: 'Parent', onPress: onParent },
+    { key: 'dashboard', icon: 'person', label: 'Settings', onPress: onParent },
   ];
 
   return (

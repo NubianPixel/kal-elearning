@@ -15,7 +15,7 @@ import * as ImagePicker from 'expo-image-picker';
 import type * as SQLite from 'expo-sqlite';
 import WordImage from '../components/WordImage';
 import StoryManagerScreen from './StoryManagerScreen';
-import { childButton, makeTextStyles, useTheme, type ThemeColors } from '../theme';
+import { cardShadow, makeTextStyles, primaryButton, useTheme, type ThemeColors } from '../theme';
 import {
   createCategory,
   createVocabulary,
@@ -490,7 +490,7 @@ export default function AdminScreen({ db, languageId, languageName, onExit }: Pr
           </View>
 
           <Pressable
-            style={[childButton, styles.saveButton, (!valid || saving) && styles.disabled]}
+            style={[primaryButton, styles.saveButton, (!valid || saving) && styles.disabled]}
             onPress={save}
             disabled={saving || !valid}
           >
@@ -799,11 +799,7 @@ const makeStyles = (c: ThemeColors) =>
       backgroundColor: c.accent,
       alignItems: 'center',
       justifyContent: 'center',
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 3 },
-      shadowOpacity: 0.25,
-      shadowRadius: 5,
-      elevation: 6,
+      ...cardShadow(c, 'lg'),
     },
   });
 

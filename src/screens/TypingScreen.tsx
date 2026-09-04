@@ -7,11 +7,13 @@ import {
   StyleSheet,
   ScrollView,
   ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
-import { makeTextStyles, useTheme, childButton, type ThemeColors } from '../theme';
+import { cardShadow, makeTextStyles, useTheme, primaryButton, type ThemeColors } from '../theme';
 import { TAB_BAR_SPACE } from '../components/TabBar';
 import { playClip, playEffect, stopActiveClip, ensurePlaybackMode } from '../audio';
 import { listCategories, listVocabulary, getXp, getProgressStats, addXp } from '../db/repositories';
@@ -28,18 +30,23 @@ interface Props {
 }
 
 type Phase = 'loading' | 'play' | 'summary';
+type Direction = 'toEnglish' | 'toSetswana';
 
 /**
- * Type the Meaning — the child sees a Setswana word (picture + audio)
- * and types what it means in English. Every answer is graded with a
- * fair, kid-friendly matcher: case and punctuation never count against
- * them, small typos still earn credit with a gentle spelling nudge, and
- * wrong words come back at the end of the deck for another try.
+ * Type the Meaning — shows a word and asks for it in the other language.
+ * 'toEnglish' shows the Setswana word (picture + audio) and asks for the
+ * English meaning; 'toSetswana' shows the English meaning and asks the
+ * learner to produce the Setswana word — the harder, more valuable recall
+ * direction for building toward fluency. Every answer is graded with a
+ * fair matcher: case and punctuation never count against you, small typos
+ * still earn credit with a gentle spelling nudge, and wrong words come
+ * back at the end of the deck for another try.
  */
 export default function TypingScreen({ db, languageId, onExit }: Props) {
   const [entries, setEntries] = useState<VocabularyEntry[] | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
   const [filter, setFilter] = useState<number | 'all'>('all');
+  const [direction, setDirection] = useState<Direction>('toEnglish');
   const [phase, setPhase] = useState<Phase>('loading');
   const [queue, setQueue] = useState<VocabularyEntry[]>([]);
   const [sessionTotal, setSessionTotal] = useState(0);
@@ -81,11 +88,20 @@ export default function TypingScreen({ db, languageId, onExit }: Props) {
   }, [db, languageId]);
 
   useEffect(() => {
-    // Auto-play the current word whenever the deck moves.
-    if (phase === 'play' && queue[0]?.audioUri) {
+    // Auto-play the current word whenever the deck moves — only when the
+    // Setswana word is already shown on screen (toEnglish). In toSetswana
+    // the audio IS the answer, so it stays silent until after checking.
+    if (phase === 'play' && direction === 'toEnglish' && queue[0]?.audioUri) {
       playClip(queue[0].audioUri).catch(() => undefined);
     }
-  }, [phase, queue]);
+  }, [phase, queue, direction]);
+
+  const changeDirection = useCallback((next: Direction) => {
+    stopActiveClip();
+    setDirection(next);
+    setTyped('');
+    setVerdict(null);
+  }, []);
 
   const startSession = useCallback((deck: VocabularyEntry[]) => {
     const q = shuffle(deck);
@@ -115,7 +131,8 @@ export default function TypingScreen({ db, languageId, onExit }: Props) {
 
   function check() {
     if (!current || verdict) return;
-    const g = gradeTypedAnswer(current.translation, typed);
+    const answer = direction === 'toEnglish' ? current.translation : current.targetText;
+    const g = gradeTypedAnswer(answer, typed);
     setVerdict(g);
     setAttempts((n) => n + 1);
 
@@ -171,7 +188,7 @@ export default function TypingScreen({ db, languageId, onExit }: Props) {
         </Text>
 
         <Pressable
-          style={[childButton, styles.playBtn]}
+          style={[primaryButton, styles.playBtn]}
           onPress={() =>
             startSession(
               entries.filter((e) => filter === 'all' || e.categoryId === filter),
@@ -194,7 +211,10 @@ export default function TypingScreen({ db, languageId, onExit }: Props) {
   const filled = Math.max(0, sessionTotal - queue.length);
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <ScrollView
         contentContainerStyle={[
           styles.content,
@@ -208,12 +228,37 @@ export default function TypingScreen({ db, languageId, onExit }: Props) {
           </Pressable>
           <View style={{ flex: 1 }}>
             <Text style={t.titleText}>Type the meaning</Text>
-            <Text style={styles.subtitle}>What does it mean in English?</Text>
+            <Text style={styles.subtitle}>
+              {direction === 'toEnglish'
+                ? 'What does it mean in English?'
+                : 'How do you say it in Setswana?'}
+            </Text>
           </View>
           <View style={styles.xpPill}>
             <Ionicons name="star" size={14} color={c.primary} />
             <Text style={styles.xpPillText}>{xp + xpGained}</Text>
           </View>
+        </View>
+
+        <View style={styles.chipsRow}>
+          <Pressable
+            style={[styles.chip, direction === 'toEnglish' && styles.chipOn]}
+            onPress={() => changeDirection('toEnglish')}
+            accessibilityLabel="Setswana to English"
+          >
+            <Text style={direction === 'toEnglish' ? styles.chipTextOn : styles.chipText}>
+              Setswana → English
+            </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.chip, direction === 'toSetswana' && styles.chipOn]}
+            onPress={() => changeDirection('toSetswana')}
+            accessibilityLabel="English to Setswana"
+          >
+            <Text style={direction === 'toSetswana' ? styles.chipTextOn : styles.chipText}>
+              English → Setswana
+            </Text>
+          </Pressable>
         </View>
 
         <ScrollView
@@ -265,15 +310,21 @@ export default function TypingScreen({ db, languageId, onExit }: Props) {
               <WordImage uri={current.imageUri} style={styles.wordImage} iconSize={54} />
             </View>
 
-            <Text style={styles.wordText}>{current.targetText}</Text>
+            <Text style={styles.wordText}>
+              {direction === 'toEnglish' ? current.targetText : current.translation}
+            </Text>
 
-            <Pressable
-              style={styles.listenBtn}
-              onPress={() => playClip(current.audioUri ?? '').catch(() => undefined)}
-            >
-              <Ionicons name="volume-high" size={20} color={c.onPrimary} />
-              <Text style={styles.listenText}>Hear it again</Text>
-            </Pressable>
+            {(direction === 'toEnglish' || verdict !== null) && (
+              <Pressable
+                style={styles.listenBtn}
+                onPress={() => playClip(current.audioUri ?? '').catch(() => undefined)}
+              >
+                <Ionicons name="volume-high" size={20} color={c.onPrimary} />
+                <Text style={styles.listenText}>
+                  {direction === 'toEnglish' ? 'Hear it again' : 'Hear the answer'}
+                </Text>
+              </Pressable>
+            )}
             <View
               style={[
                 styles.inputWrap,
@@ -286,7 +337,9 @@ export default function TypingScreen({ db, languageId, onExit }: Props) {
                 value={typed}
                 onChangeText={setTyped}
                 editable={verdict === null}
-                placeholder="Type the English meaning…"
+                placeholder={
+                  direction === 'toEnglish' ? 'Type the English meaning…' : 'Type the Setswana word…'
+                }
                 placeholderTextColor={c.muted}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -317,15 +370,15 @@ export default function TypingScreen({ db, languageId, onExit }: Props) {
                   {verdict.grade === 'exact'
                     ? 'Exactly right!'
                     : verdict.grade === 'close'
-                      ? `Almost — it's “${current.translation}”`
-                      : `Not quite — it's “${current.translation}”`}
+                      ? `Almost — it's “${direction === 'toEnglish' ? current.translation : current.targetText}”`
+                      : `Not quite — it's “${direction === 'toEnglish' ? current.translation : current.targetText}”`}
                 </Text>
               </View>
             )}
 
             {verdict === null ? (
               <Pressable
-                style={[childButton, styles.checkBtn, (!typed.trim() || !current) && styles.disabled]}
+                style={[primaryButton, styles.checkBtn, (!typed.trim() || !current) && styles.disabled]}
                 onPress={check}
                 disabled={!typed.trim() || !current}
               >
@@ -333,7 +386,7 @@ export default function TypingScreen({ db, languageId, onExit }: Props) {
                 <Text style={styles.checkText}>Check</Text>
               </Pressable>
             ) : (
-              <Pressable style={[childButton, styles.checkBtn]} onPress={next}>
+              <Pressable style={[primaryButton, styles.checkBtn]} onPress={next}>
                 <Ionicons name="arrow-forward" size={22} color={c.onPrimary} />
                 <Text style={styles.checkText}>
                   {isWrong ? 'Try again next' : 'Next word'}
@@ -351,7 +404,7 @@ export default function TypingScreen({ db, languageId, onExit }: Props) {
           </View>
         )}
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -373,7 +426,7 @@ const makeStyles = (c: ThemeColors) =>
     },
     xpPillText: { color: c.text, fontWeight: '800', fontSize: 14 },
 
-    chipsRow: { gap: 8, paddingVertical: 6 },
+    chipsRow: { flexDirection: 'row', gap: 8, paddingVertical: 6 },
     chip: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -395,11 +448,7 @@ const makeStyles = (c: ThemeColors) =>
       padding: 20,
       marginTop: 10,
       alignItems: 'center',
-      shadowColor: c.shadow,
-      shadowOffset: { width: 0, height: 3 },
-      shadowOpacity: 0.08,
-      shadowRadius: 8,
-      elevation: 4,
+      ...cardShadow(c, 'md'),
     },
     dashRow: { flexDirection: 'row', gap: 5, alignSelf: 'flex-start', marginBottom: 12 },
     dash: {

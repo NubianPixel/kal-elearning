@@ -17,6 +17,10 @@ import {
   useState,
 } from 'react';
 import type { ReactNode } from 'react';
+import { Platform } from 'react-native';
+
+/** System serif — Georgia (iOS) / Noto Serif (Android), no bundled font asset needed. */
+export const SERIF_FONT_FAMILY = Platform.select({ ios: 'Georgia', android: 'serif', default: 'Georgia' });
 
 export type ThemeName = 'blush' | 'vintage' | 'retro' | 'happy' | 'night';
 
@@ -231,18 +235,57 @@ export function makeTextStyles(c: ThemeColors) {
     sectionTitle: { fontSize: 20, fontWeight: '800' as const, color: c.text },
     bigText: { fontSize: 24, fontWeight: '700' as const, color: c.text },
     mutedText: { fontSize: 13, fontWeight: '600' as const, color: c.muted },
+    /** Stat/score numbers (dashboard tiles, session summaries) — tabular
+     *  digits so they don't jitter width as values change. */
+    heroNumber: {
+      fontSize: 22,
+      fontWeight: '800' as const,
+      color: c.text,
+      fontVariant: ['tabular-nums'] as const,
+    },
+    /** Small caps-style labels/badges. */
+    label: { fontSize: 12, fontWeight: '700' as const, color: c.muted },
+    /** Personal-greeting moments (e.g. the home screen's "Dumela!") — an
+     *  italic serif on a system font, not a bundled asset. */
+    displayText: {
+      fontFamily: SERIF_FONT_FAMILY,
+      fontStyle: 'italic' as const,
+      fontSize: 28,
+      fontWeight: '600' as const,
+      color: c.text,
+    },
   };
 }
 
-/** Shared layout for big child-friendly buttons (no colors). */
-export const childButton = {
-  minHeight: 96,
+/** Shared layout for full-width primary buttons (no colors). */
+export const primaryButton = {
+  minHeight: 64,
   borderRadius: 24,
   justifyContent: 'center' as const,
   alignItems: 'center' as const,
   paddingHorizontal: 24,
   marginVertical: 8,
 };
+
+export type ElevationTier = 'sm' | 'md' | 'lg';
+
+const ELEVATION: Record<ElevationTier, { offset: number; opacity: number; radius: number; native: number }> = {
+  sm: { offset: 2, opacity: 0.06, radius: 6, native: 2 },
+  md: { offset: 4, opacity: 0.1, radius: 10, native: 4 },
+  lg: { offset: 5, opacity: 0.2, radius: 12, native: 7 },
+};
+
+/** Shared card/floating-element shadow, themed by `c.shadow`. */
+export function cardShadow(c: ThemeColors, tier: ElevationTier = 'md') {
+  const e = ELEVATION[tier];
+  return {
+    shadowColor: c.shadow,
+    shadowOffset: { width: 0, height: e.offset },
+    shadowOpacity: e.opacity,
+    shadowRadius: e.radius,
+    elevation: e.native,
+  };
+}
 
 interface ThemeContextValue {
   colors: ThemeColors;

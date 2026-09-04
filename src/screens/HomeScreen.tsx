@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { makeTextStyles, useTheme, type ThemeColors } from '../theme';
+import { cardShadow, makeTextStyles, useTheme, type ThemeColors } from '../theme';
 import { TAB_BAR_SPACE } from '../components/TabBar';
 import ProgressBar from '../components/ProgressBar';
 import { dailyProgressPct } from '../core/goals';
@@ -13,7 +13,7 @@ interface Props {
   languageName: string;
   onReview: () => void;
   onLearn: () => void;
-    onRevise: () => void;
+  onRevise: () => void;
   onStory: () => void;
   onTyping: () => void;
   onParentZone: () => void;
@@ -22,7 +22,7 @@ interface Props {
   loadXp: () => Promise<number>;
 }
 
-function StatTile({
+function StatChip({
   icon,
   value,
   label,
@@ -37,19 +37,20 @@ function StatTile({
   soft: string;
   styles: Record<string, object>;
 }) {
-  const t = makeTextStyles(useTheme().colors);
   return (
-    <View style={styles.tile}>
-      <View style={[styles.tileIcon, { backgroundColor: soft }]}>
-        <Ionicons name={icon} size={18} color={tint} />
+    <View style={styles.statChip}>
+      <View style={[styles.statIcon, { backgroundColor: soft }]}>
+        <Ionicons name={icon} size={14} color={tint} />
       </View>
-      <Text style={styles.tileValue}>{value}</Text>
-      <Text style={t.mutedText}>{label}</Text>
+      <View style={styles.statTextWrap}>
+        <Text style={styles.statValue} numberOfLines={1}>{value}</Text>
+        <Text style={styles.statLabel} numberOfLines={1}>{label}</Text>
+      </View>
     </View>
   );
 }
 
-function ActionRow({
+function ActionTile({
   icon,
   tint,
   soft,
@@ -66,18 +67,13 @@ function ActionRow({
   onPress: () => void;
   styles: Record<string, object>;
 }) {
-  const t = makeTextStyles(useTheme().colors);
-  const { colors: c } = useTheme();
   return (
-    <Pressable style={styles.actionRow} onPress={onPress}>
-      <View style={[styles.actionIcon, { backgroundColor: soft }]}>
+    <Pressable style={styles.tile} onPress={onPress}>
+      <View style={[styles.tileIcon, { backgroundColor: soft }]}>
         <Ionicons name={icon} size={22} color={tint} />
       </View>
-      <View style={styles.actionText}>
-        <Text style={styles.actionTitle}>{title}</Text>
-        <Text style={t.mutedText}>{subtitle}</Text>
-      </View>
-      <Ionicons name="chevron-forward" size={20} color={c.muted} />
+      <Text style={styles.tileTitle} numberOfLines={1}>{title}</Text>
+      <Text style={styles.tileSubtitle} numberOfLines={1}>{subtitle}</Text>
     </Pressable>
   );
 }
@@ -121,19 +117,12 @@ export default function HomeScreen({
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        style={styles.scroll}
-        contentContainerStyle={[
-          styles.content,
-          { paddingTop: 8, paddingBottom: insets.bottom + TAB_BAR_SPACE },
-        ]}
-        scrollIndicatorInsets={{
-          bottom: insets.bottom + TAB_BAR_SPACE,
-          left: 0,
-          right: 0,
-        }}
-      >
-        {/* Habit + reward status row */}
+      {/* Pinned daily challenge card — normal flex stacking, not absolute:
+          its height is content-dependent, so faking this with position
+          absolute + a hardcoded ScrollView paddingTop guaranteed drift
+          between the two the moment content or safe-area insets changed. */}
+      <View style={styles.hero}>
+        {/* Streak + XP + League pills */}
         <View style={styles.statusRow}>
           <View style={styles.streakPill}>
             <Ionicons name="flame" size={16} color={c.primaryDeep} />
@@ -152,101 +141,72 @@ export default function HomeScreen({
             <Text style={styles.streakText}>{league.name}</Text>
           </View>
         </View>
+        <View style={styles.heroTopRow}>
+          <View style={styles.heroBadge}>
+            <Ionicons name="calendar-outline" size={12} color={c.onPrimary} />
+            <Text style={styles.heroBadgeText}>Daily practice</Text>
+          </View>
+          <Pressable
+            style={styles.continueBtn}
+            onPress={onReview}
+            accessibilityLabel="Continue learning"
+          >
+            <Text style={styles.continueText}>Continue</Text>
+            <Ionicons name="play" size={14} color={c.onPrimary} />
+          </Pressable>
+        </View>
+        <Text style={styles.heroLanguage}>{languageName}</Text>
+        <View style={styles.heroProgressRow}>
+          <Text style={styles.heroProgressLabel}>Today</Text>
+          <Text style={styles.heroProgressLabel}>
+            {Math.min(stats?.reviewsToday ?? 0, goal)} of {goal} words
+          </Text>
+        </View>
+        <ProgressBar
+          pct={dailyProgressPct(stats?.reviewsToday ?? 0, goal)}
+          trackColor={c.onPrimaryFaint}
+          fillColor={c.onPrimary}
+          height={7}
+        />
+      </View>
 
-        <View style={styles.hero}>
-          <View style={styles.heroTopRow}>
-            <View style={styles.heroBadge}>
-              <Ionicons name="calendar-outline" size={12} color={c.onPrimary} />
-              <Text style={styles.heroBadgeText}>Daily practice</Text>
-            </View>
-            <Pressable
-              style={styles.continueBtn}
-              onPress={onReview}
-              accessibilityLabel="Continue learning"
-            >
-              <Text style={styles.continueText}>Continue</Text>
-              <Ionicons name="play" size={14} color={c.onPrimary} />
-            </Pressable>
-          </View>
-          <Text style={styles.heroLanguage}>{languageName}</Text>
-          <View style={styles.heroProgressRow}>
-            <Text style={styles.heroProgressLabel}>Today</Text>
-            <Text style={styles.heroProgressLabel}>
-              {Math.min(stats?.reviewsToday ?? 0, goal)} of {goal} words
-            </Text>
-          </View>
-          <ProgressBar
-            pct={dailyProgressPct(stats?.reviewsToday ?? 0, goal)}
-            trackColor={c.onPrimaryFaint}
-            fillColor={c.onPrimary}
-            height={7}
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={[
+          styles.content,
+          { paddingTop: 8, paddingBottom: insets.bottom + TAB_BAR_SPACE },
+        ]}
+        scrollIndicatorInsets={{
+          bottom: insets.bottom + TAB_BAR_SPACE,
+          left: 0,
+          right: 0,
+        }}
+      >
+        {/* One-line stat strip — everything at a glance, no scrolling */}
+        <View style={styles.statStrip}>
+          <StatChip icon="trophy" value={`${mastered}`} label="Mastered" tint={c.primary} soft={c.primarySoft} styles={styles} />
+          <StatChip icon="flame" value={`${streak}`} label="Streak" tint={c.primaryDeep} soft={c.accentSoft} styles={styles} />
+          <StatChip icon="stats-chart" value={accuracy} label="Accuracy" tint={c.primary} soft={c.primarySoft} styles={styles} />
+          <StatChip
+            icon={league.icon as React.ComponentProps<typeof Ionicons>['name']}
+            value={league.name}
+            label="League"
+            tint={c.primaryDeep}
+            soft={c.accentSoft}
+            styles={styles}
           />
         </View>
 
-        {/* 2x2 stat tiles */}
-        <View style={styles.tiles}>
-          <StatTile icon="trophy" value={`${mastered}`} label="Words Mastered" tint={c.primary} soft={c.primarySoft} styles={styles} />
-          <StatTile icon="flame" value={`${streak}`} label="Day Streak" tint={c.primaryDeep} soft={c.accentSoft} styles={styles} />
-          <StatTile icon="stats-chart" value={accuracy} label="Accuracy" tint={c.primary} soft={c.primarySoft} styles={styles} />
-          <StatTile icon={league.icon as React.ComponentProps<typeof Ionicons>['name']} value={league.name} label="League" tint={c.primaryDeep} soft={c.accentSoft} styles={styles} />
-        </View>
-
-        {/* Action list */}
+        {/* 3x2 action grid — every activity reachable on one screen */}
         <Text style={[t.sectionTitle, styles.sectionSpacing]}>What should we do today?</Text>
-        <ActionRow
-          icon="mic"
-          tint={c.onAccent}
-          soft={c.accent}
-          title="Practice Daily Words"
-          subtitle="Listen and pick the meaning"
-          onPress={onReview}
-          styles={styles}
-        />
-        <ActionRow
-          icon="school-outline"
-          tint={c.primaryDeep}
-          soft={c.accentSoft}
-          title="Learning Cards"
-          subtitle="Pictures, words and saying them"
-          onPress={onLearn}
-          styles={styles}
-        />
-        <ActionRow
-          icon="albums-outline"
-          tint={c.primaryDeep}
-          soft={c.accentSoft}
-          title="Revise Words"
-          subtitle="Slide through cards, pick a category"
-          onPress={onRevise}
-          styles={styles}
-        />
-        <ActionRow
-          icon="book-outline"
-          tint={c.primaryDeep}
-          soft={c.primarySoft}
-          title="Story Time"
-          subtitle="Listen and follow along, word by word"
-          onPress={onStory}
-          styles={styles}
-        />
-        <ActionRow
-          icon="create-outline"
-          tint={c.onAccent}
-          soft={c.accent}
-          title="Type the Meaning"
-          subtitle="Spell the English answer"
-          onPress={onTyping}
-          styles={styles}
-        />
-        <ActionRow
-          icon="lock-closed-outline"
-          tint={c.primary}
-          soft={c.primarySoft}
-          title="Parent Zone"
-          subtitle="Add words, stories and record audio"
-          onPress={onParentZone}
-          styles={styles}
-        />
+        <View style={styles.grid}>
+          <ActionTile icon="mic" tint={c.onAccent} soft={c.accent} title="Practice" subtitle="Daily words" onPress={onReview} styles={styles} />
+          <ActionTile icon="school-outline" tint={c.primaryDeep} soft={c.accentSoft} title="Learn" subtitle="Cards & sounds" onPress={onLearn} styles={styles} />
+          <ActionTile icon="albums-outline" tint={c.primaryDeep} soft={c.accentSoft} title="Revise" subtitle="Swipe cards" onPress={onRevise} styles={styles} />
+          <ActionTile icon="book-outline" tint={c.primaryDeep} soft={c.primarySoft} title="Stories" subtitle="Listen along" onPress={onStory} styles={styles} />
+          <ActionTile icon="create-outline" tint={c.onAccent} soft={c.accent} title="Type it" subtitle="Spell meaning" onPress={onTyping} styles={styles} />
+          <ActionTile icon="lock-closed-outline" tint={c.primary} soft={c.primarySoft} title="Parent" subtitle="Settings" onPress={onParentZone} styles={styles} />
+        </View>
       </ScrollView>
     </View>
   );
@@ -285,7 +245,10 @@ const makeStyles = (c: ThemeColors) =>
       backgroundColor: c.primary,
       borderRadius: 24,
       padding: 18,
-      marginBottom: 16,
+      marginHorizontal: 20,
+      marginTop: 8,
+      marginBottom: 8,
+      ...cardShadow(c, 'lg'),
     },
     heroTopRow: {
       flexDirection: 'row',
@@ -320,45 +283,62 @@ const makeStyles = (c: ThemeColors) =>
       marginBottom: 6,
     },
     heroProgressLabel: { color: c.onPrimaryMuted, fontSize: 12, fontWeight: '600' },
-    tiles: {
+    statStrip: {
+      flexDirection: 'row',
+      gap: 8,
+    },
+    statChip: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 7,
+      backgroundColor: c.card,
+      borderRadius: 14,
+      paddingHorizontal: 8,
+      paddingVertical: 9,
+      ...cardShadow(c, 'sm'),
+    },
+    statIcon: {
+      width: 26,
+      height: 26,
+      borderRadius: 13,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    statTextWrap: { flex: 1 },
+    statValue: { fontSize: 14, fontWeight: '800', color: c.text },
+    statLabel: { fontSize: 9, fontWeight: '600', color: c.muted, marginTop: 1 },
+    sectionSpacing: { marginTop: 20, marginBottom: 10 },
+    grid: {
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'space-between',
-      rowGap: 12,
+      rowGap: 10,
     },
     tile: {
-      width: '48.5%',
+      width: '32%',
       backgroundColor: c.card,
       borderRadius: 18,
-      padding: 14,
+      paddingVertical: 14,
+      paddingHorizontal: 6,
+      alignItems: 'center',
+      ...cardShadow(c, 'sm'),
     },
     tileIcon: {
-      width: 32,
-      height: 32,
-      borderRadius: 16,
+      width: 42,
+      height: 42,
+      borderRadius: 21,
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: 10,
+      marginBottom: 8,
     },
-    tileValue: { fontSize: 24, fontWeight: '800', color: c.text },
-    sectionSpacing: { marginTop: 24, marginBottom: 10 },
-    actionRow: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 12,
-      backgroundColor: c.card,
-      borderRadius: 18,
-      padding: 14,
-      marginBottom: 10,
+    tileTitle: { fontSize: 12, fontWeight: '800', color: c.text },
+    tileSubtitle: {
+      fontSize: 9,
+      fontWeight: '600',
+      color: c.muted,
+      marginTop: 2,
+      textAlign: 'center',
     },
-    actionIcon: {
-      width: 44,
-      height: 44,
-      borderRadius: 22,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    actionText: { flex: 1 },
-    actionTitle: { fontSize: 15, fontWeight: '800', color: c.text, marginBottom: 2 },
   });
 

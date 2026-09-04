@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useTheme, type ThemeColors } from '../theme';
+import { cardShadow, useTheme, type ThemeColors } from '../theme';
 
 const TITLE = 'KAL-learning';
 const TAGLINE = 'Back to Basics';
@@ -217,11 +217,7 @@ const makeStyles = (c: ThemeColors) =>
       backgroundColor: c.primary,
       alignItems: 'center',
       justifyContent: 'center',
-      shadowColor: c.shadow,
-      shadowOffset: { width: 0, height: 6 },
-      shadowOpacity: 0.18,
-      shadowRadius: 12,
-      elevation: 8,
+      ...cardShadow(c, 'lg'),
     },
     titleRow: {
       flexDirection: 'row',

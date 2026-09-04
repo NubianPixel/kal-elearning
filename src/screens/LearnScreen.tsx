@@ -3,7 +3,7 @@ import { View, Text, Pressable, StyleSheet, ScrollView, ActivityIndicator } from
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
-import { makeTextStyles, useTheme, childButton, type ThemeColors } from '../theme';
+import { cardShadow, makeTextStyles, useTheme, primaryButton, type ThemeColors } from '../theme';
 import { TAB_BAR_SPACE } from '../components/TabBar';
 import { listVocabulary } from '../db/repositories';
 import { playClip, requestMicPermission, startRecording, stopActiveClip, useClipToggle, type ActiveRecording } from '../audio';
@@ -99,7 +99,7 @@ export default function LearnScreen({ db, languageId }: Props) {
             <Ionicons name="library-outline" size={56} color={c.muted} />
             <Text style={t.sectionTitle}>No words yet</Text>
             <Text style={t.mutedText}>
-              Ask a parent to add words in the Parent Zone first.
+              Add words in Settings first.
             </Text>
           </View>
         ) : tab === 'revision' ? (
@@ -303,7 +303,7 @@ function PronunciationPractice({
         <Text style={t.mutedText}>{word.translation}</Text>
 
         <Pressable
-          style={[childButton, styles.hearButton]}
+          style={[primaryButton, styles.hearButton]}
           onPress={toggle}
         >
           <Ionicons name={hearing ? 'pause' : 'volume-high'} size={26} color={c.onAccent} />
@@ -320,12 +320,12 @@ function PronunciationPractice({
         </View>
 
         {phase !== 'listening' ? (
-          <Pressable style={[childButton, styles.sayButton]} onPress={sayIt}>
+          <Pressable style={[primaryButton, styles.sayButton]} onPress={sayIt}>
             <Ionicons name="mic" size={26} color={c.onPrimary} />
             <Text style={styles.nextText}>Say it</Text>
           </Pressable>
         ) : (
-          <Pressable style={[childButton, styles.stopButton]} onPress={stopIt}>
+          <Pressable style={[primaryButton, styles.stopButton]} onPress={stopIt}>
             <Ionicons name="stop-circle" size={26} color={c.onPrimary} />
             <Text style={styles.nextText}>
               {speech ? 'Listening… tap when done' : 'Recording… tap to stop'}
@@ -371,7 +371,7 @@ function PronunciationPractice({
         </View>
       )}
 
-      <Pressable style={[childButton, styles.nextCardButton]} onPress={nextWord}>
+      <Pressable style={[primaryButton, styles.nextCardButton]} onPress={nextWord}>
         <Text style={styles.nextText}>Next word</Text>
         <Ionicons name="arrow-forward" size={24} color={c.onPrimary} />
       </Pressable>
@@ -427,11 +427,7 @@ const makeStyles = (c: ThemeColors) =>
       alignItems: 'center',
       borderWidth: 2,
       borderColor: 'transparent',
-      shadowColor: c.shadow,
-      shadowOpacity: 0.05,
-      shadowRadius: 6,
-      shadowOffset: { width: 0, height: 2 },
-      elevation: 1,
+      ...cardShadow(c, 'sm'),
     },
     tintPrimarySoft: { backgroundColor: c.primarySoft, borderColor: c.card },
     tintAccentSoft: { backgroundColor: c.accentSoft, borderColor: c.card },
@@ -461,11 +457,7 @@ const makeStyles = (c: ThemeColors) =>
       borderRadius: 24,
       padding: 20,
       alignItems: 'center',
-      shadowColor: c.shadow,
-      shadowOpacity: 0.06,
-      shadowRadius: 10,
-      shadowOffset: { width: 0, height: 4 },
-      elevation: 2,
+      ...cardShadow(c, 'md'),
     },
     practiceImageCircle: {
       marginBottom: 12,

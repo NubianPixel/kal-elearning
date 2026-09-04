@@ -2,13 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useTheme, type ThemeColors } from '../theme';
+import { SERIF_FONT_FAMILY, useTheme, type ThemeColors } from '../theme';
 
 interface Props {
   title: string;
   subtitle?: string;
   /** Optional element rendered on the right of the bar (e.g. streak/XP chip). */
   right?: React.ReactNode;
+  /** 'display' renders the title as an italic serif for personal-greeting
+   *  screens (currently just Home's "Dumela!"); every other screen keeps
+   *  the plain bold sans title so shared chrome stays consistent. */
+  titleVariant?: 'default' | 'display';
 }
 
 /**
@@ -16,7 +20,7 @@ interface Props {
  * continuous app rather than separate pages. Owns the status-bar inset;
  * screens render their content below it. Theme-aware, always visible.
  */
-export default function AppHeader({ title, subtitle, right }: Props) {
+export default function AppHeader({ title, subtitle, right, titleVariant = 'default' }: Props) {
   const { colors: c } = useTheme();
   const insets = useSafeAreaInsets();
   const styles = makeStyles(c);
@@ -27,7 +31,10 @@ export default function AppHeader({ title, subtitle, right }: Props) {
         <Ionicons name="school" size={20} color={c.onAccent} />
       </View>
       <View style={styles.titles}>
-        <Text style={styles.title} numberOfLines={1}>
+        <Text
+          style={titleVariant === 'display' ? styles.titleDisplay : styles.title}
+          numberOfLines={1}
+        >
           {title}
         </Text>
         {subtitle ? (
@@ -61,6 +68,13 @@ const makeStyles = (c: ThemeColors) =>
     },
     titles: { flex: 1 },
     title: { fontSize: 22, fontWeight: '800', color: c.text },
+    titleDisplay: {
+      fontFamily: SERIF_FONT_FAMILY,
+      fontStyle: 'italic',
+      fontSize: 24,
+      fontWeight: '600',
+      color: c.text,
+    },
     subtitle: { fontSize: 13, fontWeight: '600', color: c.muted, marginTop: 1 },
     right: { alignItems: 'center', justifyContent: 'center' },
   });
