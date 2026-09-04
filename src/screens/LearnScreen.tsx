@@ -28,6 +28,15 @@ type LearnTab = 'revision' | 'pronunciation';
 /** BCP-47 tag used for speech recognition of the target language. */
 const SPEECH_LANG = 'tn-ZA';
 
+/** After the first wrong attempt, how many more tries before moving on. */
+const MAX_RETRIES = 3;
+
+/** How long the success/fail feedback shows before auto-advancing (ms). */
+const ADVANCE_CORRECT_MS = 1500;
+const ADVANCE_EXHAUSTED_MS = 2200;
+/** Pause between a wrong answer and re-opening the mic (ms). */
+const RETRY_DELAY_MS = 1600;
+
 const CARD_TINTS = [0, 1, 2, 3] as const;
 
 /**
@@ -184,34 +193,129 @@ function PronunciationPractice({
   const { colors: c } = useTheme();
   const t = makeTextStyles(c);
   const [idx, setIdx] = useState(0);
-  const [phase, setPhase] = useState<'idle' | 'listening' | 'result'>('idle');
+  const [phase, setPhase] = useState<'idle' | 'speaking' | 'listening' | 'result'>('idle');
   const [transcript, setTranscript] = useState('');
   const [verdict, setVerdict] = useState<PronunciationVerdict | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [recordedUri, setRecordedUri] = useState<string | null>(null);
   const [fallbackRecording, setFallbackRecording] = useState<ActiveRecording | null>(null);
+  const [triesUsed, setTriesUsed] = useState(0);
   const dictationRef = useRef<DictationSession | null>(null);
   /** Set when Stop is tapped before startRecording() has resolved. */
   const stopRequestedRef = useRef(false);
+  /** Retry count mirrored in a ref so dictation callbacks never see stale state. */
+  const triesRef = useRef(0);
+  const advanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const word = words[idx % words.length];
   const speech = speechAvailable();
   const { playing: hearing, toggle } = useClipToggle(word?.audioUri);
+
+  const clearTimers = useCallback(() => {
+    if (advanceTimerRef.current) {
+      clearTimeout(advanceTimerRef.current);
+      advanceTimerRef.current = null;
+    }
+    if (retryTimerRef.current) {
+      clearTimeout(retryTimerRef.current);
+      retryTimerRef.current = null;
+    }
+  }, []);
 
   const stopDictation = useCallback(() => {
     dictationRef.current?.stop();
     dictationRef.current = null;
   }, []);
 
-  // Reset + autoplay the word when moving to the next one.
+  /**
+   * Move to the next word. The word-change effect below then replays the
+   * whole loop: reference audio → mic → judge → advance/retry.
+   */
+  const nextWord = useCallback(() => {
+    clearTimers();
+    setTriesUsed(0);
+    triesRef.current = 0;
+    setIdx((i) => (i + 1) % words.length);
+  }, [clearTimers, words.length]);
+
+  const startListeningRef = useRef<() => void>(() => undefined);
+
+  /**
+   * Open the mic and judge what the child says. Correct → auto-advance.
+   * Wrong → retry (up to MAX_RETRIES), then auto-advance anyway so the
+   * child is never stuck on a word.
+   */
+  const startListening = useCallback(() => {
+    if (!word) return;
+    setErrorMsg('');
+    setTranscript('');
+    setVerdict(null);
+    setPhase('listening');
+    dictationRef.current = startDictation(SPEECH_LANG, {
+      onPartial: (text) => setTranscript(text),
+      onFinal: (text) => {
+        dictationRef.current = null;
+        const v = judgePronunciation(text, word.targetText, thresholdForDifficulty(word.difficulty));
+        setTranscript(text);
+        setVerdict(v);
+        setPhase('result');
+        if (v.correct) {
+          // Correct on this attempt — celebrate briefly, then next word.
+          advanceTimerRef.current = setTimeout(nextWord, ADVANCE_CORRECT_MS);
+        } else {
+          triesRef.current += 1;
+          setTriesUsed(triesRef.current);
+          if (triesRef.current > MAX_RETRIES) {
+            // Out of retries — move on so the session keeps flowing.
+            advanceTimerRef.current = setTimeout(nextWord, ADVANCE_EXHAUSTED_MS);
+          } else {
+            // Give them another go automatically.
+            retryTimerRef.current = setTimeout(() => startListeningRef.current(), RETRY_DELAY_MS);
+          }
+        }
+      },
+      onError: (message) => {
+        dictationRef.current = null;
+        setErrorMsg(message);
+        setPhase('result');
+      },
+    });
+  }, [word, nextWord]);
+
+  // Keep the retry timer pointed at the latest closure.
+  startListeningRef.current = startListening;
+
+  // Reset + run the speak→listen→judge loop when moving to a word.
   useEffect(() => {
+    clearTimers();
     setPhase('idle');
     setTranscript('');
     setVerdict(null);
     setErrorMsg('');
     setRecordedUri(null);
-    if (word?.audioUri) playClip(word.audioUri).catch(() => undefined);
-    return stopDictation;
-  }, [word?.id, stopDictation, word]);
+
+    if (!speech) {
+      // Fallback (Expo Go, no recognizer): old record-and-replay flow.
+      if (word?.audioUri) playClip(word.audioUri).catch(() => undefined);
+      return stopDictation;
+    }
+
+    if (word?.audioUri) {
+      // Speak the reference first; the mic opens the moment it finishes.
+      setPhase('speaking');
+      playClip(word.audioUri, (e) => {
+        if (e.kind === 'finished') startListeningRef.current();
+        if (e.kind === 'error') setPhase('result');
+      }).catch(() => startListeningRef.current());
+    } else {
+      // No recording yet — short beat, then listen straight away.
+      retryTimerRef.current = setTimeout(() => startListeningRef.current(), 800);
+    }
+    return () => {
+      stopDictation();
+      clearTimers();
+    };
+  }, [word?.id, stopDictation, clearTimers, speech, word]);
 
   async function sayIt() {
     setErrorMsg('');
@@ -221,21 +325,7 @@ function PronunciationPractice({
         setErrorMsg('Microphone permission is needed to check pronunciation.');
         return;
       }
-      setTranscript('');
-      setVerdict(null);
-      setPhase('listening');
-      dictationRef.current = startDictation(SPEECH_LANG, {
-        onPartial: (text) => setTranscript(text),
-        onFinal: (text) => {
-          setTranscript(text);
-          setVerdict(judgePronunciation(text, word.targetText, thresholdForDifficulty(word.difficulty)));
-          setPhase('result');
-        },
-        onError: (message) => {
-          setErrorMsg(message);
-          setPhase('result');
-        },
-      });
+      startListening();
       return;
     }
     // Fallback (Expo Go): no native recognizer — record & replay instead.
@@ -288,10 +378,6 @@ function PronunciationPractice({
     }
   }
 
-  function nextWord() {
-    setIdx((i) => (i + 1) % words.length);
-  }
-
 
   return (
     <View>
@@ -314,22 +400,39 @@ function PronunciationPractice({
           <Ionicons name="information-circle-outline" size={16} color={c.muted} />
           <Text style={styles.speechNoticeText}>
             {speech
-              ? 'Tap Say it, then speak clearly.'
+              ? 'Listen, then say it — the mic opens by itself.'
               : 'Speech checking needs the full app build — here you can record and listen to yourself.'}
           </Text>
         </View>
 
-        {phase !== 'listening' ? (
-          <Pressable style={[primaryButton, styles.sayButton]} onPress={sayIt}>
-            <Ionicons name="mic" size={26} color={c.onPrimary} />
-            <Text style={styles.nextText}>Say it</Text>
-          </Pressable>
-        ) : (
+        {/* Loop status line while the flow runs itself. */}
+        {speech && phase === 'speaking' ? (
+          <Text style={styles.loopHint}>
+            <Ionicons name="volume-high" size={14} color={c.primaryDeep} /> Listening to the word…
+          </Text>
+        ) : null}
+        {speech && phase === 'listening' ? (
+          <Text style={styles.loopHint}>
+            <Ionicons name="mic" size={14} color={c.primaryDeep} /> Your turn — say it now!
+          </Text>
+        ) : null}
+
+        {phase === 'listening' ? (
           <Pressable style={[primaryButton, styles.stopButton]} onPress={stopIt}>
             <Ionicons name="stop-circle" size={26} color={c.onPrimary} />
             <Text style={styles.nextText}>
-              {speech ? 'Listening… tap when done' : 'Recording… tap to stop'}
+              {speech ? "I'm done — check it" : 'Recording… tap to stop'}
             </Text>
+          </Pressable>
+        ) : speech && phase === 'speaking' ? (
+          <Pressable style={[primaryButton, styles.sayButton]} onPress={() => startListening()}>
+            <Ionicons name="mic" size={26} color={c.onPrimary} />
+            <Text style={styles.nextText}>I'm ready — mic now</Text>
+          </Pressable>
+        ) : (
+          <Pressable style={[primaryButton, styles.sayButton]} onPress={sayIt}>
+            <Ionicons name="mic" size={26} color={c.onPrimary} />
+            <Text style={styles.nextText}>{speech ? 'Say it again' : 'Say it'}</Text>
           </Pressable>
         )}
 
@@ -339,17 +442,30 @@ function PronunciationPractice({
       {phase === 'result' && (
         <View style={styles.resultCard}>
           {verdict ? (
-            <>
-              <Ionicons
-                name={verdict.correct ? 'checkmark-circle' : 'close-circle'}
-                size={44}
-                color={verdict.correct ? c.correct : c.wrong}
-              />
-              <Text style={styles.resultTitle}>
-                {verdict.correct ? 'Ke botlhale! That’s it!' : 'Almost — try again!'}
-              </Text>
-              <Text style={t.mutedText}>Heard: “{transcript}”</Text>
-            </>
+            verdict.correct ? (
+              <>
+                <Ionicons name="checkmark-circle" size={44} color={c.correct} />
+                <Text style={styles.resultTitle}>Ke botlhale! That’s it!</Text>
+                <Text style={t.mutedText}>Moving to the next word…</Text>
+              </>
+            ) : triesUsed > MAX_RETRIES ? (
+              <>
+                <Ionicons name="sparkles-outline" size={44} color={c.primaryDeep} />
+                <Text style={styles.resultTitle}>Good try!</Text>
+                <Text style={t.mutedText}>
+                  The word is “{word.targetText}” — next one coming up…
+                </Text>
+              </>
+            ) : (
+              <>
+                <Ionicons name="close-circle" size={44} color={c.wrong} />
+                <Text style={styles.resultTitle}>Almost — try again!</Text>
+                <Text style={t.mutedText}>
+                  {MAX_RETRIES - triesUsed + 1}{' '}
+                  {MAX_RETRIES - triesUsed + 1 === 1 ? 'try' : 'tries'} left · heard: “{transcript}”
+                </Text>
+              </>
+            )
           ) : recordedUri ? (
             <>
               <Ionicons name="mic-outline" size={44} color={c.primaryDeep} />
@@ -372,7 +488,7 @@ function PronunciationPractice({
       )}
 
       <Pressable style={[primaryButton, styles.nextCardButton]} onPress={nextWord}>
-        <Text style={styles.nextText}>Next word</Text>
+        <Text style={styles.nextText}>Skip word</Text>
         <Ionicons name="arrow-forward" size={24} color={c.onPrimary} />
       </Pressable>
     </View>
