@@ -6,7 +6,8 @@ import { cardShadow, makeTextStyles, useTheme, type ThemeColors } from '../theme
 import { TAB_BAR_SPACE } from '../components/TabBar';
 import ProgressBar from '../components/ProgressBar';
 import { dailyProgressPct } from '../core/goals';
-import { leagueForXp } from '../core/gamification';
+import { leagueForXp, leagueProgress } from '../core/gamification';
+import { nextMilestone } from '../core/progress';
 import type { ProgressStats } from '../core/types';
 
 interface Props {
@@ -31,6 +32,7 @@ function StatCard({
   onBgFaint,
   width,
   styles,
+  children,
 }: {
   icon: React.ComponentProps<typeof Ionicons>['name'];
   value: string;
@@ -40,18 +42,20 @@ function StatCard({
   onBgFaint: string;
   width: number;
   styles: Record<string, object>;
+  children?: React.ReactNode;
 }) {
   return (
     <View style={[styles.statCard, { backgroundColor: bg, width }]}>
-      <View style={[styles.statBadge, { backgroundColor: onBgFaint }]}>
+      <View style={[styles.heroBadge, { backgroundColor: onBgFaint }]}>
         <Ionicons name={icon} size={12} color={onBg} />
-        <Text style={[styles.statBadgeText, { color: onBg }]} numberOfLines={1}>
+        <Text style={[styles.heroBadgeText, { color: onBg }]} numberOfLines={1}>
           {label}
         </Text>
       </View>
       <Text style={[styles.statValueBig, { color: onBg }]} numberOfLines={1}>
         {value}
       </Text>
+      {children}
     </View>
   );
 }
@@ -123,60 +127,29 @@ export default function HomeScreen({
   const mastered = stats?.mastered ?? 0;
   const accuracy = stats?.accuracy30d == null ? '—' : `${Math.round(stats.accuracy30d * 100)}%`;
   const league = leagueForXp(xp);
+  const milestone = nextMilestone(mastered);
+  const lg = leagueProgress(xp);
 
   return (
     <View style={styles.container}>
-      {/* Pinned daily challenge card — normal flex stacking, not absolute:
-          its height is content-dependent, so faking this with position
-          absolute + a hardcoded ScrollView paddingTop guaranteed drift
-          between the two the moment content or safe-area insets changed. */}
-      <View style={styles.hero}>
-        {/* Streak + XP + League pills */}
-        <View style={styles.statusRow}>
-          <View style={styles.streakPill}>
-            <Ionicons name="flame" size={16} color={c.primaryDeep} />
-            <Text style={styles.streakText}>{streak}</Text>
-          </View>
-          <View style={styles.streakPill}>
-            <Ionicons name="star" size={16} color={c.primaryDeep} />
-            <Text style={styles.streakText}>{xp} XP</Text>
-          </View>
-          <View style={[styles.streakPill, styles.leaguePill]}>
-            <Ionicons
-              name={league.icon as React.ComponentProps<typeof Ionicons>['name']}
-              size={16}
-              color={c.onAccent}
-            />
-            <Text style={styles.streakText}>{league.name}</Text>
-          </View>
+      {/* Pinned status pills — visible without scrolling */}
+      <View style={styles.statusRow}>
+        <View style={styles.streakPill}>
+          <Ionicons name="flame" size={16} color={c.primaryDeep} />
+          <Text style={styles.streakText}>{streak}</Text>
         </View>
-        <View style={styles.heroTopRow}>
-          <View style={styles.heroBadge}>
-            <Ionicons name="calendar-outline" size={12} color={c.onPrimary} />
-            <Text style={styles.heroBadgeText}>Daily practice</Text>
-          </View>
-          <Pressable
-            style={styles.continueBtn}
-            onPress={onReview}
-            accessibilityLabel="Continue learning"
-          >
-            <Text style={styles.continueText}>Continue</Text>
-            <Ionicons name="play" size={14} color={c.onPrimary} />
-          </Pressable>
+        <View style={styles.streakPill}>
+          <Ionicons name="star" size={16} color={c.primaryDeep} />
+          <Text style={styles.streakText}>{xp} XP</Text>
         </View>
-        <Text style={styles.heroLanguage}>{languageName}</Text>
-        <View style={styles.heroProgressRow}>
-          <Text style={styles.heroProgressLabel}>Today</Text>
-          <Text style={styles.heroProgressLabel}>
-            {Math.min(stats?.reviewsToday ?? 0, goal)} of {goal} words
-          </Text>
+        <View style={[styles.streakPill, styles.leaguePill]}>
+          <Ionicons
+            name={league.icon as React.ComponentProps<typeof Ionicons>['name']}
+            size={16}
+            color={c.onAccent}
+          />
+          <Text style={styles.streakText}>{league.name}</Text>
         </View>
-        <ProgressBar
-          pct={dailyProgressPct(stats?.reviewsToday ?? 0, goal)}
-          trackColor={c.onPrimaryFaint}
-          fillColor={c.onPrimary}
-          height={7}
-        />
       </View>
 
       <ScrollView
@@ -191,8 +164,9 @@ export default function HomeScreen({
           right: 0,
         }}
       >
-        {/* Swipeable stat carousel — user flips through; each card a different
-            theme surface, styled like the hero card above. */}
+        {/* Swipeable carousel — the daily-practice card is card 1; every card
+            shares the hero design language (badge, big value, own progress
+            element) but sits on a different theme surface. */}
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -200,19 +174,140 @@ export default function HomeScreen({
           decelerationRate="fast"
           contentContainerStyle={styles.statCarousel}
         >
-          <StatCard icon="trophy" value={`${mastered}`} label="Words mastered" bg={c.primary} onBg={c.onPrimary} onBgFaint={c.onPrimaryFaint} width={statCardWidth} styles={styles} />
-          <StatCard icon="flame" value={`${streak}`} label="Day streak" bg={c.primaryDark} onBg={c.onPrimary} onBgFaint={c.onPrimaryFaint} width={statCardWidth} styles={styles} />
-          <StatCard icon="stats-chart" value={accuracy} label="30-day accuracy" bg={c.accent} onBg={c.onAccent} onBgFaint={c.onPrimaryFaint} width={statCardWidth} styles={styles} />
+          {/* Card 1 — Daily practice (the former pinned hero) */}
+          <View style={[styles.statCard, { backgroundColor: c.primary, width: statCardWidth }]}>
+            <View style={styles.heroTopRow}>
+              <View style={styles.heroBadge}>
+                <Ionicons name="calendar-outline" size={12} color={c.onPrimary} />
+                <Text style={styles.heroBadgeText}>Daily practice</Text>
+              </View>
+              <Pressable
+                style={styles.continueBtn}
+                onPress={onReview}
+                accessibilityLabel="Continue learning"
+              >
+                <Text style={styles.continueText}>Continue</Text>
+                <Ionicons name="play" size={14} color={c.onPrimary} />
+              </Pressable>
+            </View>
+            <Text style={styles.heroLanguage}>{languageName}</Text>
+            <View style={styles.heroProgressRow}>
+              <Text style={styles.heroProgressLabel}>Today</Text>
+              <Text style={styles.heroProgressLabel}>
+                {Math.min(stats?.reviewsToday ?? 0, goal)} of {goal} words
+              </Text>
+            </View>
+            <ProgressBar
+              pct={dailyProgressPct(stats?.reviewsToday ?? 0, goal)}
+              trackColor={c.onPrimaryFaint}
+              fillColor={c.onPrimary}
+              height={7}
+            />
+          </View>
+
+          {/* Card 2 — Words mastered, with milestone progress */}
           <StatCard
-            icon={league.icon as React.ComponentProps<typeof Ionicons>['name']}
-            value={league.name}
-            label="Current league"
+            icon="trophy"
+            value={`${mastered}`}
+            label="Words mastered"
+            bg={c.primaryDark}
+            onBg={c.onPrimary}
+            onBgFaint={c.onPrimaryFaint}
+            width={statCardWidth}
+            styles={styles}
+          >
+            {milestone ? (
+              <>
+                <View style={styles.heroProgressRow}>
+                  <Text style={[styles.heroProgressLabel, { color: c.onPrimary }]}>
+                    {milestone.label}
+                  </Text>
+                  <Text style={[styles.heroProgressLabel, { color: c.onPrimary }]}>
+                    {mastered} of {milestone.target}
+                  </Text>
+                </View>
+                <ProgressBar
+                  pct={Math.min(1, mastered / milestone.target)}
+                  trackColor={c.onPrimaryFaint}
+                  fillColor={c.onPrimary}
+                  height={7}
+                />
+              </>
+            ) : (
+              <Text style={[styles.statCaption, { color: c.onPrimary }]}>
+                Every milestone reached!
+              </Text>
+            )}
+          </StatCard>
+
+          {/* Card 3 — Day streak, with a 7-day dot row */}
+          <StatCard
+            icon="flame"
+            value={`${streak}`}
+            label="Day streak"
+            bg={c.accent}
+            onBg={c.onAccent}
+            onBgFaint={c.onPrimaryFaint}
+            width={statCardWidth}
+            styles={styles}
+          >
+            <View style={styles.streakDots}>
+              {Array.from({ length: 7 }, (_, i) => (
+                <View
+                  key={i}
+                  style={[
+                    styles.streakDot,
+                    { backgroundColor: i < Math.min(streak, 7) ? c.onAccent : c.onPrimaryFaint },
+                  ]}
+                />
+              ))}
+            </View>
+            <Text style={[styles.statCaption, { color: c.onAccent }]}>
+              days in a row — keep it going!
+            </Text>
+          </StatCard>
+
+          {/* Card 4 — 30-day accuracy, with its own progress bar */}
+          <StatCard
+            icon="stats-chart"
+            value={accuracy}
+            label="30-day accuracy"
             bg={c.dark}
             onBg={c.onDark}
             onBgFaint="rgba(255,255,255,0.18)"
             width={statCardWidth}
             styles={styles}
-          />
+          >
+            <ProgressBar
+              pct={stats?.accuracy30d ?? 0}
+              trackColor="rgba(255,255,255,0.18)"
+              fillColor={c.onDark}
+              height={7}
+            />
+            <Text style={[styles.statCaption, { color: c.onDark }]}>of answers correct</Text>
+          </StatCard>
+
+          {/* Card 5 — Current league, with XP progress to the next one */}
+          <StatCard
+            icon={league.icon as React.ComponentProps<typeof Ionicons>['name']}
+            value={league.name}
+            label="Current league"
+            bg={c.primary}
+            onBg={c.onPrimary}
+            onBgFaint={c.onPrimaryFaint}
+            width={statCardWidth}
+            styles={styles}
+          >
+            <ProgressBar
+              pct={lg.pct}
+              trackColor={c.onPrimaryFaint}
+              fillColor={c.onPrimary}
+              height={7}
+            />
+            <Text style={[styles.statCaption, { color: c.onPrimary }]}>
+              {lg.next ? `${lg.nextGap} XP to ${lg.next.name}` : 'Top league reached!'}
+            </Text>
+          </StatCard>
         </ScrollView>
 
         {/* 3x2 action grid — every activity reachable on one screen */}
@@ -235,13 +330,6 @@ const makeStyles = (c: ThemeColors) =>
     container: { flex: 1, backgroundColor: c.background },
     scroll: { flex: 1 },
     content: { paddingHorizontal: 20 },
-    header: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'flex-start',
-      paddingHorizontal: 20,
-      marginBottom: 12,
-    },
     streakPill: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -254,20 +342,13 @@ const makeStyles = (c: ThemeColors) =>
     statusRow: {
       flexDirection: 'row',
       gap: 8,
-      marginBottom: 14,
+      paddingHorizontal: 20,
+      marginTop: 4,
+      marginBottom: 12,
       flexWrap: 'wrap',
     },
     leaguePill: { backgroundColor: c.accent },
     streakText: { fontSize: 15, fontWeight: '800', color: c.text },
-    hero: {
-      backgroundColor: c.primary,
-      borderRadius: 24,
-      padding: 18,
-      marginHorizontal: 20,
-      marginTop: 8,
-      marginBottom: 8,
-      ...cardShadow(c, 'lg'),
-    },
     heroTopRow: {
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -312,17 +393,18 @@ const makeStyles = (c: ThemeColors) =>
       justifyContent: 'space-between',
       ...cardShadow(c, 'lg'),
     },
-    statBadge: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      alignSelf: 'flex-start',
-      gap: 5,
-      borderRadius: 12,
-      paddingHorizontal: 8,
-      paddingVertical: 5,
-    },
-    statBadgeText: { fontSize: 11, fontWeight: '700' },
     statValueBig: { fontSize: 28, fontWeight: '800', marginTop: 14 },
+    statCaption: { fontSize: 12, fontWeight: '600', marginTop: 6 },
+    streakDots: {
+      flexDirection: 'row',
+      gap: 6,
+      marginTop: 14,
+    },
+    streakDot: {
+      width: 14,
+      height: 14,
+      borderRadius: 7,
+    },
     sectionSpacing: { marginTop: 20, marginBottom: 10 },
     grid: {
       flexDirection: 'row',
