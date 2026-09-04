@@ -114,9 +114,7 @@ export default function HomeScreen({
   const t = useMemo(() => makeTextStyles(c), [c]);
   const insets = useSafeAreaInsets();
   const { width: screenW } = useWindowDimensions();
-  // Full-bleed cards: one card exactly fills the screen width, so the next
-  // card is only revealed when the user swipes.
-  const statCardWidth = screenW;
+  const statCardWidth = Math.round(screenW * 0.62);
   const statCardStep = statCardWidth + 12;
 
   useEffect(() => {
@@ -175,9 +173,6 @@ export default function HomeScreen({
           snapToInterval={statCardStep}
           decelerationRate="fast"
           contentContainerStyle={styles.statCarousel}
-          // Escape the outer 20px page padding so the card viewport is the
-          // full screen width and full-width cards snap edge-to-edge exactly.
-          style={{ marginLeft: -20, marginRight: -20 }}
         >
           {/* Card 1 — Daily practice (the former pinned hero) */}
           <View style={[styles.statCard, { backgroundColor: c.primary, width: statCardWidth }]}>
@@ -388,9 +383,9 @@ const makeStyles = (c: ThemeColors) =>
     },
     heroProgressLabel: { color: c.onPrimaryMuted, fontSize: 12, fontWeight: '600' },
     statCarousel: {
-      paddingHorizontal: 0,
+      paddingHorizontal: 20,
       gap: 12,
-      paddingRight: 12,
+      paddingRight: 40,
     },
     statCard: {
       borderRadius: 24,
