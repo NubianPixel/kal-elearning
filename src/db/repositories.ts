@@ -701,3 +701,82 @@ export async function deleteStoryLine(db: SQLite.SQLiteDatabase, id: number): Pr
   await db.runAsync('DELETE FROM story_lines WHERE id = ?', [id]);
 }
 
+// ---------------------------------------------------------------------------
+// Pronunciation attempts — PRIVACY: score metadata ONLY. The user's voice
+// is never persisted: no audio files, no audio paths, no blobs. Only the
+// final accuracy score, DTW distance and duration live in the database.
+// ---------------------------------------------------------------------------
+
+export interface PronunciationAttempt {
+  id: number;
+  vocabularyId: number;
+  accuracyScore: number; // 0–100
+  dtwDistance: number;
+  durationMs: number;
+  createdAt: string;
+}
+
+/** Persist ONLY the score metadata of a scored attempt. */
+export async function savePronunciationAttempt(
+  db: SQLite.SQLiteDatabase,
+  vocabularyId: number,
+  attempt: { accuracy: number; dtwDistance: number; durationMs: number },
+): Promise<number> {
+  const res = await db.runAsync(
+    `INSERT INTO pronunciation_attempts (vocabulary_id, accuracy_score, dtw_distance, duration_ms)
+     VALUES (?, ?, ?, ?)`,
+    [vocabularyId, attempt.accuracy, attempt.dtwDistance, attempt.durationMs],
+  );
+  return res.lastInsertRowId;
+}
+
+interface PronAttemptRow {
+  id: number;
+  vocabularyId: number;
+  accuracyScore: number;
+  dtwDistance: number;
+  durationMs: number;
+  createdAt: string;
+}
+
+function attemptFromRow(r: PronAttemptRow): PronunciationAttempt {
+  return {
+    id: r.id,
+    vocabularyId: r.vocabularyId,
+    accuracyScore: r.accuracyScore,
+    dtwDistance: r.dtwDistance,
+    durationMs: r.durationMs,
+    createdAt: r.createdAt,
+  };
+}
+
+/** All attempts for a word, newest first. */
+export async function listPronunciationAttempts(
+  db: SQLite.SQLiteDatabase,
+  vocabularyId: number,
+  limit = 20,
+): Promise<PronunciationAttempt[]> {
+  const rows = await db.getAllAsync<PronAttemptRow>(
+    `SELECT id, vocabulary_id AS vocabularyId, accuracy_score AS accuracyScore,
+            dtw_distance AS dtwDistance, duration_ms AS durationMs, created_at AS createdAt
+     FROM pronunciation_attempts
+     WHERE vocabulary_id = ?
+     ORDER BY created_at DESC
+     LIMIT ?`,
+    [vocabularyId, limit],
+  );
+  return rows.map(attemptFromRow);
+}
+
+/** Best (highest) accuracy ever recorded for a word, or null. */
+export async function getBestPronunciationScore(
+  db: SQLite.SQLiteDatabase,
+  vocabularyId: number,
+): Promise<number | null> {
+  const row = await db.getFirstAsync<{ best: number | null }>(
+    'SELECT MAX(accuracy_score) AS best FROM pronunciation_attempts WHERE vocabulary_id = ?',
+    [vocabularyId],
+  );
+  return row?.best ?? null;
+}
+

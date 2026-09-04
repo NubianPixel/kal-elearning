@@ -114,7 +114,7 @@ export default function HomeScreen({
   const t = useMemo(() => makeTextStyles(c), [c]);
   const insets = useSafeAreaInsets();
   const { width: screenW } = useWindowDimensions();
-  const statCardWidth = Math.round(screenW * 0.62);
+  const statCardWidth = Math.round(screenW * 0.74);
   const statCardStep = statCardWidth + 12;
 
   useEffect(() => {
@@ -389,7 +389,8 @@ const makeStyles = (c: ThemeColors) =>
     },
     statCard: {
       borderRadius: 24,
-      padding: 18,
+      padding: 20,
+      minHeight: 210,
       justifyContent: 'space-between',
       ...cardShadow(c, 'lg'),
     },

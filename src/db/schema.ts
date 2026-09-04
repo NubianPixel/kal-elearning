@@ -76,6 +76,19 @@ CREATE TABLE IF NOT EXISTS story_lines (
 
 CREATE INDEX IF NOT EXISTS idx_story_lines_story ON story_lines(story_id, position);
 
+-- Pronunciation practice results. PRIVACY: score metadata ONLY — no audio
+-- files, no audio paths, no blobs. The user's voice never touches storage.
+CREATE TABLE IF NOT EXISTS pronunciation_attempts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  vocabulary_id INTEGER NOT NULL REFERENCES vocabulary(id) ON DELETE CASCADE,
+  accuracy_score REAL NOT NULL,
+  dtw_distance REAL NOT NULL,
+  duration_ms INTEGER NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_pron_attempts_word ON pronunciation_attempts(vocabulary_id, created_at);
+
 CREATE INDEX IF NOT EXISTS idx_vocabulary_language ON vocabulary(language_id);
 CREATE INDEX IF NOT EXISTS idx_card_states_due ON card_states(due_date);
 CREATE INDEX IF NOT EXISTS idx_review_logs_time ON review_logs(reviewed_at);

@@ -13,6 +13,7 @@ export function getDb(): Promise<SQLite.SQLiteDatabase> {
       await migrateCategoryEmojiToIcon(db);
       await migrateVocabularyAddImage(db);
       await migrateSeedIcons(db);
+      await migrateAddPronunciationAttempts(db);
       await seedIfEmpty(db);
       await seedStoriesIfEmpty(db);
       return db;
@@ -95,6 +96,25 @@ async function migrateSeedIcons(db: SQLite.SQLiteDatabase): Promise<void> {
       [`icon:${v.icon}`, v.targetText],
     );
   }
+}
+
+/**
+ * v1.4 migration: pronunciation_attempts results table. CREATE TABLE IF
+ * NOT EXISTS is idempotent, so this is a no-op on fresh installs (where
+ * SCHEMA_SQL already created it) and creates it on existing ones.
+ */
+async function migrateAddPronunciationAttempts(db: SQLite.SQLiteDatabase): Promise<void> {
+  await db.execAsync(
+    `CREATE TABLE IF NOT EXISTS pronunciation_attempts (
+       id INTEGER PRIMARY KEY AUTOINCREMENT,
+       vocabulary_id INTEGER NOT NULL REFERENCES vocabulary(id) ON DELETE CASCADE,
+       accuracy_score REAL NOT NULL,
+       dtw_distance REAL NOT NULL,
+       duration_ms INTEGER NOT NULL,
+       created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+     );
+     CREATE INDEX IF NOT EXISTS idx_pron_attempts_word ON pronunciation_attempts(vocabulary_id, created_at);`,
+  );
 }
 
 async function seedIfEmpty(db: SQLite.SQLiteDatabase): Promise<void> {
