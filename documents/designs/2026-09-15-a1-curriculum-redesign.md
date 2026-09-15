@@ -1,9 +1,12 @@
 # KAL e-Learning — A1 Curriculum Redesign
 
 Date: 2026-09-15
-Status: Agreed (design interview). In build — content format frozen, Unit 1
-authored, engine and core UI complete (build-order steps 1–3, code side).
-Remaining: author units 2–10, external language review, closed Play beta.
+Status: Agreed (design interview). In build — content format frozen, engine
+and core UI complete (build-order steps 1–3, code side), and all units 1–10
+drafted in `content/a1/` (Unit 1 reviewed by the project owner; Units 2–10
+AI-drafted 2026-09-16, awaiting review). Remaining: project-owner + external
+Botswana-standard review of Units 2–10, recording audio/photos, closed Play
+beta.
 Supersedes: the child/parent-admin framing in `README.md` and `PROMPT.md`,
 and items 3–4 of `2026-09-04-general-learner-audit-plan.md`.
 
