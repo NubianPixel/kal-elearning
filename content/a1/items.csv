@@ -271,3 +271,33 @@ a1-u08-w032,8,32,phrase,ka ura ya…,,at … o'clock,,phrase,,,,Whole hours only
 a1-u08-w033,8,33,phrase,O tsoga ka ura efe?,,what time do you wake up?,to one person,phrase,,,,
 a1-u08-w034,8,34,phrase,Ke tsoga ka ura ya…,,I wake up at … o'clock,,phrase,,,,
 a1-u08-w035,8,35,phrase,ka Labotlhano,,on Friday,,phrase,,,,ka + the day: ka Labotlhano.
+a1-u09-w001,9,1,word,serame,,cold | the cold,,noun,5,,,,
+a1-u09-w002,9,2,word,moya,,wind | air,,noun,3,,,,
+a1-u09-w003,9,3,word,leru,,cloud,,noun,5,maru,,
+a1-u09-w004,9,4,word,ntša,,dog,,noun,9,dintša,,Class 9/10 pair — learn it as it is (rule comes in A2).
+a1-u09-w005,9,5,word,nku,,sheep,,noun,9,dinku,,Class 9/10 pair — learn it as it is.
+a1-u09-w006,9,6,word,podi,,goat,,noun,9,dipodi,,,
+a1-u09-w007,9,7,word,nonyane,,bird,,noun,9,dinonyane,,,
+a1-u09-w008,9,8,word,noga,,snake,,noun,9,dinoga,,,
+a1-u09-w009,9,9,word,tsebe,,ear,,noun,9,ditsebe,,Class 9/10 pair.
+a1-u09-w010,9,10,word,tlhogo,,head,,noun,9,dithlogo,,,
+a1-u09-w011,9,11,word,leihlo,,eye,,noun,5,matlho,,
+a1-u09-w012,9,12,word,letsogo,,hand | arm,,noun,5,matsogo,,
+a1-u09-w013,9,13,word,leoto,,leg | foot,,noun,5,maoto,,
+a1-u09-w014,9,14,word,molomo,,mouth,,noun,3,melomo,,
+a1-u09-w015,9,15,word,ngaka,,doctor,,noun,9,dingaka,,
+a1-u09-w016,9,16,word,botlhoko,,pain,,noun,14,,,,
+a1-u09-w017,9,17,word,boitumelo,,joy | happiness,,noun,14,,,,
+a1-u09-w018,9,18,word,boima,,heavy | difficult,,other,,,,
+a1-u09-w019,9,19,word,bonolo,,easy | soft,,other,,,,
+a1-u09-w020,9,20,phrase,Go a tsididi,,it is cold,,phrase,,,,Impersonal go + a + verb.
+a1-u09-w021,9,21,phrase,Go a fisa,,it is hot,,phrase,,,,
+a1-u09-w022,9,22,phrase,Go a na pula,,it is raining,,phrase,,,,
+a1-u09-w023,9,23,phrase,Go a bodutu,,it is warm,,phrase,,,,
+a1-u09-w024,9,24,phrase,Go na le…,,there is | there are …,,phrase,,,,
+a1-u09-w025,9,25,phrase,Ga go na…,,there is no | there are no …,,phrase,,,,
+a1-u09-w026,9,26,phrase,Ke itumeletse,,I am happy,,phrase,,,,
+a1-u09-w027,9,27,phrase,Ke nyorilwe,,I am thirsty,,phrase,,,,
+a1-u09-w028,9,28,phrase,Ke a bolwa,,I am sick,,phrase,,,,
+a1-u09-w029,9,29,phrase,Ke a botlhoko,,I am in pain | I hurt,,phrase,,,,
+a1-u09-w030,9,30,phrase,Tlhogo e botlhoko,,my head hurts,,phrase,,,,A fixed phrase — learn it as it is.

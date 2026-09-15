@@ -181,3 +181,27 @@ a1-u08-q021,8,reading,checkpoint,choice,When does Tumelo work on Friday?,Morning
 a1-u08-q022,8,reading,checkpoint,choice,What does Tumelo do on Sunday?,He plays at the kgotla,,He works at home|He cooks only|He sleeps all day,He says ke tshameka kwa kgotleng.
 a1-u08-q023,8,reading,checkpoint,choice,What time does Tumelo sleep?,Ten o'clock,,Eight o'clock|Five o'clock|In the morning,He says Ke robala ka ura ya lesome.
 a1-u08-q024,8,reading,checkpoint,choice,What does Mma Kefilwe ask first?,How he woke up (O tsogile jang?),,What time he wakes up|If he works|Where he plays,The dialogue opens with O tsogile jang?
+a1-u09-q001,9,grammar,drill,choice,"What does ""Go a fisa"" mean?",It is hot,,It is cold|It is raining|It is warm,Go a fisa = it is hot.
+a1-u09-q002,9,grammar,drill,choice,"What does ""Go a tsididi"" mean?",It is cold,,It is hot|It is windy|It is night,Go a tsididi = it is cold.
+a1-u09-q003,9,grammar,drill,choice,"What does ""Go a na pula"" mean?",It is raining,,It is cold|There is money|The sun is out,pula = rain; Go a na pula = it is raining.
+a1-u09-q004,9,grammar,drill,choice,"What does ""Go na le metsi"" mean?",There is water,,There is no water|The water is hot|Drink water,go na le = there is.
+a1-u09-q005,9,grammar,drill,choice,"What does ""Ga go na madi"" mean?",There is no money,,There is money|I don't have money|Money is far,Ga go na = there is no.
+a1-u09-q006,9,grammar,drill,type,"Fill in: Go ___ le ntša kwa gae. (there is)",na,,,go na le = there is.
+a1-u09-q007,9,grammar,drill,choice,What is the plural of ntša?,dintša,,bantša|mantša|nša,ntša → dintša — learn the pair.
+a1-u09-q008,9,grammar,drill,choice,What is the plural of nku?,dinku,,banku|manku|dipodi,nku → dinku — learn the pair.
+a1-u09-q009,9,grammar,drill,choice,"What does ""Ke a bolwa"" mean?",I am sick,,I am happy|I am thirsty|I am playing,Ke a bolwa = I am sick.
+a1-u09-q010,9,grammar,drill,type,"Fill in: ___ e botlhoko. (the head hurts)",Tlhogo,tlhogo,,Tlhogo e botlhoko — my head hurts.
+a1-u09-q011,9,grammar,checkpoint,choice,"What does ""Ke nyorilwe"" mean?",I am thirsty,,I am hungry|I am tired|I am cold,Ke nyorilwe = I am thirsty.
+a1-u09-q012,9,grammar,checkpoint,choice,"What does ""Ke itumeletse"" mean?",I am happy,,I am sick|I am full|I am hot,Ke itumeletse = I am happy.
+a1-u09-q013,9,grammar,checkpoint,choice,Which is correct for "it is warm"?,Go a bodutu,,Go a fisa|Go a tsididi|Go a bonolo,Go a bodutu = it is warm.
+a1-u09-q014,9,grammar,checkpoint,type,Write in Setswana: There is no water.,Ga go na metsi,,,Ga go na + metsi.
+a1-u09-q015,9,grammar,checkpoint,choice,Which pair is a class 9/10 pair?,tsebe → ditsebe,,ntlo → matlo|lee → mae|lebati → mabati,tsebe/ditsebe is class 9/10; the others are from Units 3 and 6.
+a1-u09-q016,9,grammar,checkpoint,choice,You are sick. What do you say?,Ke a bolwa.,,Ke itumeletse.|Ke nyorilwe.|Go a fisa.,Ke a bolwa = I am sick.
+a1-u09-q017,9,grammar,checkpoint,type,"Fill in: Go a ___ — it is hot.",fisa,,,Go a fisa = it is hot.
+a1-u09-q018,9,grammar,checkpoint,choice,What does "moya" mean?,Wind | air,,Water|Cloud|Cold,moya = wind or air.
+a1-u09-q019,9,reading,checkpoint,choice,Who is sick?,Lesedi,,Bontle|The ngaka|The ntša,Lesedi says Ke a bolwa.
+a1-u09-q020,9,reading,checkpoint,type,What hurts for Lesedi? Write the Setswana words.,Tlhogo e botlhoko,,,She says Tlhogo e botlhoko — my head hurts.
+a1-u09-q021,9,reading,checkpoint,choice,What does Lesedi want?,A doctor,,Water|A blanket|Food,She says ke batla ngaka.
+a1-u09-q022,9,reading,checkpoint,choice,How is the weather outside?,It is hot,,It is cold|It is raining|It is night,Bontle answers Nnyaa go a fisa — no it is hot.
+a1-u09-q023,9,reading,checkpoint,choice,"What does ""Ga go na pula"" mean?",It is not raining,,It is raining|There is no water|Go a fisa,Ga go na pula = there is no rain — it is not raining.
+a1-u09-q024,9,reading,checkpoint,choice,What does Bontle say at the end?,Robale sentle (sleep well),,Tsamaya sentle|Sala sentle|Go a tsididi,Lesedi stays home sick; Bontle says Sala sentle. O robale sentle!

@@ -55,6 +55,13 @@
       "title_english": "My day",
       "can_do": "Describe your day and week",
       "grammar_title": "ka + time expressions"
+    },
+    {
+      "unit": 9,
+      "title_setswana": "Go a tsididi",
+      "title_english": "It is cold",
+      "can_do": "Talk about weather, feelings, and simple aches",
+      "grammar_title": "Impersonal go (go a fisa"
     }
   ],
   "items": [
@@ -4867,6 +4874,552 @@
       "plural": [],
       "image": null,
       "note": "ka + the day: ka Labotlhano."
+    },
+    {
+      "id": "a1-u09-w001",
+      "unit": 9,
+      "order": 1,
+      "kind": "word",
+      "setswana": "serame",
+      "setswana_alt": null,
+      "english": [
+        "cold",
+        "the cold"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w002",
+      "unit": 9,
+      "order": 2,
+      "kind": "word",
+      "setswana": "moya",
+      "setswana_alt": null,
+      "english": [
+        "wind",
+        "air"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "3",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w003",
+      "unit": 9,
+      "order": 3,
+      "kind": "word",
+      "setswana": "leru",
+      "setswana_alt": null,
+      "english": [
+        "cloud"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "maru"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w004",
+      "unit": 9,
+      "order": 4,
+      "kind": "word",
+      "setswana": "ntša",
+      "setswana_alt": null,
+      "english": [
+        "dog"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dintša"
+      ],
+      "image": null,
+      "note": "Class 9/10 pair — learn it as it is (rule comes in A2)."
+    },
+    {
+      "id": "a1-u09-w005",
+      "unit": 9,
+      "order": 5,
+      "kind": "word",
+      "setswana": "nku",
+      "setswana_alt": null,
+      "english": [
+        "sheep"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dinku"
+      ],
+      "image": null,
+      "note": "Class 9/10 pair — learn it as it is."
+    },
+    {
+      "id": "a1-u09-w006",
+      "unit": 9,
+      "order": 6,
+      "kind": "word",
+      "setswana": "podi",
+      "setswana_alt": null,
+      "english": [
+        "goat"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dipodi"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w007",
+      "unit": 9,
+      "order": 7,
+      "kind": "word",
+      "setswana": "nonyane",
+      "setswana_alt": null,
+      "english": [
+        "bird"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dinonyane"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w008",
+      "unit": 9,
+      "order": 8,
+      "kind": "word",
+      "setswana": "noga",
+      "setswana_alt": null,
+      "english": [
+        "snake"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dinoga"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w009",
+      "unit": 9,
+      "order": 9,
+      "kind": "word",
+      "setswana": "tsebe",
+      "setswana_alt": null,
+      "english": [
+        "ear"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "ditsebe"
+      ],
+      "image": null,
+      "note": "Class 9/10 pair."
+    },
+    {
+      "id": "a1-u09-w010",
+      "unit": 9,
+      "order": 10,
+      "kind": "word",
+      "setswana": "tlhogo",
+      "setswana_alt": null,
+      "english": [
+        "head"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dithlogo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w011",
+      "unit": 9,
+      "order": 11,
+      "kind": "word",
+      "setswana": "leihlo",
+      "setswana_alt": null,
+      "english": [
+        "eye"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "matlho"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w012",
+      "unit": 9,
+      "order": 12,
+      "kind": "word",
+      "setswana": "letsogo",
+      "setswana_alt": null,
+      "english": [
+        "hand",
+        "arm"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "matsogo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w013",
+      "unit": 9,
+      "order": 13,
+      "kind": "word",
+      "setswana": "leoto",
+      "setswana_alt": null,
+      "english": [
+        "leg",
+        "foot"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "maoto"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w014",
+      "unit": 9,
+      "order": 14,
+      "kind": "word",
+      "setswana": "molomo",
+      "setswana_alt": null,
+      "english": [
+        "mouth"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "3",
+      "plural": [
+        "melomo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w015",
+      "unit": 9,
+      "order": 15,
+      "kind": "word",
+      "setswana": "ngaka",
+      "setswana_alt": null,
+      "english": [
+        "doctor"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dingaka"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w016",
+      "unit": 9,
+      "order": 16,
+      "kind": "word",
+      "setswana": "botlhoko",
+      "setswana_alt": null,
+      "english": [
+        "pain"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "14",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w017",
+      "unit": 9,
+      "order": 17,
+      "kind": "word",
+      "setswana": "boitumelo",
+      "setswana_alt": null,
+      "english": [
+        "joy",
+        "happiness"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "14",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w018",
+      "unit": 9,
+      "order": 18,
+      "kind": "word",
+      "setswana": "boima",
+      "setswana_alt": null,
+      "english": [
+        "heavy",
+        "difficult"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w019",
+      "unit": 9,
+      "order": 19,
+      "kind": "word",
+      "setswana": "bonolo",
+      "setswana_alt": null,
+      "english": [
+        "easy",
+        "soft"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w020",
+      "unit": 9,
+      "order": 20,
+      "kind": "phrase",
+      "setswana": "Go a tsididi",
+      "setswana_alt": null,
+      "english": [
+        "it is cold"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Impersonal go + a + verb."
+    },
+    {
+      "id": "a1-u09-w021",
+      "unit": 9,
+      "order": 21,
+      "kind": "phrase",
+      "setswana": "Go a fisa",
+      "setswana_alt": null,
+      "english": [
+        "it is hot"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w022",
+      "unit": 9,
+      "order": 22,
+      "kind": "phrase",
+      "setswana": "Go a na pula",
+      "setswana_alt": null,
+      "english": [
+        "it is raining"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w023",
+      "unit": 9,
+      "order": 23,
+      "kind": "phrase",
+      "setswana": "Go a bodutu",
+      "setswana_alt": null,
+      "english": [
+        "it is warm"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w024",
+      "unit": 9,
+      "order": 24,
+      "kind": "phrase",
+      "setswana": "Go na le…",
+      "setswana_alt": null,
+      "english": [
+        "there is",
+        "there are …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w025",
+      "unit": 9,
+      "order": 25,
+      "kind": "phrase",
+      "setswana": "Ga go na…",
+      "setswana_alt": null,
+      "english": [
+        "there is no",
+        "there are no …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w026",
+      "unit": 9,
+      "order": 26,
+      "kind": "phrase",
+      "setswana": "Ke itumeletse",
+      "setswana_alt": null,
+      "english": [
+        "I am happy"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w027",
+      "unit": 9,
+      "order": 27,
+      "kind": "phrase",
+      "setswana": "Ke nyorilwe",
+      "setswana_alt": null,
+      "english": [
+        "I am thirsty"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w028",
+      "unit": 9,
+      "order": 28,
+      "kind": "phrase",
+      "setswana": "Ke a bolwa",
+      "setswana_alt": null,
+      "english": [
+        "I am sick"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w029",
+      "unit": 9,
+      "order": 29,
+      "kind": "phrase",
+      "setswana": "Ke a botlhoko",
+      "setswana_alt": null,
+      "english": [
+        "I am in pain",
+        "I hurt"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u09-w030",
+      "unit": 9,
+      "order": 30,
+      "kind": "phrase",
+      "setswana": "Tlhogo e botlhoko",
+      "setswana_alt": null,
+      "english": [
+        "my head hurts"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "A fixed phrase — learn it as it is."
     }
   ],
   "grammar": [
@@ -5443,6 +5996,62 @@
       "type": "example",
       "text_or_setswana": "Jaanong ke a ja.",
       "english": "Now I am eating."
+    },
+    {
+      "unit": 9,
+      "order": 1,
+      "type": "text",
+      "text_or_setswana": "go + a + the verb makes weather statements with no person: Go a fisa (it is hot). Go a tsididi (it is cold). Go a na pula (it is raining). Go a bodutu (it is warm).",
+      "english": null
+    },
+    {
+      "unit": 9,
+      "order": 2,
+      "type": "text",
+      "text_or_setswana": "go na le… = there is / there are …: Go na le metsi. (There is water.) Ga go na… = there is no …: Ga go na madi. (There is no money.)",
+      "english": null
+    },
+    {
+      "unit": 9,
+      "order": 3,
+      "type": "text",
+      "text_or_setswana": "Class 9/10 nouns come in pairs to learn as they are: ntša → dintša. nku → dinku. tsebe → ditsebe. The rule is explained in A2.",
+      "english": null
+    },
+    {
+      "unit": 9,
+      "order": 4,
+      "type": "text",
+      "text_or_setswana": "Feelings and aches: Ke itumeletse (I am happy). Ke nyorilwe (I am thirsty). Ke a bolwa (I am sick). Ke a botlhoko (I hurt). Tlhogo e botlhoko (my head hurts).",
+      "english": null
+    },
+    {
+      "unit": 9,
+      "order": 5,
+      "type": "example",
+      "text_or_setswana": "Go a fisa kwa Gaborone.",
+      "english": "It is hot in Gaborone."
+    },
+    {
+      "unit": 9,
+      "order": 6,
+      "type": "example",
+      "text_or_setswana": "Go na le ntša kwa gae.",
+      "english": "There is a dog at home."
+    },
+    {
+      "unit": 9,
+      "order": 7,
+      "type": "example",
+      "text_or_setswana": "Ga go na madi.",
+      "english": "There is no money."
+    },
+    {
+      "unit": 9,
+      "order": 8,
+      "type": "example",
+      "text_or_setswana": "Ke a bolwa. Ke batla ngaka.",
+      "english": "I am sick. I want a doctor."
     }
   ],
   "dialogues": [
@@ -6173,6 +6782,94 @@
       "speaker": "Tumelo",
       "setswana": "Sala sentle!",
       "english": "Stay well!"
+    },
+    {
+      "id": "a1-u09-d1-l01",
+      "unit": 9,
+      "order": 1,
+      "speaker": "Bontle",
+      "setswana": "Dumela Lesedi! O tsogile jang?",
+      "english": "Hello, Lesedi! How did you wake up?"
+    },
+    {
+      "id": "a1-u09-d1-l02",
+      "unit": 9,
+      "order": 2,
+      "speaker": "Lesedi",
+      "setswana": "Nnyaa ke a bolwa. Ke a botlhoko.",
+      "english": "No, I am sick. I am in pain."
+    },
+    {
+      "id": "a1-u09-d1-l03",
+      "unit": 9,
+      "order": 3,
+      "speaker": "Bontle",
+      "setswana": "Aoo! Ke eng?",
+      "english": "Oh no! What is it?"
+    },
+    {
+      "id": "a1-u09-d1-l04",
+      "unit": 9,
+      "order": 4,
+      "speaker": "Lesedi",
+      "setswana": "Tlhogo e botlhoko. Go a fisa gape.",
+      "english": "My head hurts. It is hot too."
+    },
+    {
+      "id": "a1-u09-d1-l05",
+      "unit": 9,
+      "order": 5,
+      "speaker": "Bontle",
+      "setswana": "O batla ngaka?",
+      "english": "Do you want a doctor?"
+    },
+    {
+      "id": "a1-u09-d1-l06",
+      "unit": 9,
+      "order": 6,
+      "speaker": "Lesedi",
+      "setswana": "Ee ke batla ngaka. A go gaufi?",
+      "english": "Yes, I want a doctor. Is it near?"
+    },
+    {
+      "id": "a1-u09-d1-l07",
+      "unit": 9,
+      "order": 7,
+      "speaker": "Bontle",
+      "setswana": "Ee go gaufi fela. Go na le ngaka kwa toropong.",
+      "english": "Yes, it is very near. There is a doctor in town."
+    },
+    {
+      "id": "a1-u09-d1-l08",
+      "unit": 9,
+      "order": 8,
+      "speaker": "Lesedi",
+      "setswana": "Ke a leboga. Go a tsididi kwa ntle?",
+      "english": "Thank you. Is it cold outside?"
+    },
+    {
+      "id": "a1-u09-d1-l09",
+      "unit": 9,
+      "order": 9,
+      "speaker": "Bontle",
+      "setswana": "Nnyaa go a fisa. Ga go na pula.",
+      "english": "No, it is hot. It is not raining."
+    },
+    {
+      "id": "a1-u09-d1-l10",
+      "unit": 9,
+      "order": 10,
+      "speaker": "Lesedi",
+      "setswana": "Ke itumeletse. Tsamaya sentle!",
+      "english": "I am glad. Go well!"
+    },
+    {
+      "id": "a1-u09-d1-l11",
+      "unit": 9,
+      "order": 11,
+      "speaker": "Bontle",
+      "setswana": "Sala sentle. O robale sentle!",
+      "english": "Stay well. Sleep well!"
     }
   ],
   "questions": [
@@ -8359,6 +9056,294 @@
       "answer_alt": null,
       "distractors": "What time he wakes up|If he works|Where he plays",
       "explanation": "The dialogue opens with O tsogile jang?"
+    },
+    {
+      "id": "a1-u09-q001",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Go a fisa\" mean?",
+      "answer": "It is hot",
+      "answer_alt": null,
+      "distractors": "It is cold|It is raining|It is warm",
+      "explanation": "Go a fisa = it is hot."
+    },
+    {
+      "id": "a1-u09-q002",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Go a tsididi\" mean?",
+      "answer": "It is cold",
+      "answer_alt": null,
+      "distractors": "It is hot|It is windy|It is night",
+      "explanation": "Go a tsididi = it is cold."
+    },
+    {
+      "id": "a1-u09-q003",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Go a na pula\" mean?",
+      "answer": "It is raining",
+      "answer_alt": null,
+      "distractors": "It is cold|There is money|The sun is out",
+      "explanation": "pula = rain; Go a na pula = it is raining."
+    },
+    {
+      "id": "a1-u09-q004",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Go na le metsi\" mean?",
+      "answer": "There is water",
+      "answer_alt": null,
+      "distractors": "There is no water|The water is hot|Drink water",
+      "explanation": "go na le = there is."
+    },
+    {
+      "id": "a1-u09-q005",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Ga go na madi\" mean?",
+      "answer": "There is no money",
+      "answer_alt": null,
+      "distractors": "There is money|I don't have money|Money is far",
+      "explanation": "Ga go na = there is no."
+    },
+    {
+      "id": "a1-u09-q006",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: Go ___ le ntša kwa gae. (there is)",
+      "answer": "na",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "go na le = there is."
+    },
+    {
+      "id": "a1-u09-q007",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the plural of ntša?",
+      "answer": "dintša",
+      "answer_alt": null,
+      "distractors": "bantša|mantša|nša",
+      "explanation": "ntša → dintša — learn the pair."
+    },
+    {
+      "id": "a1-u09-q008",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the plural of nku?",
+      "answer": "dinku",
+      "answer_alt": null,
+      "distractors": "banku|manku|dipodi",
+      "explanation": "nku → dinku — learn the pair."
+    },
+    {
+      "id": "a1-u09-q009",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Ke a bolwa\" mean?",
+      "answer": "I am sick",
+      "answer_alt": null,
+      "distractors": "I am happy|I am thirsty|I am playing",
+      "explanation": "Ke a bolwa = I am sick."
+    },
+    {
+      "id": "a1-u09-q010",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: ___ e botlhoko. (the head hurts)",
+      "answer": "Tlhogo",
+      "answer_alt": "tlhogo",
+      "distractors": null,
+      "explanation": "Tlhogo e botlhoko — my head hurts."
+    },
+    {
+      "id": "a1-u09-q011",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does \"Ke nyorilwe\" mean?",
+      "answer": "I am thirsty",
+      "answer_alt": null,
+      "distractors": "I am hungry|I am tired|I am cold",
+      "explanation": "Ke nyorilwe = I am thirsty."
+    },
+    {
+      "id": "a1-u09-q012",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does \"Ke itumeletse\" mean?",
+      "answer": "I am happy",
+      "answer_alt": null,
+      "distractors": "I am sick|I am full|I am hot",
+      "explanation": "Ke itumeletse = I am happy."
+    },
+    {
+      "id": "a1-u09-q013",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which is correct for it is warm?",
+      "answer": "Go a bodutu",
+      "answer_alt": null,
+      "distractors": "Go a fisa|Go a tsididi|Go a bonolo",
+      "explanation": "Go a bodutu = it is warm."
+    },
+    {
+      "id": "a1-u09-q014",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Write in Setswana: There is no water.",
+      "answer": "Ga go na metsi",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Ga go na + metsi."
+    },
+    {
+      "id": "a1-u09-q015",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which pair is a class 9/10 pair?",
+      "answer": "tsebe → ditsebe",
+      "answer_alt": null,
+      "distractors": "ntlo → matlo|lee → mae|lebati → mabati",
+      "explanation": "tsebe/ditsebe is class 9/10; the others are from Units 3 and 6."
+    },
+    {
+      "id": "a1-u09-q016",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "You are sick. What do you say?",
+      "answer": "Ke a bolwa.",
+      "answer_alt": null,
+      "distractors": "Ke itumeletse.|Ke nyorilwe.|Go a fisa.",
+      "explanation": "Ke a bolwa = I am sick."
+    },
+    {
+      "id": "a1-u09-q017",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: Go a ___ — it is hot.",
+      "answer": "fisa",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Go a fisa = it is hot."
+    },
+    {
+      "id": "a1-u09-q018",
+      "unit": 9,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does moya mean?",
+      "answer": "Wind | air",
+      "answer_alt": null,
+      "distractors": "Water|Cloud|Cold",
+      "explanation": "moya = wind or air."
+    },
+    {
+      "id": "a1-u09-q019",
+      "unit": 9,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Who is sick?",
+      "answer": "Lesedi",
+      "answer_alt": null,
+      "distractors": "Bontle|The ngaka|The ntša",
+      "explanation": "Lesedi says Ke a bolwa."
+    },
+    {
+      "id": "a1-u09-q020",
+      "unit": 9,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "What hurts for Lesedi? Write the Setswana words.",
+      "answer": "Tlhogo e botlhoko",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "She says Tlhogo e botlhoko — my head hurts."
+    },
+    {
+      "id": "a1-u09-q021",
+      "unit": 9,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does Lesedi want?",
+      "answer": "A doctor",
+      "answer_alt": null,
+      "distractors": "Water|A blanket|Food",
+      "explanation": "She says ke batla ngaka."
+    },
+    {
+      "id": "a1-u09-q022",
+      "unit": 9,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How is the weather outside?",
+      "answer": "It is hot",
+      "answer_alt": null,
+      "distractors": "It is cold|It is raining|It is night",
+      "explanation": "Bontle answers Nnyaa go a fisa — no it is hot."
+    },
+    {
+      "id": "a1-u09-q023",
+      "unit": 9,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does \"Ga go na pula\" mean?",
+      "answer": "It is not raining",
+      "answer_alt": null,
+      "distractors": "It is raining|There is no water|Go a fisa",
+      "explanation": "Ga go na pula = there is no rain — it is not raining."
+    },
+    {
+      "id": "a1-u09-q024",
+      "unit": 9,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does Bontle say at the end?",
+      "answer": "Robale sentle (sleep well)",
+      "answer_alt": null,
+      "distractors": "Tsamaya sentle|Sala sentle|Go a tsididi",
+      "explanation": "Lesedi stays home sick; Bontle says Sala sentle. O robale sentle!"
     }
   ]
 }
