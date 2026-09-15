@@ -53,3 +53,13 @@ unit,order,type,text_or_setswana,english
 5,8,example,Dipula di le pedi.,Two pula.
 5,9,example,O na le dingwaga di le kae? Ke na le dingwaga di le robedi.,How old are you? I am eight years old.
 5,10,example,Ke reka lerotse le apole.,I am buying a sweet melon and an apple.
+6,1,text,Some nouns start with se-; their plurals start with di-: sejana → dijana. setilo → ditilo. senotlolo → dinotlolo. selo → dilo.
+6,2,text,Some nouns start with le-; their plurals start with ma-: lebati → mabati. lebone → mabone. lentswe → mantswe. lejwe → majwe.
+6,3,text,"You already know pairs like this: setshwantsho → ditshwantsho, leina → maina, lelapa → malapa, leselo → maselo, and mosadi → basadi (mo-/ba-)."
+6,4,text,Irregular pairs to learn as they are: ntlo → matlo (house). lee → mae (egg).
+6,5,text,"Ke eng? asks what something is. Answer with Ke + the name: Ke eng? — Ke setilo. (What is it? It is a chair.)"
+6,6,example,Ke eng? Ke sejana.,"What is it? It is a cup."
+6,7,example,Ke eng? Ke buka le pena.,"What is it? It is a book and a pen."
+6,8,example,Ke eng? Ga ke itse.,"What is it? I don't know."
+6,9,example,Bula lebati. Tswala lebati.,Open the door. Close the door.
+6,10,example,Bala buka. Kwala leina la gago.,Read a book. Write your name.

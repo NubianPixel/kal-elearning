@@ -34,6 +34,13 @@
       "title_english": "How much?",
       "can_do": "Count, give your age, and ask prices",
       "grammar_title": "Quantity pattern di le with class 10 nouns"
+    },
+    {
+      "unit": 6,
+      "title_setswana": "Ke eng?",
+      "title_english": "What is it?",
+      "can_do": "Name things at home and ask what something is",
+      "grammar_title": "Class plurals se-/di- and le-/ma-"
     }
   ],
   "items": [
@@ -2824,6 +2831,699 @@
       "plural": [],
       "image": null,
       "note": null
+    },
+    {
+      "id": "a1-u06-w001",
+      "unit": 6,
+      "order": 1,
+      "kind": "word",
+      "setswana": "sejana",
+      "setswana_alt": null,
+      "english": [
+        "cup",
+        "dish"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "7",
+      "plural": [
+        "dijana"
+      ],
+      "image": null,
+      "note": "se- nouns take the di- plural."
+    },
+    {
+      "id": "a1-u06-w002",
+      "unit": 6,
+      "order": 2,
+      "kind": "word",
+      "setswana": "setilo",
+      "setswana_alt": null,
+      "english": [
+        "chair"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "7",
+      "plural": [
+        "ditilo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w003",
+      "unit": 6,
+      "order": 3,
+      "kind": "word",
+      "setswana": "selo",
+      "setswana_alt": null,
+      "english": [
+        "thing"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "7",
+      "plural": [
+        "dilo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w004",
+      "unit": 6,
+      "order": 4,
+      "kind": "word",
+      "setswana": "sesepa",
+      "setswana_alt": null,
+      "english": [
+        "soap"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "7",
+      "plural": [
+        "disepa"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w005",
+      "unit": 6,
+      "order": 5,
+      "kind": "word",
+      "setswana": "senotlolo",
+      "setswana_alt": null,
+      "english": [
+        "key"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "7",
+      "plural": [
+        "dinotlolo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w006",
+      "unit": 6,
+      "order": 6,
+      "kind": "word",
+      "setswana": "lebati",
+      "setswana_alt": null,
+      "english": [
+        "door"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "mabati"
+      ],
+      "image": null,
+      "note": "le- nouns take the ma- plural."
+    },
+    {
+      "id": "a1-u06-w007",
+      "unit": 6,
+      "order": 7,
+      "kind": "word",
+      "setswana": "lekwalo",
+      "setswana_alt": null,
+      "english": [
+        "letter",
+        "writing"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "makwalo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w008",
+      "unit": 6,
+      "order": 8,
+      "kind": "word",
+      "setswana": "lee",
+      "setswana_alt": null,
+      "english": [
+        "egg"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "mae"
+      ],
+      "image": null,
+      "note": "Irregular plural — learn the pair lee/mae."
+    },
+    {
+      "id": "a1-u06-w009",
+      "unit": 6,
+      "order": 9,
+      "kind": "word",
+      "setswana": "lebone",
+      "setswana_alt": null,
+      "english": [
+        "lamp",
+        "light"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "mabone"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w010",
+      "unit": 6,
+      "order": 10,
+      "kind": "word",
+      "setswana": "lentswe",
+      "setswana_alt": null,
+      "english": [
+        "word"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "mantswe"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w011",
+      "unit": 6,
+      "order": 11,
+      "kind": "word",
+      "setswana": "lejwe",
+      "setswana_alt": null,
+      "english": [
+        "stone"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "majwe"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w012",
+      "unit": 6,
+      "order": 12,
+      "kind": "word",
+      "setswana": "ntlo",
+      "setswana_alt": null,
+      "english": [
+        "house"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "matlo"
+      ],
+      "image": null,
+      "note": "Irregular plural — learn the pair ntlo/matlo."
+    },
+    {
+      "id": "a1-u06-w013",
+      "unit": 6,
+      "order": 13,
+      "kind": "word",
+      "setswana": "tafole",
+      "setswana_alt": null,
+      "english": [
+        "table"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "ditafole"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w014",
+      "unit": 6,
+      "order": 14,
+      "kind": "word",
+      "setswana": "pitsa",
+      "setswana_alt": null,
+      "english": [
+        "pot"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dipitsa"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w015",
+      "unit": 6,
+      "order": 15,
+      "kind": "word",
+      "setswana": "kobo",
+      "setswana_alt": null,
+      "english": [
+        "blanket"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dikobo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w016",
+      "unit": 6,
+      "order": 16,
+      "kind": "word",
+      "setswana": "koloi",
+      "setswana_alt": null,
+      "english": [
+        "car"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dikoloi"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w017",
+      "unit": 6,
+      "order": 17,
+      "kind": "word",
+      "setswana": "thipa",
+      "setswana_alt": null,
+      "english": [
+        "knife"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dithipa"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w018",
+      "unit": 6,
+      "order": 18,
+      "kind": "word",
+      "setswana": "kgoro",
+      "setswana_alt": null,
+      "english": [
+        "gate",
+        "yard"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dikgoro"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w019",
+      "unit": 6,
+      "order": 19,
+      "kind": "word",
+      "setswana": "buka",
+      "setswana_alt": null,
+      "english": [
+        "book"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dibuka"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w020",
+      "unit": 6,
+      "order": 20,
+      "kind": "word",
+      "setswana": "pena",
+      "setswana_alt": null,
+      "english": [
+        "pen"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dipena"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w021",
+      "unit": 6,
+      "order": 21,
+      "kind": "word",
+      "setswana": "itse",
+      "setswana_alt": null,
+      "english": [
+        "know"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Ends in -e — negation does not change it: Ga ke itse."
+    },
+    {
+      "id": "a1-u06-w022",
+      "unit": 6,
+      "order": 22,
+      "kind": "word",
+      "setswana": "bula",
+      "setswana_alt": null,
+      "english": [
+        "open"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w023",
+      "unit": 6,
+      "order": 23,
+      "kind": "word",
+      "setswana": "tswala",
+      "setswana_alt": null,
+      "english": [
+        "close",
+        "shut"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w024",
+      "unit": 6,
+      "order": 24,
+      "kind": "word",
+      "setswana": "kwala",
+      "setswana_alt": null,
+      "english": [
+        "write"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w025",
+      "unit": 6,
+      "order": 25,
+      "kind": "word",
+      "setswana": "bala",
+      "setswana_alt": null,
+      "english": [
+        "read"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w026",
+      "unit": 6,
+      "order": 26,
+      "kind": "word",
+      "setswana": "bona",
+      "setswana_alt": null,
+      "english": [
+        "see"
+      ],
+      "hint": "the verb",
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "bona (see) is different from bone (they) — the hint tells them apart."
+    },
+    {
+      "id": "a1-u06-w027",
+      "unit": 6,
+      "order": 27,
+      "kind": "word",
+      "setswana": "tsena",
+      "setswana_alt": null,
+      "english": [
+        "enter",
+        "come in"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w028",
+      "unit": 6,
+      "order": 28,
+      "kind": "word",
+      "setswana": "gape",
+      "setswana_alt": null,
+      "english": [
+        "again",
+        "else"
+      ],
+      "hint": null,
+      "pos": "adverb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w029",
+      "unit": 6,
+      "order": 29,
+      "kind": "phrase",
+      "setswana": "Ke eng?",
+      "setswana_alt": null,
+      "english": [
+        "what is it?"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w030",
+      "unit": 6,
+      "order": 30,
+      "kind": "phrase",
+      "setswana": "Ke…",
+      "setswana_alt": null,
+      "english": [
+        "it is …"
+      ],
+      "hint": "answering Ke eng?",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Answers to Ke eng? start with Ke."
+    },
+    {
+      "id": "a1-u06-w031",
+      "unit": 6,
+      "order": 31,
+      "kind": "phrase",
+      "setswana": "setshwantsho sa lelapa",
+      "setswana_alt": null,
+      "english": [
+        "family photo"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w032",
+      "unit": 6,
+      "order": 32,
+      "kind": "phrase",
+      "setswana": "Ga ke itse",
+      "setswana_alt": null,
+      "english": [
+        "I don't know"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "itse ends in -e so it stays: ga ke itse."
+    },
+    {
+      "id": "a1-u06-w033",
+      "unit": 6,
+      "order": 33,
+      "kind": "phrase",
+      "setswana": "Ke a itse",
+      "setswana_alt": null,
+      "english": [
+        "I know"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w034",
+      "unit": 6,
+      "order": 34,
+      "kind": "phrase",
+      "setswana": "Bula lebati",
+      "setswana_alt": null,
+      "english": [
+        "open the door"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w035",
+      "unit": 6,
+      "order": 35,
+      "kind": "phrase",
+      "setswana": "Tswala lebati",
+      "setswana_alt": null,
+      "english": [
+        "close the door"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w036",
+      "unit": 6,
+      "order": 36,
+      "kind": "phrase",
+      "setswana": "Kwala leina la gago",
+      "setswana_alt": null,
+      "english": [
+        "write your name"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w037",
+      "unit": 6,
+      "order": 37,
+      "kind": "phrase",
+      "setswana": "Bala buka",
+      "setswana_alt": null,
+      "english": [
+        "read a book"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u06-w038",
+      "unit": 6,
+      "order": 38,
+      "kind": "phrase",
+      "setswana": "sejana sa metsi",
+      "setswana_alt": null,
+      "english": [
+        "a cup of water"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
     }
   ],
   "grammar": [
@@ -3204,6 +3904,76 @@
       "type": "example",
       "text_or_setswana": "Ke reka lerotse le apole.",
       "english": "I am buying a sweet melon and an apple."
+    },
+    {
+      "unit": 6,
+      "order": 1,
+      "type": "text",
+      "text_or_setswana": "Some nouns start with se-; their plurals start with di-: sejana → dijana. setilo → ditilo. senotlolo → dinotlolo. selo → dilo.",
+      "english": null
+    },
+    {
+      "unit": 6,
+      "order": 2,
+      "type": "text",
+      "text_or_setswana": "Some nouns start with le-; their plurals start with ma-: lebati → mabati. lebone → mabone. lentswe → mantswe. lejwe → majwe.",
+      "english": null
+    },
+    {
+      "unit": 6,
+      "order": 3,
+      "type": "text",
+      "text_or_setswana": "You already know pairs like this: setshwantsho → ditshwantsho, leina → maina, lelapa → malapa, leselo → maselo, and mosadi → basadi (mo-/ba-).",
+      "english": null
+    },
+    {
+      "unit": 6,
+      "order": 4,
+      "type": "text",
+      "text_or_setswana": "Irregular pairs to learn as they are: ntlo → matlo (house). lee → mae (egg).",
+      "english": null
+    },
+    {
+      "unit": 6,
+      "order": 5,
+      "type": "text",
+      "text_or_setswana": "Ke eng? asks what something is. Answer with Ke + the name: Ke eng? — Ke setilo. (What is it? It is a chair.)",
+      "english": null
+    },
+    {
+      "unit": 6,
+      "order": 6,
+      "type": "example",
+      "text_or_setswana": "Ke eng? Ke sejana.",
+      "english": "What is it? It is a cup."
+    },
+    {
+      "unit": 6,
+      "order": 7,
+      "type": "example",
+      "text_or_setswana": "Ke eng? Ke buka le pena.",
+      "english": "What is it? It is a book and a pen."
+    },
+    {
+      "unit": 6,
+      "order": 8,
+      "type": "example",
+      "text_or_setswana": "Ke eng? Ga ke itse.",
+      "english": "What is it? I don't know."
+    },
+    {
+      "unit": 6,
+      "order": 9,
+      "type": "example",
+      "text_or_setswana": "Bula lebati. Tswala lebati.",
+      "english": "Open the door. Close the door."
+    },
+    {
+      "unit": 6,
+      "order": 10,
+      "type": "example",
+      "text_or_setswana": "Bala buka. Kwala leina la gago.",
+      "english": "Read a book. Write your name."
     }
   ],
   "dialogues": [
@@ -3612,6 +4382,102 @@
       "unit": 5,
       "order": 12,
       "speaker": "Rra Tiro",
+      "setswana": "Sala sentle!",
+      "english": "Stay well!"
+    },
+    {
+      "id": "a1-u06-d1-l01",
+      "unit": 6,
+      "order": 1,
+      "speaker": "Bontle",
+      "setswana": "Dumela Lesedi! A ke tsene?",
+      "english": "Hello, Lesedi! May I come in?"
+    },
+    {
+      "id": "a1-u06-d1-l02",
+      "unit": 6,
+      "order": 2,
+      "speaker": "Lesedi",
+      "setswana": "Ee tsena. Go siame.",
+      "english": "Yes, come in. Ok."
+    },
+    {
+      "id": "a1-u06-d1-l03",
+      "unit": 6,
+      "order": 3,
+      "speaker": "Bontle",
+      "setswana": "Ke eng?",
+      "english": "What is it?"
+    },
+    {
+      "id": "a1-u06-d1-l04",
+      "unit": 6,
+      "order": 4,
+      "speaker": "Lesedi",
+      "setswana": "Ke setilo.",
+      "english": "It is a chair."
+    },
+    {
+      "id": "a1-u06-d1-l05",
+      "unit": 6,
+      "order": 5,
+      "speaker": "Bontle",
+      "setswana": "Ke eng gape?",
+      "english": "What is it else?"
+    },
+    {
+      "id": "a1-u06-d1-l06",
+      "unit": 6,
+      "order": 6,
+      "speaker": "Lesedi",
+      "setswana": "Ke sejana sa metsi.",
+      "english": "It is a cup of water."
+    },
+    {
+      "id": "a1-u06-d1-l07",
+      "unit": 6,
+      "order": 7,
+      "speaker": "Bontle",
+      "setswana": "Ke eng? Ga ke itse.",
+      "english": "What is it? I don't know."
+    },
+    {
+      "id": "a1-u06-d1-l08",
+      "unit": 6,
+      "order": 8,
+      "speaker": "Lesedi",
+      "setswana": "Ke senotlolo sa lebati.",
+      "english": "It is the key of the door."
+    },
+    {
+      "id": "a1-u06-d1-l09",
+      "unit": 6,
+      "order": 9,
+      "speaker": "Bontle",
+      "setswana": "Bula lebati tswee-tswee.",
+      "english": "Open the door, please."
+    },
+    {
+      "id": "a1-u06-d1-l10",
+      "unit": 6,
+      "order": 10,
+      "speaker": "Lesedi",
+      "setswana": "Ee ke a e bula.",
+      "english": "Yes, I am opening it."
+    },
+    {
+      "id": "a1-u06-d1-l11",
+      "unit": 6,
+      "order": 11,
+      "speaker": "Bontle",
+      "setswana": "Ke a leboga Lesedi. Tsamaya sentle!",
+      "english": "Thank you, Lesedi. Go well!"
+    },
+    {
+      "id": "a1-u06-d1-l12",
+      "unit": 6,
+      "order": 12,
+      "speaker": "Lesedi",
       "setswana": "Sala sentle!",
       "english": "Stay well!"
     }
@@ -4936,6 +5802,294 @@
       "answer_alt": null,
       "distractors": "Dumela — to more than one person|Tsamaya sentle|Robala sentle",
       "explanation": "Dumelang is the plural greeting (Le batla eng also uses le)."
+    },
+    {
+      "id": "a1-u06-q001",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the plural of sejana?",
+      "answer": "dijana",
+      "answer_alt": null,
+      "distractors": "bajana|majana|disejana",
+      "explanation": "se- nouns take the di- plural: sejana → dijana."
+    },
+    {
+      "id": "a1-u06-q002",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the plural of setilo?",
+      "answer": "ditilo",
+      "answer_alt": null,
+      "distractors": "batilo|matilo|masetilo",
+      "explanation": "se- → di-: setilo → ditilo."
+    },
+    {
+      "id": "a1-u06-q003",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write the plural of senotlolo.",
+      "answer": "dinotlolo",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "se- → di-: senotlolo → dinotlolo."
+    },
+    {
+      "id": "a1-u06-q004",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the plural of lebati?",
+      "answer": "mabati",
+      "answer_alt": null,
+      "distractors": "dibati|lebabati|dilebati",
+      "explanation": "le- nouns take the ma- plural: mabati."
+    },
+    {
+      "id": "a1-u06-q005",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write the plural of lebone.",
+      "answer": "mabone",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "le- → ma-: lebone → mabone."
+    },
+    {
+      "id": "a1-u06-q006",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the plural of ntlo?",
+      "answer": "matlo",
+      "answer_alt": null,
+      "distractors": "dintlo|mantlo|bantlo",
+      "explanation": "ntlo → matlo is irregular — learn the pair."
+    },
+    {
+      "id": "a1-u06-q007",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the plural of lee?",
+      "answer": "mae",
+      "answer_alt": null,
+      "distractors": "dilee|malee|majwe",
+      "explanation": "lee → mae is irregular — learn the pair."
+    },
+    {
+      "id": "a1-u06-q008",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Ke eng?\" mean?",
+      "answer": "What is it?",
+      "answer_alt": null,
+      "distractors": "Who is it?|Where is it?|How much is it?",
+      "explanation": "eng = what; Ke eng? asks what something is."
+    },
+    {
+      "id": "a1-u06-q009",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Answer in Setswana: Ke eng? (a chair)",
+      "answer": "Ke setilo",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Answers to Ke eng? start with Ke."
+    },
+    {
+      "id": "a1-u06-q010",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Ga ke itse\" mean?",
+      "answer": "I don't know",
+      "answer_alt": null,
+      "distractors": "I don't want|I don't have|I'm not going",
+      "explanation": "itse ends in -e so negation leaves it unchanged."
+    },
+    {
+      "id": "a1-u06-q011",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is the plural of selo?",
+      "answer": "dilo",
+      "answer_alt": null,
+      "distractors": "baselo|maselo|dileselo",
+      "explanation": "se- → di-: selo → dilo (maselo is plates — different word)."
+    },
+    {
+      "id": "a1-u06-q012",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is the plural of lentswe?",
+      "answer": "mantswe",
+      "answer_alt": null,
+      "distractors": "dintswe|bantswe|malentswe",
+      "explanation": "le- → ma-: lentswe → mantswe."
+    },
+    {
+      "id": "a1-u06-q013",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is the plural of kobo?",
+      "answer": "dikobo",
+      "answer_alt": null,
+      "distractors": "makobo|bokobo|matlo",
+      "explanation": "Class 9 nouns like kobo take the di- plural (the rule comes in A2 — learn the pair)."
+    },
+    {
+      "id": "a1-u06-q014",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Write the plural of pitsa.",
+      "answer": "dipitsa",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "pitsa → dipitsa."
+    },
+    {
+      "id": "a1-u06-q015",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How do you answer Ke eng??",
+      "answer": "Ke + the thing's name",
+      "answer_alt": null,
+      "distractors": "Ya + the thing's name|O + the thing's name|Ga ke + the thing's name",
+      "explanation": "Answers to Ke eng? start with Ke."
+    },
+    {
+      "id": "a1-u06-q016",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Answer in Setswana: Ke eng? (a book)",
+      "answer": "Ke buka",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Ke + buka: Ke buka."
+    },
+    {
+      "id": "a1-u06-q017",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which pair follows the se- → di- rule?",
+      "answer": "sesepa → disepa",
+      "answer_alt": null,
+      "distractors": "ntlo → matlo|lee → mae|lebati → mabati",
+      "explanation": "Sesepa is a se- noun: disepa."
+    },
+    {
+      "id": "a1-u06-q018",
+      "unit": 6,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: Ke eng? ___ tafole. (it is)",
+      "answer": "Ke",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Answers to Ke eng? start with Ke."
+    },
+    {
+      "id": "a1-u06-q019",
+      "unit": 6,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Who is visiting?",
+      "answer": "Bontle",
+      "answer_alt": null,
+      "distractors": "Lesedi|Thabo|Mma Kefilwe",
+      "explanation": "Bontle asks A ke tsene? at Lesedi's home."
+    },
+    {
+      "id": "a1-u06-q020",
+      "unit": 6,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "How does Bontle ask to come in? Write her words.",
+      "answer": "A ke tsene?",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Her words are A ke tsene? — may I come in?"
+    },
+    {
+      "id": "a1-u06-q021",
+      "unit": 6,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is the first thing Lesedi names?",
+      "answer": "A chair",
+      "answer_alt": null,
+      "distractors": "A cup|A key|A door",
+      "explanation": "She answers Ke setilo."
+    },
+    {
+      "id": "a1-u06-q022",
+      "unit": 6,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is in the sejana?",
+      "answer": "Water",
+      "answer_alt": null,
+      "distractors": "Porridge|Bread|Salt",
+      "explanation": "Lesedi says Ke sejana sa metsi — a cup of water."
+    },
+    {
+      "id": "a1-u06-q023",
+      "unit": 6,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Why does Bontle say Ga ke itse?",
+      "answer": "She does not know what the thing is",
+      "answer_alt": null,
+      "distractors": "She cannot open the door|She does not want to enter|She is leaving",
+      "explanation": "Ga ke itse = I don't know."
+    },
+    {
+      "id": "a1-u06-q024",
+      "unit": 6,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does Lesedi open?",
+      "answer": "The door",
+      "answer_alt": null,
+      "distractors": "The cup|The chair|The pot",
+      "explanation": "She answers Bula lebati with Ee ke a e bula."
     }
   ]
 }

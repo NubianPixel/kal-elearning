@@ -109,3 +109,27 @@ a1-u05-q021,5,reading,checkpoint,choice,How much is the lerotse?,Five pula,,Thre
 a1-u05-q022,5,reading,checkpoint,choice,What else does Naledi buy?,Water and bread,,Fruit and porridge|Meat and morogo|Nothing,She says Ke batla metsi le borotho.
 a1-u05-q023,5,reading,checkpoint,choice,How old is Rra Tiro?,Fifty,,Thirty|Five|He does not say,He says Ke na le dingwaga di le masome a matlhano.
 a1-u05-q024,5,reading,checkpoint,choice,How does the seller greet?,Dumelang — to more than one person,,Dumela — to more than one person|Tsamaya sentle|Robala sentle,Dumelang is the plural greeting (Le batla eng also uses le).
+a1-u06-q001,6,grammar,drill,choice,What is the plural of sejana?,dijana,,bajana|majana|disejana,se- nouns take the di- plural: sejana → dijana.
+a1-u06-q002,6,grammar,drill,choice,What is the plural of setilo?,ditilo,,batilo|matilo|masetilo,se- → di-: setilo → ditilo.
+a1-u06-q003,6,grammar,drill,type,Write the plural of senotlolo.,dinotlolo,,,se- → di-: senotlolo → dinotlolo.
+a1-u06-q004,6,grammar,drill,choice,What is the plural of lebati?,mabati,,dibati|lebabati|dilebati,le- nouns take the ma- plural: mabati.
+a1-u06-q005,6,grammar,drill,type,Write the plural of lebone.,mabone,,,le- → ma-: lebone → mabone.
+a1-u06-q006,6,grammar,drill,choice,What is the plural of ntlo?,matlo,,dintlo|mantlo|bantlo,ntlo → matlo is irregular — learn the pair.
+a1-u06-q007,6,grammar,drill,choice,What is the plural of lee?,mae,,dilee|malee|majwe,lee → mae is irregular — learn the pair.
+a1-u06-q008,6,grammar,drill,choice,"What does ""Ke eng?"" mean?",What is it?,,Who is it?|Where is it?|How much is it?,eng = what; Ke eng? asks what something is.
+a1-u06-q009,6,grammar,drill,type,Answer in Setswana: Ke eng? (a chair),Ke setilo,,,Answers to Ke eng? start with Ke.
+a1-u06-q010,6,grammar,drill,choice,"What does ""Ga ke itse"" mean?",I don't know,,I don't want|I don't have|I'm not going,itse ends in -e so negation leaves it unchanged.
+a1-u06-q011,6,grammar,checkpoint,choice,What is the plural of selo?,dilo,,baselo|maselo|dileselo,se- → di-: selo → dilo (maselo is plates — different word).
+a1-u06-q012,6,grammar,checkpoint,choice,What is the plural of lentswe?,mantswe,,dintswe|bantswe|malentswe,le- → ma-: lentswe → mantswe.
+a1-u06-q013,6,grammar,checkpoint,choice,What is the plural of kobo?,dikobo,,makobo|bokobo|matlo,Class 9 nouns like kobo take the di- plural (the rule comes in A2 — learn the pair).
+a1-u06-q014,6,grammar,checkpoint,type,Write the plural of pitsa.,dipitsa,,,pitsa → dipitsa.
+a1-u06-q015,6,grammar,checkpoint,choice,How do you answer "Ke eng?"?,Ke + the thing's name,,Ya + the thing's name|O + the thing's name|Ga ke + the thing's name,Answers to Ke eng? start with Ke.
+a1-u06-q016,6,grammar,checkpoint,type,Answer in Setswana: Ke eng? (a book),Ke buka,,,Ke + buka: Ke buka.
+a1-u06-q017,6,grammar,checkpoint,choice,Which pair follows the se- → di- rule?,sesepa → disepa,,ntlo → matlo|lee → mae|lebati → mabati,Sesepa is a se- noun: disepa.
+a1-u06-q018,6,grammar,checkpoint,type,"Fill in: Ke eng? ___ tafole. (it is)",Ke,,,Answers to Ke eng? start with Ke.
+a1-u06-q019,6,reading,checkpoint,choice,Who is visiting?,Bontle,,Lesedi|Thabo|Mma Kefilwe,Bontle asks A ke tsene? at Lesedi's home.
+a1-u06-q020,6,reading,checkpoint,type,How does Bontle ask to come in? Write her words.,A ke tsene?,,,Her words are A ke tsene? — may I come in?
+a1-u06-q021,6,reading,checkpoint,choice,What is the first thing Lesedi names?,A chair,,A cup|A key|A door,She answers Ke setilo.
+a1-u06-q022,6,reading,checkpoint,choice,What is in the sejana?,Water,,Porridge|Bread|Salt,Lesedi says Ke sejana sa metsi — a cup of water.
+a1-u06-q023,6,reading,checkpoint,choice,Why does Bontle say "Ga ke itse"?,She does not know what the thing is,,She cannot open the door|She does not want to enter|She is leaving,Ga ke itse = I don't know.
+a1-u06-q024,6,reading,checkpoint,choice,What does Lesedi open?,The door,,The cup|The chair|The pot,She answers Bula lebati with Ee ke a e bula.

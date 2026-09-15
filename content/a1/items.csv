@@ -158,3 +158,41 @@ a1-u05-w034,5,34,phrase,dipula di le pedi,,two pula,,phrase,,,,Quantity pattern:
 a1-u05-w035,5,35,phrase,dingwaga di le nne,,four years,,phrase,,,,
 a1-u05-w036,5,36,phrase,nngwe fela,,only one,,phrase,,,,fela = only; it follows the word.
 a1-u05-w037,5,37,phrase,Ke bokae?,,how much is it?,,phrase,,,,
+a1-u06-w001,6,1,word,sejana,,cup | dish,,noun,7,dijana,,se- nouns take the di- plural.
+a1-u06-w002,6,2,word,setilo,,chair,,noun,7,ditilo,,
+a1-u06-w003,6,3,word,selo,,thing,,noun,7,dilo,,
+a1-u06-w004,6,4,word,sesepa,,soap,,noun,7,disepa,,
+a1-u06-w005,6,5,word,senotlolo,,key,,noun,7,dinotlolo,,
+a1-u06-w006,6,6,word,lebati,,door,,noun,5,mabati,,le- nouns take the ma- plural.
+a1-u06-w007,6,7,word,lekwalo,,letter | writing,,noun,5,makwalo,,
+a1-u06-w008,6,8,word,lee,,egg,,noun,5,mae,,Irregular plural — learn the pair lee/mae.
+a1-u06-w009,6,9,word,lebone,,lamp | light,,noun,5,mabone,,
+a1-u06-w010,6,10,word,lentswe,,word,,noun,5,mantswe,,
+a1-u06-w011,6,11,word,lejwe,,stone,,noun,5,majwe,,
+a1-u06-w012,6,12,word,ntlo,,house,,noun,9,matlo,,Irregular plural — learn the pair ntlo/matlo.
+a1-u06-w013,6,13,word,tafole,,table,,noun,9,ditafole,,
+a1-u06-w014,6,14,word,pitsa,,pot,,noun,9,dipitsa,,
+a1-u06-w015,6,15,word,kobo,,blanket,,noun,9,dikobo,,
+a1-u06-w016,6,16,word,koloi,,car,,noun,9,dikoloi,,
+a1-u06-w017,6,17,word,thipa,,knife,,noun,9,dithipa,,
+a1-u06-w018,6,18,word,kgoro,,gate | yard,,noun,9,dikgoro,,
+a1-u06-w019,6,19,word,buka,,book,,noun,9,dibuka,,
+a1-u06-w020,6,20,word,pena,,pen,,noun,9,dipena,,
+a1-u06-w021,6,21,word,itse,,know,,verb,,,,Ends in -e — negation does not change it: Ga ke itse.
+a1-u06-w022,6,22,word,bula,,open,,verb,,,,
+a1-u06-w023,6,23,word,tswala,,close | shut,,verb,,,,
+a1-u06-w024,6,24,word,kwala,,write,,verb,,,,
+a1-u06-w025,6,25,word,bala,,read,,verb,,,,
+a1-u06-w026,6,26,word,bona,,see,the verb,verb,,,,bona (see) is different from bone (they) — the hint tells them apart.
+a1-u06-w027,6,27,word,tsena,,enter | come in,,verb,,,,
+a1-u06-w028,6,28,word,gape,,again | else,,adverb,,,,
+a1-u06-w029,6,29,phrase,Ke eng?,,what is it?,,phrase,,,,
+a1-u06-w030,6,30,phrase,Ke…,,it is …,answering Ke eng?,phrase,,,,Answers to Ke eng? start with Ke.
+a1-u06-w031,6,31,phrase,setshwantsho sa lelapa,,family photo,,phrase,,,,
+a1-u06-w032,6,32,phrase,Ga ke itse,,I don't know,,phrase,,,,itse ends in -e so it stays: ga ke itse.
+a1-u06-w033,6,33,phrase,Ke a itse,,I know,,phrase,,,,
+a1-u06-w034,6,34,phrase,Bula lebati,,open the door,,phrase,,,,
+a1-u06-w035,6,35,phrase,Tswala lebati,,close the door,,phrase,,,,
+a1-u06-w036,6,36,phrase,Kwala leina la gago,,write your name,,phrase,,,,
+a1-u06-w037,6,37,phrase,Bala buka,,read a book,,phrase,,,,
+a1-u06-w038,6,38,phrase,sejana sa metsi,,a cup of water,,phrase,,,,

@@ -1,8 +1,8 @@
 # A1 content — family authoring guide
 
-> **Unit 1–5 Setswana text was drafted by an AI that does not speak
+> **Unit 1–6 Setswana text was drafted by an AI that does not speak
 > Setswana.** Unit 1 was reviewed by the project owner on 2026-09-15;
-> Units 2–5 (drafted 2026-09-16) are awaiting that review. The tens 60–90
+> Units 2–6 (drafted 2026-09-16) are awaiting that review. The tens 60–90
 > (masome a matshela/masupa/marobedi/marobongwe) especially need a
 > Botswana-standard check. Everything still needs the independent
 > Botswana-standard review before release. Later units need the same checks
