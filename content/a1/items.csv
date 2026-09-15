@@ -24,3 +24,29 @@ a1-u01-w022,1,22,word,Nnyaa,,no,,other,,,,
 a1-u01-w023,1,23,phrase,Tsamaya sentle,,go well | goodbye,said to the person leaving,phrase,,,,
 a1-u01-w024,1,24,phrase,Sala sentle,,stay well | goodbye,said to the person staying,phrase,,,,
 a1-u01-w025,1,25,phrase,Robala sentle,,sleep well | good night,,phrase,,,,
+a1-u02-w001,2,1,word,nna,,I | me,the pronoun,pronoun,,,,nna is also the verb to be/stay: Ke nna Kabelo. (I am Kabelo.)
+a1-u02-w002,2,2,word,wena,,you,one person,pronoun,,,,
+a1-u02-w003,2,3,word,ene,,she | he,another person,pronoun,,,,
+a1-u02-w004,2,4,word,rona,,we | us,several speakers,pronoun,,,,
+a1-u02-w005,2,5,word,lona,,you,several people,pronoun,,,,
+a1-u02-w006,2,6,word,bone,,they | them,several other people,pronoun,,,,
+a1-u02-w007,2,7,word,bua,,speak | say,,verb,,,,
+a1-u02-w008,2,8,word,tswa,,come from,,verb,,,,
+a1-u02-w009,2,9,word,Setswana,,Setswana,the language,noun,,,,The name of the language; capital S.
+a1-u02-w010,2,10,word,Sekgoa,,English,the English language,noun,,,,
+a1-u02-w011,2,11,word,leina,,name,,noun,5,maina,,
+a1-u02-w012,2,12,word,fela,,only | just,,adverb,,,,Follows the word it limits: Sekgoa fela. (English only.)
+a1-u02-w013,2,13,word,eng,,what,the question word,other,,,,Turns -a into -eng: O bua eng?
+a1-u02-w014,2,14,word,mang,,who,the question word,other,,,,
+a1-u02-w015,2,15,phrase,Ke nna…,,I am …,followed by a name,phrase,,,,Ke nna Kabelo. (I am Kabelo.)
+a1-u02-w016,2,16,phrase,Leina la me ke…,,my name is …,,phrase,,,,
+a1-u02-w017,2,17,phrase,Leina la gago ke mang?,,what is your name?,to one person,phrase,,,,
+a1-u02-w018,2,18,phrase,O tswa kae?,,where are you from?,to one person,phrase,,,,
+a1-u02-w019,2,19,phrase,Le tswa kae?,,where are you from?,to several people,phrase,,,,
+a1-u02-w020,2,20,phrase,Ke tswa kwa…,,I come from …,followed by a place,phrase,,,,kwa marks a place.
+a1-u02-w021,2,21,phrase,Re tswa kwa…,,we come from …,several speakers,phrase,,,,
+a1-u02-w022,2,22,phrase,O bua eng?,,what do you speak? | what are you saying?,to one person,phrase,,,,
+a1-u02-w023,2,23,phrase,O bua Setswana?,,do you speak Setswana?,asking one person,phrase,,,,
+a1-u02-w024,2,24,phrase,Ga ke tlhaloganye,,I don't understand,,phrase,,,,Negation is explained in Unit 4.
+a1-u02-w025,2,25,phrase,Bua ka bonya tswee-tswee,"Bua ka bonya, tswee-tswee",speak slowly please,,phrase,,,,
+a1-u02-w026,2,26,phrase,Ke eng ka Setswana?,,what is … in Setswana? | how do you say it in Setswana?,asking for a word,phrase,,,,

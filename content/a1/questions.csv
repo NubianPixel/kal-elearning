@@ -13,3 +13,27 @@ a1-u01-q011,1,reading,checkpoint,choice,"In the dialogue, who greets first?",Rra
 a1-u01-q012,1,reading,checkpoint,type,How does Mma Kagiso say she woke up?,Ke tsogile sentle,I woke up well,,"She replies ""Ke tsogile sentle"" — I woke up well."
 a1-u01-q013,1,reading,checkpoint,choice,How does Rra Molefe say he is feeling?,"Ke teng, ke a leboga",,Ke tsogile sentle|Go siame|Sala sentle,"Rra Molefe replies ""Ke teng, ke a leboga"" — I'm fine, thank you."
 a1-u01-q014,1,reading,checkpoint,choice,"Who says ""Sala sentle"" at the end, and why?","Rra Molefe, because he is leaving",,"Mma Kagiso, because she is leaving|Rra Molefe, because Mma Kagiso is leaving|Mma Kagiso, because Rra Molefe is leaving","Mma Kagiso stays and says Tsamaya sentle to Rra Molefe; he is leaving, so he replies Sala sentle."
+a1-u02-q001,2,grammar,drill,choice,"Which start do you put on a verb to say ""I""?",Ke,,O|Re|Ba,Ke is the subject concord for I: Ke bua (I speak).
+a1-u02-q002,2,grammar,drill,choice,How do you say "They speak Setswana."?,Ba bua Setswana,,Re bua Setswana|Ke bua Setswana|Lo bua Setswana,Ba is the concord for they (bone): Ba bua Setswana.
+a1-u02-q003,2,grammar,drill,type,"Fill in: ___ bua Sekgoa. (we)",Re,,,Re is the concord for we (rona): Re bua Sekgoa.
+a1-u02-q004,2,grammar,drill,choice,You ask one person where they are from. What do you say?,O tswa kae?,,Le tswa kae?|Ke tswa kae?|Ba tswa kae?,O is the concord for you (one person): O tswa kae?
+a1-u02-q005,2,grammar,drill,type,"Fill in: Ke nna Kabelo. ___ nna Neo. (you, one person)",O,,,O is the concord for you (one person): O nna Neo.
+a1-u02-q006,2,grammar,drill,type,"Which pronoun stresses ""they"" at the start of a sentence?",bone,,,bone is the emphatic form of they: Bona ba bua Setswana.
+a1-u02-q007,2,grammar,drill,choice,"What does ""Leina la me ke Neo."" mean?",My name is Neo.,,Your name is Neo.|His name is Neo.|What is your name?,"Leina la me ke… = my name is…"
+a1-u02-q008,2,grammar,drill,choice,"Someone says ""Ga ke tlhaloganye."" What do they mean?",I don't understand,,I don't know you|I am not from here|I don't speak slowly,Ga ke tlhaloganye = I don't understand.
+a1-u02-q009,2,grammar,drill,type,You forgot a Setswana word. How do you ask what it is in Setswana?,Ke eng ka Setswana?,,,Ke eng ka Setswana? asks for the Setswana word.
+a1-u02-q010,2,grammar,drill,type,"Fill in: Ke bua Sekgoa ___. (only English)",fela,,,fela means only and follows the word it limits: Sekgoa fela.
+a1-u02-q011,2,grammar,checkpoint,choice,How do you say "We come from Gaborone."?,Re tswa kwa Gaborone,,Ke tswa kwa Gaborone|Ba tswa kwa Gaborone|O tswa kwa Gaborone,Re is the concord for we: Re tswa kwa Gaborone.
+a1-u02-q012,2,grammar,checkpoint,choice,You greet two people and ask where they are from. What do you say?,Le tswa kae?,,O tswa kae?|Ke tswa kae?|Ba tswa kae?,Two or more people take the concord lo: Le tswa kae?
+a1-u02-q013,2,grammar,checkpoint,type,"Fill in: ___ ke bua Sekgoa. Wena o bua Setswana. (as for me)",Nna,nna,,Nna stresses I in contrast with wena (you).
+a1-u02-q014,2,grammar,checkpoint,choice,"What does ""O bua eng?"" ask about?",What you speak or say,,Where you are from|What your name is|Who you are,"eng = what; O bua eng? = what do you speak / say?"
+a1-u02-q015,2,grammar,checkpoint,type,"Write in Setswana: ""My name is Neo.""",Leina la me ke Neo,,,Leina la me ke… = my name is…
+a1-u02-q016,2,grammar,checkpoint,choice,Someone asks you "Leina la gago ke mang?" What is a good answer?,Leina la me ke Kabelo,,Ke tswa kwa Gaborone|Ee|Ga ke tlhaloganye,The reply uses leina la me (my name): Leina la me ke Kabelo.
+a1-u02-q017,2,grammar,checkpoint,choice,When would you say "Bua ka bonya tswee-tswee"?,When someone speaks too fast for you,,When you say goodbye|To thank someone|To greet an elder,ka bonya = slowly; ask for slower speech when you cannot follow.
+a1-u02-q018,2,grammar,checkpoint,type,Fill in for you (several people): ___ bua eng?,Lo,,,Lo is the concord for you (several people): Lo bua eng?
+a1-u02-q019,2,reading,checkpoint,choice,Who speaks first in the dialogue?,Rra Tau,,Neo|Both together|Neither,Rra Tau opens with Dumela mma. O tsogile jang?
+a1-u02-q020,2,reading,checkpoint,type,How does Rra Tau give his name? Write his words.,Leina la me ke Tau,,,He says Leina la me ke Tau — my name is Tau.
+a1-u02-q021,2,reading,checkpoint,choice,Where is Neo from?,Gaborone,,Molepolole|Francistown|Kanye,She says Ke tswa kwa Gaborone.
+a1-u02-q022,2,reading,checkpoint,choice,Which languages does Rra Tau speak?,Setswana le Sekgoa,,Setswana fela|Sekgoa fela|Neither language,"He says he speaks Setswana le Sekgoa — Setswana and English."
+a1-u02-q023,2,reading,checkpoint,choice,Why does Neo say Bua ka bonya tswee-tswee?,She does not understand Setswana and wants it slowly,,She is in a hurry|She wants to say goodbye|She cannot hear Rra Tau,Neo says Ga ke tlhaloganye Setswana — she does not understand and asks for slow speech.
+a1-u02-q024,2,reading,checkpoint,choice,Who is leaving at the end and how do you know?,"Neo — Rra Tau says Tsamaya sentle to her",,"Rra Tau — Neo says Tsamaya sentle to him|Neo — she says Tsamaya sentle|Rra Tau — he says Sala sentle",The one staying says Tsamaya sentle; the one leaving replies Sala sentle.

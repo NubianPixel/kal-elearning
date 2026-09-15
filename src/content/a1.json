@@ -6,6 +6,13 @@
       "title_english": "Greetings",
       "can_do": "Greet politely, say how you are, say goodbye",
       "grammar_title": "Singular vs plural address and farewells"
+    },
+    {
+      "unit": 2,
+      "title_setswana": "Ke nna…",
+      "title_english": "Introductions",
+      "can_do": "Say your name, where you're from, and what you speak",
+      "grammar_title": "Subject concords and emphatic pronouns"
     }
   ],
   "items": [
@@ -453,6 +460,458 @@
       "plural": [],
       "image": null,
       "note": null
+    },
+    {
+      "id": "a1-u02-w001",
+      "unit": 2,
+      "order": 1,
+      "kind": "word",
+      "setswana": "nna",
+      "setswana_alt": null,
+      "english": [
+        "I",
+        "me"
+      ],
+      "hint": "the pronoun",
+      "pos": "pronoun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "nna is also the verb to be/stay: Ke nna Kabelo. (I am Kabelo.)"
+    },
+    {
+      "id": "a1-u02-w002",
+      "unit": 2,
+      "order": 2,
+      "kind": "word",
+      "setswana": "wena",
+      "setswana_alt": null,
+      "english": [
+        "you"
+      ],
+      "hint": "one person",
+      "pos": "pronoun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w003",
+      "unit": 2,
+      "order": 3,
+      "kind": "word",
+      "setswana": "ene",
+      "setswana_alt": null,
+      "english": [
+        "she",
+        "he"
+      ],
+      "hint": "another person",
+      "pos": "pronoun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w004",
+      "unit": 2,
+      "order": 4,
+      "kind": "word",
+      "setswana": "rona",
+      "setswana_alt": null,
+      "english": [
+        "we",
+        "us"
+      ],
+      "hint": "several speakers",
+      "pos": "pronoun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w005",
+      "unit": 2,
+      "order": 5,
+      "kind": "word",
+      "setswana": "lona",
+      "setswana_alt": null,
+      "english": [
+        "you"
+      ],
+      "hint": "several people",
+      "pos": "pronoun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w006",
+      "unit": 2,
+      "order": 6,
+      "kind": "word",
+      "setswana": "bone",
+      "setswana_alt": null,
+      "english": [
+        "they",
+        "them"
+      ],
+      "hint": "several other people",
+      "pos": "pronoun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w007",
+      "unit": 2,
+      "order": 7,
+      "kind": "word",
+      "setswana": "bua",
+      "setswana_alt": null,
+      "english": [
+        "speak",
+        "say"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w008",
+      "unit": 2,
+      "order": 8,
+      "kind": "word",
+      "setswana": "tswa",
+      "setswana_alt": null,
+      "english": [
+        "come from"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w009",
+      "unit": 2,
+      "order": 9,
+      "kind": "word",
+      "setswana": "Setswana",
+      "setswana_alt": null,
+      "english": [
+        "Setswana"
+      ],
+      "hint": "the language",
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "The name of the language; capital S."
+    },
+    {
+      "id": "a1-u02-w010",
+      "unit": 2,
+      "order": 10,
+      "kind": "word",
+      "setswana": "Sekgoa",
+      "setswana_alt": null,
+      "english": [
+        "English"
+      ],
+      "hint": "the English language",
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w011",
+      "unit": 2,
+      "order": 11,
+      "kind": "word",
+      "setswana": "leina",
+      "setswana_alt": null,
+      "english": [
+        "name"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "maina"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w012",
+      "unit": 2,
+      "order": 12,
+      "kind": "word",
+      "setswana": "fela",
+      "setswana_alt": null,
+      "english": [
+        "only",
+        "just"
+      ],
+      "hint": null,
+      "pos": "adverb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Follows the word it limits: Sekgoa fela. (English only.)"
+    },
+    {
+      "id": "a1-u02-w013",
+      "unit": 2,
+      "order": 13,
+      "kind": "word",
+      "setswana": "eng",
+      "setswana_alt": null,
+      "english": [
+        "what"
+      ],
+      "hint": "the question word",
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Turns -a into -eng: O bua eng?"
+    },
+    {
+      "id": "a1-u02-w014",
+      "unit": 2,
+      "order": 14,
+      "kind": "word",
+      "setswana": "mang",
+      "setswana_alt": null,
+      "english": [
+        "who"
+      ],
+      "hint": "the question word",
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w015",
+      "unit": 2,
+      "order": 15,
+      "kind": "phrase",
+      "setswana": "Ke nna…",
+      "setswana_alt": null,
+      "english": [
+        "I am …"
+      ],
+      "hint": "followed by a name",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Ke nna Kabelo. (I am Kabelo.)"
+    },
+    {
+      "id": "a1-u02-w016",
+      "unit": 2,
+      "order": 16,
+      "kind": "phrase",
+      "setswana": "Leina la me ke…",
+      "setswana_alt": null,
+      "english": [
+        "my name is …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w017",
+      "unit": 2,
+      "order": 17,
+      "kind": "phrase",
+      "setswana": "Leina la gago ke mang?",
+      "setswana_alt": null,
+      "english": [
+        "what is your name?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w018",
+      "unit": 2,
+      "order": 18,
+      "kind": "phrase",
+      "setswana": "O tswa kae?",
+      "setswana_alt": null,
+      "english": [
+        "where are you from?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w019",
+      "unit": 2,
+      "order": 19,
+      "kind": "phrase",
+      "setswana": "Le tswa kae?",
+      "setswana_alt": null,
+      "english": [
+        "where are you from?"
+      ],
+      "hint": "to several people",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w020",
+      "unit": 2,
+      "order": 20,
+      "kind": "phrase",
+      "setswana": "Ke tswa kwa…",
+      "setswana_alt": null,
+      "english": [
+        "I come from …"
+      ],
+      "hint": "followed by a place",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "kwa marks a place."
+    },
+    {
+      "id": "a1-u02-w021",
+      "unit": 2,
+      "order": 21,
+      "kind": "phrase",
+      "setswana": "Re tswa kwa…",
+      "setswana_alt": null,
+      "english": [
+        "we come from …"
+      ],
+      "hint": "several speakers",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w022",
+      "unit": 2,
+      "order": 22,
+      "kind": "phrase",
+      "setswana": "O bua eng?",
+      "setswana_alt": null,
+      "english": [
+        "what do you speak?",
+        "what are you saying?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w023",
+      "unit": 2,
+      "order": 23,
+      "kind": "phrase",
+      "setswana": "O bua Setswana?",
+      "setswana_alt": null,
+      "english": [
+        "do you speak Setswana?"
+      ],
+      "hint": "asking one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w024",
+      "unit": 2,
+      "order": 24,
+      "kind": "phrase",
+      "setswana": "Ga ke tlhaloganye",
+      "setswana_alt": null,
+      "english": [
+        "I don't understand"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Negation is explained in Unit 4."
+    },
+    {
+      "id": "a1-u02-w025",
+      "unit": 2,
+      "order": 25,
+      "kind": "phrase",
+      "setswana": "Bua ka bonya tswee-tswee",
+      "setswana_alt": "Bua ka bonya, tswee-tswee",
+      "english": [
+        "speak slowly please"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u02-w026",
+      "unit": 2,
+      "order": 26,
+      "kind": "phrase",
+      "setswana": "Ke eng ka Setswana?",
+      "setswana_alt": null,
+      "english": [
+        "what is … in Setswana?",
+        "how do you say it in Setswana?"
+      ],
+      "hint": "asking for a word",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
     }
   ],
   "grammar": [
@@ -525,6 +984,97 @@
       "type": "example",
       "text_or_setswana": "Tsamaya sentle. Sala sentle.",
       "english": "Go well. Stay well."
+    },
+    {
+      "unit": 2,
+      "order": 1,
+      "type": "text",
+      "text_or_setswana": "The start of a verb changes to match who is doing the action: ke (I), o (you, one person), o (she or he), re (we), lo (you, several people), ba (they).",
+      "english": null
+    },
+    {
+      "unit": 2,
+      "order": 2,
+      "type": "text",
+      "text_or_setswana": "With bua (speak): Ke bua Setswana. O bua Sekgoa. Re bua Setswana. Lo bua eng? Ba bua Setswana.",
+      "english": null
+    },
+    {
+      "unit": 2,
+      "order": 3,
+      "type": "text",
+      "text_or_setswana": "With tswa (come from): Ke tswa kwa Gaborone. O tswa kae? Re tswa kwa Molepolole.",
+      "english": null
+    },
+    {
+      "unit": 2,
+      "order": 4,
+      "type": "text",
+      "text_or_setswana": "With nna (be): Ke nna Kabelo. — I am Kabelo. The full pronoun can stand before it: Nna ke nna Kabelo.",
+      "english": null
+    },
+    {
+      "unit": 2,
+      "order": 5,
+      "type": "text",
+      "text_or_setswana": "To stress or contrast who is acting",
+      "english": "put the pronoun first: Nna ke bua Sekgoa. Wena o bua Setswana. Bona ba bua Setswana."
+    },
+    {
+      "unit": 2,
+      "order": 6,
+      "type": "text",
+      "text_or_setswana": "le joins two things: Setswana le Sekgoa (Setswana and English). kwa marks a place: kwa Gaborone (in Gaborone / from Gaborone).",
+      "english": null
+    },
+    {
+      "unit": 2,
+      "order": 7,
+      "type": "text",
+      "text_or_setswana": "leina (name) is a class 5 noun; its plural is maina. leina la me = my name; leina la gago = your name. mang asks who: Leina la gago ke mang?",
+      "english": null
+    },
+    {
+      "unit": 2,
+      "order": 8,
+      "type": "text",
+      "text_or_setswana": "Survival phrases for now, explained in later units: Ga ke tlhaloganye (I don't understand), Bua ka bonya tswee-tswee (speak slowly, please), Ke eng ka Setswana? (what is it in Setswana?).",
+      "english": null
+    },
+    {
+      "unit": 2,
+      "order": 9,
+      "type": "example",
+      "text_or_setswana": "Ke nna Kabelo.",
+      "english": "I am Kabelo."
+    },
+    {
+      "unit": 2,
+      "order": 10,
+      "type": "example",
+      "text_or_setswana": "O tswa kae? Ke tswa kwa Francistown.",
+      "english": "Where are you from? I come from Francistown."
+    },
+    {
+      "unit": 2,
+      "order": 11,
+      "type": "example",
+      "text_or_setswana": "Leina la me ke Neo. Leina la gago ke mang?",
+      "english": "My name is Neo. What is your name?"
+    },
+    {
+      "unit": 2,
+      "order": 12,
+      "type": "example",
+      "text_or_setswana": "Nna ke bua Setswana le Sekgoa.",
+      "english": "I speak Setswana and English."
+    },
+    {
+      "unit": 2,
+      "order": 13,
+      "type": "example",
+      "text_or_setswana": "Ga ke tlhaloganye. Bua ka bonya tswee-tswee.",
+      "english": "I don't understand. Speak slowly, please."
     }
   ],
   "dialogues": [
@@ -583,6 +1133,86 @@
       "speaker": "Rra Molefe",
       "setswana": "Sala sentle!",
       "english": "Stay well!"
+    },
+    {
+      "id": "a1-u02-d1-l01",
+      "unit": 2,
+      "order": 1,
+      "speaker": "Rra Tau",
+      "setswana": "Dumela, mma. O tsogile jang?",
+      "english": "Hello, madam. How did you wake up?"
+    },
+    {
+      "id": "a1-u02-d1-l02",
+      "unit": 2,
+      "order": 2,
+      "speaker": "Neo",
+      "setswana": "Ke tsogile sentle, ke a leboga. Wena?",
+      "english": "I woke up well, thank you. And you?"
+    },
+    {
+      "id": "a1-u02-d1-l03",
+      "unit": 2,
+      "order": 3,
+      "speaker": "Rra Tau",
+      "setswana": "Ke teng. Leina la me ke Tau. Leina la gago ke mang?",
+      "english": "I'm fine. My name is Tau. What is your name?"
+    },
+    {
+      "id": "a1-u02-d1-l04",
+      "unit": 2,
+      "order": 4,
+      "speaker": "Neo",
+      "setswana": "Leina la me ke Neo. O tswa kae rra?",
+      "english": "My name is Neo. Where are you from sir?"
+    },
+    {
+      "id": "a1-u02-d1-l05",
+      "unit": 2,
+      "order": 5,
+      "speaker": "Rra Tau",
+      "setswana": "Ke tswa kwa Molepolole. Wena o tswa kae?",
+      "english": "I come from Molepolole. Where are you from?"
+    },
+    {
+      "id": "a1-u02-d1-l06",
+      "unit": 2,
+      "order": 6,
+      "speaker": "Neo",
+      "setswana": "Ke tswa kwa Gaborone. O bua eng?",
+      "english": "I come from Gaborone. What do you speak?"
+    },
+    {
+      "id": "a1-u02-d1-l07",
+      "unit": 2,
+      "order": 7,
+      "speaker": "Rra Tau",
+      "setswana": "Ke bua Setswana le Sekgoa.",
+      "english": "I speak Setswana and English."
+    },
+    {
+      "id": "a1-u02-d1-l08",
+      "unit": 2,
+      "order": 8,
+      "speaker": "Neo",
+      "setswana": "Ke bua Sekgoa fela. Ga ke tlhaloganye Setswana. Bua ka bonya tswee-tswee.",
+      "english": "I speak English only. I don't understand Setswana. Speak slowly, please."
+    },
+    {
+      "id": "a1-u02-d1-l09",
+      "unit": 2,
+      "order": 9,
+      "speaker": "Rra Tau",
+      "setswana": "Go siame. Tsamaya sentle mma!",
+      "english": "Ok then. Go well madam!"
+    },
+    {
+      "id": "a1-u02-d1-l10",
+      "unit": 2,
+      "order": 10,
+      "speaker": "Neo",
+      "setswana": "Sala sentle rra!",
+      "english": "Stay well sir!"
     }
   ],
   "questions": [
@@ -753,6 +1383,294 @@
       "answer_alt": null,
       "distractors": "Mma Kagiso, because she is leaving|Rra Molefe, because Mma Kagiso is leaving|Mma Kagiso, because Rra Molefe is leaving",
       "explanation": "Mma Kagiso stays and says Tsamaya sentle to Rra Molefe; he is leaving, so he replies Sala sentle."
+    },
+    {
+      "id": "a1-u02-q001",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Which start do you put on a verb to say \"I\"?",
+      "answer": "Ke",
+      "answer_alt": null,
+      "distractors": "O|Re|Ba",
+      "explanation": "Ke is the subject concord for I: Ke bua (I speak)."
+    },
+    {
+      "id": "a1-u02-q002",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you say They speak Setswana.?",
+      "answer": "Ba bua Setswana",
+      "answer_alt": null,
+      "distractors": "Re bua Setswana|Ke bua Setswana|Lo bua Setswana",
+      "explanation": "Ba is the concord for they (bone): Ba bua Setswana."
+    },
+    {
+      "id": "a1-u02-q003",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: ___ bua Sekgoa. (we)",
+      "answer": "Re",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Re is the concord for we (rona): Re bua Sekgoa."
+    },
+    {
+      "id": "a1-u02-q004",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "You ask one person where they are from. What do you say?",
+      "answer": "O tswa kae?",
+      "answer_alt": null,
+      "distractors": "Le tswa kae?|Ke tswa kae?|Ba tswa kae?",
+      "explanation": "O is the concord for you (one person): O tswa kae?"
+    },
+    {
+      "id": "a1-u02-q005",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: Ke nna Kabelo. ___ nna Neo. (you, one person)",
+      "answer": "O",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "O is the concord for you (one person): O nna Neo."
+    },
+    {
+      "id": "a1-u02-q006",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Which pronoun stresses \"they\" at the start of a sentence?",
+      "answer": "bone",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "bone is the emphatic form of they: Bona ba bua Setswana."
+    },
+    {
+      "id": "a1-u02-q007",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Leina la me ke Neo.\" mean?",
+      "answer": "My name is Neo.",
+      "answer_alt": null,
+      "distractors": "Your name is Neo.|His name is Neo.|What is your name?",
+      "explanation": "Leina la me ke… = my name is…"
+    },
+    {
+      "id": "a1-u02-q008",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Someone says \"Ga ke tlhaloganye.\" What do they mean?",
+      "answer": "I don't understand",
+      "answer_alt": null,
+      "distractors": "I don't know you|I am not from here|I don't speak slowly",
+      "explanation": "Ga ke tlhaloganye = I don't understand."
+    },
+    {
+      "id": "a1-u02-q009",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "You forgot a Setswana word. How do you ask what it is in Setswana?",
+      "answer": "Ke eng ka Setswana?",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Ke eng ka Setswana? asks for the Setswana word."
+    },
+    {
+      "id": "a1-u02-q010",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: Ke bua Sekgoa ___. (only English)",
+      "answer": "fela",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "fela means only and follows the word it limits: Sekgoa fela."
+    },
+    {
+      "id": "a1-u02-q011",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How do you say We come from Gaborone.?",
+      "answer": "Re tswa kwa Gaborone",
+      "answer_alt": null,
+      "distractors": "Ke tswa kwa Gaborone|Ba tswa kwa Gaborone|O tswa kwa Gaborone",
+      "explanation": "Re is the concord for we: Re tswa kwa Gaborone."
+    },
+    {
+      "id": "a1-u02-q012",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "You greet two people and ask where they are from. What do you say?",
+      "answer": "Le tswa kae?",
+      "answer_alt": null,
+      "distractors": "O tswa kae?|Ke tswa kae?|Ba tswa kae?",
+      "explanation": "Two or more people take the concord lo: Le tswa kae?"
+    },
+    {
+      "id": "a1-u02-q013",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: ___ ke bua Sekgoa. Wena o bua Setswana. (as for me)",
+      "answer": "Nna",
+      "answer_alt": "nna",
+      "distractors": null,
+      "explanation": "Nna stresses I in contrast with wena (you)."
+    },
+    {
+      "id": "a1-u02-q014",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does \"O bua eng?\" ask about?",
+      "answer": "What you speak or say",
+      "answer_alt": null,
+      "distractors": "Where you are from|What your name is|Who you are",
+      "explanation": "eng = what; O bua eng? = what do you speak / say?"
+    },
+    {
+      "id": "a1-u02-q015",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Write in Setswana: \"My name is Neo.\"",
+      "answer": "Leina la me ke Neo",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Leina la me ke… = my name is…"
+    },
+    {
+      "id": "a1-u02-q016",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Someone asks you Leina la gago ke mang? What is a good answer?",
+      "answer": "Leina la me ke Kabelo",
+      "answer_alt": null,
+      "distractors": "Ke tswa kwa Gaborone|Ee|Ga ke tlhaloganye",
+      "explanation": "The reply uses leina la me (my name): Leina la me ke Kabelo."
+    },
+    {
+      "id": "a1-u02-q017",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "When would you say Bua ka bonya tswee-tswee?",
+      "answer": "When someone speaks too fast for you",
+      "answer_alt": null,
+      "distractors": "When you say goodbye|To thank someone|To greet an elder",
+      "explanation": "ka bonya = slowly; ask for slower speech when you cannot follow."
+    },
+    {
+      "id": "a1-u02-q018",
+      "unit": 2,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in for you (several people): ___ bua eng?",
+      "answer": "Lo",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Lo is the concord for you (several people): Lo bua eng?"
+    },
+    {
+      "id": "a1-u02-q019",
+      "unit": 2,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Who speaks first in the dialogue?",
+      "answer": "Rra Tau",
+      "answer_alt": null,
+      "distractors": "Neo|Both together|Neither",
+      "explanation": "Rra Tau opens with Dumela mma. O tsogile jang?"
+    },
+    {
+      "id": "a1-u02-q020",
+      "unit": 2,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "How does Rra Tau give his name? Write his words.",
+      "answer": "Leina la me ke Tau",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "He says Leina la me ke Tau — my name is Tau."
+    },
+    {
+      "id": "a1-u02-q021",
+      "unit": 2,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Where is Neo from?",
+      "answer": "Gaborone",
+      "answer_alt": null,
+      "distractors": "Molepolole|Francistown|Kanye",
+      "explanation": "She says Ke tswa kwa Gaborone."
+    },
+    {
+      "id": "a1-u02-q022",
+      "unit": 2,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which languages does Rra Tau speak?",
+      "answer": "Setswana le Sekgoa",
+      "answer_alt": null,
+      "distractors": "Setswana fela|Sekgoa fela|Neither language",
+      "explanation": "He says he speaks Setswana le Sekgoa — Setswana and English."
+    },
+    {
+      "id": "a1-u02-q023",
+      "unit": 2,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Why does Neo say Bua ka bonya tswee-tswee?",
+      "answer": "She does not understand Setswana and wants it slowly",
+      "answer_alt": null,
+      "distractors": "She is in a hurry|She wants to say goodbye|She cannot hear Rra Tau",
+      "explanation": "Neo says Ga ke tlhaloganye Setswana — she does not understand and asks for slow speech."
+    },
+    {
+      "id": "a1-u02-q024",
+      "unit": 2,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Who is leaving at the end and how do you know?",
+      "answer": "Neo — Rra Tau says Tsamaya sentle to her",
+      "answer_alt": null,
+      "distractors": "Rra Tau — Neo says Tsamaya sentle to him|Neo — she says Tsamaya sentle|Rra Tau — he says Sala sentle",
+      "explanation": "The one staying says Tsamaya sentle; the one leaving replies Sala sentle."
     }
   ]
 }

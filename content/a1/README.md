@@ -1,9 +1,10 @@
 # A1 content — family authoring guide
 
-> **Unit 1 Setswana text was drafted by an AI that does not speak
-> Setswana.** The project owner reviewed it on 2026-09-15; it still needs
-> the independent Botswana-standard review before release. Later units
-> need the same checks as they're written.
+> **Unit 1 and Unit 2 Setswana text was drafted by an AI that does not
+> speak Setswana.** Unit 1 was reviewed by the project owner on 2026-09-15;
+> Unit 2 (drafted 2026-09-16) is awaiting that review. Everything still
+> needs the independent Botswana-standard review before release. Later
+> units need the same checks as they're written.
 
 **Editing sheet:** [KAL Setswana A1 Content](https://docs.google.com/spreadsheets/d/1NK8QH7qwELC_ZDjbQeBpn9fZjzvpQe6XSp3Ra91OCEc/edit)
 — edit there, then export the tabs into this folder.

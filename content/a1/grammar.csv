@@ -9,3 +9,16 @@ unit,order,type,text_or_setswana,english
 1,8,example,O tsogile jang? Ke tsogile sentle.,How did you wake up? I woke up well.
 1,9,example,Le kae? Re teng.,How are you (to several people)? We are fine.
 1,10,example,Tsamaya sentle. Sala sentle.,Go well. Stay well.
+2,1,text,"The start of a verb changes to match who is doing the action: ke (I), o (you, one person), o (she or he), re (we), lo (you, several people), ba (they)."
+2,2,text,With bua (speak): Ke bua Setswana. O bua Sekgoa. Re bua Setswana. Lo bua eng? Ba bua Setswana.
+2,3,text,With tswa (come from): Ke tswa kwa Gaborone. O tswa kae? Re tswa kwa Molepolole.
+2,4,text,With nna (be): Ke nna Kabelo. — I am Kabelo. The full pronoun can stand before it: Nna ke nna Kabelo.
+2,5,text,To stress or contrast who is acting, put the pronoun first: Nna ke bua Sekgoa. Wena o bua Setswana. Bona ba bua Setswana.
+2,6,text,"le joins two things: Setswana le Sekgoa (Setswana and English). kwa marks a place: kwa Gaborone (in Gaborone / from Gaborone)."
+2,7,text,"leina (name) is a class 5 noun; its plural is maina. leina la me = my name; leina la gago = your name. mang asks who: Leina la gago ke mang?"
+2,8,text,"Survival phrases for now, explained in later units: Ga ke tlhaloganye (I don't understand), Bua ka bonya tswee-tswee (speak slowly, please), Ke eng ka Setswana? (what is it in Setswana?)."
+2,9,example,Ke nna Kabelo.,I am Kabelo.
+2,10,example,O tswa kae? Ke tswa kwa Francistown.,"Where are you from? I come from Francistown."
+2,11,example,Leina la me ke Neo. Leina la gago ke mang?,My name is Neo. What is your name?
+2,12,example,Nna ke bua Setswana le Sekgoa.,I speak Setswana and English.
+2,13,example,Ga ke tlhaloganye. Bua ka bonya tswee-tswee.,"I don't understand. Speak slowly, please."
