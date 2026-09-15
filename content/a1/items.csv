@@ -50,3 +50,39 @@ a1-u02-w023,2,23,phrase,O bua Setswana?,,do you speak Setswana?,asking one perso
 a1-u02-w024,2,24,phrase,Ga ke tlhaloganye,,I don't understand,,phrase,,,,Negation is explained in Unit 4.
 a1-u02-w025,2,25,phrase,Bua ka bonya tswee-tswee,"Bua ka bonya, tswee-tswee",speak slowly please,,phrase,,,,
 a1-u02-w026,2,26,phrase,Ke eng ka Setswana?,,what is … in Setswana? | how do you say it in Setswana?,asking for a word,phrase,,,,
+a1-u03-w001,3,1,word,mosadi,,woman | wife,,noun,1,basadi,,Class 1 nouns for people take mo-; the plural takes ba-.
+a1-u03-w002,3,2,word,monna,,man | husband,,noun,1,banna,,
+a1-u03-w003,3,3,word,ngwana,,child,,noun,1,bana,,Irregular plural — learn the pair ngwana/bana.
+a1-u03-w004,3,4,word,motho,,person | human being,,noun,1,batho,,
+a1-u03-w005,3,5,word,mosimane,,boy,,noun,1a,bosimane,,1a noun — the plural adds bo-.
+a1-u03-w006,3,6,word,mosetsana,,girl,,noun,1a,bosetsana,,
+a1-u03-w007,3,7,word,kgaitsadi,,"sister (same surname)",,noun,1a,bokgaitsadi,,
+a1-u03-w008,3,8,word,malome,,maternal uncle,,noun,1a,bomalome,,
+a1-u03-w009,3,9,word,rrangwane,,"paternal uncle (younger)",,noun,1a,borrangwane,,
+a1-u03-w010,3,10,word,mmemogolo,,grandmother,,noun,1a,bommemogolo,,
+a1-u03-w011,3,11,word,rramogolo,,grandfather,,noun,1a,borramogolo,,
+a1-u03-w012,3,12,word,mme,,my mother,,noun,1,,,Fused form — kinship does not use wa/ba.
+a1-u03-w013,3,13,word,rre,,my father,,noun,1,,,Fused form — kinship does not use wa/ba.
+a1-u03-w014,3,14,word,mmago,,your mother,to one person,noun,1,,,Fused form.
+a1-u03-w015,3,15,word,rrago,,your father,to one person,noun,1,,,Fused form.
+a1-u03-w016,3,16,word,mmaagwe,,his or her mother,,noun,1,,,Fused form.
+a1-u03-w017,3,17,word,rraagwe,,his or her father,,noun,1,,,Fused form.
+a1-u03-w018,3,18,word,setshwantsho,,"picture | photo",,noun,7,ditshwantsho,,
+a1-u03-w019,3,19,word,lelapa,,"family | household",,noun,5,malapa,,
+a1-u03-w020,3,20,phrase,Yo ke…,,this (one) is …,pointing at a person,phrase,,,,Fixed phrase for pointing; demonstratives come in A2.
+a1-u03-w021,3,21,phrase,ngwana wa me,,my child,,phrase,,,,
+a1-u03-w022,3,22,phrase,bana ba me,,my children,,phrase,,,,
+a1-u03-w023,3,23,phrase,mosadi wa me,,my wife,,phrase,,,,
+a1-u03-w024,3,24,phrase,monna wa me,,my husband,,phrase,,,,
+a1-u03-w025,3,25,phrase,mosadi wa gagwe,,his or her wife,,phrase,,,,
+a1-u03-w026,3,26,phrase,bana ba gagwe,,his or her children,,phrase,,,,
+a1-u03-w027,3,27,phrase,wa me,,my | mine,for one person,phrase,,,,
+a1-u03-w028,3,28,phrase,ba me,,my (people),for people,phrase,,,,
+a1-u03-w029,3,29,phrase,wa gago,,your (one person),to one person,phrase,,,,
+a1-u03-w030,3,30,phrase,wa gagwe,,his | her (one person),,phrase,,,,
+a1-u03-w031,3,31,phrase,ba gagwe,,his | her (people),,phrase,,,,
+a1-u03-w032,3,32,phrase,lelapa la me,,my family,,phrase,,,,
+a1-u03-w033,3,33,phrase,kgaitsadi wa me,,my sister,,phrase,,,,
+a1-u03-w034,3,34,phrase,ngwana wa gagwe,,his or her child,,phrase,,,,
+a1-u03-w035,3,35,phrase,mosetsana wa me,,my daughter,,phrase,,,,
+a1-u03-w036,3,36,phrase,mosimane wa me,,my son,,phrase,,,,

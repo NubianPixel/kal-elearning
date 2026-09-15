@@ -13,6 +13,13 @@
       "title_english": "Introductions",
       "can_do": "Say your name, where you're from, and what you speak",
       "grammar_title": "Subject concords and emphatic pronouns"
+    },
+    {
+      "unit": 3,
+      "title_setswana": "Lelapa",
+      "title_english": "Family",
+      "can_do": "Introduce your family",
+      "grammar_title": "Class 1/2 plurals (mo-/ba- and bo-) and possessives"
     }
   ],
   "items": [
@@ -912,6 +919,652 @@
       "plural": [],
       "image": null,
       "note": null
+    },
+    {
+      "id": "a1-u03-w001",
+      "unit": 3,
+      "order": 1,
+      "kind": "word",
+      "setswana": "mosadi",
+      "setswana_alt": null,
+      "english": [
+        "woman",
+        "wife"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1",
+      "plural": [
+        "basadi"
+      ],
+      "image": null,
+      "note": "Class 1 nouns for people take mo-; the plural takes ba-."
+    },
+    {
+      "id": "a1-u03-w002",
+      "unit": 3,
+      "order": 2,
+      "kind": "word",
+      "setswana": "monna",
+      "setswana_alt": null,
+      "english": [
+        "man",
+        "husband"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1",
+      "plural": [
+        "banna"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w003",
+      "unit": 3,
+      "order": 3,
+      "kind": "word",
+      "setswana": "ngwana",
+      "setswana_alt": null,
+      "english": [
+        "child"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1",
+      "plural": [
+        "bana"
+      ],
+      "image": null,
+      "note": "Irregular plural — learn the pair ngwana/bana."
+    },
+    {
+      "id": "a1-u03-w004",
+      "unit": 3,
+      "order": 4,
+      "kind": "word",
+      "setswana": "motho",
+      "setswana_alt": null,
+      "english": [
+        "person",
+        "human being"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1",
+      "plural": [
+        "batho"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w005",
+      "unit": 3,
+      "order": 5,
+      "kind": "word",
+      "setswana": "mosimane",
+      "setswana_alt": null,
+      "english": [
+        "boy"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1a",
+      "plural": [
+        "bosimane"
+      ],
+      "image": null,
+      "note": "1a noun — the plural adds bo-."
+    },
+    {
+      "id": "a1-u03-w006",
+      "unit": 3,
+      "order": 6,
+      "kind": "word",
+      "setswana": "mosetsana",
+      "setswana_alt": null,
+      "english": [
+        "girl"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1a",
+      "plural": [
+        "bosetsana"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w007",
+      "unit": 3,
+      "order": 7,
+      "kind": "word",
+      "setswana": "kgaitsadi",
+      "setswana_alt": null,
+      "english": [
+        "sister (same surname)"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1a",
+      "plural": [
+        "bokgaitsadi"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w008",
+      "unit": 3,
+      "order": 8,
+      "kind": "word",
+      "setswana": "malome",
+      "setswana_alt": null,
+      "english": [
+        "maternal uncle"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1a",
+      "plural": [
+        "bomalome"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w009",
+      "unit": 3,
+      "order": 9,
+      "kind": "word",
+      "setswana": "rrangwane",
+      "setswana_alt": null,
+      "english": [
+        "paternal uncle (younger)"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1a",
+      "plural": [
+        "borrangwane"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w010",
+      "unit": 3,
+      "order": 10,
+      "kind": "word",
+      "setswana": "mmemogolo",
+      "setswana_alt": null,
+      "english": [
+        "grandmother"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1a",
+      "plural": [
+        "bommemogolo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w011",
+      "unit": 3,
+      "order": 11,
+      "kind": "word",
+      "setswana": "rramogolo",
+      "setswana_alt": null,
+      "english": [
+        "grandfather"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1a",
+      "plural": [
+        "borramogolo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w012",
+      "unit": 3,
+      "order": 12,
+      "kind": "word",
+      "setswana": "mme",
+      "setswana_alt": null,
+      "english": [
+        "my mother"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1",
+      "plural": [],
+      "image": null,
+      "note": "Fused form — kinship does not use wa/ba."
+    },
+    {
+      "id": "a1-u03-w013",
+      "unit": 3,
+      "order": 13,
+      "kind": "word",
+      "setswana": "rre",
+      "setswana_alt": null,
+      "english": [
+        "my father"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1",
+      "plural": [],
+      "image": null,
+      "note": "Fused form — kinship does not use wa/ba."
+    },
+    {
+      "id": "a1-u03-w014",
+      "unit": 3,
+      "order": 14,
+      "kind": "word",
+      "setswana": "mmago",
+      "setswana_alt": null,
+      "english": [
+        "your mother"
+      ],
+      "hint": "to one person",
+      "pos": "noun",
+      "noun_class": "1",
+      "plural": [],
+      "image": null,
+      "note": "Fused form."
+    },
+    {
+      "id": "a1-u03-w015",
+      "unit": 3,
+      "order": 15,
+      "kind": "word",
+      "setswana": "rrago",
+      "setswana_alt": null,
+      "english": [
+        "your father"
+      ],
+      "hint": "to one person",
+      "pos": "noun",
+      "noun_class": "1",
+      "plural": [],
+      "image": null,
+      "note": "Fused form."
+    },
+    {
+      "id": "a1-u03-w016",
+      "unit": 3,
+      "order": 16,
+      "kind": "word",
+      "setswana": "mmaagwe",
+      "setswana_alt": null,
+      "english": [
+        "his or her mother"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1",
+      "plural": [],
+      "image": null,
+      "note": "Fused form."
+    },
+    {
+      "id": "a1-u03-w017",
+      "unit": 3,
+      "order": 17,
+      "kind": "word",
+      "setswana": "rraagwe",
+      "setswana_alt": null,
+      "english": [
+        "his or her father"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "1",
+      "plural": [],
+      "image": null,
+      "note": "Fused form."
+    },
+    {
+      "id": "a1-u03-w018",
+      "unit": 3,
+      "order": 18,
+      "kind": "word",
+      "setswana": "setshwantsho",
+      "setswana_alt": null,
+      "english": [
+        "picture",
+        "photo"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "7",
+      "plural": [
+        "ditshwantsho"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w019",
+      "unit": 3,
+      "order": 19,
+      "kind": "word",
+      "setswana": "lelapa",
+      "setswana_alt": null,
+      "english": [
+        "family",
+        "household"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "malapa"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w020",
+      "unit": 3,
+      "order": 20,
+      "kind": "phrase",
+      "setswana": "Yo ke…",
+      "setswana_alt": null,
+      "english": [
+        "this (one) is …"
+      ],
+      "hint": "pointing at a person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Fixed phrase for pointing; demonstratives come in A2."
+    },
+    {
+      "id": "a1-u03-w021",
+      "unit": 3,
+      "order": 21,
+      "kind": "phrase",
+      "setswana": "ngwana wa me",
+      "setswana_alt": null,
+      "english": [
+        "my child"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w022",
+      "unit": 3,
+      "order": 22,
+      "kind": "phrase",
+      "setswana": "bana ba me",
+      "setswana_alt": null,
+      "english": [
+        "my children"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w023",
+      "unit": 3,
+      "order": 23,
+      "kind": "phrase",
+      "setswana": "mosadi wa me",
+      "setswana_alt": null,
+      "english": [
+        "my wife"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w024",
+      "unit": 3,
+      "order": 24,
+      "kind": "phrase",
+      "setswana": "monna wa me",
+      "setswana_alt": null,
+      "english": [
+        "my husband"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w025",
+      "unit": 3,
+      "order": 25,
+      "kind": "phrase",
+      "setswana": "mosadi wa gagwe",
+      "setswana_alt": null,
+      "english": [
+        "his or her wife"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w026",
+      "unit": 3,
+      "order": 26,
+      "kind": "phrase",
+      "setswana": "bana ba gagwe",
+      "setswana_alt": null,
+      "english": [
+        "his or her children"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w027",
+      "unit": 3,
+      "order": 27,
+      "kind": "phrase",
+      "setswana": "wa me",
+      "setswana_alt": null,
+      "english": [
+        "my",
+        "mine"
+      ],
+      "hint": "for one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w028",
+      "unit": 3,
+      "order": 28,
+      "kind": "phrase",
+      "setswana": "ba me",
+      "setswana_alt": null,
+      "english": [
+        "my (people)"
+      ],
+      "hint": "for people",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w029",
+      "unit": 3,
+      "order": 29,
+      "kind": "phrase",
+      "setswana": "wa gago",
+      "setswana_alt": null,
+      "english": [
+        "your (one person)"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w030",
+      "unit": 3,
+      "order": 30,
+      "kind": "phrase",
+      "setswana": "wa gagwe",
+      "setswana_alt": null,
+      "english": [
+        "his",
+        "her (one person)"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w031",
+      "unit": 3,
+      "order": 31,
+      "kind": "phrase",
+      "setswana": "ba gagwe",
+      "setswana_alt": null,
+      "english": [
+        "his",
+        "her (people)"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w032",
+      "unit": 3,
+      "order": 32,
+      "kind": "phrase",
+      "setswana": "lelapa la me",
+      "setswana_alt": null,
+      "english": [
+        "my family"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w033",
+      "unit": 3,
+      "order": 33,
+      "kind": "phrase",
+      "setswana": "kgaitsadi wa me",
+      "setswana_alt": null,
+      "english": [
+        "my sister"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w034",
+      "unit": 3,
+      "order": 34,
+      "kind": "phrase",
+      "setswana": "ngwana wa gagwe",
+      "setswana_alt": null,
+      "english": [
+        "his or her child"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w035",
+      "unit": 3,
+      "order": 35,
+      "kind": "phrase",
+      "setswana": "mosetsana wa me",
+      "setswana_alt": null,
+      "english": [
+        "my daughter"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u03-w036",
+      "unit": 3,
+      "order": 36,
+      "kind": "phrase",
+      "setswana": "mosimane wa me",
+      "setswana_alt": null,
+      "english": [
+        "my son"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
     }
   ],
   "grammar": [
@@ -1075,6 +1728,83 @@
       "type": "example",
       "text_or_setswana": "Ga ke tlhaloganye. Bua ka bonya tswee-tswee.",
       "english": "I don't understand. Speak slowly, please."
+    },
+    {
+      "unit": 3,
+      "order": 1,
+      "type": "text",
+      "text_or_setswana": "Class 1 nouns for people start with mo-; their class 2 plurals start with ba-: mosadi → basadi. monna → banna. motho → batho.",
+      "english": null
+    },
+    {
+      "unit": 3,
+      "order": 2,
+      "type": "text",
+      "text_or_setswana": "Some people nouns (classes 1a/2a) just add bo- for the plural: mosetsana → bosetsana. mosimane → bosimane. kgaitsadi → bokgaitsadi.",
+      "english": null
+    },
+    {
+      "unit": 3,
+      "order": 3,
+      "type": "text",
+      "text_or_setswana": "ngwana → bana is irregular — learn the pair as it is.",
+      "english": null
+    },
+    {
+      "unit": 3,
+      "order": 4,
+      "type": "text",
+      "text_or_setswana": "To say something belongs to someone, use wa (one person) or ba (people) + the owner: me (me), gago (you), gagwe (him or her).",
+      "english": null
+    },
+    {
+      "unit": 3,
+      "order": 5,
+      "type": "text",
+      "text_or_setswana": "For one person: ngwana wa me (my child). mosadi wa gagwe (his wife). For people: bana ba me (my children). bana ba gagwe (her children).",
+      "english": null
+    },
+    {
+      "unit": 3,
+      "order": 6,
+      "type": "text",
+      "text_or_setswana": "Kinship does not use wa/ba — it has its own fused forms: mme (my mother), rre (my father), mmago (your mother), rrago (your father), mmaagwe (his or her mother), rraagwe (his or her father).",
+      "english": null
+    },
+    {
+      "unit": 3,
+      "order": 7,
+      "type": "text",
+      "text_or_setswana": "Yo ke… points at someone in a picture: Yo ke mmaagwe. (This is his mother.)",
+      "english": null
+    },
+    {
+      "unit": 3,
+      "order": 8,
+      "type": "example",
+      "text_or_setswana": "Yo ke ngwana wa me.",
+      "english": "This is my child."
+    },
+    {
+      "unit": 3,
+      "order": 9,
+      "type": "example",
+      "text_or_setswana": "Bana ba me ke mosetsana le mosimane.",
+      "english": "My children are a girl and a boy."
+    },
+    {
+      "unit": 3,
+      "order": 10,
+      "type": "example",
+      "text_or_setswana": "Yo ke mmaagwe.",
+      "english": "This is his mother."
+    },
+    {
+      "unit": 3,
+      "order": 11,
+      "type": "example",
+      "text_or_setswana": "Mosadi yo ke kgaitsadi wa me.",
+      "english": "This woman is my sister."
     }
   ],
   "dialogues": [
@@ -1213,6 +1943,94 @@
       "speaker": "Neo",
       "setswana": "Sala sentle rra!",
       "english": "Stay well sir!"
+    },
+    {
+      "id": "a1-u03-d1-l01",
+      "unit": 3,
+      "order": 1,
+      "speaker": "Bontle",
+      "setswana": "Dumela, Lesedi. O tsogile jang?",
+      "english": "Hello, Lesedi. How did you wake up?"
+    },
+    {
+      "id": "a1-u03-d1-l02",
+      "unit": 3,
+      "order": 2,
+      "speaker": "Lesedi",
+      "setswana": "Ke tsogile sentle, ke a leboga. Leba! Yo ke lelapa la me.",
+      "english": "I woke up well, thank you. Look! This is my family."
+    },
+    {
+      "id": "a1-u03-d1-l03",
+      "unit": 3,
+      "order": 3,
+      "speaker": "Bontle",
+      "setswana": "Aa! Yo ke mmago?",
+      "english": "Ooh! Is this your mother?"
+    },
+    {
+      "id": "a1-u03-d1-l04",
+      "unit": 3,
+      "order": 4,
+      "speaker": "Lesedi",
+      "setswana": "Ee yo ke mme.",
+      "english": "Yes, this is my mother."
+    },
+    {
+      "id": "a1-u03-d1-l05",
+      "unit": 3,
+      "order": 5,
+      "speaker": "Lesedi",
+      "setswana": "Yo ke rre. Yo ke kgaitsadi wa me.",
+      "english": "This is my father. This is my sister."
+    },
+    {
+      "id": "a1-u03-d1-l06",
+      "unit": 3,
+      "order": 6,
+      "speaker": "Bontle",
+      "setswana": "Mosetsana yo ke ngwana wa gago?",
+      "english": "Is this girl your child?"
+    },
+    {
+      "id": "a1-u03-d1-l07",
+      "unit": 3,
+      "order": 7,
+      "speaker": "Lesedi",
+      "setswana": "Ee ke ngwana wa me. Bana ba me ke mosetsana le mosimane.",
+      "english": "Yes, she is my child. My children are a girl and a boy."
+    },
+    {
+      "id": "a1-u03-d1-l08",
+      "unit": 3,
+      "order": 8,
+      "speaker": "Bontle",
+      "setswana": "Leina la mosimane ke mang?",
+      "english": "What is the boy's name?"
+    },
+    {
+      "id": "a1-u03-d1-l09",
+      "unit": 3,
+      "order": 9,
+      "speaker": "Lesedi",
+      "setswana": "Leina la gagwe ke Thabo.",
+      "english": "His name is Thabo."
+    },
+    {
+      "id": "a1-u03-d1-l10",
+      "unit": 3,
+      "order": 10,
+      "speaker": "Bontle",
+      "setswana": "Go siame. Tsamaya sentle Lesedi!",
+      "english": "Ok then. Go well Lesedi!"
+    },
+    {
+      "id": "a1-u03-d1-l11",
+      "unit": 3,
+      "order": 11,
+      "speaker": "Lesedi",
+      "setswana": "Sala sentle!",
+      "english": "Stay well!"
     }
   ],
   "questions": [
@@ -1671,6 +2489,294 @@
       "answer_alt": null,
       "distractors": "Rra Tau — Neo says Tsamaya sentle to him|Neo — she says Tsamaya sentle|Rra Tau — he says Sala sentle",
       "explanation": "The one staying says Tsamaya sentle; the one leaving replies Sala sentle."
+    },
+    {
+      "id": "a1-u03-q001",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the plural of mosadi?",
+      "answer": "basadi",
+      "answer_alt": null,
+      "distractors": "bamosadi|bosadi|banna",
+      "explanation": "Class 1 mo- becomes class 2 ba-: mosadi → basadi."
+    },
+    {
+      "id": "a1-u03-q002",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the plural of mosetsana?",
+      "answer": "bosetsana",
+      "answer_alt": null,
+      "distractors": "basetsana|bamosetsana|bosimane",
+      "explanation": "1a nouns add bo-: mosetsana → bosetsana."
+    },
+    {
+      "id": "a1-u03-q003",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write the plural of mosimane.",
+      "answer": "bosimane",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "1a noun — the plural adds bo-: mosimane → bosimane."
+    },
+    {
+      "id": "a1-u03-q004",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write the plural of ngwana.",
+      "answer": "bana",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "ngwana → bana is irregular — learn the pair."
+    },
+    {
+      "id": "a1-u03-q005",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you say my child?",
+      "answer": "ngwana wa me",
+      "answer_alt": null,
+      "distractors": "ngwana ba me|ngwana wa gagwe|ngwana me",
+      "explanation": "One person owner: wa + me."
+    },
+    {
+      "id": "a1-u03-q006",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you say her children?",
+      "answer": "bana ba gagwe",
+      "answer_alt": null,
+      "distractors": "bana wa gagwe|bana ba me|bana gagwe",
+      "explanation": "People: ba + gagwe."
+    },
+    {
+      "id": "a1-u03-q007",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you say your mother (to one person)?",
+      "answer": "mmago",
+      "answer_alt": null,
+      "distractors": "mme|mmaagwe|mmemogolo",
+      "explanation": "Kinship has fused forms: mmago = your mother."
+    },
+    {
+      "id": "a1-u03-q008",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write the Setswana for his father.",
+      "answer": "rraagwe",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Fused form: rraagwe = his or her father."
+    },
+    {
+      "id": "a1-u03-q009",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Which pair follows the mo- → ba- plural rule?",
+      "answer": "motho → batho",
+      "answer_alt": null,
+      "distractors": "mosetsana → bosetsana|ngwana → bana|lelapa → malapa",
+      "explanation": "Class 1 mo- takes the class 2 plural ba-."
+    },
+    {
+      "id": "a1-u03-q010",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: ___ yo ke wa me. (this woman is mine)",
+      "answer": "Mosadi",
+      "answer_alt": "mosadi",
+      "distractors": null,
+      "explanation": "Mosadi yo ke wa me. — This woman is mine."
+    },
+    {
+      "id": "a1-u03-q011",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is the plural of motho?",
+      "answer": "batho",
+      "answer_alt": null,
+      "distractors": "botho|bana|bathu",
+      "explanation": "Class 1 mo- → class 2 ba-: motho → batho."
+    },
+    {
+      "id": "a1-u03-q012",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How do you say his wife?",
+      "answer": "mosadi wa gagwe",
+      "answer_alt": null,
+      "distractors": "mosadi wa me|mosadi ba gagwe|mosadi gagwe",
+      "explanation": "One person: wa + gagwe."
+    },
+    {
+      "id": "a1-u03-q013",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Write the Setswana for your father (to one person).",
+      "answer": "rrago",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Fused form: rrago = your father."
+    },
+    {
+      "id": "a1-u03-q014",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is the plural of kgaitsadi?",
+      "answer": "bokgaitsadi",
+      "answer_alt": null,
+      "distractors": "bakgaitsadi|makgaitsadi|dikgaitsadi",
+      "explanation": "1a noun — the plural adds bo-: bokgaitsadi."
+    },
+    {
+      "id": "a1-u03-q015",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does \"Yo ke mmemogolo wa gagwe.\" mean?",
+      "answer": "This is his or her grandmother",
+      "answer_alt": null,
+      "distractors": "This is my grandmother|This is your grandmother|This is his or her grandfather",
+      "explanation": "mmemogolo = grandmother; wa gagwe = his or her."
+    },
+    {
+      "id": "a1-u03-q016",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Write in Setswana: my children",
+      "answer": "bana ba me",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "People owner: ba + me."
+    },
+    {
+      "id": "a1-u03-q017",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "You point at a photo of your own mother. What do you say?",
+      "answer": "Yo ke mme.",
+      "answer_alt": null,
+      "distractors": "Yo ke mmago.|Yo ke mmaagwe.|Yo ke mma.",
+      "explanation": "Talking about your own mother, use the fused form mme."
+    },
+    {
+      "id": "a1-u03-q018",
+      "unit": 3,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: Bana ba ___ ke mosetsana le mosimane. (my)",
+      "answer": "me",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "ba + me = my (people): Bana ba me."
+    },
+    {
+      "id": "a1-u03-q019",
+      "unit": 3,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is Lesedi showing Bontle?",
+      "answer": "A family photo",
+      "answer_alt": null,
+      "distractors": "A bus stop|A market|A school",
+      "explanation": "She says Yo ke lelapa la me — this is my family."
+    },
+    {
+      "id": "a1-u03-q020",
+      "unit": 3,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "How does Lesedi say This is my family? Write her words.",
+      "answer": "Yo ke lelapa la me",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Her words are Yo ke lelapa la me."
+    },
+    {
+      "id": "a1-u03-q021",
+      "unit": 3,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "When Bontle asks \"Yo ke mmago?\", what does Lesedi answer?",
+      "answer": "Ee yo ke mme.",
+      "answer_alt": null,
+      "distractors": "Nnyaa yo ke mmaagwe.|Ee yo ke rre.|Ee yo ke mmago.",
+      "explanation": "Lesedi confirms: yo ke mme — this is my mother."
+    },
+    {
+      "id": "a1-u03-q022",
+      "unit": 3,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which children does Lesedi have?",
+      "answer": "A girl and a boy",
+      "answer_alt": null,
+      "distractors": "Two boys|Two girls|One child",
+      "explanation": "She says Bana ba me ke mosetsana le mosimane."
+    },
+    {
+      "id": "a1-u03-q023",
+      "unit": 3,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Who is Thabo?",
+      "answer": "The boy in the photo",
+      "answer_alt": null,
+      "distractors": "Lesedi's father|Bontle's brother|The grandfather",
+      "explanation": "Lesedi answers about the mosimane: Leina la gagwe ke Thabo."
+    },
+    {
+      "id": "a1-u03-q024",
+      "unit": 3,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Who is leaving at the end and how do you know?",
+      "answer": "Lesedi — Bontle says Tsamaya sentle to her",
+      "answer_alt": null,
+      "distractors": "Bontle — Lesedi says Tsamaya sentle to her|Lesedi — she says Tsamaya sentle|Bontle — she says Sala sentle",
+      "explanation": "The one staying says Tsamaya sentle; Lesedi replies Sala sentle — so she is leaving."
     }
   ]
 }

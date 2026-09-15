@@ -22,3 +22,14 @@ unit,order,type,text_or_setswana,english
 2,11,example,Leina la me ke Neo. Leina la gago ke mang?,My name is Neo. What is your name?
 2,12,example,Nna ke bua Setswana le Sekgoa.,I speak Setswana and English.
 2,13,example,Ga ke tlhaloganye. Bua ka bonya tswee-tswee.,"I don't understand. Speak slowly, please."
+3,1,text,Class 1 nouns for people start with mo-; their class 2 plurals start with ba-: mosadi → basadi. monna → banna. motho → batho.
+3,2,text,Some people nouns (classes 1a/2a) just add bo- for the plural: mosetsana → bosetsana. mosimane → bosimane. kgaitsadi → bokgaitsadi.
+3,3,text,ngwana → bana is irregular — learn the pair as it is.
+3,4,text,"To say something belongs to someone, use wa (one person) or ba (people) + the owner: me (me), gago (you), gagwe (him or her)."
+3,5,text,For one person: ngwana wa me (my child). mosadi wa gagwe (his wife). For people: bana ba me (my children). bana ba gagwe (her children).
+3,6,text,"Kinship does not use wa/ba — it has its own fused forms: mme (my mother), rre (my father), mmago (your mother), rrago (your father), mmaagwe (his or her mother), rraagwe (his or her father)."
+3,7,text,Yo ke… points at someone in a picture: Yo ke mmaagwe. (This is his mother.)
+3,8,example,Yo ke ngwana wa me.,This is my child.
+3,9,example,Bana ba me ke mosetsana le mosimane.,My children are a girl and a boy.
+3,10,example,Yo ke mmaagwe.,This is his mother.
+3,11,example,Mosadi yo ke kgaitsadi wa me.,This woman is my sister.

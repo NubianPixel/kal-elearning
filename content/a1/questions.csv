@@ -37,3 +37,27 @@ a1-u02-q021,2,reading,checkpoint,choice,Where is Neo from?,Gaborone,,Molepolole|
 a1-u02-q022,2,reading,checkpoint,choice,Which languages does Rra Tau speak?,Setswana le Sekgoa,,Setswana fela|Sekgoa fela|Neither language,"He says he speaks Setswana le Sekgoa — Setswana and English."
 a1-u02-q023,2,reading,checkpoint,choice,Why does Neo say Bua ka bonya tswee-tswee?,She does not understand Setswana and wants it slowly,,She is in a hurry|She wants to say goodbye|She cannot hear Rra Tau,Neo says Ga ke tlhaloganye Setswana — she does not understand and asks for slow speech.
 a1-u02-q024,2,reading,checkpoint,choice,Who is leaving at the end and how do you know?,"Neo — Rra Tau says Tsamaya sentle to her",,"Rra Tau — Neo says Tsamaya sentle to him|Neo — she says Tsamaya sentle|Rra Tau — he says Sala sentle",The one staying says Tsamaya sentle; the one leaving replies Sala sentle.
+a1-u03-q001,3,grammar,drill,choice,What is the plural of mosadi?,basadi,,bamosadi|bosadi|banna,Class 1 mo- becomes class 2 ba-: mosadi → basadi.
+a1-u03-q002,3,grammar,drill,choice,What is the plural of mosetsana?,bosetsana,,basetsana|bamosetsana|bosimane,1a nouns add bo-: mosetsana → bosetsana.
+a1-u03-q003,3,grammar,drill,type,Write the plural of mosimane.,bosimane,,,1a noun — the plural adds bo-: mosimane → bosimane.
+a1-u03-q004,3,grammar,drill,type,Write the plural of ngwana.,bana,,,ngwana → bana is irregular — learn the pair.
+a1-u03-q005,3,grammar,drill,choice,How do you say "my child"?,ngwana wa me,,ngwana ba me|ngwana wa gagwe|ngwana me,"One person owner: wa + me."
+a1-u03-q006,3,grammar,drill,choice,How do you say "her children"?,bana ba gagwe,,bana wa gagwe|bana ba me|bana gagwe,"People: ba + gagwe."
+a1-u03-q007,3,grammar,drill,choice,How do you say "your mother" (to one person)?,mmago,,mme|mmaagwe|mmemogolo,Kinship has fused forms: mmago = your mother.
+a1-u03-q008,3,grammar,drill,type,Write the Setswana for "his father".,rraagwe,,,Fused form: rraagwe = his or her father.
+a1-u03-q009,3,grammar,drill,choice,Which pair follows the mo- → ba- plural rule?,motho → batho,,mosetsana → bosetsana|ngwana → bana|lelapa → malapa,Class 1 mo- takes the class 2 plural ba-.
+a1-u03-q010,3,grammar,drill,type,"Fill in: ___ yo ke wa me. (this woman is mine)",Mosadi,mosadi,,Mosadi yo ke wa me. — This woman is mine.
+a1-u03-q011,3,grammar,checkpoint,choice,What is the plural of motho?,batho,,botho|bana|bathu,Class 1 mo- → class 2 ba-: motho → batho.
+a1-u03-q012,3,grammar,checkpoint,choice,How do you say "his wife"?,mosadi wa gagwe,,mosadi wa me|mosadi ba gagwe|mosadi gagwe,"One person: wa + gagwe."
+a1-u03-q013,3,grammar,checkpoint,type,Write the Setswana for "your father" (to one person).,rrago,,,Fused form: rrago = your father.
+a1-u03-q014,3,grammar,checkpoint,choice,What is the plural of kgaitsadi?,bokgaitsadi,,bakgaitsadi|makgaitsadi|dikgaitsadi,1a noun — the plural adds bo-: bokgaitsadi.
+a1-u03-q015,3,grammar,checkpoint,choice,"What does ""Yo ke mmemogolo wa gagwe."" mean?",This is his or her grandmother,,This is my grandmother|This is your grandmother|This is his or her grandfather,mmemogolo = grandmother; wa gagwe = his or her.
+a1-u03-q016,3,grammar,checkpoint,type,Write in Setswana: my children,bana ba me,,,People owner: ba + me.
+a1-u03-q017,3,grammar,checkpoint,choice,You point at a photo of your own mother. What do you say?,Yo ke mme.,,Yo ke mmago.|Yo ke mmaagwe.|Yo ke mma.,"Talking about your own mother, use the fused form mme."
+a1-u03-q018,3,grammar,checkpoint,type,"Fill in: Bana ba ___ ke mosetsana le mosimane. (my)",me,,,ba + me = my (people): Bana ba me.
+a1-u03-q019,3,reading,checkpoint,choice,What is Lesedi showing Bontle?,A family photo,,A bus stop|A market|A school,She says Yo ke lelapa la me — this is my family.
+a1-u03-q020,3,reading,checkpoint,type,How does Lesedi say "This is my family"? Write her words.,Yo ke lelapa la me,,,Her words are Yo ke lelapa la me.
+a1-u03-q021,3,reading,checkpoint,choice,"When Bontle asks ""Yo ke mmago?"", what does Lesedi answer?",Ee yo ke mme.,,Nnyaa yo ke mmaagwe.|Ee yo ke rre.|Ee yo ke mmago.,Lesedi confirms: yo ke mme — this is my mother.
+a1-u03-q022,3,reading,checkpoint,choice,Which children does Lesedi have?,A girl and a boy,,Two boys|Two girls|One child,She says Bana ba me ke mosetsana le mosimane.
+a1-u03-q023,3,reading,checkpoint,choice,Who is Thabo?,The boy in the photo,,Lesedi's father|Bontle's brother|The grandfather,Lesedi answers about the mosimane: Leina la gagwe ke Thabo.
+a1-u03-q024,3,reading,checkpoint,choice,Who is leaving at the end and how do you know?,"Lesedi — Bontle says Tsamaya sentle to her",,"Bontle — Lesedi says Tsamaya sentle to her|Lesedi — she says Tsamaya sentle|Bontle — she says Sala sentle",The one staying says Tsamaya sentle; Lesedi replies Sala sentle — so she is leaving.
