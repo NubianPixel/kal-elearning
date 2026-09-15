@@ -13,7 +13,6 @@ import {
   getXp,
   listLanguages,
   setSetting,
-  THEME_KEY,
 } from './src/db/repositories';
 import HomeScreen from './src/screens/HomeScreen';
 import LearnScreen from './src/screens/LearnScreen';
@@ -26,7 +25,7 @@ import TypingScreen from './src/screens/TypingScreen';
 import TabBar from './src/components/TabBar';
 import AppHeader from './src/components/AppHeader';
 import SplashScreen from './src/components/SplashScreen';
-import { ThemeProvider, useTheme, isThemeName, type ThemeName } from './src/theme';
+import { ThemeProvider, useTheme } from './src/theme';
 import type { Language } from './src/core/types';
 
 type Screen = 'home' | 'learn' | 'review' | 'dashboard' | 'admin' | 'story' | 'revision' | 'typing';
@@ -35,7 +34,7 @@ type Screen = 'home' | 'learn' | 'review' | 'dashboard' | 'admin' | 'story' | 'r
  * App shell. State-based navigation; the dark pill tab bar (with the
  * floating play FAB) and the top bar are ALWAYS visible, so moving
  * between sections feels like one continuous app rather than separate
- * pages. Theme choice is persisted in the settings table.
+ * pages.
  *
  * Privacy: no accounts, no analytics, no trackers — everything is local.
  */
@@ -43,37 +42,20 @@ export default function App() {
   const [db, setDb] = useState<SQLite.SQLiteDatabase | null>(null);
   const [language, setLanguage] = useState<Language | null>(null);
   const [screen, setScreen] = useState<Screen>('home');
-  const [themeName, setThemeName] = useState<ThemeName>('blush');
 
   useEffect(() => {
     (async () => {
       const database = await getDb();
-      // v1 ships with Setswana seeded; additional languages arrive as data.
-      const [langs, savedTheme] = await Promise.all([
+      const [langs] = await Promise.all([
         listLanguages(database),
-        getSetting(database, THEME_KEY),
       ]);
       setDb(database);
       setLanguage(langs[0] ?? null);
-      if (isThemeName(savedTheme)) setThemeName(savedTheme);
     })().catch((e) => console.error('Failed to open database', e));
   }, []);
 
-  const persistTheme = useCallback(
-    (name: ThemeName) => {
-      setThemeName(name);
-      if (db) setSetting(db, THEME_KEY, name).catch(() => undefined);
-    },
-    [db],
-  );
-
   return (
-    // Remounts exactly once, when the persisted theme finishes loading from
-    // DB (db flips null -> set in the same batched update as themeName) —
-    // ThemeProvider's `initial` is only read on ITS first mount, so without
-    // this key it would permanently lock onto the 'blush' default rendered
-    // before the async read resolves. Never remounts again after that.
-    <ThemeProvider key={db ? 'ready' : 'loading'} initial={themeName} onChange={persistTheme}>
+    <ThemeProvider>
       <SafeAreaProvider>
         <Shell db={db} language={language} screen={screen} setScreen={setScreen} />
       </SafeAreaProvider>

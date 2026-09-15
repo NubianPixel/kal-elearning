@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SERIF_FONT_FAMILY, useTheme, type ThemeColors } from '../theme';
@@ -9,6 +9,10 @@ interface Props {
   subtitle?: string;
   /** Optional element rendered on the right of the bar (e.g. streak/XP chip). */
   right?: React.ReactNode;
+  /** When set, the brand badge becomes a back button — stacked screens
+   *  (settings sub-pages, word library…) are navigated from the top bar
+   *  itself so screens never need their own big back+title rows. */
+  onBack?: () => void;
   /** 'display' renders the title as an italic serif for personal-greeting
    *  screens (currently just Home's "Dumela!"); every other screen keeps
    *  the plain bold sans title so shared chrome stays consistent. */
@@ -20,16 +24,27 @@ interface Props {
  * continuous app rather than separate pages. Owns the status-bar inset;
  * screens render their content below it. Theme-aware, always visible.
  */
-export default function AppHeader({ title, subtitle, right, titleVariant = 'default' }: Props) {
+export default function AppHeader({ title, subtitle, right, onBack, titleVariant = 'default' }: Props) {
   const { colors: c } = useTheme();
   const insets = useSafeAreaInsets();
   const styles = makeStyles(c);
 
   return (
     <View style={[styles.bar, { paddingTop: insets.top + 8 }]}>
-      <View style={styles.brand}>
-        <Ionicons name="school" size={20} color={c.onAccent} />
-      </View>
+      {onBack ? (
+        <Pressable
+          onPress={onBack}
+          hitSlop={8}
+          style={[styles.brand, styles.backBtn]}
+          accessibilityLabel="Go back"
+        >
+          <Ionicons name="chevron-back" size={24} color={c.onAccent} />
+        </Pressable>
+      ) : (
+        <View style={styles.brand}>
+          <Ionicons name="school" size={20} color={c.onAccent} />
+        </View>
+      )}
       <View style={styles.titles}>
         <Text
           style={titleVariant === 'display' ? styles.titleDisplay : styles.title}
@@ -77,4 +92,8 @@ const makeStyles = (c: ThemeColors) =>
     },
     subtitle: { fontSize: 13, fontWeight: '600', color: c.muted, marginTop: 1 },
     right: { alignItems: 'center', justifyContent: 'center' },
+    backBtn: {
+      // Keep the same footprint as the brand badge so the bar never shifts
+      // when a stacked screen swaps the logo for a back chevron.
+    },
   });

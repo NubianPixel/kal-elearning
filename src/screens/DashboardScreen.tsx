@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as LocalAuthentication from 'expo-local-authentication';
 import type * as SQLite from 'expo-sqlite';
-import { cardShadow, makeTextStyles, THEMES, THEME_LABELS, THEME_ORDER, useTheme, type ThemeColors, type ThemeName } from '../theme';
+import { cardShadow, makeTextStyles, useTheme, type ThemeColors } from '../theme';
 import { TAB_BAR_SPACE } from '../components/TabBar';
 import ProgressBar from '../components/ProgressBar';
 import { DAILY_GOAL_OPTIONS } from '../core/goals';
@@ -36,7 +36,7 @@ interface Props {
   onManageContent: () => void;
 }
 
-type Section = 'overview' | 'security' | 'difficulty' | 'theme' | 'goal';
+type Section = 'overview' | 'security' | 'difficulty' | 'goal';
 
 const DIFFICULTY_LABELS: Record<DifficultySetting, string> = {
   easy: 'Easy (3 options)',
@@ -80,7 +80,7 @@ export default function DashboardScreen({ db, languageId, onExit, onManageConten
   const [lockAvailable, setLockAvailable] = useState(false);
   const [loadingSetting, setLoadingSetting] = useState(false);
 
-  const { colors: c, name: themeName, setTheme } = useTheme();
+  const { colors: c } = useTheme();
   const styles = useMemo(() => makeStyles(c), [c]);
   const t = useMemo(() => makeTextStyles(c), [c]);
   const insets = useSafeAreaInsets();
@@ -145,12 +145,6 @@ export default function DashboardScreen({ db, languageId, onExit, onManageConten
     [db],
   );
 
-  const updateTheme = useCallback(
-    (value: ThemeName) => {
-      setTheme(value);
-    },
-    [setTheme],
-  );
 
   const toggleLock = useCallback(async () => {
     if (!lockAvailable) return;
@@ -308,15 +302,6 @@ export default function DashboardScreen({ db, languageId, onExit, onManageConten
             colors={c}
           />
           <SettingRow
-            icon="eyedrop-outline"
-            tint={c.primary}
-            soft={c.primarySoft}
-            title="Theme"
-            subtitle={THEME_LABELS[themeName]}
-            onPress={() => setSection('theme')}
-            colors={c}
-          />
-          <SettingRow
             icon="calendar-outline"
             tint={c.primary}
             soft={c.accentSoft}
@@ -389,30 +374,6 @@ export default function DashboardScreen({ db, languageId, onExit, onManageConten
             onChange={updateDifficulty}
             disabled={loadingSetting}
             colors={c}
-          />
-        </SettingPage>
-      )}
-
-      {/* ---- Section: Theme ---- */}
-      {section === 'theme' && (
-        <SettingPage
-          title="Theme"
-          subtitle="Kid-friendly color palette"
-          onBack={() => setSection('overview')}
-          colors={c}
-        >
-          <RadioGroup<ThemeName>
-            options={[...THEME_ORDER]}
-            labels={THEME_LABELS}
-            value={themeName}
-            onChange={updateTheme}
-            disabled={loadingSetting}
-            colors={c}
-            renderOption={(opt) => (
-              <View style={styles.themeOption}>
-                <View style={[styles.themeSwatch, { backgroundColor: THEMES[opt].accent }]} />
-              </View>
-            )}
           />
         </SettingPage>
       )}

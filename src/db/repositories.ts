@@ -439,9 +439,6 @@ export async function getDailyChallengeWords(
 export const DAILY_GOAL_KEY = 'daily_goal';
 export const DEFAULT_DAILY_GOAL = 5;
 
-/** Which of the five palettes (src/theme) is active. */
-export const THEME_KEY = 'theme';
-
 /** Gate the Parent Zone behind Face ID / fingerprint when set to '1'. */
 export const BIOMETRIC_KEY = 'biometric_lock';
 
