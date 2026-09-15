@@ -133,3 +133,27 @@ a1-u06-q021,6,reading,checkpoint,choice,What is the first thing Lesedi names?,A 
 a1-u06-q022,6,reading,checkpoint,choice,What is in the sejana?,Water,,Porridge|Bread|Salt,Lesedi says Ke sejana sa metsi — a cup of water.
 a1-u06-q023,6,reading,checkpoint,choice,Why does Bontle say "Ga ke itse"?,She does not know what the thing is,,She cannot open the door|She does not want to enter|She is leaving,Ga ke itse = I don't know.
 a1-u06-q024,6,reading,checkpoint,choice,What does Lesedi open?,The door,,The cup|The chair|The pot,She answers Bula lebati with Ee ke a e bula.
+a1-u07-q001,7,grammar,drill,choice,How do you say "in town"?,kwa toropong,,kwa toropo|kwa toropoe|mo toropo,toropo takes -ng after kwa: kwa toropong.
+a1-u07-q002,7,grammar,drill,choice,How do you say "at school"?,kwa sekolong,,kwa sekolo|mo sekolo|kwa sekoloe,sekolo takes -ng: kwa sekolong.
+a1-u07-q003,7,grammar,drill,type,"Fill in: mo ___ (in the house) — the house is ntlo.",ntlung,,,ntlo ends in -o: ntlung.
+a1-u07-q004,7,grammar,drill,type,"Fill in: kwa ___ (on the road) — the road is tsela.",tseleng,,,tsela ends in -a: -a becomes -eng — tseleng.
+a1-u07-q005,7,grammar,drill,choice,Which is the exception that takes no -ng?,gae,,toropo|sekolo|tsela,"gae is the exception: kwa gae, ke ya gae."
+a1-u07-q006,7,grammar,drill,choice,How do you say "kwa Gaborone"?,kwa Gaborone — no -ng on place names,,kwa Gaboroneng|mo Gaborone|kwa ga Gaborone,Place names take no -ng.
+a1-u07-q007,7,grammar,drill,choice,How do you ask "Is it near"?,A go gaufi?,,Go gaufi?|O gaufi?|A o gaufi?,A go gaufi? is the fixed question.
+a1-u07-q008,7,grammar,drill,choice,You are looking for a shop. What do you say?,Ke batla lebentlele.,,Lebentlele kae?|O batla lebentlele?|Ke lebentlele.,Learners use Ke batla… to look for a place.
+a1-u07-q009,7,grammar,drill,type,"Fill in: O ___ kae? (where do you live)",dula,,,dula = live: O dula kae?
+a1-u07-q010,7,grammar,drill,type,"Fill in: Tsamaya ka ___. (by bus)",bese,,,ka + the transport: ka bese.
+a1-u07-q011,7,grammar,checkpoint,choice,How do you say "in the house"?,mo ntlung,,mo ntlo|kwa ntlong|mo ntle,ntlo → ntlung after mo.
+a1-u07-q012,7,grammar,checkpoint,choice,How do you say "on the road"?,kwa tseleng,,kwa tsela|mo tsela|kwa tselong,tsela → tseleng (-a → -eng).
+a1-u07-q013,7,grammar,checkpoint,choice,"Someone asks ""O dula kae?"" You live in the village. What do you say?",Ke dula kwa motseng.,,Ke dula kwa motse.|Ke ya motseng.|Ke dula mo motse.,motse → motseng after kwa.
+a1-u07-q014,7,grammar,checkpoint,type,"Fill in: Ke batla lebentlele. A go ___? (is it far?)",kgakala,,,kgakala = far: A go kgakala?
+a1-u07-q015,7,grammar,checkpoint,choice,Which is a correct answer to "O dula kae?"?,Ke dula kwa toropong.,,Ke ya toropong.|Ke dula toropo.|Ke bokae.,Answer with Ke dula + kwa + place -ng.
+a1-u07-q016,7,grammar,checkpoint,type,"Fill in: Ke ya ___ (home — no kwa, no -ng).",gae,,,gae is the exception: ke ya gae.
+a1-u07-q017,7,grammar,checkpoint,choice,Which is the right way to ask for directions?,Botsa tsela.,,Tseleng kae?|Tsela e kae?|Latela eng?,Learners use Ke batla… and Botsa tsela — not where-questions.
+a1-u07-q018,7,grammar,checkpoint,type,"Fill in: A go gaufi? Nnyaa go ___. (far)",kgakala,,,kgakala = far.
+a1-u07-q019,7,reading,checkpoint,choice,What is Naledi looking for?,The hospital,,A shop|A school only|The bus stop,She says Ke batla sepatela.
+a1-u07-q020,7,reading,checkpoint,type,How does Mma Lesego say Naledi should travel on the road? Write her words.,Tsamaya ka tsela e,,,She says Tsamaya ka tsela e — follow this road.
+a1-u07-q021,7,reading,checkpoint,choice,How does Naledi travel?,On foot,,By bus|By car|By taxi,She answers Ka maoto.
+a1-u07-q022,7,reading,checkpoint,choice,Where does Naledi live?,In town (kwa toropong),,In the village|At home|In Gaborone only,She says Ke dula kwa toropong.
+a1-u07-q023,7,reading,checkpoint,choice,What else does Naledi look for and how far is it?,A school — it is far,,A shop — it is near|A bank — it is near|A church — it is far,She asks about the sekolo: Ee go kgakala.
+a1-u07-q024,7,reading,checkpoint,choice,What does Mma Lesego say at the end?,Tsamaya sentle,,Sala sentle|Robala sentle|Ke a leboga,Sepatela visitor leaving — Mma Lesego says Tsamaya sentle.

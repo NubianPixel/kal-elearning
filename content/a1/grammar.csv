@@ -63,3 +63,13 @@ unit,order,type,text_or_setswana,english
 6,8,example,Ke eng? Ga ke itse.,"What is it? I don't know."
 6,9,example,Bula lebati. Tswala lebati.,Open the door. Close the door.
 6,10,example,Bala buka. Kwala leina la gago.,Read a book. Write your name.
+7,1,text,"To say where something is, put kwa or mo before the place and add -ng to it: kwa toropong (in town). mo ntlung (in the house). kwa sekolong (at school). mo tulong (on the seat)."
+7,2,text,"The ending changes: words ending in -a take -eng (tsela → tseleng, noka → nokeng); words ending in -o take -u + -ng (ntlo → ntlung). Exceptions: gae takes no kwa change (kwa gae, ke ya gae) and place names take no -ng (kwa Gaborone)."
+7,3,text,"Near and far: gaufi (near), kgakala (far). A go gaufi? (Is it near?) A go kgakala? (Is it far?)"
+7,4,text,"To find a place, don't ask a where-question with the noun — say Ke batla… (I'm looking for…) or Botsa tsela (ask for the way)."
+7,5,text,O dula kae? asks where someone lives. Answer: Ke dula kwa toropong. (I live in town.)
+7,6,example,Ke batla lebentlele. A go gaufi?,"I'm looking for a shop. Is it near?"
+7,7,example,Ke dula kwa toropong.,I live in town.
+7,8,example,Nnyaa go kgakala. Tsamaya ka bese.,"No, it's far. Go by bus."
+7,9,example,Ke ya kwa sekolong.,I am going to school.
+7,10,example,Ke ya gae.,I am going home.

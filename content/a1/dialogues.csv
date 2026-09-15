@@ -62,3 +62,17 @@ a1-u06-d1-l09,6,9,Bontle,Bula lebati tswee-tswee.,"Open the door, please."
 a1-u06-d1-l10,6,10,Lesedi,Ee ke a e bula.,"Yes, I am opening it."
 a1-u06-d1-l11,6,11,Bontle,Ke a leboga Lesedi. Tsamaya sentle!,"Thank you, Lesedi. Go well!"
 a1-u06-d1-l12,6,12,Lesedi,Sala sentle!,Stay well!
+a1-u07-d1-l01,7,1,Naledi,Dumela mma. Ke batla sepatela. A go gaufi?,"Hello, madam. I'm looking for the hospital. Is it near?"
+a1-u07-d1-l02,7,2,Mma Lesego,Ee go gaufi fela. Tsamaya ka tsela e.,"Yes, it's very near. Follow this road."
+a1-u07-d1-l03,7,3,Naledi,Ke ya kwa toropong?,Am I going towards town?
+a1-u07-d1-l04,7,4,Mma Lesego,Ee. Sepatela e gaufi le kgotla.,"Yes. The hospital is near the kgotla."
+a1-u07-d1-l05,7,5,Naledi,A go kgakala?,Is it far?
+a1-u07-d1-l06,7,6,Mma Lesego,Nnyaa go gaufi fela. O ya ka bese kgotsa ka maoto?,"No, it's very near. Are you going by bus or on foot?"
+a1-u07-d1-l07,7,7,Naledi,Ka maoto.,On foot.
+a1-u07-d1-l08,7,8,Mma Lesego,O dula kae?,Where do you live?
+a1-u07-d1-l09,7,9,Naledi,Ke dula kwa toropong.,I live in town.
+a1-u07-d1-l10,7,10,Mma Lesego,Sepatela mo toropong. O tlaa se bona.,The hospital is in town. You will see it.
+a1-u07-d1-l11,7,11,Naledi,Ke batla sekolo gape. A go kgakala?,"I'm also looking for a school. Is it far?"
+a1-u07-d1-l12,7,12,Mma Lesego,Ee go kgakala. Ya ka bese.,"Yes, it's far. Go by bus."
+a1-u07-d1-l13,7,13,Naledi,Ke a leboga mma!,"Thank you, madam!"
+a1-u07-d1-l14,7,14,Mma Lesego,Go siame. Tsamaya sentle!,"Ok. Go well!"

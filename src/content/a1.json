@@ -41,6 +41,13 @@
       "title_english": "What is it?",
       "can_do": "Name things at home and ask what something is",
       "grammar_title": "Class plurals se-/di- and le-/ma-"
+    },
+    {
+      "unit": 7,
+      "title_setswana": "O ya kae?",
+      "title_english": "Where are you going?",
+      "can_do": "Ask for and give simple directions",
+      "grammar_title": "Locative -ng after kwa/mo"
     }
   ],
   "items": [
@@ -3524,6 +3531,724 @@
       "plural": [],
       "image": null,
       "note": null
+    },
+    {
+      "id": "a1-u07-w001",
+      "unit": 7,
+      "order": 1,
+      "kind": "word",
+      "setswana": "kwa",
+      "setswana_alt": null,
+      "english": [
+        "at",
+        "to (a place)"
+      ],
+      "hint": "away from here",
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "kwa + place; the place word takes -ng: kwa toropong."
+    },
+    {
+      "id": "a1-u07-w002",
+      "unit": 7,
+      "order": 2,
+      "kind": "word",
+      "setswana": "mo",
+      "setswana_alt": null,
+      "english": [
+        "in",
+        "at (a place)"
+      ],
+      "hint": "here or inside",
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "mo + place; the place word takes -ng: mo ntlung."
+    },
+    {
+      "id": "a1-u07-w003",
+      "unit": 7,
+      "order": 3,
+      "kind": "word",
+      "setswana": "gae",
+      "setswana_alt": null,
+      "english": [
+        "home",
+        "at home"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Exception — no -ng: kwa gae. Gae alone means at home."
+    },
+    {
+      "id": "a1-u07-w004",
+      "unit": 7,
+      "order": 4,
+      "kind": "word",
+      "setswana": "ya",
+      "setswana_alt": null,
+      "english": [
+        "go"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Past: Ke ile (I went)."
+    },
+    {
+      "id": "a1-u07-w005",
+      "unit": 7,
+      "order": 5,
+      "kind": "word",
+      "setswana": "botsa",
+      "setswana_alt": null,
+      "english": [
+        "ask"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w006",
+      "unit": 7,
+      "order": 6,
+      "kind": "word",
+      "setswana": "dula",
+      "setswana_alt": null,
+      "english": [
+        "sit",
+        "stay",
+        "live"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w007",
+      "unit": 7,
+      "order": 7,
+      "kind": "word",
+      "setswana": "latela",
+      "setswana_alt": null,
+      "english": [
+        "follow"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w008",
+      "unit": 7,
+      "order": 8,
+      "kind": "word",
+      "setswana": "gaufi",
+      "setswana_alt": null,
+      "english": [
+        "near",
+        "close"
+      ],
+      "hint": null,
+      "pos": "adverb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w009",
+      "unit": 7,
+      "order": 9,
+      "kind": "word",
+      "setswana": "kgakala",
+      "setswana_alt": null,
+      "english": [
+        "far",
+        "be far"
+      ],
+      "hint": null,
+      "pos": "adverb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w010",
+      "unit": 7,
+      "order": 10,
+      "kind": "word",
+      "setswana": "tsela",
+      "setswana_alt": null,
+      "english": [
+        "road",
+        "path"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "ditsela"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w011",
+      "unit": 7,
+      "order": 11,
+      "kind": "word",
+      "setswana": "bese",
+      "setswana_alt": null,
+      "english": [
+        "bus"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dibese"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w012",
+      "unit": 7,
+      "order": 12,
+      "kind": "word",
+      "setswana": "lebentlele",
+      "setswana_alt": null,
+      "english": [
+        "shop"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "mabenkele"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w013",
+      "unit": 7,
+      "order": 13,
+      "kind": "word",
+      "setswana": "kgotla",
+      "setswana_alt": null,
+      "english": [
+        "traditional meeting place",
+        "court"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dikgotla"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w014",
+      "unit": 7,
+      "order": 14,
+      "kind": "word",
+      "setswana": "sepatela",
+      "setswana_alt": null,
+      "english": [
+        "hospital"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dipatela"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w015",
+      "unit": 7,
+      "order": 15,
+      "kind": "word",
+      "setswana": "sekolo",
+      "setswana_alt": null,
+      "english": [
+        "school"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "7",
+      "plural": [
+        "dikolo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w016",
+      "unit": 7,
+      "order": 16,
+      "kind": "word",
+      "setswana": "kereke",
+      "setswana_alt": null,
+      "english": [
+        "church"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dikereke"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w017",
+      "unit": 7,
+      "order": 17,
+      "kind": "word",
+      "setswana": "toropo",
+      "setswana_alt": null,
+      "english": [
+        "city",
+        "town"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "ditoropo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w018",
+      "unit": 7,
+      "order": 18,
+      "kind": "word",
+      "setswana": "motse",
+      "setswana_alt": null,
+      "english": [
+        "village"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "3",
+      "plural": [
+        "metse"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w019",
+      "unit": 7,
+      "order": 19,
+      "kind": "word",
+      "setswana": "banka",
+      "setswana_alt": null,
+      "english": [
+        "bank"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dibanka"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w020",
+      "unit": 7,
+      "order": 20,
+      "kind": "word",
+      "setswana": "poso",
+      "setswana_alt": null,
+      "english": [
+        "post office"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "diposo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w021",
+      "unit": 7,
+      "order": 21,
+      "kind": "word",
+      "setswana": "tulo",
+      "setswana_alt": null,
+      "english": [
+        "place"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "ditulo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w022",
+      "unit": 7,
+      "order": 22,
+      "kind": "word",
+      "setswana": "Gaborone",
+      "setswana_alt": null,
+      "english": [
+        "Gaborone"
+      ],
+      "hint": "the capital city",
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Place names take no -ng: kwa Gaborone."
+    },
+    {
+      "id": "a1-u07-w023",
+      "unit": 7,
+      "order": 23,
+      "kind": "phrase",
+      "setswana": "O ya kae?",
+      "setswana_alt": null,
+      "english": [
+        "where are you going?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w024",
+      "unit": 7,
+      "order": 24,
+      "kind": "phrase",
+      "setswana": "Ke ya…",
+      "setswana_alt": null,
+      "english": [
+        "I am going …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w025",
+      "unit": 7,
+      "order": 25,
+      "kind": "phrase",
+      "setswana": "O dula kae?",
+      "setswana_alt": null,
+      "english": [
+        "where do you live?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w026",
+      "unit": 7,
+      "order": 26,
+      "kind": "phrase",
+      "setswana": "Ke dula…",
+      "setswana_alt": null,
+      "english": [
+        "I live …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w027",
+      "unit": 7,
+      "order": 27,
+      "kind": "phrase",
+      "setswana": "Ke dula kwa…",
+      "setswana_alt": null,
+      "english": [
+        "I live at …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w028",
+      "unit": 7,
+      "order": 28,
+      "kind": "phrase",
+      "setswana": "A go gaufi?",
+      "setswana_alt": null,
+      "english": [
+        "is it near?"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "The way to ask where something is."
+    },
+    {
+      "id": "a1-u07-w029",
+      "unit": 7,
+      "order": 29,
+      "kind": "phrase",
+      "setswana": "A go kgakala?",
+      "setswana_alt": null,
+      "english": [
+        "is it far?"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w030",
+      "unit": 7,
+      "order": 30,
+      "kind": "phrase",
+      "setswana": "Botsa tsela",
+      "setswana_alt": null,
+      "english": [
+        "ask for the way",
+        "ask directions"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w031",
+      "unit": 7,
+      "order": 31,
+      "kind": "phrase",
+      "setswana": "Latela tsela",
+      "setswana_alt": null,
+      "english": [
+        "follow the road"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w032",
+      "unit": 7,
+      "order": 32,
+      "kind": "phrase",
+      "setswana": "Ka bese",
+      "setswana_alt": null,
+      "english": [
+        "by bus"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w033",
+      "unit": 7,
+      "order": 33,
+      "kind": "phrase",
+      "setswana": "Ka maoto",
+      "setswana_alt": null,
+      "english": [
+        "on foot"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w034",
+      "unit": 7,
+      "order": 34,
+      "kind": "phrase",
+      "setswana": "Ka koloi",
+      "setswana_alt": null,
+      "english": [
+        "by car"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w035",
+      "unit": 7,
+      "order": 35,
+      "kind": "phrase",
+      "setswana": "kwa ntle",
+      "setswana_alt": null,
+      "english": [
+        "outside"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w036",
+      "unit": 7,
+      "order": 36,
+      "kind": "phrase",
+      "setswana": "mo teng",
+      "setswana_alt": null,
+      "english": [
+        "inside"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w037",
+      "unit": 7,
+      "order": 37,
+      "kind": "phrase",
+      "setswana": "kwa morago",
+      "setswana_alt": null,
+      "english": [
+        "behind",
+        "at the back"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w038",
+      "unit": 7,
+      "order": 38,
+      "kind": "phrase",
+      "setswana": "kwa pele",
+      "setswana_alt": null,
+      "english": [
+        "in front"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w039",
+      "unit": 7,
+      "order": 39,
+      "kind": "phrase",
+      "setswana": "kwa godimo",
+      "setswana_alt": null,
+      "english": [
+        "above",
+        "up"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u07-w040",
+      "unit": 7,
+      "order": 40,
+      "kind": "phrase",
+      "setswana": "kwa tlase",
+      "setswana_alt": null,
+      "english": [
+        "below",
+        "down"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
     }
   ],
   "grammar": [
@@ -3974,6 +4699,76 @@
       "type": "example",
       "text_or_setswana": "Bala buka. Kwala leina la gago.",
       "english": "Read a book. Write your name."
+    },
+    {
+      "unit": 7,
+      "order": 1,
+      "type": "text",
+      "text_or_setswana": "To say where something is, put kwa or mo before the place and add -ng to it: kwa toropong (in town). mo ntlung (in the house). kwa sekolong (at school). mo tulong (on the seat).",
+      "english": null
+    },
+    {
+      "unit": 7,
+      "order": 2,
+      "type": "text",
+      "text_or_setswana": "The ending changes: words ending in -a take -eng (tsela → tseleng, noka → nokeng); words ending in -o take -u + -ng (ntlo → ntlung). Exceptions: gae takes no kwa change (kwa gae, ke ya gae) and place names take no -ng (kwa Gaborone).",
+      "english": null
+    },
+    {
+      "unit": 7,
+      "order": 3,
+      "type": "text",
+      "text_or_setswana": "Near and far: gaufi (near), kgakala (far). A go gaufi? (Is it near?) A go kgakala? (Is it far?)",
+      "english": null
+    },
+    {
+      "unit": 7,
+      "order": 4,
+      "type": "text",
+      "text_or_setswana": "To find a place, don't ask a where-question with the noun — say Ke batla… (I'm looking for…) or Botsa tsela (ask for the way).",
+      "english": null
+    },
+    {
+      "unit": 7,
+      "order": 5,
+      "type": "text",
+      "text_or_setswana": "O dula kae? asks where someone lives. Answer: Ke dula kwa toropong. (I live in town.)",
+      "english": null
+    },
+    {
+      "unit": 7,
+      "order": 6,
+      "type": "example",
+      "text_or_setswana": "Ke batla lebentlele. A go gaufi?",
+      "english": "I'm looking for a shop. Is it near?"
+    },
+    {
+      "unit": 7,
+      "order": 7,
+      "type": "example",
+      "text_or_setswana": "Ke dula kwa toropong.",
+      "english": "I live in town."
+    },
+    {
+      "unit": 7,
+      "order": 8,
+      "type": "example",
+      "text_or_setswana": "Nnyaa go kgakala. Tsamaya ka bese.",
+      "english": "No, it's far. Go by bus."
+    },
+    {
+      "unit": 7,
+      "order": 9,
+      "type": "example",
+      "text_or_setswana": "Ke ya kwa sekolong.",
+      "english": "I am going to school."
+    },
+    {
+      "unit": 7,
+      "order": 10,
+      "type": "example",
+      "text_or_setswana": "Ke ya gae.",
+      "english": "I am going home."
     }
   ],
   "dialogues": [
@@ -4480,6 +5275,118 @@
       "speaker": "Lesedi",
       "setswana": "Sala sentle!",
       "english": "Stay well!"
+    },
+    {
+      "id": "a1-u07-d1-l01",
+      "unit": 7,
+      "order": 1,
+      "speaker": "Naledi",
+      "setswana": "Dumela mma. Ke batla sepatela. A go gaufi?",
+      "english": "Hello, madam. I'm looking for the hospital. Is it near?"
+    },
+    {
+      "id": "a1-u07-d1-l02",
+      "unit": 7,
+      "order": 2,
+      "speaker": "Mma Lesego",
+      "setswana": "Ee go gaufi fela. Tsamaya ka tsela e.",
+      "english": "Yes, it's very near. Follow this road."
+    },
+    {
+      "id": "a1-u07-d1-l03",
+      "unit": 7,
+      "order": 3,
+      "speaker": "Naledi",
+      "setswana": "Ke ya kwa toropong?",
+      "english": "Am I going towards town?"
+    },
+    {
+      "id": "a1-u07-d1-l04",
+      "unit": 7,
+      "order": 4,
+      "speaker": "Mma Lesego",
+      "setswana": "Ee. Sepatela e gaufi le kgotla.",
+      "english": "Yes. The hospital is near the kgotla."
+    },
+    {
+      "id": "a1-u07-d1-l05",
+      "unit": 7,
+      "order": 5,
+      "speaker": "Naledi",
+      "setswana": "A go kgakala?",
+      "english": "Is it far?"
+    },
+    {
+      "id": "a1-u07-d1-l06",
+      "unit": 7,
+      "order": 6,
+      "speaker": "Mma Lesego",
+      "setswana": "Nnyaa go gaufi fela. O ya ka bese kgotsa ka maoto?",
+      "english": "No, it's very near. Are you going by bus or on foot?"
+    },
+    {
+      "id": "a1-u07-d1-l07",
+      "unit": 7,
+      "order": 7,
+      "speaker": "Naledi",
+      "setswana": "Ka maoto.",
+      "english": "On foot."
+    },
+    {
+      "id": "a1-u07-d1-l08",
+      "unit": 7,
+      "order": 8,
+      "speaker": "Mma Lesego",
+      "setswana": "O dula kae?",
+      "english": "Where do you live?"
+    },
+    {
+      "id": "a1-u07-d1-l09",
+      "unit": 7,
+      "order": 9,
+      "speaker": "Naledi",
+      "setswana": "Ke dula kwa toropong.",
+      "english": "I live in town."
+    },
+    {
+      "id": "a1-u07-d1-l10",
+      "unit": 7,
+      "order": 10,
+      "speaker": "Mma Lesego",
+      "setswana": "Sepatela mo toropong. O tlaa se bona.",
+      "english": "The hospital is in town. You will see it."
+    },
+    {
+      "id": "a1-u07-d1-l11",
+      "unit": 7,
+      "order": 11,
+      "speaker": "Naledi",
+      "setswana": "Ke batla sekolo gape. A go kgakala?",
+      "english": "I'm also looking for a school. Is it far?"
+    },
+    {
+      "id": "a1-u07-d1-l12",
+      "unit": 7,
+      "order": 12,
+      "speaker": "Mma Lesego",
+      "setswana": "Ee go kgakala. Ya ka bese.",
+      "english": "Yes, it's far. Go by bus."
+    },
+    {
+      "id": "a1-u07-d1-l13",
+      "unit": 7,
+      "order": 13,
+      "speaker": "Naledi",
+      "setswana": "Ke a leboga mma!",
+      "english": "Thank you, madam!"
+    },
+    {
+      "id": "a1-u07-d1-l14",
+      "unit": 7,
+      "order": 14,
+      "speaker": "Mma Lesego",
+      "setswana": "Go siame. Tsamaya sentle!",
+      "english": "Ok. Go well!"
     }
   ],
   "questions": [
@@ -6090,6 +6997,294 @@
       "answer_alt": null,
       "distractors": "The cup|The chair|The pot",
       "explanation": "She answers Bula lebati with Ee ke a e bula."
+    },
+    {
+      "id": "a1-u07-q001",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you say in town?",
+      "answer": "kwa toropong",
+      "answer_alt": null,
+      "distractors": "kwa toropo|kwa toropoe|mo toropo",
+      "explanation": "toropo takes -ng after kwa: kwa toropong."
+    },
+    {
+      "id": "a1-u07-q002",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you say at school?",
+      "answer": "kwa sekolong",
+      "answer_alt": null,
+      "distractors": "kwa sekolo|mo sekolo|kwa sekoloe",
+      "explanation": "sekolo takes -ng: kwa sekolong."
+    },
+    {
+      "id": "a1-u07-q003",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: mo ___ (in the house) — the house is ntlo.",
+      "answer": "ntlung",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "ntlo ends in -o: ntlung."
+    },
+    {
+      "id": "a1-u07-q004",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: kwa ___ (on the road) — the road is tsela.",
+      "answer": "tseleng",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "tsela ends in -a: -a becomes -eng — tseleng."
+    },
+    {
+      "id": "a1-u07-q005",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Which is the exception that takes no -ng?",
+      "answer": "gae",
+      "answer_alt": null,
+      "distractors": "toropo|sekolo|tsela",
+      "explanation": "gae is the exception: kwa gae, ke ya gae."
+    },
+    {
+      "id": "a1-u07-q006",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you say kwa Gaborone?",
+      "answer": "kwa Gaborone — no -ng on place names",
+      "answer_alt": null,
+      "distractors": "kwa Gaboroneng|mo Gaborone|kwa ga Gaborone",
+      "explanation": "Place names take no -ng."
+    },
+    {
+      "id": "a1-u07-q007",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you ask Is it near?",
+      "answer": "A go gaufi?",
+      "answer_alt": null,
+      "distractors": "Go gaufi?|O gaufi?|A o gaufi?",
+      "explanation": "A go gaufi? is the fixed question."
+    },
+    {
+      "id": "a1-u07-q008",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "You are looking for a shop. What do you say?",
+      "answer": "Ke batla lebentlele.",
+      "answer_alt": null,
+      "distractors": "Lebentlele kae?|O batla lebentlele?|Ke lebentlele.",
+      "explanation": "Learners use Ke batla… to look for a place."
+    },
+    {
+      "id": "a1-u07-q009",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: O ___ kae? (where do you live)",
+      "answer": "dula",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "dula = live: O dula kae?"
+    },
+    {
+      "id": "a1-u07-q010",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: Tsamaya ka ___. (by bus)",
+      "answer": "bese",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "ka + the transport: ka bese."
+    },
+    {
+      "id": "a1-u07-q011",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How do you say in the house?",
+      "answer": "mo ntlung",
+      "answer_alt": null,
+      "distractors": "mo ntlo|kwa ntlong|mo ntle",
+      "explanation": "ntlo → ntlung after mo."
+    },
+    {
+      "id": "a1-u07-q012",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How do you say on the road?",
+      "answer": "kwa tseleng",
+      "answer_alt": null,
+      "distractors": "kwa tsela|mo tsela|kwa tselong",
+      "explanation": "tsela → tseleng (-a → -eng)."
+    },
+    {
+      "id": "a1-u07-q013",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Someone asks \"O dula kae?\" You live in the village. What do you say?",
+      "answer": "Ke dula kwa motseng.",
+      "answer_alt": null,
+      "distractors": "Ke dula kwa motse.|Ke ya motseng.|Ke dula mo motse.",
+      "explanation": "motse → motseng after kwa."
+    },
+    {
+      "id": "a1-u07-q014",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: Ke batla lebentlele. A go ___? (is it far?)",
+      "answer": "kgakala",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "kgakala = far: A go kgakala?"
+    },
+    {
+      "id": "a1-u07-q015",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which is a correct answer to O dula kae??",
+      "answer": "Ke dula kwa toropong.",
+      "answer_alt": null,
+      "distractors": "Ke ya toropong.|Ke dula toropo.|Ke bokae.",
+      "explanation": "Answer with Ke dula + kwa + place -ng."
+    },
+    {
+      "id": "a1-u07-q016",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: Ke ya ___ (home — no kwa, no -ng).",
+      "answer": "gae",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "gae is the exception: ke ya gae."
+    },
+    {
+      "id": "a1-u07-q017",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which is the right way to ask for directions?",
+      "answer": "Botsa tsela.",
+      "answer_alt": null,
+      "distractors": "Tseleng kae?|Tsela e kae?|Latela eng?",
+      "explanation": "Learners use Ke batla… and Botsa tsela — not where-questions."
+    },
+    {
+      "id": "a1-u07-q018",
+      "unit": 7,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: A go gaufi? Nnyaa go ___. (far)",
+      "answer": "kgakala",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "kgakala = far."
+    },
+    {
+      "id": "a1-u07-q019",
+      "unit": 7,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is Naledi looking for?",
+      "answer": "The hospital",
+      "answer_alt": null,
+      "distractors": "A shop|A school only|The bus stop",
+      "explanation": "She says Ke batla sepatela."
+    },
+    {
+      "id": "a1-u07-q020",
+      "unit": 7,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "How does Mma Lesego say Naledi should travel on the road? Write her words.",
+      "answer": "Tsamaya ka tsela e",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "She says Tsamaya ka tsela e — follow this road."
+    },
+    {
+      "id": "a1-u07-q021",
+      "unit": 7,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How does Naledi travel?",
+      "answer": "On foot",
+      "answer_alt": null,
+      "distractors": "By bus|By car|By taxi",
+      "explanation": "She answers Ka maoto."
+    },
+    {
+      "id": "a1-u07-q022",
+      "unit": 7,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Where does Naledi live?",
+      "answer": "In town (kwa toropong)",
+      "answer_alt": null,
+      "distractors": "In the village|At home|In Gaborone only",
+      "explanation": "She says Ke dula kwa toropong."
+    },
+    {
+      "id": "a1-u07-q023",
+      "unit": 7,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What else does Naledi look for and how far is it?",
+      "answer": "A school — it is far",
+      "answer_alt": null,
+      "distractors": "A shop — it is near|A bank — it is near|A church — it is far",
+      "explanation": "She asks about the sekolo: Ee go kgakala."
+    },
+    {
+      "id": "a1-u07-q024",
+      "unit": 7,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does Mma Lesego say at the end?",
+      "answer": "Tsamaya sentle",
+      "answer_alt": null,
+      "distractors": "Sala sentle|Robala sentle|Ke a leboga",
+      "explanation": "Sepatela visitor leaving — Mma Lesego says Tsamaya sentle."
     }
   ]
 }
