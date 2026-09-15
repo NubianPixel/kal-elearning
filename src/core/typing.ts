@@ -38,14 +38,11 @@ export function gradeTypedAnswer(correct: string, typed: string): TypedVerdict {
 
   if (want === got) return { grade: 'exact', correct: true, score: 1 };
 
-  // The whole answer appears inside what they typed ("Hello there").
-  if (got.includes(want)) return { grade: 'exact', correct: true, score: 1 };
-
-  // The single-word answer appears as one whole word in the sentence.
-  const wantWords = want.split(' ');
-  if (wantWords.length === 1 && got.split(' ').includes(want)) {
-    return { grade: 'exact', correct: true, score: 1 };
-  }
+  // The answer appears as a whole word (or whole phrase) inside what they
+  // typed ("it means hello" for "hello"). Word-bounded, not a raw substring
+  // test — "eee" must not match "ee", only " ee " inside " eee " would, and
+  // it doesn't.
+  if (` ${got} `.includes(` ${want} `)) return { grade: 'exact', correct: true, score: 1 };
 
   const score = similarity(got, want);
   if (score >= EXACT_THRESHOLD) return { grade: 'exact', correct: true, score };

@@ -45,6 +45,13 @@ describe('gradeTypedAnswer', () => {
     expect(gradeTypedAnswer('hello', '   ').correct).toBe(false);
   });
 
+  it('does not accept the answer as a raw substring inside a longer word (audit bug)', () => {
+    // "eee" contains "ee" as a substring but is not the word "ee".
+    expect(gradeTypedAnswer('Ee', 'eee').correct).toBe(false);
+    // "concatenate" contains "cat" but never means "cat".
+    expect(gradeTypedAnswer('cat', 'concatenate').correct).toBe(false);
+  });
+
   it('reports a 0..1 similarity score', () => {
     expect(gradeTypedAnswer('hello', 'hello').score).toBe(1);
     expect(gradeTypedAnswer('hello', 'cold').score).toBeLessThan(0.72);
