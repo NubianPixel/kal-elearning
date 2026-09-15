@@ -43,3 +43,13 @@ unit,order,type,text_or_setswana,english
 4,8,example,Ga ke nwe tee. Ke nwa kofi.,"I don't drink tea. I drink coffee."
 4,9,example,A o ja nama? Nnyaa ga ke je nama.,"Do you eat meat? No, I don't eat meat."
 4,10,example,Re batla bogobe le morogo.,We want porridge and greens.
+5,1,text,Counting: nngwe (1). pedi (2). tharo (3). nne (4). tlhano (5). tshela (6). supa (7). robedi (8). robongwe (9). shome (10).
+5,2,text,"Eleven is lesome le nngwe — ten and one. The tens are masome a + the class 6 form: masome a mabedi (20). masome a mararo (30). masome a mane (40). masome a matlhano (50) … up to lekgolo (100)."
+5,3,text,"To say how many of a class 10 noun, use noun + di le + number: dipula di le pedi (two pula). dingwaga di le nne (four years)."
+5,4,text,Ke bokae? asks the price: Ke bokae? (How much is it?)
+5,5,text,"Age: O na le dingwaga di le kae? (How old are you?) Ke na le dingwaga di le tlhano. (I am five years old.)"
+5,6,text,thata = a lot. tsotlhe = all. nngwe fela = only one.
+5,7,example,Ke bokae? Dipula di le tlhano.,How much is it? Five pula.
+5,8,example,Dipula di le pedi.,Two pula.
+5,9,example,O na le dingwaga di le kae? Ke na le dingwaga di le robedi.,How old are you? I am eight years old.
+5,10,example,Ke reka lerotse le apole.,I am buying a sweet melon and an apple.

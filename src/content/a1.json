@@ -27,6 +27,13 @@
       "title_english": "What I want",
       "can_do": "Say what you want and what you don't",
       "grammar_title": "Negation ga ke … with final -a → -e"
+    },
+    {
+      "unit": 5,
+      "title_setswana": "Ke bokae?",
+      "title_english": "How much?",
+      "can_do": "Count, give your age, and ask prices",
+      "grammar_title": "Quantity pattern di le with class 10 nouns"
     }
   ],
   "items": [
@@ -2176,6 +2183,647 @@
       "plural": [],
       "image": null,
       "note": "re follows the same rule: ga re + -e."
+    },
+    {
+      "id": "a1-u05-w001",
+      "unit": 5,
+      "order": 1,
+      "kind": "word",
+      "setswana": "nngwe",
+      "setswana_alt": null,
+      "english": [
+        "one"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w002",
+      "unit": 5,
+      "order": 2,
+      "kind": "word",
+      "setswana": "pedi",
+      "setswana_alt": null,
+      "english": [
+        "two"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w003",
+      "unit": 5,
+      "order": 3,
+      "kind": "word",
+      "setswana": "tharo",
+      "setswana_alt": null,
+      "english": [
+        "three"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w004",
+      "unit": 5,
+      "order": 4,
+      "kind": "word",
+      "setswana": "nne",
+      "setswana_alt": null,
+      "english": [
+        "four"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w005",
+      "unit": 5,
+      "order": 5,
+      "kind": "word",
+      "setswana": "tlhano",
+      "setswana_alt": null,
+      "english": [
+        "five"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w006",
+      "unit": 5,
+      "order": 6,
+      "kind": "word",
+      "setswana": "tshela",
+      "setswana_alt": null,
+      "english": [
+        "six"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w007",
+      "unit": 5,
+      "order": 7,
+      "kind": "word",
+      "setswana": "supa",
+      "setswana_alt": null,
+      "english": [
+        "seven"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w008",
+      "unit": 5,
+      "order": 8,
+      "kind": "word",
+      "setswana": "robedi",
+      "setswana_alt": null,
+      "english": [
+        "eight"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w009",
+      "unit": 5,
+      "order": 9,
+      "kind": "word",
+      "setswana": "robongwe",
+      "setswana_alt": null,
+      "english": [
+        "nine"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w010",
+      "unit": 5,
+      "order": 10,
+      "kind": "word",
+      "setswana": "shome",
+      "setswana_alt": null,
+      "english": [
+        "ten"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w011",
+      "unit": 5,
+      "order": 11,
+      "kind": "word",
+      "setswana": "lesome le nngwe",
+      "setswana_alt": null,
+      "english": [
+        "eleven"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "lesome le nngwe = ten and one (lesome = ten)."
+    },
+    {
+      "id": "a1-u05-w012",
+      "unit": 5,
+      "order": 12,
+      "kind": "word",
+      "setswana": "masome a mabedi",
+      "setswana_alt": null,
+      "english": [
+        "twenty"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "masome = tens; a mabedi is the class 6 form of two."
+    },
+    {
+      "id": "a1-u05-w013",
+      "unit": 5,
+      "order": 13,
+      "kind": "word",
+      "setswana": "masome a mararo",
+      "setswana_alt": null,
+      "english": [
+        "thirty"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w014",
+      "unit": 5,
+      "order": 14,
+      "kind": "word",
+      "setswana": "masome a mane",
+      "setswana_alt": null,
+      "english": [
+        "forty"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w015",
+      "unit": 5,
+      "order": 15,
+      "kind": "word",
+      "setswana": "masome a matlhano",
+      "setswana_alt": null,
+      "english": [
+        "fifty"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w016",
+      "unit": 5,
+      "order": 16,
+      "kind": "word",
+      "setswana": "masome a matshela",
+      "setswana_alt": null,
+      "english": [
+        "sixty"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w017",
+      "unit": 5,
+      "order": 17,
+      "kind": "word",
+      "setswana": "masome a masupa",
+      "setswana_alt": null,
+      "english": [
+        "seventy"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w018",
+      "unit": 5,
+      "order": 18,
+      "kind": "word",
+      "setswana": "masome a marobedi",
+      "setswana_alt": null,
+      "english": [
+        "eighty"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w019",
+      "unit": 5,
+      "order": 19,
+      "kind": "word",
+      "setswana": "masome a marobongwe",
+      "setswana_alt": null,
+      "english": [
+        "ninety"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w020",
+      "unit": 5,
+      "order": 20,
+      "kind": "word",
+      "setswana": "lekgolo",
+      "setswana_alt": null,
+      "english": [
+        "one hundred"
+      ],
+      "hint": null,
+      "pos": "number",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w021",
+      "unit": 5,
+      "order": 21,
+      "kind": "word",
+      "setswana": "bokae",
+      "setswana_alt": null,
+      "english": [
+        "how much",
+        "how many"
+      ],
+      "hint": "the price question word",
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w022",
+      "unit": 5,
+      "order": 22,
+      "kind": "word",
+      "setswana": "pula",
+      "setswana_alt": null,
+      "english": [
+        "pula",
+        "money"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dipula"
+      ],
+      "image": null,
+      "note": "The name of Botswana's money; 100 thebe = 1 pula."
+    },
+    {
+      "id": "a1-u05-w023",
+      "unit": 5,
+      "order": 23,
+      "kind": "word",
+      "setswana": "dipula",
+      "setswana_alt": null,
+      "english": [
+        "pula (plural money)"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "10",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w024",
+      "unit": 5,
+      "order": 24,
+      "kind": "word",
+      "setswana": "thebe",
+      "setswana_alt": null,
+      "english": [
+        "thebe",
+        "cent"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dithebe"
+      ],
+      "image": null,
+      "note": "100 thebe = one pula."
+    },
+    {
+      "id": "a1-u05-w025",
+      "unit": 5,
+      "order": 25,
+      "kind": "word",
+      "setswana": "ngwaga",
+      "setswana_alt": null,
+      "english": [
+        "year"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dingwaga"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w026",
+      "unit": 5,
+      "order": 26,
+      "kind": "word",
+      "setswana": "dingwaga",
+      "setswana_alt": null,
+      "english": [
+        "years"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "10",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w027",
+      "unit": 5,
+      "order": 27,
+      "kind": "word",
+      "setswana": "madi",
+      "setswana_alt": null,
+      "english": [
+        "money"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "6",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w028",
+      "unit": 5,
+      "order": 28,
+      "kind": "word",
+      "setswana": "thata",
+      "setswana_alt": null,
+      "english": [
+        "much",
+        "a lot",
+        "very"
+      ],
+      "hint": null,
+      "pos": "adverb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Follows the word: madi thata (a lot of money)."
+    },
+    {
+      "id": "a1-u05-w029",
+      "unit": 5,
+      "order": 29,
+      "kind": "word",
+      "setswana": "tsotlhe",
+      "setswana_alt": null,
+      "english": [
+        "all",
+        "everything"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w030",
+      "unit": 5,
+      "order": 30,
+      "kind": "phrase",
+      "setswana": "O reka eng?",
+      "setswana_alt": null,
+      "english": [
+        "what are you buying?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w031",
+      "unit": 5,
+      "order": 31,
+      "kind": "phrase",
+      "setswana": "Ke na le…",
+      "setswana_alt": null,
+      "english": [
+        "I have …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Fixed phrase for now; explained in Unit 9."
+    },
+    {
+      "id": "a1-u05-w032",
+      "unit": 5,
+      "order": 32,
+      "kind": "phrase",
+      "setswana": "Ke na le dingwaga di le…",
+      "setswana_alt": null,
+      "english": [
+        "I am … years old"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Quantity pattern with dingwaga (years)."
+    },
+    {
+      "id": "a1-u05-w033",
+      "unit": 5,
+      "order": 33,
+      "kind": "phrase",
+      "setswana": "O na le dingwaga di le kae?",
+      "setswana_alt": null,
+      "english": [
+        "how old are you?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w034",
+      "unit": 5,
+      "order": 34,
+      "kind": "phrase",
+      "setswana": "dipula di le pedi",
+      "setswana_alt": null,
+      "english": [
+        "two pula"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Quantity pattern: class 10 noun + di le + number."
+    },
+    {
+      "id": "a1-u05-w035",
+      "unit": 5,
+      "order": 35,
+      "kind": "phrase",
+      "setswana": "dingwaga di le nne",
+      "setswana_alt": null,
+      "english": [
+        "four years"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u05-w036",
+      "unit": 5,
+      "order": 36,
+      "kind": "phrase",
+      "setswana": "nngwe fela",
+      "setswana_alt": null,
+      "english": [
+        "only one"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "fela = only; it follows the word."
+    },
+    {
+      "id": "a1-u05-w037",
+      "unit": 5,
+      "order": 37,
+      "kind": "phrase",
+      "setswana": "Ke bokae?",
+      "setswana_alt": null,
+      "english": [
+        "how much is it?"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
     }
   ],
   "grammar": [
@@ -2486,6 +3134,76 @@
       "type": "example",
       "text_or_setswana": "Re batla bogobe le morogo.",
       "english": "We want porridge and greens."
+    },
+    {
+      "unit": 5,
+      "order": 1,
+      "type": "text",
+      "text_or_setswana": "Counting: nngwe (1). pedi (2). tharo (3). nne (4). tlhano (5). tshela (6). supa (7). robedi (8). robongwe (9). shome (10).",
+      "english": null
+    },
+    {
+      "unit": 5,
+      "order": 2,
+      "type": "text",
+      "text_or_setswana": "Eleven is lesome le nngwe — ten and one. The tens are masome a + the class 6 form: masome a mabedi (20). masome a mararo (30). masome a mane (40). masome a matlhano (50) … up to lekgolo (100).",
+      "english": null
+    },
+    {
+      "unit": 5,
+      "order": 3,
+      "type": "text",
+      "text_or_setswana": "To say how many of a class 10 noun, use noun + di le + number: dipula di le pedi (two pula). dingwaga di le nne (four years).",
+      "english": null
+    },
+    {
+      "unit": 5,
+      "order": 4,
+      "type": "text",
+      "text_or_setswana": "Ke bokae? asks the price: Ke bokae? (How much is it?)",
+      "english": null
+    },
+    {
+      "unit": 5,
+      "order": 5,
+      "type": "text",
+      "text_or_setswana": "Age: O na le dingwaga di le kae? (How old are you?) Ke na le dingwaga di le tlhano. (I am five years old.)",
+      "english": null
+    },
+    {
+      "unit": 5,
+      "order": 6,
+      "type": "text",
+      "text_or_setswana": "thata = a lot. tsotlhe = all. nngwe fela = only one.",
+      "english": null
+    },
+    {
+      "unit": 5,
+      "order": 7,
+      "type": "example",
+      "text_or_setswana": "Ke bokae? Dipula di le tlhano.",
+      "english": "How much is it? Five pula."
+    },
+    {
+      "unit": 5,
+      "order": 8,
+      "type": "example",
+      "text_or_setswana": "Dipula di le pedi.",
+      "english": "Two pula."
+    },
+    {
+      "unit": 5,
+      "order": 9,
+      "type": "example",
+      "text_or_setswana": "O na le dingwaga di le kae? Ke na le dingwaga di le robedi.",
+      "english": "How old are you? I am eight years old."
+    },
+    {
+      "unit": 5,
+      "order": 10,
+      "type": "example",
+      "text_or_setswana": "Ke reka lerotse le apole.",
+      "english": "I am buying a sweet melon and an apple."
     }
   ],
   "dialogues": [
@@ -2800,6 +3518,102 @@
       "speaker": "Mma Kefilwe",
       "setswana": "Go siame.",
       "english": "Ok then."
+    },
+    {
+      "id": "a1-u05-d1-l01",
+      "unit": 5,
+      "order": 1,
+      "speaker": "Rra Tiro",
+      "setswana": "Dumelang! O batla eng?",
+      "english": "Hello all! What do you want?"
+    },
+    {
+      "id": "a1-u05-d1-l02",
+      "unit": 5,
+      "order": 2,
+      "speaker": "Naledi",
+      "setswana": "Dumela rra. Ke batla lerotse. Ke bokae?",
+      "english": "Hello sir. I want a sweet melon. How much is it?"
+    },
+    {
+      "id": "a1-u05-d1-l03",
+      "unit": 5,
+      "order": 3,
+      "speaker": "Rra Tiro",
+      "setswana": "Dipula di le tlhano.",
+      "english": "Five pula."
+    },
+    {
+      "id": "a1-u05-d1-l04",
+      "unit": 5,
+      "order": 4,
+      "speaker": "Naledi",
+      "setswana": "Ee ke a reka.",
+      "english": "Yes I am buying it."
+    },
+    {
+      "id": "a1-u05-d1-l05",
+      "unit": 5,
+      "order": 5,
+      "speaker": "Rra Tiro",
+      "setswana": "O batla eng gape?",
+      "english": "What else do you want?"
+    },
+    {
+      "id": "a1-u05-d1-l06",
+      "unit": 5,
+      "order": 6,
+      "speaker": "Naledi",
+      "setswana": "Ke batla metsi le borotho.",
+      "english": "I want water and bread."
+    },
+    {
+      "id": "a1-u05-d1-l07",
+      "unit": 5,
+      "order": 7,
+      "speaker": "Rra Tiro",
+      "setswana": "Borotho ke dipula di le tharo.",
+      "english": "Bread is three pula."
+    },
+    {
+      "id": "a1-u05-d1-l08",
+      "unit": 5,
+      "order": 8,
+      "speaker": "Naledi",
+      "setswana": "Go siame ke a reka.",
+      "english": "Ok, I am buying it."
+    },
+    {
+      "id": "a1-u05-d1-l09",
+      "unit": 5,
+      "order": 9,
+      "speaker": "Naledi",
+      "setswana": "Rra o na le dingwaga di le kae?",
+      "english": "Sir how old are you?"
+    },
+    {
+      "id": "a1-u05-d1-l10",
+      "unit": 5,
+      "order": 10,
+      "speaker": "Rra Tiro",
+      "setswana": "Ke na le dingwaga di le masome a matlhano.",
+      "english": "I am fifty years old."
+    },
+    {
+      "id": "a1-u05-d1-l11",
+      "unit": 5,
+      "order": 11,
+      "speaker": "Naledi",
+      "setswana": "Ke a leboga rra. Tsamaya sentle!",
+      "english": "Thank you, sir. Go well!"
+    },
+    {
+      "id": "a1-u05-d1-l12",
+      "unit": 5,
+      "order": 12,
+      "speaker": "Rra Tiro",
+      "setswana": "Sala sentle!",
+      "english": "Stay well!"
     }
   ],
   "questions": [
@@ -3834,6 +4648,294 @@
       "answer_alt": null,
       "distractors": "Tumelo — O batla eng?|Mma Kefilwe — Ke lapile|Tumelo — Ke batla nama",
       "explanation": "Mma Kefilwe greets and asks O batla eng?"
+    },
+    {
+      "id": "a1-u05-q001",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Which word means two?",
+      "answer": "pedi",
+      "answer_alt": null,
+      "distractors": "tharo|nne|shome",
+      "explanation": "pedi = two."
+    },
+    {
+      "id": "a1-u05-q002",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write the number 7 in Setswana.",
+      "answer": "supa",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "supa = seven."
+    },
+    {
+      "id": "a1-u05-q003",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Which means eleven?",
+      "answer": "lesome le nngwe",
+      "answer_alt": null,
+      "distractors": "masome a nngwe|lesome le pedi|shome le nngwe",
+      "explanation": "lesome le nngwe = ten and one."
+    },
+    {
+      "id": "a1-u05-q004",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Which means twenty?",
+      "answer": "masome a mabedi",
+      "answer_alt": null,
+      "distractors": "masome a pedi|lesome le mabedi|masome a mabedi le nngwe",
+      "explanation": "Twenty is masome a mabedi."
+    },
+    {
+      "id": "a1-u05-q005",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"dipula di le nne\" mean?",
+      "answer": "Four pula",
+      "answer_alt": null,
+      "distractors": "Four years|Two pula|Ten pula",
+      "explanation": "Quantity pattern: dipula (pula) + di le + nne (four)."
+    },
+    {
+      "id": "a1-u05-q006",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Ke na le madi\" mean?",
+      "answer": "I have money",
+      "answer_alt": null,
+      "distractors": "I don't have money|How much money?|Buy money",
+      "explanation": "Ke na le… = I have…"
+    },
+    {
+      "id": "a1-u05-q007",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you ask someone's age?",
+      "answer": "O na le dingwaga di le kae?",
+      "answer_alt": null,
+      "distractors": "O kae?|O tswa kae?|O na le madi?",
+      "explanation": "dingwaga = years; kae asks the number."
+    },
+    {
+      "id": "a1-u05-q008",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write the number 3 in Setswana.",
+      "answer": "tharo",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "tharo = three."
+    },
+    {
+      "id": "a1-u05-q009",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: Dingwaga ___ le tlhano. (five years)",
+      "answer": "di",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Quantity pattern: noun + di le + number."
+    },
+    {
+      "id": "a1-u05-q010",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Which means one hundred?",
+      "answer": "lekgolo",
+      "answer_alt": null,
+      "distractors": "shome|lesome le nngwe|masome a mabedi",
+      "explanation": "lekgolo = 100."
+    },
+    {
+      "id": "a1-u05-q011",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which word means five?",
+      "answer": "tlhano",
+      "answer_alt": null,
+      "distractors": "tshela|nne|nngwe",
+      "explanation": "tlhano = five."
+    },
+    {
+      "id": "a1-u05-q012",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which means forty?",
+      "answer": "masome a mane",
+      "answer_alt": null,
+      "distractors": "masome a nne|mane|masome a mane le nngwe",
+      "explanation": "Forty is masome a mane."
+    },
+    {
+      "id": "a1-u05-q013",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does \"dipula di le shome\" mean?",
+      "answer": "Ten pula",
+      "answer_alt": null,
+      "distractors": "Two pula|Ten years|Five pula",
+      "explanation": "shome = ten; dipula = pula."
+    },
+    {
+      "id": "a1-u05-q014",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Write in Setswana: six years.",
+      "answer": "dingwaga di le tshela",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "dingwaga (years) + di le + tshela (six)."
+    },
+    {
+      "id": "a1-u05-q015",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Someone asks \"O na le dingwaga di le kae?\" You are ten. What do you say?",
+      "answer": "Ke na le dingwaga di le shome.",
+      "answer_alt": null,
+      "distractors": "Ke bokae shome.|Ke na le shome kae.|Ke na le dingwaga kae.",
+      "explanation": "Answer with the same pattern: Ke na le dingwaga di le shome."
+    },
+    {
+      "id": "a1-u05-q016",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "You want to buy something. What do you ask?",
+      "answer": "Ke bokae?",
+      "answer_alt": null,
+      "distractors": "O bokae?|Kae bokae?|Ee bokae?",
+      "explanation": "Ke bokae? = how much is it?"
+    },
+    {
+      "id": "a1-u05-q017",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does tsotlhe mean?",
+      "answer": "All | everything",
+      "answer_alt": null,
+      "distractors": "Only one|A lot|Or",
+      "explanation": "tsotlhe = all."
+    },
+    {
+      "id": "a1-u05-q018",
+      "unit": 5,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: Dipula di ___ pedi. (two pula)",
+      "answer": "le",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Quantity pattern: noun + di le + number."
+    },
+    {
+      "id": "a1-u05-q019",
+      "unit": 5,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Where does this dialogue happen?",
+      "answer": "At a market stall",
+      "answer_alt": null,
+      "distractors": "At a restaurant|At a bus stop|At school",
+      "explanation": "Rra Tiro sells things and answers prices."
+    },
+    {
+      "id": "a1-u05-q020",
+      "unit": 5,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "What does Naledi want first? Write her words.",
+      "answer": "Ke batla lerotse",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "She says Ke batla lerotse — I want a sweet melon."
+    },
+    {
+      "id": "a1-u05-q021",
+      "unit": 5,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How much is the lerotse?",
+      "answer": "Five pula",
+      "answer_alt": null,
+      "distractors": "Three pula|Five thebe|Two pula",
+      "explanation": "Rra Tiro says Dipula di le tlhano."
+    },
+    {
+      "id": "a1-u05-q022",
+      "unit": 5,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What else does Naledi buy?",
+      "answer": "Water and bread",
+      "answer_alt": null,
+      "distractors": "Fruit and porridge|Meat and morogo|Nothing",
+      "explanation": "She says Ke batla metsi le borotho."
+    },
+    {
+      "id": "a1-u05-q023",
+      "unit": 5,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How old is Rra Tiro?",
+      "answer": "Fifty",
+      "answer_alt": null,
+      "distractors": "Thirty|Five|He does not say",
+      "explanation": "He says Ke na le dingwaga di le masome a matlhano."
+    },
+    {
+      "id": "a1-u05-q024",
+      "unit": 5,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How does the seller greet?",
+      "answer": "Dumelang — to more than one person",
+      "answer_alt": null,
+      "distractors": "Dumela — to more than one person|Tsamaya sentle|Robala sentle",
+      "explanation": "Dumelang is the plural greeting (Le batla eng also uses le)."
     }
   ]
 }

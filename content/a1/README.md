@@ -1,10 +1,12 @@
 # A1 content — family authoring guide
 
-> **Unit 1–4 Setswana text was drafted by an AI that does not speak
+> **Unit 1–5 Setswana text was drafted by an AI that does not speak
 > Setswana.** Unit 1 was reviewed by the project owner on 2026-09-15;
-> Units 2–4 (drafted 2026-09-16) are awaiting that review. Everything still
-> needs the independent Botswana-standard review before release. Later
-> units need the same checks as they're written.
+> Units 2–5 (drafted 2026-09-16) are awaiting that review. The tens 60–90
+> (masome a matshela/masupa/marobedi/marobongwe) especially need a
+> Botswana-standard check. Everything still needs the independent
+> Botswana-standard review before release. Later units need the same checks
+> as they're written.
 
 **Editing sheet:** [KAL Setswana A1 Content](https://docs.google.com/spreadsheets/d/1NK8QH7qwELC_ZDjbQeBpn9fZjzvpQe6XSp3Ra91OCEc/edit)
 — edit there, then export the tabs into this folder.

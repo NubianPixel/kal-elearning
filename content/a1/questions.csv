@@ -85,3 +85,27 @@ a1-u04-q021,4,reading,checkpoint,choice,What does Tumelo drink?,Water,,Tea|Coffe
 a1-u04-q022,4,reading,checkpoint,choice,Does Tumelo want morogo?,Yes — he says Ke batla morogo,,No — he says Ga ke batle morogo.|Yes — he says Ee ke ja morogo.|No — he says Ga ke je morogo.,He answers Ee ke batla morogo to A o ja morogo?
 a1-u04-q023,4,reading,checkpoint,choice,What does Tumelo refuse?,Fruit,,Water|Morogo|Porridge,He says Ga ke batle maungo — I don't want fruit.
 a1-u04-q024,4,reading,checkpoint,choice,Who serves and what does she ask first?,Mma Kefilwe — O batla eng?,,Tumelo — O batla eng?|Mma Kefilwe — Ke lapile|Tumelo — Ke batla nama,Mma Kefilwe greets and asks O batla eng?
+a1-u05-q001,5,grammar,drill,choice,Which word means two?,pedi,,tharo|nne|shome,pedi = two.
+a1-u05-q002,5,grammar,drill,type,Write the number 7 in Setswana.,supa,,,supa = seven.
+a1-u05-q003,5,grammar,drill,choice,Which means eleven?,lesome le nngwe,,masome a nngwe|lesome le pedi|shome le nngwe,lesome le nngwe = ten and one.
+a1-u05-q004,5,grammar,drill,choice,Which means twenty?,masome a mabedi,,masome a pedi|lesome le mabedi|masome a mabedi le nngwe,Twenty is masome a mabedi.
+a1-u05-q005,5,grammar,drill,choice,"What does ""dipula di le nne"" mean?",Four pula,,Four years|Two pula|Ten pula,Quantity pattern: dipula (pula) + di le + nne (four).
+a1-u05-q006,5,grammar,drill,choice,"What does ""Ke na le madi"" mean?",I have money,,I don't have money|How much money?|Buy money,Ke na le… = I have…
+a1-u05-q007,5,grammar,drill,choice,How do you ask someone's age?,O na le dingwaga di le kae?,,O kae?|O tswa kae?|O na le madi?,dingwaga = years; kae asks the number.
+a1-u05-q008,5,grammar,drill,type,Write the number 3 in Setswana.,tharo,,,tharo = three.
+a1-u05-q009,5,grammar,drill,type,"Fill in: Dingwaga ___ le tlhano. (five years)",di,,,Quantity pattern: noun + di le + number.
+a1-u05-q010,5,grammar,drill,choice,Which means one hundred?,lekgolo,,shome|lesome le nngwe|masome a mabedi,lekgolo = 100.
+a1-u05-q011,5,grammar,checkpoint,choice,Which word means five?,tlhano,,tshela|nne|nngwe,tlhano = five.
+a1-u05-q012,5,grammar,checkpoint,choice,Which means forty?,masome a mane,,masome a nne|mane|masome a mane le nngwe,Forty is masome a mane.
+a1-u05-q013,5,grammar,checkpoint,choice,"What does ""dipula di le shome"" mean?",Ten pula,,Two pula|Ten years|Five pula,shome = ten; dipula = pula.
+a1-u05-q014,5,grammar,checkpoint,type,Write in Setswana: six years.,dingwaga di le tshela,,,dingwaga (years) + di le + tshela (six).
+a1-u05-q015,5,grammar,checkpoint,choice,"Someone asks ""O na le dingwaga di le kae?"" You are ten. What do you say?",Ke na le dingwaga di le shome.,,Ke bokae shome.|Ke na le shome kae.|Ke na le dingwaga kae.,Answer with the same pattern: Ke na le dingwaga di le shome.
+a1-u05-q016,5,grammar,checkpoint,choice,You want to buy something. What do you ask?,Ke bokae?,,O bokae?|Kae bokae?|Ee bokae?,Ke bokae? = how much is it?
+a1-u05-q017,5,grammar,checkpoint,choice,What does "tsotlhe" mean?,All | everything,,Only one|A lot|Or,tsotlhe = all.
+a1-u05-q018,5,grammar,checkpoint,type,"Fill in: Dipula di ___ pedi. (two pula)",le,,,Quantity pattern: noun + di le + number.
+a1-u05-q019,5,reading,checkpoint,choice,Where does this dialogue happen?,At a market stall,,At a restaurant|At a bus stop|At school,Rra Tiro sells things and answers prices.
+a1-u05-q020,5,reading,checkpoint,type,What does Naledi want first? Write her words.,Ke batla lerotse,,,She says Ke batla lerotse — I want a sweet melon.
+a1-u05-q021,5,reading,checkpoint,choice,How much is the lerotse?,Five pula,,Three pula|Five thebe|Two pula,Rra Tiro says Dipula di le tlhano.
+a1-u05-q022,5,reading,checkpoint,choice,What else does Naledi buy?,Water and bread,,Fruit and porridge|Meat and morogo|Nothing,She says Ke batla metsi le borotho.
+a1-u05-q023,5,reading,checkpoint,choice,How old is Rra Tiro?,Fifty,,Thirty|Five|He does not say,He says Ke na le dingwaga di le masome a matlhano.
+a1-u05-q024,5,reading,checkpoint,choice,How does the seller greet?,Dumelang — to more than one person,,Dumela — to more than one person|Tsamaya sentle|Robala sentle,Dumelang is the plural greeting (Le batla eng also uses le).

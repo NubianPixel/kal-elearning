@@ -121,3 +121,40 @@ a1-u04-w032,4,32,phrase,O ja eng?,,what are you eating?,to one person,phrase,,,,
 a1-u04-w033,4,33,phrase,Ke ja nama le bogobe,,I eat meat and porridge,,phrase,,,,
 a1-u04-w034,4,34,phrase,Re batla…,,we want …,,phrase,,,,
 a1-u04-w035,4,35,phrase,Ga re batle…,,we don't want …,,phrase,,,,re follows the same rule: ga re + -e.
+a1-u05-w001,5,1,word,nngwe,,one,,number,,,,
+a1-u05-w002,5,2,word,pedi,,two,,number,,,,
+a1-u05-w003,5,3,word,tharo,,three,,number,,,,
+a1-u05-w004,5,4,word,nne,,four,,number,,,,
+a1-u05-w005,5,5,word,tlhano,,five,,number,,,,
+a1-u05-w006,5,6,word,tshela,,six,,number,,,,
+a1-u05-w007,5,7,word,supa,,seven,,number,,,,
+a1-u05-w008,5,8,word,robedi,,eight,,number,,,,
+a1-u05-w009,5,9,word,robongwe,,nine,,number,,,,
+a1-u05-w010,5,10,word,shome,,ten,,number,,,,
+a1-u05-w011,5,11,word,lesome le nngwe,,eleven,,number,,,,lesome le nngwe = ten and one (lesome = ten).
+a1-u05-w012,5,12,word,masome a mabedi,,twenty,,number,,,,masome = tens; a mabedi is the class 6 form of two.
+a1-u05-w013,5,13,word,masome a mararo,,thirty,,number,,,,
+a1-u05-w014,5,14,word,masome a mane,,forty,,number,,,,
+a1-u05-w015,5,15,word,masome a matlhano,,fifty,,number,,,,
+a1-u05-w016,5,16,word,masome a matshela,,sixty,,number,,,,
+a1-u05-w017,5,17,word,masome a masupa,,seventy,,number,,,,
+a1-u05-w018,5,18,word,masome a marobedi,,eighty,,number,,,,
+a1-u05-w019,5,19,word,masome a marobongwe,,ninety,,number,,,,
+a1-u05-w020,5,20,word,lekgolo,,one hundred,,number,,,,
+a1-u05-w021,5,21,word,bokae,,how much | how many,the price question word,other,,,,
+a1-u05-w022,5,22,word,pula,,pula | money,,noun,9,dipula,,The name of Botswana's money; 100 thebe = 1 pula.
+a1-u05-w023,5,23,word,dipula,,pula (plural money),,noun,10,,,,
+a1-u05-w024,5,24,word,thebe,,thebe | cent,,noun,9,dithebe,,100 thebe = one pula.
+a1-u05-w025,5,25,word,ngwaga,,year,,noun,9,dingwaga,,
+a1-u05-w026,5,26,word,dingwaga,,years,,noun,10,,,,
+a1-u05-w027,5,27,word,madi,,money,,noun,6,,,,
+a1-u05-w028,5,28,word,thata,,much | a lot | very,,adverb,,,,Follows the word: madi thata (a lot of money).
+a1-u05-w029,5,29,word,tsotlhe,,all | everything,,other,,,,
+a1-u05-w030,5,30,phrase,O reka eng?,,what are you buying?,to one person,phrase,,,,
+a1-u05-w031,5,31,phrase,Ke na le…,,I have …,,phrase,,,,Fixed phrase for now; explained in Unit 9.
+a1-u05-w032,5,32,phrase,Ke na le dingwaga di le…,,I am … years old,,phrase,,,,Quantity pattern with dingwaga (years).
+a1-u05-w033,5,33,phrase,O na le dingwaga di le kae?,,how old are you?,to one person,phrase,,,,
+a1-u05-w034,5,34,phrase,dipula di le pedi,,two pula,,phrase,,,,Quantity pattern: class 10 noun + di le + number.
+a1-u05-w035,5,35,phrase,dingwaga di le nne,,four years,,phrase,,,,
+a1-u05-w036,5,36,phrase,nngwe fela,,only one,,phrase,,,,fela = only; it follows the word.
+a1-u05-w037,5,37,phrase,Ke bokae?,,how much is it?,,phrase,,,,
