@@ -1,10 +1,12 @@
 # A1 content — family authoring guide
 
-> **All Unit 1 Setswana text in these files was drafted by an AI that does
-> not speak Setswana.** It has not been checked by a speaker. Please read
-> every `setswana` / `text_or_setswana` / `setswana` field carefully before
-> recording audio, and fix anything wrong (spelling, wording, tone) directly
-> in the CSV. Later units need the same check as they're written.
+> **Unit 1 Setswana text was drafted by an AI that does not speak
+> Setswana.** The project owner reviewed it on 2026-09-15; it still needs
+> the independent Botswana-standard review before release. Later units
+> need the same checks as they're written.
+
+**Editing sheet:** [KAL Setswana A1 Content](https://docs.google.com/spreadsheets/d/1NK8QH7qwELC_ZDjbQeBpn9fZjzvpQe6XSp3Ra91OCEc/edit)
+— edit there, then export the tabs into this folder.
 
 ## How the sheet maps to these files
 

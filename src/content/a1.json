@@ -605,10 +605,10 @@
       "use": "drill",
       "format": "choice",
       "prompt": "You are leaving and your friend is staying. What do you say to them?",
-      "answer": "Tsamaya sentle",
+      "answer": "Sala sentle",
       "answer_alt": null,
-      "distractors": "Sala sentle|Dumela|Robala sentle",
-      "explanation": "The one who stays says Tsamaya sentle (\"go well\") to the one leaving."
+      "distractors": "Tsamaya sentle|Dumela|Robala sentle",
+      "explanation": "The one who leaves says Sala sentle (\"stay well\") to the one staying."
     },
     {
       "id": "a1-u01-q003",
@@ -641,10 +641,10 @@
       "use": "drill",
       "format": "type",
       "prompt": "Fill in: you are staying and your friend is leaving. You say \"___ sentle.\"",
-      "answer": "Sala",
+      "answer": "Tsamaya",
       "answer_alt": null,
       "distractors": null,
-      "explanation": "Sala sentle (\"stay well\") is said by the one who stays."
+      "explanation": "The one who stays says Tsamaya sentle (\"go well\") to the one leaving."
     },
     {
       "id": "a1-u01-q006",
@@ -749,10 +749,10 @@
       "use": "checkpoint",
       "format": "choice",
       "prompt": "Who says \"Sala sentle\" at the end, and why?",
-      "answer": "Rra Molefe, because Mma Kagiso is leaving",
+      "answer": "Rra Molefe, because he is leaving",
       "answer_alt": null,
-      "distractors": "Mma Kagiso, because Rra Molefe is leaving|Rra Molefe, because he is leaving|Mma Kagiso, because she is leaving",
-      "explanation": "Mma Kagiso says Tsamaya sentle as she leaves; Rra Molefe, who stays, replies Sala sentle."
+      "distractors": "Mma Kagiso, because she is leaving|Rra Molefe, because Mma Kagiso is leaving|Mma Kagiso, because Rra Molefe is leaving",
+      "explanation": "Mma Kagiso stays and says Tsamaya sentle to Rra Molefe; he is leaving, so he replies Sala sentle."
     }
   ]
 }
