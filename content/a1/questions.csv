@@ -1,0 +1,15 @@
+id,unit,skill,use,format,prompt,answer,answer_alt,distractors,explanation
+a1-u01-q001,1,grammar,drill,choice,You greet a group of three friends. What do you say?,Dumelang,,Dumela|Sala sentle|Tsamaya sentle,Dumelang is used for two or more people; Dumela is for one person.
+a1-u01-q002,1,grammar,drill,choice,You are leaving and your friend is staying. What do you say to them?,Tsamaya sentle,,Sala sentle|Dumela|Robala sentle,"The one who stays says Tsamaya sentle (""go well"") to the one leaving."
+a1-u01-q003,1,grammar,drill,type,"How do you politely address one man (word for ""sir"")?",rra,,,rra addresses one man; borra addresses several men.
+a1-u01-q004,1,grammar,drill,choice,"Someone asks you ""Le kae?"" Who are they asking?",two or more people,,one person|themselves|no one,"Le kae? is the plural form of O kae?, asked to more than one person."
+a1-u01-q005,1,grammar,drill,type,"Fill in: you are staying and your friend is leaving. You say ""___ sentle.""",Sala,,,"Sala sentle (""stay well"") is said by the one who stays."
+a1-u01-q006,1,grammar,checkpoint,choice,You greet two ladies in the morning. What do you say?,"Dumelang, bomma",,"Dumela, mma|Dumela, rra|Dumelang, borra",Two people = Dumelang; ladies = bomma.
+a1-u01-q007,1,grammar,checkpoint,choice,It is bedtime. What do you say to someone going to sleep?,Robala sentle,,Tsamaya sentle|Sala sentle|Dumela,Robala sentle is the goodnight farewell.
+a1-u01-q008,1,grammar,checkpoint,type,"What phrase means ""thank you""?",Ke a leboga,,,Ke a leboga is the standard way to say thank you.
+a1-u01-q009,1,grammar,checkpoint,type,"How do you reply when someone asks ""O tsogile jang?""",Ke tsogile sentle,,,"Ke tsogile sentle is the standard reply, meaning ""I woke up well."""
+a1-u01-q010,1,grammar,checkpoint,choice,Two men greet you. How should you greet them back?,"Dumelang, borra",,"Dumela, rra|Dumelang, bomma|Dumela, mma",Two men = borra (plural of rra); more than one person = Dumelang.
+a1-u01-q011,1,reading,checkpoint,choice,"In the dialogue, who greets first?",Rra Molefe,,Mma Kagiso|Both together|Neither,"Rra Molefe opens with ""Dumela, mma."""
+a1-u01-q012,1,reading,checkpoint,type,How does Mma Kagiso say she woke up?,Ke tsogile sentle,I woke up well,,"She replies ""Ke tsogile sentle"" — I woke up well."
+a1-u01-q013,1,reading,checkpoint,choice,How does Rra Molefe say he is feeling?,"Ke teng, ke a leboga",,Ke tsogile sentle|Go siame|Sala sentle,"Rra Molefe replies ""Ke teng, ke a leboga"" — I'm fine, thank you."
+a1-u01-q014,1,reading,checkpoint,choice,"Who says ""Sala sentle"" at the end, and why?","Rra Molefe, because Mma Kagiso is leaving",,"Mma Kagiso, because Rra Molefe is leaving|Rra Molefe, because he is leaving|Mma Kagiso, because she is leaving","Mma Kagiso says Tsamaya sentle as she leaves; Rra Molefe, who stays, replies Sala sentle."

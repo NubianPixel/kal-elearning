@@ -1,0 +1,758 @@
+{
+  "units": [
+    {
+      "unit": 1,
+      "title_setswana": "Dumela",
+      "title_english": "Greetings",
+      "can_do": "Greet politely, say how you are, say goodbye",
+      "grammar_title": "Singular vs plural address and farewells"
+    }
+  ],
+  "items": [
+    {
+      "id": "a1-u01-w001",
+      "unit": 1,
+      "order": 1,
+      "kind": "word",
+      "setswana": "Dumela",
+      "setswana_alt": null,
+      "english": [
+        "hello"
+      ],
+      "hint": "to one person",
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w002",
+      "unit": 1,
+      "order": 2,
+      "kind": "word",
+      "setswana": "Dumelang",
+      "setswana_alt": null,
+      "english": [
+        "hello"
+      ],
+      "hint": "to several people",
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w003",
+      "unit": 1,
+      "order": 3,
+      "kind": "word",
+      "setswana": "rra",
+      "setswana_alt": null,
+      "english": [
+        "sir",
+        "mr"
+      ],
+      "hint": "address to one man",
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Greeting with rra/mma is expected; skipping it is considered rude."
+    },
+    {
+      "id": "a1-u01-w004",
+      "unit": 1,
+      "order": 4,
+      "kind": "word",
+      "setswana": "mma",
+      "setswana_alt": null,
+      "english": [
+        "madam",
+        "mrs"
+      ],
+      "hint": "address to one woman",
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w005",
+      "unit": 1,
+      "order": 5,
+      "kind": "word",
+      "setswana": "borra",
+      "setswana_alt": null,
+      "english": [
+        "sirs",
+        "gentlemen"
+      ],
+      "hint": "address to several men",
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w006",
+      "unit": 1,
+      "order": 6,
+      "kind": "word",
+      "setswana": "bomma",
+      "setswana_alt": null,
+      "english": [
+        "madams",
+        "ladies"
+      ],
+      "hint": "address to several women",
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w007",
+      "unit": 1,
+      "order": 7,
+      "kind": "phrase",
+      "setswana": "O tsogile jang?",
+      "setswana_alt": null,
+      "english": [
+        "how did you wake up?",
+        "good morning"
+      ],
+      "hint": "asking one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w008",
+      "unit": 1,
+      "order": 8,
+      "kind": "phrase",
+      "setswana": "Le tsogile jang?",
+      "setswana_alt": null,
+      "english": [
+        "how did you wake up?",
+        "good morning"
+      ],
+      "hint": "asking several people",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w009",
+      "unit": 1,
+      "order": 9,
+      "kind": "phrase",
+      "setswana": "Ke tsogile sentle",
+      "setswana_alt": null,
+      "english": [
+        "I woke up well",
+        "I'm fine"
+      ],
+      "hint": "one person replying",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w010",
+      "unit": 1,
+      "order": 10,
+      "kind": "phrase",
+      "setswana": "Re tsogile sentle",
+      "setswana_alt": null,
+      "english": [
+        "we woke up well",
+        "we're fine"
+      ],
+      "hint": "several people replying",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w011",
+      "unit": 1,
+      "order": 11,
+      "kind": "phrase",
+      "setswana": "O kae?",
+      "setswana_alt": null,
+      "english": [
+        "how are you?",
+        "where are you?"
+      ],
+      "hint": "asking one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w012",
+      "unit": 1,
+      "order": 12,
+      "kind": "phrase",
+      "setswana": "Le kae?",
+      "setswana_alt": null,
+      "english": [
+        "how are you?",
+        "where are you?"
+      ],
+      "hint": "asking several people",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w013",
+      "unit": 1,
+      "order": 13,
+      "kind": "phrase",
+      "setswana": "Ke teng",
+      "setswana_alt": null,
+      "english": [
+        "I'm fine",
+        "I'm here"
+      ],
+      "hint": "one person replying",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w014",
+      "unit": 1,
+      "order": 14,
+      "kind": "phrase",
+      "setswana": "Re teng",
+      "setswana_alt": null,
+      "english": [
+        "we're fine",
+        "we're here"
+      ],
+      "hint": "several people replying",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w015",
+      "unit": 1,
+      "order": 15,
+      "kind": "phrase",
+      "setswana": "O tlhotse jang?",
+      "setswana_alt": null,
+      "english": [
+        "good afternoon",
+        "how has your day been?"
+      ],
+      "hint": "asking one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w016",
+      "unit": 1,
+      "order": 16,
+      "kind": "phrase",
+      "setswana": "Ke tlhotse sentle",
+      "setswana_alt": null,
+      "english": [
+        "my afternoon has been good",
+        "I'm fine"
+      ],
+      "hint": "one person replying",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w017",
+      "unit": 1,
+      "order": 17,
+      "kind": "phrase",
+      "setswana": "Ke a leboga",
+      "setswana_alt": null,
+      "english": [
+        "thank you"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w018",
+      "unit": 1,
+      "order": 18,
+      "kind": "word",
+      "setswana": "Tswee-tswee",
+      "setswana_alt": null,
+      "english": [
+        "please"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w019",
+      "unit": 1,
+      "order": 19,
+      "kind": "word",
+      "setswana": "Intshwarele",
+      "setswana_alt": null,
+      "english": [
+        "sorry",
+        "excuse me"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w020",
+      "unit": 1,
+      "order": 20,
+      "kind": "phrase",
+      "setswana": "Go siame",
+      "setswana_alt": null,
+      "english": [
+        "it's fine",
+        "ok",
+        "alright"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w021",
+      "unit": 1,
+      "order": 21,
+      "kind": "word",
+      "setswana": "Ee",
+      "setswana_alt": null,
+      "english": [
+        "yes"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w022",
+      "unit": 1,
+      "order": 22,
+      "kind": "word",
+      "setswana": "Nnyaa",
+      "setswana_alt": null,
+      "english": [
+        "no"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w023",
+      "unit": 1,
+      "order": 23,
+      "kind": "phrase",
+      "setswana": "Tsamaya sentle",
+      "setswana_alt": null,
+      "english": [
+        "go well",
+        "goodbye"
+      ],
+      "hint": "said to the person leaving",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w024",
+      "unit": 1,
+      "order": 24,
+      "kind": "phrase",
+      "setswana": "Sala sentle",
+      "setswana_alt": null,
+      "english": [
+        "stay well",
+        "goodbye"
+      ],
+      "hint": "said to the person staying",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u01-w025",
+      "unit": 1,
+      "order": 25,
+      "kind": "phrase",
+      "setswana": "Robala sentle",
+      "setswana_alt": null,
+      "english": [
+        "sleep well",
+        "good night"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    }
+  ],
+  "grammar": [
+    {
+      "unit": 1,
+      "order": 1,
+      "type": "text",
+      "text_or_setswana": "In Setswana, how you greet and say goodbye depends on how many people you are speaking to.",
+      "english": null
+    },
+    {
+      "unit": 1,
+      "order": 2,
+      "type": "text",
+      "text_or_setswana": "Talking to one person, use Dumela, O tsogile jang? and O kae?. Talking to two or more people, use Dumelang, Le tsogile jang? and Le kae?.",
+      "english": null
+    },
+    {
+      "unit": 1,
+      "order": 3,
+      "type": "text",
+      "text_or_setswana": "Address people politely with rra (to one man) or mma (to one woman); for more than one, use borra or bomma.",
+      "english": null
+    },
+    {
+      "unit": 1,
+      "order": 4,
+      "type": "text",
+      "text_or_setswana": "When you part, the word depends on who is leaving and who is staying: the one staying says Tsamaya sentle (\"go well\") to the one leaving, and the one leaving says Sala sentle (\"stay well\") back.",
+      "english": null
+    },
+    {
+      "unit": 1,
+      "order": 5,
+      "type": "text",
+      "text_or_setswana": "Robala sentle (\"sleep well\") is used at night instead of Tsamaya sentle or Sala sentle.",
+      "english": null
+    },
+    {
+      "unit": 1,
+      "order": 6,
+      "type": "example",
+      "text_or_setswana": "Dumela, rra.",
+      "english": "Hello, sir."
+    },
+    {
+      "unit": 1,
+      "order": 7,
+      "type": "example",
+      "text_or_setswana": "Dumelang, bomma.",
+      "english": "Hello, ladies."
+    },
+    {
+      "unit": 1,
+      "order": 8,
+      "type": "example",
+      "text_or_setswana": "O tsogile jang? Ke tsogile sentle.",
+      "english": "How did you wake up? I woke up well."
+    },
+    {
+      "unit": 1,
+      "order": 9,
+      "type": "example",
+      "text_or_setswana": "Le kae? Re teng.",
+      "english": "How are you (to several people)? We are fine."
+    },
+    {
+      "unit": 1,
+      "order": 10,
+      "type": "example",
+      "text_or_setswana": "Tsamaya sentle. Sala sentle.",
+      "english": "Go well. Stay well."
+    }
+  ],
+  "dialogues": [
+    {
+      "id": "a1-u01-d1-l01",
+      "unit": 1,
+      "order": 1,
+      "speaker": "Rra Molefe",
+      "setswana": "Dumela, mma.",
+      "english": "Hello, madam."
+    },
+    {
+      "id": "a1-u01-d1-l02",
+      "unit": 1,
+      "order": 2,
+      "speaker": "Mma Kagiso",
+      "setswana": "Dumela, rra.",
+      "english": "Hello, sir."
+    },
+    {
+      "id": "a1-u01-d1-l03",
+      "unit": 1,
+      "order": 3,
+      "speaker": "Rra Molefe",
+      "setswana": "O tsogile jang?",
+      "english": "How did you wake up?"
+    },
+    {
+      "id": "a1-u01-d1-l04",
+      "unit": 1,
+      "order": 4,
+      "speaker": "Mma Kagiso",
+      "setswana": "Ke tsogile sentle. O kae?",
+      "english": "I woke up well. How are you?"
+    },
+    {
+      "id": "a1-u01-d1-l05",
+      "unit": 1,
+      "order": 5,
+      "speaker": "Rra Molefe",
+      "setswana": "Ke teng, ke a leboga.",
+      "english": "I'm fine, thank you."
+    },
+    {
+      "id": "a1-u01-d1-l06",
+      "unit": 1,
+      "order": 6,
+      "speaker": "Mma Kagiso",
+      "setswana": "Go siame. Tsamaya sentle!",
+      "english": "Ok then. Go well!"
+    },
+    {
+      "id": "a1-u01-d1-l07",
+      "unit": 1,
+      "order": 7,
+      "speaker": "Rra Molefe",
+      "setswana": "Sala sentle!",
+      "english": "Stay well!"
+    }
+  ],
+  "questions": [
+    {
+      "id": "a1-u01-q001",
+      "unit": 1,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "You greet a group of three friends. What do you say?",
+      "answer": "Dumelang",
+      "answer_alt": null,
+      "distractors": "Dumela|Sala sentle|Tsamaya sentle",
+      "explanation": "Dumelang is used for two or more people; Dumela is for one person."
+    },
+    {
+      "id": "a1-u01-q002",
+      "unit": 1,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "You are leaving and your friend is staying. What do you say to them?",
+      "answer": "Tsamaya sentle",
+      "answer_alt": null,
+      "distractors": "Sala sentle|Dumela|Robala sentle",
+      "explanation": "The one who stays says Tsamaya sentle (\"go well\") to the one leaving."
+    },
+    {
+      "id": "a1-u01-q003",
+      "unit": 1,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "How do you politely address one man (word for \"sir\")?",
+      "answer": "rra",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "rra addresses one man; borra addresses several men."
+    },
+    {
+      "id": "a1-u01-q004",
+      "unit": 1,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Someone asks you \"Le kae?\" Who are they asking?",
+      "answer": "two or more people",
+      "answer_alt": null,
+      "distractors": "one person|themselves|no one",
+      "explanation": "Le kae? is the plural form of O kae?, asked to more than one person."
+    },
+    {
+      "id": "a1-u01-q005",
+      "unit": 1,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: you are staying and your friend is leaving. You say \"___ sentle.\"",
+      "answer": "Sala",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Sala sentle (\"stay well\") is said by the one who stays."
+    },
+    {
+      "id": "a1-u01-q006",
+      "unit": 1,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "You greet two ladies in the morning. What do you say?",
+      "answer": "Dumelang, bomma",
+      "answer_alt": null,
+      "distractors": "Dumela, mma|Dumela, rra|Dumelang, borra",
+      "explanation": "Two people = Dumelang; ladies = bomma."
+    },
+    {
+      "id": "a1-u01-q007",
+      "unit": 1,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "It is bedtime. What do you say to someone going to sleep?",
+      "answer": "Robala sentle",
+      "answer_alt": null,
+      "distractors": "Tsamaya sentle|Sala sentle|Dumela",
+      "explanation": "Robala sentle is the goodnight farewell."
+    },
+    {
+      "id": "a1-u01-q008",
+      "unit": 1,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "What phrase means \"thank you\"?",
+      "answer": "Ke a leboga",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Ke a leboga is the standard way to say thank you."
+    },
+    {
+      "id": "a1-u01-q009",
+      "unit": 1,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "How do you reply when someone asks \"O tsogile jang?\"",
+      "answer": "Ke tsogile sentle",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Ke tsogile sentle is the standard reply, meaning \"I woke up well.\""
+    },
+    {
+      "id": "a1-u01-q010",
+      "unit": 1,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Two men greet you. How should you greet them back?",
+      "answer": "Dumelang, borra",
+      "answer_alt": null,
+      "distractors": "Dumela, rra|Dumelang, bomma|Dumela, mma",
+      "explanation": "Two men = borra (plural of rra); more than one person = Dumelang."
+    },
+    {
+      "id": "a1-u01-q011",
+      "unit": 1,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "In the dialogue, who greets first?",
+      "answer": "Rra Molefe",
+      "answer_alt": null,
+      "distractors": "Mma Kagiso|Both together|Neither",
+      "explanation": "Rra Molefe opens with \"Dumela, mma.\""
+    },
+    {
+      "id": "a1-u01-q012",
+      "unit": 1,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "How does Mma Kagiso say she woke up?",
+      "answer": "Ke tsogile sentle",
+      "answer_alt": "I woke up well",
+      "distractors": null,
+      "explanation": "She replies \"Ke tsogile sentle\" — I woke up well."
+    },
+    {
+      "id": "a1-u01-q013",
+      "unit": 1,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How does Rra Molefe say he is feeling?",
+      "answer": "Ke teng, ke a leboga",
+      "answer_alt": null,
+      "distractors": "Ke tsogile sentle|Go siame|Sala sentle",
+      "explanation": "Rra Molefe replies \"Ke teng, ke a leboga\" — I'm fine, thank you."
+    },
+    {
+      "id": "a1-u01-q014",
+      "unit": 1,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Who says \"Sala sentle\" at the end, and why?",
+      "answer": "Rra Molefe, because Mma Kagiso is leaving",
+      "answer_alt": null,
+      "distractors": "Mma Kagiso, because Rra Molefe is leaving|Rra Molefe, because he is leaving|Mma Kagiso, because she is leaving",
+      "explanation": "Mma Kagiso says Tsamaya sentle as she leaves; Rra Molefe, who stays, replies Sala sentle."
+    }
+  ]
+}

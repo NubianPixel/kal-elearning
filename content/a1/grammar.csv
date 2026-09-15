@@ -1,0 +1,11 @@
+unit,order,type,text_or_setswana,english
+1,1,text,"In Setswana, how you greet and say goodbye depends on how many people you are speaking to.",
+1,2,text,"Talking to one person, use Dumela, O tsogile jang? and O kae?. Talking to two or more people, use Dumelang, Le tsogile jang? and Le kae?.",
+1,3,text,"Address people politely with rra (to one man) or mma (to one woman); for more than one, use borra or bomma.",
+1,4,text,"When you part, the word depends on who is leaving and who is staying: the one staying says Tsamaya sentle (""go well"") to the one leaving, and the one leaving says Sala sentle (""stay well"") back.",
+1,5,text,"Robala sentle (""sleep well"") is used at night instead of Tsamaya sentle or Sala sentle.",
+1,6,example,"Dumela, rra.","Hello, sir."
+1,7,example,"Dumelang, bomma.","Hello, ladies."
+1,8,example,O tsogile jang? Ke tsogile sentle.,How did you wake up? I woke up well.
+1,9,example,Le kae? Re teng.,How are you (to several people)? We are fine.
+1,10,example,Tsamaya sentle. Sala sentle.,Go well. Stay well.
