@@ -48,6 +48,13 @@
       "title_english": "Where are you going?",
       "can_do": "Ask for and give simple directions",
       "grammar_title": "Locative -ng after kwa/mo"
+    },
+    {
+      "unit": 8,
+      "title_setswana": "Letsatsi la me",
+      "title_english": "My day",
+      "can_do": "Describe your day and week",
+      "grammar_title": "ka + time expressions"
     }
   ],
   "items": [
@@ -4249,6 +4256,617 @@
       "plural": [],
       "image": null,
       "note": null
+    },
+    {
+      "id": "a1-u08-w001",
+      "unit": 8,
+      "order": 1,
+      "kind": "word",
+      "setswana": "letsatsi",
+      "setswana_alt": null,
+      "english": [
+        "sun",
+        "day"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "matsatsi"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w002",
+      "unit": 8,
+      "order": 2,
+      "kind": "word",
+      "setswana": "beke",
+      "setswana_alt": null,
+      "english": [
+        "week"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dibeke"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w003",
+      "unit": 8,
+      "order": 3,
+      "kind": "word",
+      "setswana": "kgwedi",
+      "setswana_alt": null,
+      "english": [
+        "month",
+        "moon"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "dikgwedi"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w004",
+      "unit": 8,
+      "order": 4,
+      "kind": "word",
+      "setswana": "Mosupologo",
+      "setswana_alt": null,
+      "english": [
+        "Monday"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w005",
+      "unit": 8,
+      "order": 5,
+      "kind": "word",
+      "setswana": "Labobedi",
+      "setswana_alt": null,
+      "english": [
+        "Tuesday"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w006",
+      "unit": 8,
+      "order": 6,
+      "kind": "word",
+      "setswana": "Laboraro",
+      "setswana_alt": null,
+      "english": [
+        "Wednesday"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w007",
+      "unit": 8,
+      "order": 7,
+      "kind": "word",
+      "setswana": "Labone",
+      "setswana_alt": null,
+      "english": [
+        "Thursday"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w008",
+      "unit": 8,
+      "order": 8,
+      "kind": "word",
+      "setswana": "Labotlhano",
+      "setswana_alt": null,
+      "english": [
+        "Friday"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w009",
+      "unit": 8,
+      "order": 9,
+      "kind": "word",
+      "setswana": "Matlhatso",
+      "setswana_alt": null,
+      "english": [
+        "Saturday"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w010",
+      "unit": 8,
+      "order": 10,
+      "kind": "word",
+      "setswana": "Tshipi",
+      "setswana_alt": null,
+      "english": [
+        "Sunday"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w011",
+      "unit": 8,
+      "order": 11,
+      "kind": "word",
+      "setswana": "mosogare",
+      "setswana_alt": null,
+      "english": [
+        "morning"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "3",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w012",
+      "unit": 8,
+      "order": 12,
+      "kind": "word",
+      "setswana": "maitseboa",
+      "setswana_alt": null,
+      "english": [
+        "evening"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "6",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w013",
+      "unit": 8,
+      "order": 13,
+      "kind": "word",
+      "setswana": "bosego",
+      "setswana_alt": null,
+      "english": [
+        "night"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "14",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w014",
+      "unit": 8,
+      "order": 14,
+      "kind": "word",
+      "setswana": "moso",
+      "setswana_alt": null,
+      "english": [
+        "tomorrow"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w015",
+      "unit": 8,
+      "order": 15,
+      "kind": "word",
+      "setswana": "maabane",
+      "setswana_alt": null,
+      "english": [
+        "yesterday"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w016",
+      "unit": 8,
+      "order": 16,
+      "kind": "word",
+      "setswana": "jaanong",
+      "setswana_alt": null,
+      "english": [
+        "now"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w017",
+      "unit": 8,
+      "order": 17,
+      "kind": "word",
+      "setswana": "ura",
+      "setswana_alt": null,
+      "english": [
+        "hour",
+        "clock",
+        "time of day"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "diura"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w018",
+      "unit": 8,
+      "order": 18,
+      "kind": "word",
+      "setswana": "efe",
+      "setswana_alt": null,
+      "english": [
+        "which"
+      ],
+      "hint": "the question word",
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w019",
+      "unit": 8,
+      "order": 19,
+      "kind": "word",
+      "setswana": "tsoga",
+      "setswana_alt": null,
+      "english": [
+        "wake up",
+        "get up"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Past: Ke tsogile (recycled from Unit 1)."
+    },
+    {
+      "id": "a1-u08-w020",
+      "unit": 8,
+      "order": 20,
+      "kind": "word",
+      "setswana": "bereka",
+      "setswana_alt": null,
+      "english": [
+        "work"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w021",
+      "unit": 8,
+      "order": 21,
+      "kind": "word",
+      "setswana": "ithuta",
+      "setswana_alt": null,
+      "english": [
+        "learn",
+        "study"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w022",
+      "unit": 8,
+      "order": 22,
+      "kind": "word",
+      "setswana": "tshameka",
+      "setswana_alt": null,
+      "english": [
+        "play"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w023",
+      "unit": 8,
+      "order": 23,
+      "kind": "word",
+      "setswana": "apaya",
+      "setswana_alt": null,
+      "english": [
+        "cook"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w024",
+      "unit": 8,
+      "order": 24,
+      "kind": "word",
+      "setswana": "tlhatswa",
+      "setswana_alt": null,
+      "english": [
+        "wash"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w025",
+      "unit": 8,
+      "order": 25,
+      "kind": "word",
+      "setswana": "robala",
+      "setswana_alt": null,
+      "english": [
+        "sleep"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Past: Ke robetse."
+    },
+    {
+      "id": "a1-u08-w026",
+      "unit": 8,
+      "order": 26,
+      "kind": "word",
+      "setswana": "leba",
+      "setswana_alt": null,
+      "english": [
+        "look at",
+        "towards"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w027",
+      "unit": 8,
+      "order": 27,
+      "kind": "word",
+      "setswana": "utlwa",
+      "setswana_alt": null,
+      "english": [
+        "hear",
+        "feel"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w028",
+      "unit": 8,
+      "order": 28,
+      "kind": "phrase",
+      "setswana": "Letsatsi la me",
+      "setswana_alt": null,
+      "english": [
+        "my day"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w029",
+      "unit": 8,
+      "order": 29,
+      "kind": "phrase",
+      "setswana": "ka mosogare",
+      "setswana_alt": null,
+      "english": [
+        "in the morning"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w030",
+      "unit": 8,
+      "order": 30,
+      "kind": "phrase",
+      "setswana": "ka maitseboa",
+      "setswana_alt": null,
+      "english": [
+        "in the evening"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w031",
+      "unit": 8,
+      "order": 31,
+      "kind": "phrase",
+      "setswana": "ka bosego",
+      "setswana_alt": null,
+      "english": [
+        "at night"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w032",
+      "unit": 8,
+      "order": 32,
+      "kind": "phrase",
+      "setswana": "ka ura ya…",
+      "setswana_alt": null,
+      "english": [
+        "at … o'clock"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Whole hours only: ka ura ya robedi."
+    },
+    {
+      "id": "a1-u08-w033",
+      "unit": 8,
+      "order": 33,
+      "kind": "phrase",
+      "setswana": "O tsoga ka ura efe?",
+      "setswana_alt": null,
+      "english": [
+        "what time do you wake up?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w034",
+      "unit": 8,
+      "order": 34,
+      "kind": "phrase",
+      "setswana": "Ke tsoga ka ura ya…",
+      "setswana_alt": null,
+      "english": [
+        "I wake up at … o'clock"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u08-w035",
+      "unit": 8,
+      "order": 35,
+      "kind": "phrase",
+      "setswana": "ka Labotlhano",
+      "setswana_alt": null,
+      "english": [
+        "on Friday"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "ka + the day: ka Labotlhano."
     }
   ],
   "grammar": [
@@ -4769,6 +5387,62 @@
       "type": "example",
       "text_or_setswana": "Ke ya gae.",
       "english": "I am going home."
+    },
+    {
+      "unit": 8,
+      "order": 1,
+      "type": "text",
+      "text_or_setswana": "The days: Mosupologo (Monday). Labobedi (Tuesday). Laboraro (Wednesday). Labone (Thursday). Labotlhano (Friday). Matlhatso (Saturday). Tshipi (Sunday).",
+      "english": null
+    },
+    {
+      "unit": 8,
+      "order": 2,
+      "type": "text",
+      "text_or_setswana": "Use ka + the time word: ka Labobedi (on Tuesday). ka mosogare (in the morning). ka maitseboa (in the evening). ka bosego (at night).",
+      "english": null
+    },
+    {
+      "unit": 8,
+      "order": 3,
+      "type": "text",
+      "text_or_setswana": "Clock time is whole hours only: ka ura ya nne (at four o'clock). maabane (yesterday). moso (tomorrow). jaanong (now).",
+      "english": null
+    },
+    {
+      "unit": 8,
+      "order": 4,
+      "type": "text",
+      "text_or_setswana": "O tsoga ka ura efe? (What time do you wake up?) Ke tsoga ka ura ya robedi. (I wake up at eight.)",
+      "english": null
+    },
+    {
+      "unit": 8,
+      "order": 5,
+      "type": "example",
+      "text_or_setswana": "Ka Labobedi ke bereka.",
+      "english": "On Tuesday I work."
+    },
+    {
+      "unit": 8,
+      "order": 6,
+      "type": "example",
+      "text_or_setswana": "Ke nwa tee ka mosogare.",
+      "english": "I drink tea in the morning."
+    },
+    {
+      "unit": 8,
+      "order": 7,
+      "type": "example",
+      "text_or_setswana": "Ka Tshipi ga ke bereke.",
+      "english": "On Sunday I don't work."
+    },
+    {
+      "unit": 8,
+      "order": 8,
+      "type": "example",
+      "text_or_setswana": "Jaanong ke a ja.",
+      "english": "Now I am eating."
     }
   ],
   "dialogues": [
@@ -5387,6 +6061,118 @@
       "speaker": "Mma Lesego",
       "setswana": "Go siame. Tsamaya sentle!",
       "english": "Ok. Go well!"
+    },
+    {
+      "id": "a1-u08-d1-l01",
+      "unit": 8,
+      "order": 1,
+      "speaker": "Mma Kefilwe",
+      "setswana": "Dumela Tumelo. O tsogile jang?",
+      "english": "Hello, Tumelo. How did you wake up?"
+    },
+    {
+      "id": "a1-u08-d1-l02",
+      "unit": 8,
+      "order": 2,
+      "speaker": "Tumelo",
+      "setswana": "Ke tsogile sentle ke a leboga.",
+      "english": "I woke up well, thank you."
+    },
+    {
+      "id": "a1-u08-d1-l03",
+      "unit": 8,
+      "order": 3,
+      "speaker": "Mma Kefilwe",
+      "setswana": "O tsoga ka ura efe ka mosogare?",
+      "english": "What time do you wake up in the morning?"
+    },
+    {
+      "id": "a1-u08-d1-l04",
+      "unit": 8,
+      "order": 4,
+      "speaker": "Tumelo",
+      "setswana": "Ke tsoga ka ura ya robedi.",
+      "english": "I wake up at eight o'clock."
+    },
+    {
+      "id": "a1-u08-d1-l05",
+      "unit": 8,
+      "order": 5,
+      "speaker": "Mma Kefilwe",
+      "setswana": "O bereka ka Labotlhano?",
+      "english": "Do you work on Friday?"
+    },
+    {
+      "id": "a1-u08-d1-l06",
+      "unit": 8,
+      "order": 6,
+      "speaker": "Tumelo",
+      "setswana": "Ee ke bereka ka mosogare le ka maitseboa.",
+      "english": "Yes, I work in the morning and in the evening."
+    },
+    {
+      "id": "a1-u08-d1-l07",
+      "unit": 8,
+      "order": 7,
+      "speaker": "Mma Kefilwe",
+      "setswana": "A o ithuta gape?",
+      "english": "Do you also study?"
+    },
+    {
+      "id": "a1-u08-d1-l08",
+      "unit": 8,
+      "order": 8,
+      "speaker": "Tumelo",
+      "setswana": "Ee ke ithuta Setswana ka Laboraro.",
+      "english": "Yes, I learn Setswana on Wednesday."
+    },
+    {
+      "id": "a1-u08-d1-l09",
+      "unit": 8,
+      "order": 9,
+      "speaker": "Mma Kefilwe",
+      "setswana": "Ka Tshipi o tshameka?",
+      "english": "On Sunday do you play?"
+    },
+    {
+      "id": "a1-u08-d1-l10",
+      "unit": 8,
+      "order": 10,
+      "speaker": "Tumelo",
+      "setswana": "Ee ke tshameka kwa kgotleng.",
+      "english": "Yes, I play at the kgotla."
+    },
+    {
+      "id": "a1-u08-d1-l11",
+      "unit": 8,
+      "order": 11,
+      "speaker": "Mma Kefilwe",
+      "setswana": "O robala ka ura efe ka bosego?",
+      "english": "What time do you sleep at night?"
+    },
+    {
+      "id": "a1-u08-d1-l12",
+      "unit": 8,
+      "order": 12,
+      "speaker": "Tumelo",
+      "setswana": "Ke robala ka ura ya lesome.",
+      "english": "I sleep at ten o'clock."
+    },
+    {
+      "id": "a1-u08-d1-l13",
+      "unit": 8,
+      "order": 13,
+      "speaker": "Mma Kefilwe",
+      "setswana": "Go siame. Tsamaya sentle!",
+      "english": "Ok. Go well!"
+    },
+    {
+      "id": "a1-u08-d1-l14",
+      "unit": 8,
+      "order": 14,
+      "speaker": "Tumelo",
+      "setswana": "Sala sentle!",
+      "english": "Stay well!"
     }
   ],
   "questions": [
@@ -7285,6 +8071,294 @@
       "answer_alt": null,
       "distractors": "Sala sentle|Robala sentle|Ke a leboga",
       "explanation": "Sepatela visitor leaving — Mma Lesego says Tsamaya sentle."
+    },
+    {
+      "id": "a1-u08-q001",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Which day is Monday?",
+      "answer": "Mosupologo",
+      "answer_alt": null,
+      "distractors": "Labobedi|Tshipi|Matlhatso",
+      "explanation": "Mosupologo = Monday."
+    },
+    {
+      "id": "a1-u08-q002",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"ka Labotlhano\" mean?",
+      "answer": "On Friday",
+      "answer_alt": null,
+      "distractors": "On Thursday|On Sunday|In the morning",
+      "explanation": "Labotlhano = Friday; ka = on."
+    },
+    {
+      "id": "a1-u08-q003",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"ka mosogare\" mean?",
+      "answer": "In the morning",
+      "answer_alt": null,
+      "distractors": "At night|In the evening|Tomorrow",
+      "explanation": "mosogare = morning."
+    },
+    {
+      "id": "a1-u08-q004",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does bosego mean?",
+      "answer": "Night",
+      "answer_alt": null,
+      "distractors": "Morning|Evening|Week",
+      "explanation": "bosego = night."
+    },
+    {
+      "id": "a1-u08-q005",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: Ka ___ ke bereka. (on Tuesday)",
+      "answer": "Labobedi",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "ka + the day: ka Labobedi."
+    },
+    {
+      "id": "a1-u08-q006",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you ask what time someone wakes up?",
+      "answer": "O tsoga ka ura efe?",
+      "answer_alt": null,
+      "distractors": "O robala ka ura efe?|O tsoga kae?|Ura efe?",
+      "explanation": "efe = which; O tsoga ka ura efe?"
+    },
+    {
+      "id": "a1-u08-q007",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"ka ura ya robedi\" mean?",
+      "answer": "At eight o'clock",
+      "answer_alt": null,
+      "distractors": "At seven o'clock|At ten o'clock|In eight hours",
+      "explanation": "robedi = eight."
+    },
+    {
+      "id": "a1-u08-q008",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write in Setswana: week.",
+      "answer": "beke",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "beke = week."
+    },
+    {
+      "id": "a1-u08-q009",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does maabane mean?",
+      "answer": "Yesterday",
+      "answer_alt": null,
+      "distractors": "Tomorrow|Now|In the evening",
+      "explanation": "maabane = yesterday."
+    },
+    {
+      "id": "a1-u08-q010",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: ka ___ (in the evening)",
+      "answer": "maitseboa",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "maitseboa = evening."
+    },
+    {
+      "id": "a1-u08-q011",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which day comes after Labobedi?",
+      "answer": "Laboraro",
+      "answer_alt": null,
+      "distractors": "Labone|Mosupologo|Tshipi",
+      "explanation": "Labobedi (Tuesday) is followed by Laboraro (Wednesday)."
+    },
+    {
+      "id": "a1-u08-q012",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does kgwedi mean?",
+      "answer": "Month | moon",
+      "answer_alt": null,
+      "distractors": "Week|Day|Year",
+      "explanation": "kgwedi = month (or moon)."
+    },
+    {
+      "id": "a1-u08-q013",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which is correct for at night?",
+      "answer": "ka bosego",
+      "answer_alt": null,
+      "distractors": "ka mosogare|ka maitseboa|ka ura ya bosego",
+      "explanation": "bosego = night: ka bosego."
+    },
+    {
+      "id": "a1-u08-q014",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Write in Setswana: at six o'clock.",
+      "answer": "ka ura ya tshela",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "ka ura ya + tshela (six)."
+    },
+    {
+      "id": "a1-u08-q015",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Someone asks \"O tsoga ka ura efe?\" You wake up at eight. What do you say?",
+      "answer": "Ke tsoga ka ura ya robedi.",
+      "answer_alt": null,
+      "distractors": "Ke robala ka ura efe.|Ke tsoga kae.|Ka ura robedi.",
+      "explanation": "Answer with Ke tsoga ka ura ya + the number."
+    },
+    {
+      "id": "a1-u08-q016",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does \"Ka Tshipi ga ke bereke\" mean?",
+      "answer": "On Sunday I don't work",
+      "answer_alt": null,
+      "distractors": "On Sunday I work|On Friday I don't work|At night I don't sleep",
+      "explanation": "Negation: bereka → bereke after ga ke."
+    },
+    {
+      "id": "a1-u08-q017",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: Ka ___ ke a robala. (at night)",
+      "answer": "bosego",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "bosego = night: ka bosego."
+    },
+    {
+      "id": "a1-u08-q018",
+      "unit": 8,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which is a day of the week?",
+      "answer": "Matlhatso",
+      "answer_alt": null,
+      "distractors": "Mosogare|Bosego|Ura",
+      "explanation": "Matlhatso = Saturday."
+    },
+    {
+      "id": "a1-u08-q019",
+      "unit": 8,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What time does Tumelo wake up?",
+      "answer": "Eight o'clock",
+      "answer_alt": null,
+      "distractors": "Five o'clock|Ten o'clock|Seven o'clock",
+      "explanation": "He says Ke tsoga ka ura ya robedi."
+    },
+    {
+      "id": "a1-u08-q020",
+      "unit": 8,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "When does Tumelo learn Setswana? Write his words about the day.",
+      "answer": "ka Laboraro",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "He says Ke ithuta Setswana ka Laboraro."
+    },
+    {
+      "id": "a1-u08-q021",
+      "unit": 8,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "When does Tumelo work on Friday?",
+      "answer": "Morning and evening",
+      "answer_alt": null,
+      "distractors": "Only at night|Only in the morning|He does not work",
+      "explanation": "He says ke bereka ka mosogare le ka maitseboa."
+    },
+    {
+      "id": "a1-u08-q022",
+      "unit": 8,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does Tumelo do on Sunday?",
+      "answer": "He plays at the kgotla",
+      "answer_alt": null,
+      "distractors": "He works at home|He cooks only|He sleeps all day",
+      "explanation": "He says ke tshameka kwa kgotleng."
+    },
+    {
+      "id": "a1-u08-q023",
+      "unit": 8,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What time does Tumelo sleep?",
+      "answer": "Ten o'clock",
+      "answer_alt": null,
+      "distractors": "Eight o'clock|Five o'clock|In the morning",
+      "explanation": "He says Ke robala ka ura ya lesome."
+    },
+    {
+      "id": "a1-u08-q024",
+      "unit": 8,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does Mma Kefilwe ask first?",
+      "answer": "How he woke up (O tsogile jang?)",
+      "answer_alt": null,
+      "distractors": "What time he wakes up|If he works|Where he plays",
+      "explanation": "The dialogue opens with O tsogile jang?"
     }
   ]
 }

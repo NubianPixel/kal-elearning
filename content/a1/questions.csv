@@ -157,3 +157,27 @@ a1-u07-q021,7,reading,checkpoint,choice,How does Naledi travel?,On foot,,By bus|
 a1-u07-q022,7,reading,checkpoint,choice,Where does Naledi live?,In town (kwa toropong),,In the village|At home|In Gaborone only,She says Ke dula kwa toropong.
 a1-u07-q023,7,reading,checkpoint,choice,What else does Naledi look for and how far is it?,A school — it is far,,A shop — it is near|A bank — it is near|A church — it is far,She asks about the sekolo: Ee go kgakala.
 a1-u07-q024,7,reading,checkpoint,choice,What does Mma Lesego say at the end?,Tsamaya sentle,,Sala sentle|Robala sentle|Ke a leboga,Sepatela visitor leaving — Mma Lesego says Tsamaya sentle.
+a1-u08-q001,8,grammar,drill,choice,Which day is Monday?,Mosupologo,,Labobedi|Tshipi|Matlhatso,Mosupologo = Monday.
+a1-u08-q002,8,grammar,drill,choice,"What does ""ka Labotlhano"" mean?",On Friday,,On Thursday|On Sunday|In the morning,Labotlhano = Friday; ka = on.
+a1-u08-q003,8,grammar,drill,choice,"What does ""ka mosogare"" mean?",In the morning,,At night|In the evening|Tomorrow,mosogare = morning.
+a1-u08-q004,8,grammar,drill,choice,What does "bosego" mean?,Night,,Morning|Evening|Week,bosego = night.
+a1-u08-q005,8,grammar,drill,type,"Fill in: Ka ___ ke bereka. (on Tuesday)",Labobedi,,,ka + the day: ka Labobedi.
+a1-u08-q006,8,grammar,drill,choice,How do you ask what time someone wakes up?,O tsoga ka ura efe?,,O robala ka ura efe?|O tsoga kae?|Ura efe?,efe = which; O tsoga ka ura efe?
+a1-u08-q007,8,grammar,drill,choice,"What does ""ka ura ya robedi"" mean?",At eight o'clock,,At seven o'clock|At ten o'clock|In eight hours,robedi = eight.
+a1-u08-q008,8,grammar,drill,type,Write in Setswana: week.,beke,,,beke = week.
+a1-u08-q009,8,grammar,drill,choice,What does "maabane" mean?,Yesterday,,Tomorrow|Now|In the evening,maabane = yesterday.
+a1-u08-q010,8,grammar,drill,type,"Fill in: ka ___ (in the evening)",maitseboa,,,maitseboa = evening.
+a1-u08-q011,8,grammar,checkpoint,choice,Which day comes after Labobedi?,Laboraro,,Labone|Mosupologo|Tshipi,Labobedi (Tuesday) is followed by Laboraro (Wednesday).
+a1-u08-q012,8,grammar,checkpoint,choice,What does "kgwedi" mean?,Month | moon,,Week|Day|Year,kgwedi = month (or moon).
+a1-u08-q013,8,grammar,checkpoint,choice,Which is correct for "at night"?,ka bosego,,ka mosogare|ka maitseboa|ka ura ya bosego,bosego = night: ka bosego.
+a1-u08-q014,8,grammar,checkpoint,type,Write in Setswana: at six o'clock.,ka ura ya tshela,,,ka ura ya + tshela (six).
+a1-u08-q015,8,grammar,checkpoint,choice,"Someone asks ""O tsoga ka ura efe?"" You wake up at eight. What do you say?",Ke tsoga ka ura ya robedi.,,Ke robala ka ura efe.|Ke tsoga kae.|Ka ura robedi.,Answer with Ke tsoga ka ura ya + the number.
+a1-u08-q016,8,grammar,checkpoint,choice,"What does ""Ka Tshipi ga ke bereke"" mean?",On Sunday I don't work,,On Sunday I work|On Friday I don't work|At night I don't sleep,Negation: bereka → bereke after ga ke.
+a1-u08-q017,8,grammar,checkpoint,type,"Fill in: Ka ___ ke a robala. (at night)",bosego,,,bosego = night: ka bosego.
+a1-u08-q018,8,grammar,checkpoint,choice,Which is a day of the week?,Matlhatso,,Mosogare|Bosego|Ura,Matlhatso = Saturday.
+a1-u08-q019,8,reading,checkpoint,choice,What time does Tumelo wake up?,Eight o'clock,,Five o'clock|Ten o'clock|Seven o'clock,He says Ke tsoga ka ura ya robedi.
+a1-u08-q020,8,reading,checkpoint,type,When does Tumelo learn Setswana? Write his words about the day.,ka Laboraro,,,He says Ke ithuta Setswana ka Laboraro.
+a1-u08-q021,8,reading,checkpoint,choice,When does Tumelo work on Friday?,Morning and evening,,Only at night|Only in the morning|He does not work,He says ke bereka ka mosogare le ka maitseboa.
+a1-u08-q022,8,reading,checkpoint,choice,What does Tumelo do on Sunday?,He plays at the kgotla,,He works at home|He cooks only|He sleeps all day,He says ke tshameka kwa kgotleng.
+a1-u08-q023,8,reading,checkpoint,choice,What time does Tumelo sleep?,Ten o'clock,,Eight o'clock|Five o'clock|In the morning,He says Ke robala ka ura ya lesome.
+a1-u08-q024,8,reading,checkpoint,choice,What does Mma Kefilwe ask first?,How he woke up (O tsogile jang?),,What time he wakes up|If he works|Where he plays,The dialogue opens with O tsogile jang?

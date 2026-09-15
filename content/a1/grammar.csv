@@ -73,3 +73,11 @@ unit,order,type,text_or_setswana,english
 7,8,example,Nnyaa go kgakala. Tsamaya ka bese.,"No, it's far. Go by bus."
 7,9,example,Ke ya kwa sekolong.,I am going to school.
 7,10,example,Ke ya gae.,I am going home.
+8,1,text,The days: Mosupologo (Monday). Labobedi (Tuesday). Laboraro (Wednesday). Labone (Thursday). Labotlhano (Friday). Matlhatso (Saturday). Tshipi (Sunday).
+8,2,text,Use ka + the time word: ka Labobedi (on Tuesday). ka mosogare (in the morning). ka maitseboa (in the evening). ka bosego (at night).
+8,3,text,"Clock time is whole hours only: ka ura ya nne (at four o'clock). maabane (yesterday). moso (tomorrow). jaanong (now)."
+8,4,text,O tsoga ka ura efe? (What time do you wake up?) Ke tsoga ka ura ya robedi. (I wake up at eight.)
+8,5,example,Ka Labobedi ke bereka.,On Tuesday I work.
+8,6,example,Ke nwa tee ka mosogare.,I drink tea in the morning.
+8,7,example,Ka Tshipi ga ke bereke.,On Sunday I don't work.
+8,8,example,Jaanong ke a ja.,Now I am eating.
