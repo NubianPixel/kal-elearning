@@ -1,123 +1,108 @@
-import { useCallback, useEffect, useState } from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import * as LocalAuthentication from 'expo-local-authentication';
 import type * as SQLite from 'expo-sqlite';
-import { getDb } from './src/db/database';
-import {
-  BIOMETRIC_KEY,
-  getDailyGoal,
-  getProgressStats,
-  getSetting,
-  getXp,
-  listLanguages,
-  setSetting,
-} from './src/db/repositories';
-import HomeScreen from './src/screens/HomeScreen';
-import LearnScreen from './src/screens/LearnScreen';
-import ReviewScreen from './src/screens/ReviewScreen';
-import AdminScreen from './src/screens/AdminScreen';
-import DashboardScreen from './src/screens/DashboardScreen';
-import StoryScreen from './src/screens/StoryScreen';
-import RevisionDeck from './src/components/RevisionDeck';
-import TypingScreen from './src/screens/TypingScreen';
-import TabBar from './src/components/TabBar';
+import { getProgressDb } from './src/db/progress';
+import { sweepLeftoverRecordings } from './src/audio';
+import type { UnitStep } from './src/core/path';
+import HomeScreen from './src/screens/a1/HomeScreen';
+import ReviewScreen from './src/screens/a1/ReviewScreen';
+import WordsStep from './src/screens/a1/WordsStep';
+import GrammarStep from './src/screens/a1/GrammarStep';
+import UseItStep from './src/screens/a1/UseItStep';
+import CheckpointScreen from './src/screens/a1/CheckpointScreen';
+import TabBar, { type TabKey } from './src/components/TabBar';
 import AppHeader from './src/components/AppHeader';
 import SplashScreen from './src/components/SplashScreen';
 import { ThemeProvider, useTheme } from './src/theme';
-import type { Language } from './src/core/types';
 
-type Screen = 'home' | 'learn' | 'review' | 'dashboard' | 'admin' | 'story' | 'revision' | 'typing';
+type StackScreen =
+  | { kind: 'review' }
+  | { kind: 'step'; unit: number; step: UnitStep }
+  | { kind: 'checkpoint'; unit: number | null };
+
+const STEP_TITLE: Record<UnitStep, string> = {
+  words: 'Words',
+  grammar: 'Grammar',
+  useit: 'Use it',
+  checkpoint: 'Checkpoint',
+};
 
 /**
- * App shell. State-based navigation; the dark pill tab bar (with the
- * floating play FAB) and the top bar are ALWAYS visible, so moving
- * between sections feels like one continuous app rather than separate
- * pages.
+ * App shell. State-based navigation (no navigation library): a persistent
+ * bottom tab bar (Home / Practice / Library / Progress) plus an optional
+ * "stacked" screen (review session, a unit step, a checkpoint) that
+ * temporarily replaces the active tab's content and wires AppHeader's
+ * back button to pop back to Home.
  *
  * Privacy: no accounts, no analytics, no trackers — everything is local.
+ * Speaking recordings are temp files; sweep any left behind by a crash or
+ * force-quit as soon as the app starts (see src/audio.ts).
  */
 export default function App() {
   const [db, setDb] = useState<SQLite.SQLiteDatabase | null>(null);
-  const [language, setLanguage] = useState<Language | null>(null);
-  const [screen, setScreen] = useState<Screen>('home');
 
   useEffect(() => {
-    (async () => {
-      const database = await getDb();
-      const [langs] = await Promise.all([
-        listLanguages(database),
-      ]);
-      setDb(database);
-      setLanguage(langs[0] ?? null);
-    })().catch((e) => console.error('Failed to open database', e));
+    sweepLeftoverRecordings();
+    getProgressDb()
+      .then(setDb)
+      .catch((e) => console.error('Failed to open progress database', e));
   }, []);
 
   return (
     <ThemeProvider>
       <SafeAreaProvider>
-        <Shell db={db} language={language} screen={screen} setScreen={setScreen} />
+        <Shell db={db} />
       </SafeAreaProvider>
     </ThemeProvider>
   );
 }
 
-interface ShellProps {
-  db: SQLite.SQLiteDatabase | null;
-  language: Language | null;
-  screen: Screen;
-  setScreen: (s: Screen) => void;
-}
-
-const HEADER_TITLES: Record<Screen, { title: string; subtitle?: string }> = {
-  home: { title: 'Dumela!', subtitle: 'Let’s learn Setswana' },
-  learn: { title: 'Learn', subtitle: 'Pictures, words and saying them' },
-  review: { title: 'Practice', subtitle: 'Flashcards and games' },
-  dashboard: { title: 'Settings', subtitle: 'Settings & progress' },
-  admin: { title: 'Manage Words', subtitle: 'Add, record and edit' },
-  story: { title: 'Story Time', subtitle: 'Listen and read along' },
-    revision: { title: 'Revise', subtitle: 'Slide through your words' },
-  typing: { title: 'Type the Meaning', subtitle: 'Spell the English answer' },
-};
-
-function Shell({ db, language, screen, setScreen }: ShellProps) {
+function Shell({ db }: { db: SQLite.SQLiteDatabase | null }) {
   const { colors: c } = useTheme();
-  /** Animated splash shows once on launch, over everything, then unmounts. */
   const [splash, setSplash] = useState(true);
   const hideSplash = useCallback(() => setSplash(false), []);
 
-  /**
-   * Entering the Parent Zone from outside it (Home/Learn/Review) is gated
-   * behind biometrics when the parent has turned the lock on — this is the
-   * ONLY enforcement point; the toggle in DashboardScreen just persists
-   * the setting. Moving between dashboard <-> admin (already inside the
-   * zone) never re-prompts.
-   */
-  const enterParentZone = useCallback(async () => {
-    if (!db) return;
-    try {
-      const locked = (await getSetting(db, BIOMETRIC_KEY)) === '1';
-      if (locked) {
-        const [hasHardware, isEnrolled] = await Promise.all([
-          LocalAuthentication.hasHardwareAsync(),
-          LocalAuthentication.isEnrolledAsync(),
-        ]);
-        if (hasHardware && isEnrolled) {
-          const result = await LocalAuthentication.authenticateAsync({
-            promptMessage: 'Unlock Settings',
-          });
-          if (!result.success) return;
-        }
-      }
-    } catch {
-      // Auth check failed unexpectedly — fail open rather than lock a
-      // parent out of their own settings on a flaky device.
-    }
-    setScreen('dashboard');
-  }, [db, setScreen]);
+  const [tab, setTab] = useState<TabKey>('home');
+  const [stack, setStack] = useState<StackScreen | null>(null);
+  const [homeRefreshKey, setHomeRefreshKey] = useState(0);
 
-  if (!db || !language) {
+  /** Pop any stacked screen, land back on Home, and force it to recompute. */
+  const finishStack = useCallback(() => {
+    setStack(null);
+    setTab('home');
+    setHomeRefreshKey((k) => k + 1);
+  }, []);
+
+  const selectTab = useCallback((next: TabKey) => {
+    setStack(null);
+    setTab(next);
+    if (next === 'home') setHomeRefreshKey((k) => k + 1);
+  }, []);
+
+  const header = useMemo(() => {
+    if (stack) {
+      if (stack.kind === 'review') return { title: 'Review' };
+      if (stack.kind === 'checkpoint') {
+        return { title: stack.unit === null ? 'A1 Exit Test' : `Unit ${stack.unit} Checkpoint` };
+      }
+      const label = stack.step === 'checkpoint' ? `Unit ${stack.unit} Checkpoint` : `Unit ${stack.unit} · ${STEP_TITLE[stack.step]}`;
+      return { title: label };
+    }
+    switch (tab) {
+      case 'home':
+        return { title: 'Dumela!', subtitle: "Let's learn Setswana", display: true };
+      case 'practice':
+        return { title: 'Practice' };
+      case 'library':
+        return { title: 'Library' };
+      case 'progress':
+        return { title: 'Progress' };
+    }
+  }, [stack, tab]);
+
+  if (!db) {
     // Splash doubles as the loading screen while the database opens.
     if (splash) return <SplashScreen onDone={hideSplash} />;
     return (
@@ -127,106 +112,59 @@ function Shell({ db, language, screen, setScreen }: ShellProps) {
     );
   }
 
-  const header = HEADER_TITLES[screen];
-  // Which tab (if any) is highlighted: admin lives under the Parent tab.
-  const activeTab =
-    screen === 'home' ? 'home' : screen === 'learn' ? 'learn' : screen === 'dashboard' || screen === 'admin' ? 'dashboard' : null;
-
   return (
     <View style={[styles.root, { backgroundColor: c.background }]}>
       <StatusBar style={c.statusBar} />
       <AppHeader
         title={header.title}
-        subtitle={header.subtitle}
-        titleVariant={screen === 'home' ? 'display' : 'default'}
+        subtitle={'subtitle' in header ? header.subtitle : undefined}
+        titleVariant={'display' in header && header.display ? 'display' : 'default'}
+        onBack={stack ? finishStack : undefined}
       />
 
       <View style={styles.body}>
-        {screen === 'home' && (
+        {stack === null && tab === 'home' && (
           <HomeScreen
-            languageName={language.name}
-            onReview={() => setScreen('review')}
-            onLearn={() => setScreen('learn')}
-                        onRevise={() => setScreen('revision')}
-            onStory={() => setScreen('story')}
-            onTyping={() => setScreen('typing')}
-            onParentZone={() => void enterParentZone()}
-            loadStats={() => getProgressStats(db, language.id)}
-            loadGoal={() => getDailyGoal(db)}
-            loadXp={() => getXp(db)}
+            db={db}
+            refreshKey={homeRefreshKey}
+            onReview={() => setStack({ kind: 'review' })}
+            onStep={(unit, step) => setStack({ kind: 'step', unit, step })}
+            onCheckpoint={(unit) => setStack({ kind: 'checkpoint', unit })}
           />
         )}
-        {screen === 'learn' && <LearnScreen db={db} languageId={language.id} />}
-        {screen === 'review' && (
-          <ReviewScreen
-            db={db}
-            languageId={language.id}
-                        onExit={() => setScreen('home')}
-            onRevise={() => setScreen('revision')}
-            onTyping={() => setScreen('typing')}
-          />
-        )}
-        {screen === 'story' && (
-          <StoryScreen
-            db={db}
-            languageId={language.id}
-            onExit={() => setScreen('home')}
-          />
-        )}
-                 {screen === 'revision' && (
-          <RevisionDeck
-            db={db}
-            languageId={language.id}
-            onBack={() => setScreen('home')}
-          />
-        )}
-        {screen === 'typing' && (
-          <TypingScreen
-            db={db}
-            languageId={language.id}
-            onExit={() => setScreen('home')}
-          />
-        )}
-        {screen === 'dashboard' && (
-          <DashboardScreen
-            db={db}
-            languageId={language.id}
-            languageName={language.name}
-            onExit={() => setScreen('home')}
-            onManageContent={() => setScreen('admin')}
-          />
-        )}
-        {screen === 'admin' && (
-          <AdminScreen
-            db={db}
-            languageId={language.id}
-            languageName={language.name}
-            onExit={() => setScreen('dashboard')}
-          />
+        {stack === null && tab === 'practice' && <Placeholder label="Practice — coming soon" />}
+        {stack === null && tab === 'library' && <Placeholder label="Library — coming soon" />}
+        {stack === null && tab === 'progress' && <Placeholder label="Progress — coming soon" />}
+
+        {stack?.kind === 'review' && <ReviewScreen db={db} onFinish={finishStack} />}
+        {stack?.kind === 'checkpoint' && <CheckpointScreen db={db} unit={stack.unit} onDone={finishStack} />}
+        {stack?.kind === 'step' && stack.step === 'words' && <WordsStep db={db} unit={stack.unit} onDone={finishStack} />}
+        {stack?.kind === 'step' && stack.step === 'grammar' && <GrammarStep db={db} unit={stack.unit} onDone={finishStack} />}
+        {stack?.kind === 'step' && stack.step === 'useit' && <UseItStep db={db} unit={stack.unit} onDone={finishStack} />}
+        {stack?.kind === 'step' && stack.step === 'checkpoint' && (
+          <CheckpointScreen db={db} unit={stack.unit} onDone={finishStack} />
         )}
       </View>
 
-      <TabBar
-        active={activeTab}
-        onHome={() => setScreen('home')}
-        onLearn={() => setScreen('learn')}
-        onParent={() => void enterParentZone()}
-        onPlay={() => (screen === 'review' ? setScreen('home') : setScreen('review'))}
-      />
+      <TabBar active={tab} onSelect={selectTab} />
 
       {splash && <SplashScreen onDone={hideSplash} />}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: '#FFF5F5' },
-  body: { flex: 1 },
-  center: {
-    flex: 1,
-    backgroundColor: '#FFF5F5',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+/** Minimal centered placeholder — the next agent replaces this with the real tab. */
+function Placeholder({ label }: { label: string }) {
+  const { colors: c } = useTheme();
+  return (
+    <View style={[styles.center, { backgroundColor: c.background }]}>
+      <Text style={{ fontSize: 15, fontWeight: '600', color: c.muted }}>{label}</Text>
+    </View>
+  );
+}
 
+const styles = StyleSheet.create({
+  root: { flex: 1 },
+  body: { flex: 1 },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+});
