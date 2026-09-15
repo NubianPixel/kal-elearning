@@ -295,6 +295,22 @@ Agreed 2026-09-15.
 | Images | Family's **own photos**, concrete nouns only; build step resizes to ~512 px WebP |
 | People in photos | **No identifiable faces** (backs, hands, silhouettes) — reviewer checklist item, not machine-checked |
 
+### Considered and deferred: Supabase
+
+Evaluated 2026-09-15; **not used for A1**.
+
+- *Content in Supabase (download at runtime):* rejected — first launch needs
+  data (~30 MB media), free-tier projects pause when idle so new installs
+  could get no content, and it adds pack download/versioning code. The only
+  gain (updates without a release) has no value before learners exist.
+- *Authoring-only Supabase (build script pulls tables, still bundled):*
+  viable fallback if Google Sheets proves too error-prone — DB constraints
+  would replace most of the validator. Revisit only if that happens.
+- *Progress sync:* revisit after the Play beta shows retention. Reverses
+  "no accounts / no network", needs a privacy policy, data-safety answers,
+  child-data compliance (Botswana Data Protection Act) and offline-first
+  per-card sync; replaces export/import.
+
 ## Open
 
 - Recording checklist for the family (quiet room, distance from phone,
