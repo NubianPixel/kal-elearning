@@ -20,6 +20,13 @@
       "title_english": "Family",
       "can_do": "Introduce your family",
       "grammar_title": "Class 1/2 plurals (mo-/ba- and bo-) and possessives"
+    },
+    {
+      "unit": 4,
+      "title_setswana": "Ke batla…",
+      "title_english": "What I want",
+      "can_do": "Say what you want and what you don't",
+      "grammar_title": "Negation ga ke … with final -a → -e"
     }
   ],
   "items": [
@@ -1565,6 +1572,610 @@
       "plural": [],
       "image": null,
       "note": null
+    },
+    {
+      "id": "a1-u04-w001",
+      "unit": 4,
+      "order": 1,
+      "kind": "word",
+      "setswana": "batla",
+      "setswana_alt": null,
+      "english": [
+        "want",
+        "look for"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w002",
+      "unit": 4,
+      "order": 2,
+      "kind": "word",
+      "setswana": "ja",
+      "setswana_alt": null,
+      "english": [
+        "eat"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Ja is irregular in negation: Ga ke je."
+    },
+    {
+      "id": "a1-u04-w003",
+      "unit": 4,
+      "order": 3,
+      "kind": "word",
+      "setswana": "nwa",
+      "setswana_alt": null,
+      "english": [
+        "drink"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Follows the -a → -e negation rule: Ga ke nwe."
+    },
+    {
+      "id": "a1-u04-w004",
+      "unit": 4,
+      "order": 4,
+      "kind": "word",
+      "setswana": "reka",
+      "setswana_alt": null,
+      "english": [
+        "buy"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w005",
+      "unit": 4,
+      "order": 5,
+      "kind": "word",
+      "setswana": "kopa",
+      "setswana_alt": null,
+      "english": [
+        "ask for",
+        "request"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w006",
+      "unit": 4,
+      "order": 6,
+      "kind": "word",
+      "setswana": "kgotsa",
+      "setswana_alt": null,
+      "english": [
+        "or"
+      ],
+      "hint": null,
+      "pos": "other",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w007",
+      "unit": 4,
+      "order": 7,
+      "kind": "word",
+      "setswana": "nama",
+      "setswana_alt": null,
+      "english": [
+        "meat"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w008",
+      "unit": 4,
+      "order": 8,
+      "kind": "word",
+      "setswana": "borotho",
+      "setswana_alt": null,
+      "english": [
+        "bread"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "14",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w009",
+      "unit": 4,
+      "order": 9,
+      "kind": "word",
+      "setswana": "metsi",
+      "setswana_alt": null,
+      "english": [
+        "water",
+        "the water"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "6",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w010",
+      "unit": 4,
+      "order": 10,
+      "kind": "word",
+      "setswana": "tee",
+      "setswana_alt": null,
+      "english": [
+        "tea"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w011",
+      "unit": 4,
+      "order": 11,
+      "kind": "word",
+      "setswana": "kofi",
+      "setswana_alt": null,
+      "english": [
+        "coffee"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w012",
+      "unit": 4,
+      "order": 12,
+      "kind": "word",
+      "setswana": "bogobe",
+      "setswana_alt": null,
+      "english": [
+        "porridge"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "14",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w013",
+      "unit": 4,
+      "order": 13,
+      "kind": "word",
+      "setswana": "morogo",
+      "setswana_alt": null,
+      "english": [
+        "wild greens",
+        "vegetables"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "3",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w014",
+      "unit": 4,
+      "order": 14,
+      "kind": "word",
+      "setswana": "sukiri",
+      "setswana_alt": null,
+      "english": [
+        "sugar"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w015",
+      "unit": 4,
+      "order": 15,
+      "kind": "word",
+      "setswana": "letswai",
+      "setswana_alt": null,
+      "english": [
+        "salt"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w016",
+      "unit": 4,
+      "order": 16,
+      "kind": "word",
+      "setswana": "maungo",
+      "setswana_alt": null,
+      "english": [
+        "fruit"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "6",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w017",
+      "unit": 4,
+      "order": 17,
+      "kind": "word",
+      "setswana": "lerotse",
+      "setswana_alt": null,
+      "english": [
+        "sweet melon"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w018",
+      "unit": 4,
+      "order": 18,
+      "kind": "word",
+      "setswana": "apole",
+      "setswana_alt": null,
+      "english": [
+        "apple"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w019",
+      "unit": 4,
+      "order": 19,
+      "kind": "word",
+      "setswana": "bupi",
+      "setswana_alt": null,
+      "english": [
+        "maize meal",
+        "flour"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "14",
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w020",
+      "unit": 4,
+      "order": 20,
+      "kind": "word",
+      "setswana": "leselo",
+      "setswana_alt": null,
+      "english": [
+        "plate",
+        "dish"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "5",
+      "plural": [
+        "maselo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w021",
+      "unit": 4,
+      "order": 21,
+      "kind": "phrase",
+      "setswana": "Ke batla…",
+      "setswana_alt": null,
+      "english": [
+        "I want …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w022",
+      "unit": 4,
+      "order": 22,
+      "kind": "phrase",
+      "setswana": "Ga ke batle…",
+      "setswana_alt": null,
+      "english": [
+        "I don't want …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "batla → batle: final -a becomes -e after ga ke."
+    },
+    {
+      "id": "a1-u04-w023",
+      "unit": 4,
+      "order": 23,
+      "kind": "phrase",
+      "setswana": "O batla eng?",
+      "setswana_alt": null,
+      "english": [
+        "what do you want?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w024",
+      "unit": 4,
+      "order": 24,
+      "kind": "phrase",
+      "setswana": "Ke kopa…",
+      "setswana_alt": null,
+      "english": [
+        "I would like …",
+        "please give me …"
+      ],
+      "hint": "polite",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w025",
+      "unit": 4,
+      "order": 25,
+      "kind": "phrase",
+      "setswana": "Ga ke je nama",
+      "setswana_alt": null,
+      "english": [
+        "I don't eat meat"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "ja is irregular: ga ke je (not ga ke ja)."
+    },
+    {
+      "id": "a1-u04-w026",
+      "unit": 4,
+      "order": 26,
+      "kind": "phrase",
+      "setswana": "Ga ke nwe metsi",
+      "setswana_alt": null,
+      "english": [
+        "I don't drink water"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "nwa → nwe by the -a → -e rule."
+    },
+    {
+      "id": "a1-u04-w027",
+      "unit": 4,
+      "order": 27,
+      "kind": "phrase",
+      "setswana": "Ke lapile",
+      "setswana_alt": null,
+      "english": [
+        "I'm hungry"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w028",
+      "unit": 4,
+      "order": 28,
+      "kind": "phrase",
+      "setswana": "Ke kuneng",
+      "setswana_alt": null,
+      "english": [
+        "I'm full"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w029",
+      "unit": 4,
+      "order": 29,
+      "kind": "phrase",
+      "setswana": "Tee kgotsa kofi?",
+      "setswana_alt": null,
+      "english": [
+        "tea or coffee?"
+      ],
+      "hint": "offering a choice",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w030",
+      "unit": 4,
+      "order": 30,
+      "kind": "phrase",
+      "setswana": "Metsi tswee-tswee",
+      "setswana_alt": null,
+      "english": [
+        "water please"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w031",
+      "unit": 4,
+      "order": 31,
+      "kind": "phrase",
+      "setswana": "Le ja eng?",
+      "setswana_alt": null,
+      "english": [
+        "what are you (several) eating?"
+      ],
+      "hint": "to several people",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w032",
+      "unit": 4,
+      "order": 32,
+      "kind": "phrase",
+      "setswana": "O ja eng?",
+      "setswana_alt": null,
+      "english": [
+        "what are you eating?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w033",
+      "unit": 4,
+      "order": 33,
+      "kind": "phrase",
+      "setswana": "Ke ja nama le bogobe",
+      "setswana_alt": null,
+      "english": [
+        "I eat meat and porridge"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w034",
+      "unit": 4,
+      "order": 34,
+      "kind": "phrase",
+      "setswana": "Re batla…",
+      "setswana_alt": null,
+      "english": [
+        "we want …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u04-w035",
+      "unit": 4,
+      "order": 35,
+      "kind": "phrase",
+      "setswana": "Ga re batle…",
+      "setswana_alt": null,
+      "english": [
+        "we don't want …"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "re follows the same rule: ga re + -e."
     }
   ],
   "grammar": [
@@ -1805,6 +2416,76 @@
       "type": "example",
       "text_or_setswana": "Mosadi yo ke kgaitsadi wa me.",
       "english": "This woman is my sister."
+    },
+    {
+      "unit": 4,
+      "order": 1,
+      "type": "text",
+      "text_or_setswana": "To say you do NOT do something, use ga ke + the verb with its final -a changed to -e: Ke batla (I want) → Ga ke batle (I don't want).",
+      "english": null
+    },
+    {
+      "unit": 4,
+      "order": 2,
+      "type": "text",
+      "text_or_setswana": "With we or they the same: ga re, ga ba + -e. Re nwa metsi (we drink water) → Ga re nwe metsi (we don't drink water).",
+      "english": null
+    },
+    {
+      "unit": 4,
+      "order": 3,
+      "type": "text",
+      "text_or_setswana": "ja (eat) is irregular: Ga ke je nama (I don't eat meat) — not ga ke ja. nwa (drink) follows the rule: Ga ke nwe.",
+      "english": null
+    },
+    {
+      "unit": 4,
+      "order": 4,
+      "type": "text",
+      "text_or_setswana": "Ke lapile = I'm hungry. Ke kuneng = I'm full. kgotsa = or: Tee kgotsa kofi? (tea or coffee?)",
+      "english": null
+    },
+    {
+      "unit": 4,
+      "order": 5,
+      "type": "text",
+      "text_or_setswana": "Patterns for now, not tested: Ke a ja (I am eating) vs Ke ja nama (I eat meat); yes/no questions with A o …? (A o batla metsi? — do you want water?); Ke batla go ja (I want to eat).",
+      "english": null
+    },
+    {
+      "unit": 4,
+      "order": 6,
+      "type": "example",
+      "text_or_setswana": "Ke batla nama. Ga ke batle borotho.",
+      "english": "I want meat. I don't want bread."
+    },
+    {
+      "unit": 4,
+      "order": 7,
+      "type": "example",
+      "text_or_setswana": "O batla eng? Ke kopa metsi tswee-tswee.",
+      "english": "What do you want? I'd like water, please."
+    },
+    {
+      "unit": 4,
+      "order": 8,
+      "type": "example",
+      "text_or_setswana": "Ga ke nwe tee. Ke nwa kofi.",
+      "english": "I don't drink tea. I drink coffee."
+    },
+    {
+      "unit": 4,
+      "order": 9,
+      "type": "example",
+      "text_or_setswana": "A o ja nama? Nnyaa ga ke je nama.",
+      "english": "Do you eat meat? No, I don't eat meat."
+    },
+    {
+      "unit": 4,
+      "order": 10,
+      "type": "example",
+      "text_or_setswana": "Re batla bogobe le morogo.",
+      "english": "We want porridge and greens."
     }
   ],
   "dialogues": [
@@ -2031,6 +2712,94 @@
       "speaker": "Lesedi",
       "setswana": "Sala sentle!",
       "english": "Stay well!"
+    },
+    {
+      "id": "a1-u04-d1-l01",
+      "unit": 4,
+      "order": 1,
+      "speaker": "Mma Kefilwe",
+      "setswana": "Dumela rra. O batla eng?",
+      "english": "Hello sir. What do you want?"
+    },
+    {
+      "id": "a1-u04-d1-l02",
+      "unit": 4,
+      "order": 2,
+      "speaker": "Tumelo",
+      "setswana": "Dumela, mma. Ke lapile. Ke batla nama le bogobe.",
+      "english": "Hello, madam. I'm hungry. I want meat and porridge."
+    },
+    {
+      "id": "a1-u04-d1-l03",
+      "unit": 4,
+      "order": 3,
+      "speaker": "Mma Kefilwe",
+      "setswana": "Borotho kgotsa bogobe?",
+      "english": "Bread or porridge?"
+    },
+    {
+      "id": "a1-u04-d1-l04",
+      "unit": 4,
+      "order": 4,
+      "speaker": "Tumelo",
+      "setswana": "Bogobe ke a leboga.",
+      "english": "Porridge thank you."
+    },
+    {
+      "id": "a1-u04-d1-l05",
+      "unit": 4,
+      "order": 5,
+      "speaker": "Mma Kefilwe",
+      "setswana": "O nwa eng? Tee kgotsa kofi?",
+      "english": "What do you drink? Tea or coffee?"
+    },
+    {
+      "id": "a1-u04-d1-l06",
+      "unit": 4,
+      "order": 6,
+      "speaker": "Tumelo",
+      "setswana": "Ga ke nwe tee kgotsa kofi. Metsi tswee-tswee.",
+      "english": "I don't drink tea or coffee. Water, please."
+    },
+    {
+      "id": "a1-u04-d1-l07",
+      "unit": 4,
+      "order": 7,
+      "speaker": "Mma Kefilwe",
+      "setswana": "A o ja morogo?",
+      "english": "Do you eat morogo?"
+    },
+    {
+      "id": "a1-u04-d1-l08",
+      "unit": 4,
+      "order": 8,
+      "speaker": "Tumelo",
+      "setswana": "Ee ke batla morogo.",
+      "english": "Yes I want morogo."
+    },
+    {
+      "id": "a1-u04-d1-l09",
+      "unit": 4,
+      "order": 9,
+      "speaker": "Mma Kefilwe",
+      "setswana": "A o batla maungo?",
+      "english": "Do you want fruit?"
+    },
+    {
+      "id": "a1-u04-d1-l10",
+      "unit": 4,
+      "order": 10,
+      "speaker": "Tumelo",
+      "setswana": "Ga ke batle maungo ke a leboga.",
+      "english": "I don't want fruit, thank you."
+    },
+    {
+      "id": "a1-u04-d1-l11",
+      "unit": 4,
+      "order": 11,
+      "speaker": "Mma Kefilwe",
+      "setswana": "Go siame.",
+      "english": "Ok then."
     }
   ],
   "questions": [
@@ -2777,6 +3546,294 @@
       "answer_alt": null,
       "distractors": "Bontle — Lesedi says Tsamaya sentle to her|Lesedi — she says Tsamaya sentle|Bontle — she says Sala sentle",
       "explanation": "The one staying says Tsamaya sentle; Lesedi replies Sala sentle — so she is leaving."
+    },
+    {
+      "id": "a1-u04-q001",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you say I don't want bread?",
+      "answer": "Ga ke batle borotho",
+      "answer_alt": null,
+      "distractors": "Ga ke batla borotho.|Ke ga batle borotho.|Ga ke nwe borotho.",
+      "explanation": "batla → batle: final -a becomes -e after ga ke."
+    },
+    {
+      "id": "a1-u04-q002",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you say I don't drink tea?",
+      "answer": "Ga ke nwe tee",
+      "answer_alt": null,
+      "distractors": "Ga ke nwa tee.|Ga ke je tee.|Ke nwe tee.",
+      "explanation": "nwa → nwe by the -a → -e rule."
+    },
+    {
+      "id": "a1-u04-q003",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: Ke batla nama. Ga ke ___. (I don't want)",
+      "answer": "batle",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "batla → batle after ga ke."
+    },
+    {
+      "id": "a1-u04-q004",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write in Setswana: I don't drink.",
+      "answer": "Ga ke nwe",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "nwa → nwe: final -a becomes -e."
+    },
+    {
+      "id": "a1-u04-q005",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: Ga ke ___ nama. (I don't eat)",
+      "answer": "je",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "ja is irregular in negation: ga ke je."
+    },
+    {
+      "id": "a1-u04-q006",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "How do you say we don't want?",
+      "answer": "Ga re batle",
+      "answer_alt": null,
+      "distractors": "Ga re batla.|Ga ke batle.|Re ga batle.",
+      "explanation": "Same rule with re: ga re + -e."
+    },
+    {
+      "id": "a1-u04-q007",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Ke kopa metsi\" mean?",
+      "answer": "I would like water (polite)",
+      "answer_alt": null,
+      "distractors": "I want to drink|I am buying water|I don't want water",
+      "explanation": "kopa = ask for; Ke kopa… is the polite way to order."
+    },
+    {
+      "id": "a1-u04-q008",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does Ke lapile mean?",
+      "answer": "I'm hungry",
+      "answer_alt": null,
+      "distractors": "I'm full|I'm fine|I'm leaving",
+      "explanation": "Ke lapile = I'm hungry."
+    },
+    {
+      "id": "a1-u04-q009",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "Which phrase means the opposite of Ke lapile?",
+      "answer": "Ke kuneng",
+      "answer_alt": null,
+      "distractors": "Ke lapile fela|Ke a ja|Ga ke lapile",
+      "explanation": "Ke kuneng = I'm full."
+    },
+    {
+      "id": "a1-u04-q010",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: Tee ___ kofi? (tea or coffee?)",
+      "answer": "kgotsa",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "kgotsa = or."
+    },
+    {
+      "id": "a1-u04-q011",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How do you say They don't eat meat?",
+      "answer": "Ga ba je nama",
+      "answer_alt": null,
+      "distractors": "Ga ba ja nama.|Ga ke je nama.|Ba ga je nama.",
+      "explanation": "Same rule with ba; ja stays irregular: ga ba je."
+    },
+    {
+      "id": "a1-u04-q012",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "How do you ask What do you want?",
+      "answer": "O batla eng?",
+      "answer_alt": null,
+      "distractors": "O ja eng?|O bua eng?|Leina la gago ke mang?",
+      "explanation": "batla = want; eng = what."
+    },
+    {
+      "id": "a1-u04-q013",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Write in Setswana: I don't want meat.",
+      "answer": "Ga ke batle nama",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Ke batla → Ga ke batle: -a becomes -e."
+    },
+    {
+      "id": "a1-u04-q014",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Someone asks you A o batla tee? You don't want it. What do you say?",
+      "answer": "Nnyaa ga ke batle tee.",
+      "answer_alt": null,
+      "distractors": "Ee ga ke batle tee.|Nnyaa ke batla tee.|Nnyaa ga ke nwe tee.",
+      "explanation": "Nnyaa = no; negation needs -e: ga ke batle."
+    },
+    {
+      "id": "a1-u04-q015",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which negation is correct?",
+      "answer": "Ga ke nwe metsi",
+      "answer_alt": null,
+      "distractors": "Ga ke nwa metsi.|Ga ke je metsi.|Ga o nwe metsi.",
+      "explanation": "nwa → nwe after ga ke."
+    },
+    {
+      "id": "a1-u04-q016",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: Re batla bogobe. Ga re ___ borotho. (we don't want)",
+      "answer": "batle",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "Same rule with re: ga re batle."
+    },
+    {
+      "id": "a1-u04-q017",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does \"Ga ke je nama\" mean?",
+      "answer": "I don't eat meat",
+      "answer_alt": null,
+      "distractors": "I don't want meat|I am eating meat|I don't buy meat",
+      "explanation": "ja is irregular: ga ke je = I don't eat."
+    },
+    {
+      "id": "a1-u04-q018",
+      "unit": 4,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: ___ batla eng? (they)",
+      "answer": "Ba",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "The concord for they is ba: Ba batla eng?"
+    },
+    {
+      "id": "a1-u04-q019",
+      "unit": 4,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Where does this dialogue happen?",
+      "answer": "At a place to eat",
+      "answer_alt": null,
+      "distractors": "At a bus stop|At a family photo|At school",
+      "explanation": "Mma Kefilwe asks about food: O batla eng?"
+    },
+    {
+      "id": "a1-u04-q020",
+      "unit": 4,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "What does Tumelo want? Write his words about food.",
+      "answer": "Ke batla nama le bogobe",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "He says Ke batla nama le bogobe — I want meat and porridge."
+    },
+    {
+      "id": "a1-u04-q021",
+      "unit": 4,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does Tumelo drink?",
+      "answer": "Water",
+      "answer_alt": null,
+      "distractors": "Tea|Coffee|Fruit",
+      "explanation": "He says Ga ke nwe tee kgotsa kofi. Metsi tswee-tswee."
+    },
+    {
+      "id": "a1-u04-q022",
+      "unit": 4,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Does Tumelo want morogo?",
+      "answer": "Yes — he says Ke batla morogo",
+      "answer_alt": null,
+      "distractors": "No — he says Ga ke batle morogo.|Yes — he says Ee ke ja morogo.|No — he says Ga ke je morogo.",
+      "explanation": "He answers Ee ke batla morogo to A o ja morogo?"
+    },
+    {
+      "id": "a1-u04-q023",
+      "unit": 4,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does Tumelo refuse?",
+      "answer": "Fruit",
+      "answer_alt": null,
+      "distractors": "Water|Morogo|Porridge",
+      "explanation": "He says Ga ke batle maungo — I don't want fruit."
+    },
+    {
+      "id": "a1-u04-q024",
+      "unit": 4,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Who serves and what does she ask first?",
+      "answer": "Mma Kefilwe — O batla eng?",
+      "answer_alt": null,
+      "distractors": "Tumelo — O batla eng?|Mma Kefilwe — Ke lapile|Tumelo — Ke batla nama",
+      "explanation": "Mma Kefilwe greets and asks O batla eng?"
     }
   ]
 }

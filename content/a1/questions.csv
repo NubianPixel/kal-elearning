@@ -61,3 +61,27 @@ a1-u03-q021,3,reading,checkpoint,choice,"When Bontle asks ""Yo ke mmago?"", what
 a1-u03-q022,3,reading,checkpoint,choice,Which children does Lesedi have?,A girl and a boy,,Two boys|Two girls|One child,She says Bana ba me ke mosetsana le mosimane.
 a1-u03-q023,3,reading,checkpoint,choice,Who is Thabo?,The boy in the photo,,Lesedi's father|Bontle's brother|The grandfather,Lesedi answers about the mosimane: Leina la gagwe ke Thabo.
 a1-u03-q024,3,reading,checkpoint,choice,Who is leaving at the end and how do you know?,"Lesedi — Bontle says Tsamaya sentle to her",,"Bontle — Lesedi says Tsamaya sentle to her|Lesedi — she says Tsamaya sentle|Bontle — she says Sala sentle",The one staying says Tsamaya sentle; Lesedi replies Sala sentle — so she is leaving.
+a1-u04-q001,4,grammar,drill,choice,How do you say "I don't want bread"?,Ga ke batle borotho,,Ga ke batla borotho.|Ke ga batle borotho.|Ga ke nwe borotho.,batla → batle: final -a becomes -e after ga ke.
+a1-u04-q002,4,grammar,drill,choice,How do you say "I don't drink tea"?,Ga ke nwe tee,,Ga ke nwa tee.|Ga ke je tee.|Ke nwe tee.,nwa → nwe by the -a → -e rule.
+a1-u04-q003,4,grammar,drill,type,"Fill in: Ke batla nama. Ga ke ___. (I don't want)",batle,,,batla → batle after ga ke.
+a1-u04-q004,4,grammar,drill,type,Write in Setswana: I don't drink.,Ga ke nwe,,,nwa → nwe: final -a becomes -e.
+a1-u04-q005,4,grammar,drill,type,"Fill in: Ga ke ___ nama. (I don't eat)",je,,,ja is irregular in negation: ga ke je.
+a1-u04-q006,4,grammar,drill,choice,How do you say "we don't want"?,Ga re batle,,Ga re batla.|Ga ke batle.|Re ga batle.,Same rule with re: ga re + -e.
+a1-u04-q007,4,grammar,drill,choice,"What does ""Ke kopa metsi"" mean?",I would like water (polite),,I want to drink|I am buying water|I don't want water,kopa = ask for; Ke kopa… is the polite way to order.
+a1-u04-q008,4,grammar,drill,choice,What does "Ke lapile" mean?,I'm hungry,,I'm full|I'm fine|I'm leaving,Ke lapile = I'm hungry.
+a1-u04-q009,4,grammar,drill,choice,Which phrase means the opposite of "Ke lapile"?,Ke kuneng,,Ke lapile fela|Ke a ja|Ga ke lapile,Ke kuneng = I'm full.
+a1-u04-q010,4,grammar,drill,type,"Fill in: Tee ___ kofi? (tea or coffee?)",kgotsa,,,kgotsa = or.
+a1-u04-q011,4,grammar,checkpoint,choice,How do you say "They don't eat meat"?,Ga ba je nama,,Ga ba ja nama.|Ga ke je nama.|Ba ga je nama.,Same rule with ba; ja stays irregular: ga ba je.
+a1-u04-q012,4,grammar,checkpoint,choice,How do you ask "What do you want"?,O batla eng?,,O ja eng?|O bua eng?|Leina la gago ke mang?,batla = want; eng = what.
+a1-u04-q013,4,grammar,checkpoint,type,Write in Setswana: I don't want meat.,Ga ke batle nama,,,Ke batla → Ga ke batle: -a becomes -e.
+a1-u04-q014,4,grammar,checkpoint,choice,Someone asks you "A o batla tee?" You don't want it. What do you say?,Nnyaa ga ke batle tee.,,Ee ga ke batle tee.|Nnyaa ke batla tee.|Nnyaa ga ke nwe tee.,Nnyaa = no; negation needs -e: ga ke batle.
+a1-u04-q015,4,grammar,checkpoint,choice,Which negation is correct?,Ga ke nwe metsi,,Ga ke nwa metsi.|Ga ke je metsi.|Ga o nwe metsi.,nwa → nwe after ga ke.
+a1-u04-q016,4,grammar,checkpoint,type,"Fill in: Re batla bogobe. Ga re ___ borotho. (we don't want)",batle,,,Same rule with re: ga re batle.
+a1-u04-q017,4,grammar,checkpoint,choice,"What does ""Ga ke je nama"" mean?",I don't eat meat,,I don't want meat|I am eating meat|I don't buy meat,ja is irregular: ga ke je = I don't eat.
+a1-u04-q018,4,grammar,checkpoint,type,"Fill in: ___ batla eng? (they)",Ba,,,The concord for they is ba: Ba batla eng?
+a1-u04-q019,4,reading,checkpoint,choice,Where does this dialogue happen?,At a place to eat,,At a bus stop|At a family photo|At school,Mma Kefilwe asks about food: O batla eng?
+a1-u04-q020,4,reading,checkpoint,type,What does Tumelo want? Write his words about food.,Ke batla nama le bogobe,,,He says Ke batla nama le bogobe — I want meat and porridge.
+a1-u04-q021,4,reading,checkpoint,choice,What does Tumelo drink?,Water,,Tea|Coffee|Fruit,He says Ga ke nwe tee kgotsa kofi. Metsi tswee-tswee.
+a1-u04-q022,4,reading,checkpoint,choice,Does Tumelo want morogo?,Yes — he says Ke batla morogo,,No — he says Ga ke batle morogo.|Yes — he says Ee ke ja morogo.|No — he says Ga ke je morogo.,He answers Ee ke batla morogo to A o ja morogo?
+a1-u04-q023,4,reading,checkpoint,choice,What does Tumelo refuse?,Fruit,,Water|Morogo|Porridge,He says Ga ke batle maungo — I don't want fruit.
+a1-u04-q024,4,reading,checkpoint,choice,Who serves and what does she ask first?,Mma Kefilwe — O batla eng?,,Tumelo — O batla eng?|Mma Kefilwe — Ke lapile|Tumelo — Ke batla nama,Mma Kefilwe greets and asks O batla eng?

@@ -1,8 +1,8 @@
 # A1 content — family authoring guide
 
-> **Unit 1–3 Setswana text was drafted by an AI that does not speak
+> **Unit 1–4 Setswana text was drafted by an AI that does not speak
 > Setswana.** Unit 1 was reviewed by the project owner on 2026-09-15;
-> Units 2–3 (drafted 2026-09-16) are awaiting that review. Everything still
+> Units 2–4 (drafted 2026-09-16) are awaiting that review. Everything still
 > needs the independent Botswana-standard review before release. Later
 > units need the same checks as they're written.
 

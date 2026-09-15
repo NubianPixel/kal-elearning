@@ -33,3 +33,13 @@ unit,order,type,text_or_setswana,english
 3,9,example,Bana ba me ke mosetsana le mosimane.,My children are a girl and a boy.
 3,10,example,Yo ke mmaagwe.,This is his mother.
 3,11,example,Mosadi yo ke kgaitsadi wa me.,This woman is my sister.
+4,1,text,"To say you do NOT do something, use ga ke + the verb with its final -a changed to -e: Ke batla (I want) → Ga ke batle (I don't want)."
+4,2,text,"With we or they the same: ga re, ga ba + -e. Re nwa metsi (we drink water) → Ga re nwe metsi (we don't drink water)."
+4,3,text,ja (eat) is irregular: Ga ke je nama (I don't eat meat) — not ga ke ja. nwa (drink) follows the rule: Ga ke nwe.
+4,4,text,"Ke lapile = I'm hungry. Ke kuneng = I'm full. kgotsa = or: Tee kgotsa kofi? (tea or coffee?)"
+4,5,text,"Patterns for now, not tested: Ke a ja (I am eating) vs Ke ja nama (I eat meat); yes/no questions with A o …? (A o batla metsi? — do you want water?); Ke batla go ja (I want to eat)."
+4,6,example,Ke batla nama. Ga ke batle borotho.,"I want meat. I don't want bread."
+4,7,example,O batla eng? Ke kopa metsi tswee-tswee.,"What do you want? I'd like water, please."
+4,8,example,Ga ke nwe tee. Ke nwa kofi.,"I don't drink tea. I drink coffee."
+4,9,example,A o ja nama? Nnyaa ga ke je nama.,"Do you eat meat? No, I don't eat meat."
+4,10,example,Re batla bogobe le morogo.,We want porridge and greens.
