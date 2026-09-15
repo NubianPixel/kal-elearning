@@ -2,7 +2,14 @@ import { gradeAnswer, isItemMastered, SLOW_ANSWER_MS } from '../src/core/srs';
 import { buildListeningQuestion, buildRecallQuestion, gradeRecallAnswer } from '../src/core/questions';
 import { buildCheckpoint, scoreCheckpoint, type CheckpointResult } from '../src/core/checkpoint';
 import { buildReviewQueue, isGoalMet, newItemsAllowed } from '../src/core/daily';
-import { firstIncompleteStep, nextAction, unitStatus, wordsStepComplete, type UnitProgress } from '../src/core/path';
+import {
+  currentUnitNumber,
+  firstIncompleteStep,
+  nextAction,
+  unitStatus,
+  wordsStepComplete,
+  type UnitProgress,
+} from '../src/core/path';
 import { itemById, type Item } from '../src/content';
 
 const MASTERED = { repetitions: 3, intervalDays: 21 };
@@ -321,6 +328,26 @@ describe('unitStatus', () => {
   });
 });
 
+describe('currentUnitNumber', () => {
+  it('is unit 1 when nothing has been passed', () => {
+    expect(currentUnitNumber(new Set(), 10)).toBe(1);
+  });
+
+  it('is the unit right after the highest passed one', () => {
+    expect(currentUnitNumber(new Set([1, 2]), 10)).toBe(3);
+  });
+
+  it('test-out: routes forward from the highest passed unit, never back into lower unlocked-but-unpassed units', () => {
+    // Bug: picking "the lowest unlocked unit" sent a learner who tested out
+    // of unit 5 back to unit 2 (still unlocked, never passed).
+    expect(currentUnitNumber(new Set([1, 5]), 10)).toBe(6);
+  });
+
+  it('is null once the next unit exceeds the authored content', () => {
+    expect(currentUnitNumber(new Set([10]), 10)).toBeNull();
+  });
+});
+
 describe('wordsStepComplete / firstIncompleteStep', () => {
   function progress(overrides: Partial<UnitProgress>): UnitProgress {
     return {
@@ -377,6 +404,7 @@ describe('nextAction', () => {
         newItemsAllowedToday: 10,
         goalMetToday: false,
         exitTestPassed: false,
+        exitTestAvailable: true,
       }),
     ).toEqual({ kind: 'review', count: 5 });
   });
@@ -393,6 +421,7 @@ describe('nextAction', () => {
         newItemsAllowedToday: 10,
         goalMetToday: false,
         exitTestPassed: false,
+        exitTestAvailable: true,
       }),
     ).toEqual({ kind: 'step', unit: 1, step: 'words' });
   });
@@ -409,6 +438,7 @@ describe('nextAction', () => {
         newItemsAllowedToday: 0,
         goalMetToday: true,
         exitTestPassed: false,
+        exitTestAvailable: true,
       }),
     ).toEqual({ kind: 'rest', reason: 'goal-met' });
   });
@@ -425,8 +455,27 @@ describe('nextAction', () => {
         newItemsAllowedToday: 10,
         goalMetToday: false,
         exitTestPassed: false,
+        exitTestAvailable: true,
       }),
     ).toEqual({ kind: 'exit-test' });
+  });
+
+  it('is done (not exit-test) when the last authored unit is passed but the full curriculum is not authored yet', () => {
+    // Only Unit 1 exists so far; passing it must not offer the A1 exit test.
+    expect(
+      nextAction({
+        dueCount: 0,
+        reviewCap: 60,
+        reviewedToday: 0,
+        totalUnits: 1,
+        passedUnits: new Set([1]),
+        currentUnit: null,
+        newItemsAllowedToday: 10,
+        goalMetToday: false,
+        exitTestPassed: false,
+        exitTestAvailable: false,
+      }),
+    ).toEqual({ kind: 'done' });
   });
 
   it('is done once the exit test is passed', () => {
@@ -441,6 +490,7 @@ describe('nextAction', () => {
         newItemsAllowedToday: 10,
         goalMetToday: false,
         exitTestPassed: true,
+        exitTestAvailable: true,
       }),
     ).toEqual({ kind: 'done' });
   });
@@ -458,6 +508,7 @@ describe('nextAction', () => {
         newItemsAllowedToday: 10,
         goalMetToday: false,
         exitTestPassed: false,
+        exitTestAvailable: true,
       }),
     ).toEqual({ kind: 'step', unit: 1, step: 'words' });
   });
@@ -474,6 +525,7 @@ describe('nextAction', () => {
         newItemsAllowedToday: 0,
         goalMetToday: false,
         exitTestPassed: false,
+        exitTestAvailable: true,
       }),
     ).toEqual({ kind: 'rest', reason: 'backlog' });
   });
@@ -490,6 +542,7 @@ describe('nextAction', () => {
         newItemsAllowedToday: 10,
         goalMetToday: false,
         exitTestPassed: false,
+        exitTestAvailable: true,
       }),
     ).toEqual({ kind: 'review', count: 5 });
   });

@@ -129,6 +129,15 @@ export async function loadCardStates(db: SQLite.SQLiteDatabase): Promise<CardSta
   return rows.map(cardStateFromRow);
 }
 
+/** Ids of every item ever introduced (Words step) — recall cards are
+ *  always created together with listen cards, so recall-card presence
+ *  alone identifies "introduced". Used by Practice/Library (free
+ *  practice/browsing over introduced items only). */
+export async function introducedItemIds(db: SQLite.SQLiteDatabase): Promise<Set<string>> {
+  const cardStates = await loadCardStates(db);
+  return new Set(cardStates.filter((c) => c.cardType === 'recall').map((c) => c.itemId));
+}
+
 export async function loadDueCardStates(
   db: SQLite.SQLiteDatabase,
   now: Date = new Date(),
@@ -283,6 +292,27 @@ export async function passedUnits(db: SQLite.SQLiteDatabase): Promise<Set<number
   return new Set(rows.map((r) => r.unit));
 }
 
+export interface UnitCheckpointBadge {
+  unit: number;
+  attempted: boolean;
+  passed: boolean;
+  /** Best (highest) overall % across every attempt at this unit's checkpoint, or null if never attempted. */
+  bestPct: number | null;
+}
+
+/** One badge per authored unit — best score and whether it's ever been
+ *  passed (including test-out) — for the Progress tab's checkpoint list. */
+export async function unitCheckpointBadges(db: SQLite.SQLiteDatabase): Promise<UnitCheckpointBadge[]> {
+  const rows = await db.getAllAsync<{ unit: number; best: number; ever_passed: number }>(
+    'SELECT unit, MAX(overall) AS best, MAX(passed) AS ever_passed FROM checkpoint_attempts WHERE unit IS NOT NULL GROUP BY unit',
+  );
+  const byUnit = new Map(rows.map((r) => [r.unit, r]));
+  return units.map((u) => {
+    const r = byUnit.get(u.unit);
+    return { unit: u.unit, attempted: !!r, passed: r ? r.ever_passed === 1 : false, bestPct: r ? r.best : null };
+  });
+}
+
 export async function exitTestPassed(db: SQLite.SQLiteDatabase): Promise<boolean> {
   const row = await db.getFirstAsync<{ n: number }>(
     'SELECT COUNT(*) AS n FROM checkpoint_attempts WHERE unit IS NULL AND passed = 1',
@@ -309,6 +339,24 @@ export async function saveSpeakingRating(
   ]);
 }
 
+/**
+ * Item ids whose listen/recall review logs include a wrong answer
+ * (quality < 3) in the last `days` days — the Practice tab's "Mistakes"
+ * pool. Free practice, so this only reads review history; it never writes.
+ */
+export async function recentMistakeItemIds(
+  db: SQLite.SQLiteDatabase,
+  now: Date = new Date(),
+  days = 30,
+): Promise<string[]> {
+  const since = new Date(now.getTime() - days * 24 * 60 * 60 * 1000).toISOString();
+  const rows = await db.getAllAsync<{ item_id: string }>(
+    "SELECT DISTINCT item_id FROM review_logs WHERE reviewed_at >= ? AND quality < 3 AND card_type IN ('listen', 'recall')",
+    [since],
+  );
+  return rows.map((r) => r.item_id);
+}
+
 /** Most recently "again"-rated item ids, most recent first — resurfaced in Use-it. */
 export async function recentAgainItems(db: SQLite.SQLiteDatabase, limit = 20): Promise<string[]> {
   const rows = await db.getAllAsync<{ item_id: string }>(
@@ -316,6 +364,14 @@ export async function recentAgainItems(db: SQLite.SQLiteDatabase, limit = 20): P
     [limit],
   );
   return rows.map((r) => r.item_id);
+}
+
+/** Count of distinct items ever rated in the record-and-compare step —
+ *  the Progress tab's "words you've practised saying". Never reflects
+ *  quality, only that speaking was attempted (self-rating never scores). */
+export async function practicedSpeakingCount(db: SQLite.SQLiteDatabase): Promise<number> {
+  const row = await db.getFirstAsync<{ n: number }>('SELECT COUNT(DISTINCT item_id) AS n FROM speaking_ratings');
+  return row?.n ?? 0;
 }
 
 // ---------------------------------------------------------------------------

@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { View, Text, Pressable, ScrollView, Switch, StyleSheet, AppState } from 'react-native';
+import { View, Text, Pressable, ScrollView, StyleSheet, AppState } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
-import { cardShadow, makeTextStyles, primaryButton, useTheme, type ThemeColors } from '../../theme';
-import { dialogueForUnit, audioFor, type DialogueLine } from '../../content';
+import { primaryButton, useTheme, type ThemeColors } from '../../theme';
+import { dialogueForUnit, type DialogueLine } from '../../content';
 import { markStepComplete, saveSpeakingRating, recentAgainItems, type SpeakingRating } from '../../db/progress';
 import {
   playClip,
@@ -13,10 +13,10 @@ import {
   requestMicPermission,
   startRecording,
   deleteRecording,
-  useClipToggle,
   type ActiveRecording,
 } from '../../audio';
 import { TAB_BAR_SPACE } from '../../components/TabBar';
+import DialoguePlayer from '../../components/DialoguePlayer';
 import { checkAndMarkGoal } from './pathData';
 
 interface Props {
@@ -29,15 +29,12 @@ interface Props {
 export default function UseItStep({ db, unit, onDone }: Props) {
   const { colors: c } = useTheme();
   const styles = useMemo(() => makeStyles(c), [c]);
-  const t = useMemo(() => makeTextStyles(c), [c]);
   const insets = useSafeAreaInsets();
   const safeEdges = { paddingTop: 8, paddingBottom: insets.bottom + TAB_BAR_SPACE };
 
   const lines = useMemo(() => dialogueForUnit(unit), [unit]);
   const [againIds, setAgainIds] = useState<Set<string>>(new Set());
   const [showEnglish, setShowEnglish] = useState(false);
-  const [playingAllIndex, setPlayingAllIndex] = useState<number | null>(null);
-  const playAllToken = useRef(0);
 
   // The one line with an in-progress or just-stopped, not-yet-rated
   // recording. PRIVACY: this temp uri is never persisted — only rated
@@ -114,35 +111,8 @@ export default function UseItStep({ db, unit, onDone }: Props) {
     });
   }
 
-  function playAll() {
-    const token = ++playAllToken.current;
-    stopActiveClip();
-    const step = (i: number) => {
-      if (token !== playAllToken.current || i >= lines.length) {
-        if (token === playAllToken.current) setPlayingAllIndex(null);
-        return;
-      }
-      setPlayingAllIndex(i);
-      const assetId = audioFor(lines[i].id);
-      if (assetId === undefined) {
-        setTimeout(() => step(i + 1), 1100);
-        return;
-      }
-      playClip(assetId, (e) => {
-        if (e.kind === 'finished' && token === playAllToken.current) step(i + 1);
-      }).catch(() => step(i + 1));
-    };
-    step(0);
-  }
-
-  function stopPlayAll() {
-    playAllToken.current += 1;
-    setPlayingAllIndex(null);
-    stopActiveClip();
-  }
-
   async function finish() {
-    playAllToken.current += 1;
+    stopActiveClip();
     cleanupPendingRecording.current();
     await markStepComplete(db, unit, 'useit');
     await checkAndMarkGoal(db);
@@ -160,123 +130,61 @@ export default function UseItStep({ db, unit, onDone }: Props) {
         </View>
       )}
 
-      <View style={styles.controlsRow}>
-        <Pressable
-          style={[primaryButton, styles.playAllButton]}
-          onPress={playingAllIndex !== null ? stopPlayAll : playAll}
-          accessibilityLabel={playingAllIndex !== null ? 'Stop playing' : 'Play the whole dialogue'}
-        >
-          <Ionicons name={playingAllIndex !== null ? 'stop' : 'play'} size={18} color={c.onAccent} />
-          <Text style={styles.playAllText}>{playingAllIndex !== null ? 'Stop' : 'Play all'}</Text>
-        </Pressable>
-        <View style={styles.englishToggle}>
-          <Text style={t.mutedText}>Show English</Text>
-          <Switch value={showEnglish} onValueChange={setShowEnglish} accessibilityLabel="Show English translation" />
-        </View>
-      </View>
+      <DialoguePlayer
+        lines={lines}
+        showEnglish={showEnglish}
+        onToggleEnglish={setShowEnglish}
+        renderLineExtra={(line) => {
+          const recording = recordingLineId === line.id && !recordedUri;
+          const hasRecorded = recordingLineId === line.id && !!recordedUri;
+          const justRated = ratedLineId === line.id;
+          return (
+            <View>
+              <View style={styles.recordRow}>
+                <Pressable
+                  style={[styles.micButton, recording && styles.micButtonActive]}
+                  onPress={() => toggleRecord(line)}
+                  accessibilityLabel={recording ? 'Stop recording' : 'Record yourself saying this line'}
+                >
+                  <Ionicons name={recording ? 'stop' : 'mic'} size={18} color={recording ? c.onAccent : c.primaryDeep} />
+                  <Text style={styles.micLabel}>{recording ? 'Stop' : 'Record'}</Text>
+                </Pressable>
+                {hasRecorded && (
+                  <Pressable
+                    style={styles.playMineButton}
+                    onPress={() => recordedUri && playClip(recordedUri)}
+                    accessibilityLabel="Play your recording"
+                  >
+                    <Ionicons name="play" size={16} color={c.primaryDeep} />
+                    <Text style={styles.playMineText}>Play mine</Text>
+                  </Pressable>
+                )}
+              </View>
 
-      {lines.map((line, i) => (
-        <DialogueLineCard
-          key={line.id}
-          line={line}
-          highlighted={playingAllIndex === i}
-          showEnglish={showEnglish}
-          recording={recordingLineId === line.id && !recordedUri}
-          hasRecorded={recordingLineId === line.id && !!recordedUri}
-          justRated={ratedLineId === line.id}
-          onToggleRecord={() => toggleRecord(line)}
-          onPlayMine={() => recordedUri && playClip(recordedUri)}
-          onRate={(rating) => rate(line, rating)}
-        />
-      ))}
+              {hasRecorded && (
+                <View style={styles.rateRow}>
+                  <Pressable style={styles.rateButton} onPress={() => rate(line, 'nailed')} accessibilityLabel="Nailed it">
+                    <Text style={styles.rateText}>Nailed it</Text>
+                  </Pressable>
+                  <Pressable style={styles.rateButton} onPress={() => rate(line, 'close')} accessibilityLabel="Close">
+                    <Text style={styles.rateText}>Close</Text>
+                  </Pressable>
+                  <Pressable style={styles.rateButton} onPress={() => rate(line, 'again')} accessibilityLabel="Again">
+                    <Text style={styles.rateText}>Again</Text>
+                  </Pressable>
+                </View>
+              )}
+              {justRated && !hasRecorded && <Text style={styles.ratedNote}>Saved — no audio kept.</Text>}
+            </View>
+          );
+        }}
+      />
 
       <Pressable style={[primaryButton, styles.finishButton]} onPress={finish} accessibilityLabel="Finish Use It">
         <Text style={styles.finishText}>Finish</Text>
         <Ionicons name="checkmark" size={20} color={c.onAccent} />
       </Pressable>
     </ScrollView>
-  );
-}
-
-interface LineCardProps {
-  line: DialogueLine;
-  highlighted: boolean;
-  showEnglish: boolean;
-  recording: boolean;
-  hasRecorded: boolean;
-  justRated: boolean;
-  onToggleRecord: () => void;
-  onPlayMine: () => void;
-  onRate: (rating: SpeakingRating) => void;
-}
-
-function DialogueLineCard({
-  line,
-  highlighted,
-  showEnglish,
-  recording,
-  hasRecorded,
-  justRated,
-  onToggleRecord,
-  onPlayMine,
-  onRate,
-}: LineCardProps) {
-  const { colors: c } = useTheme();
-  const styles = useMemo(() => makeStyles(c), [c]);
-  const assetId = audioFor(line.id);
-  const clip = useClipToggle(assetId);
-
-  return (
-    <View style={[styles.lineCard, highlighted && styles.lineCardHighlighted]}>
-      <Text style={styles.speaker}>{line.speaker}</Text>
-      <View style={styles.lineRow}>
-        <Pressable
-          style={[styles.lineAudioButton, assetId === undefined && styles.lineAudioButtonDisabled]}
-          onPress={() => assetId !== undefined && clip.toggle()}
-          disabled={assetId === undefined}
-          accessibilityLabel={clip.playing ? 'Pause this line' : 'Play this line'}
-        >
-          <Ionicons name={clip.playing ? 'pause' : 'volume-medium'} size={18} color={c.onPrimary} />
-        </Pressable>
-        <View style={styles.lineTextWrap}>
-          <Text style={styles.lineSt}>{line.setswana}</Text>
-          {showEnglish ? <Text style={styles.lineEn}>{line.english}</Text> : null}
-          {assetId === undefined ? <Text style={styles.noAudio}>No recording yet</Text> : null}
-        </View>
-      </View>
-
-      <View style={styles.recordRow}>
-        <Pressable
-          style={[styles.micButton, recording && styles.micButtonActive]}
-          onPress={onToggleRecord}
-          accessibilityLabel={recording ? 'Stop recording' : 'Record yourself saying this line'}
-        >
-          <Ionicons name={recording ? 'stop' : 'mic'} size={18} color={recording ? c.onAccent : c.primaryDeep} />
-          <Text style={styles.micLabel}>{recording ? 'Stop' : 'Record'}</Text>
-        </Pressable>
-        {hasRecorded && (
-          <Pressable style={styles.playMineButton} onPress={onPlayMine} accessibilityLabel="Play your recording">
-            <Ionicons name="play" size={16} color={c.primaryDeep} />
-            <Text style={styles.playMineText}>Play mine</Text>
-          </Pressable>
-        )}
-      </View>
-
-      {hasRecorded && (
-        <View style={styles.rateRow}>
-          <Pressable style={styles.rateButton} onPress={() => onRate('nailed')} accessibilityLabel="Nailed it">
-            <Text style={styles.rateText}>Nailed it</Text>
-          </Pressable>
-          <Pressable style={styles.rateButton} onPress={() => onRate('close')} accessibilityLabel="Close">
-            <Text style={styles.rateText}>Close</Text>
-          </Pressable>
-          <Pressable style={styles.rateButton} onPress={() => onRate('again')} accessibilityLabel="Again">
-            <Text style={styles.rateText}>Again</Text>
-          </Pressable>
-        </View>
-      )}
-      {justRated && !hasRecorded && <Text style={styles.ratedNote}>Saved — no audio kept.</Text>}
-    </View>
   );
 }
 
@@ -294,33 +202,6 @@ const makeStyles = (c: ThemeColors) =>
       marginBottom: 14,
     },
     againText: { flex: 1, fontSize: 13, fontWeight: '700', color: c.primaryDeep },
-    controlsRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 },
-    playAllButton: { backgroundColor: c.primary, flexDirection: 'row', gap: 8, marginVertical: 0, minHeight: 48 },
-    playAllText: { fontSize: 15, fontWeight: '800', color: c.onPrimary },
-    englishToggle: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-    lineCard: {
-      backgroundColor: c.card,
-      borderRadius: 18,
-      padding: 14,
-      marginBottom: 10,
-      ...cardShadow(c, 'sm'),
-    },
-    lineCardHighlighted: { borderWidth: 2, borderColor: c.accent },
-    speaker: { fontSize: 12, fontWeight: '800', color: c.muted, marginBottom: 6 },
-    lineRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
-    lineAudioButton: {
-      width: 36,
-      height: 36,
-      borderRadius: 18,
-      backgroundColor: c.primary,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    lineAudioButtonDisabled: { opacity: 0.4 },
-    lineTextWrap: { flex: 1 },
-    lineSt: { fontSize: 17, fontWeight: '700', color: c.text },
-    lineEn: { fontSize: 14, fontWeight: '600', color: c.muted, marginTop: 2 },
-    noAudio: { fontSize: 11, fontWeight: '700', color: c.muted, marginTop: 2 },
     recordRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
     micButton: {
       flexDirection: 'row',

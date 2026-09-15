@@ -21,6 +21,21 @@ export function unitStatus(unit: number, passedUnits: ReadonlySet<number>): Unit
   return 'locked';
 }
 
+/**
+ * The learner's current unit for the Continue router: the unit right after
+ * the highest one ever passed, or unit 1 when none has been passed yet.
+ * Test-out can leave lower units unlocked-but-not-passed on the path map
+ * (see `unitStatus`), but Continue must never route backwards into them —
+ * so this is driven by the highest passed unit, not "the lowest unlocked
+ * one". Returns null once that number exceeds the authored content
+ * (`totalUnits`) — nothing to route to yet.
+ */
+export function currentUnitNumber(passedUnits: ReadonlySet<number>, totalUnits: number): number | null {
+  const highestPassed = passedUnits.size ? Math.max(...passedUnits) : 0;
+  const next = highestPassed + 1;
+  return next <= totalUnits ? next : null;
+}
+
 export interface UnitProgress {
   unit: number;
   /** Ids of this unit's items already introduced (Words step, batched by newItemsAllowed). */
@@ -75,15 +90,20 @@ export interface PathState {
   newItemsAllowedToday: number;
   goalMetToday: boolean;
   exitTestPassed: boolean;
+  /** True once enough units are authored (content/index.ts A1_UNIT_COUNT)
+   *  for the A1 exit test to make sense; false just yields 'done' instead
+   *  ("more units coming") once the last authored unit is passed. */
+  exitTestAvailable: boolean;
 }
 
 /**
  * Review due cards first, up to today's review cap; otherwise the current
  * unit's next incomplete step (or 'rest' if that step is Words and new
  * items are paused today); otherwise the A1 exit test once the last unit
- * is passed; otherwise done. Once reviewedToday reaches reviewCap, review
- * stops being offered even with cards still due — it falls through to the
- * unit step logic (still gated by newItemsAllowedToday).
+ * is passed (and the full curriculum is authored); otherwise done. Once
+ * reviewedToday reaches reviewCap, review stops being offered even with
+ * cards still due — it falls through to the unit step logic (still gated
+ * by newItemsAllowedToday).
  */
 export function nextAction(state: PathState): NextAction {
   if (state.dueCount > 0 && state.reviewedToday < state.reviewCap) {
@@ -100,7 +120,7 @@ export function nextAction(state: PathState): NextAction {
     }
   }
 
-  if (state.passedUnits.has(state.totalUnits) && !state.exitTestPassed) {
+  if (state.exitTestAvailable && state.passedUnits.has(state.totalUnits) && !state.exitTestPassed) {
     return { kind: 'exit-test' };
   }
 

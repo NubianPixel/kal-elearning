@@ -8,8 +8,9 @@
  */
 
 import type * as SQLite from 'expo-sqlite';
-import { units, itemsForUnit } from '../../content';
+import { units, itemsForUnit, A1_UNIT_COUNT } from '../../content';
 import {
+  currentUnitNumber,
   unitStatus,
   unitStepStatus,
   UNIT_STEPS,
@@ -95,7 +96,8 @@ export async function loadPathData(db: SQLite.SQLiteDatabase, now: Date = new Da
     steps: unitStepStatus(p),
   }));
 
-  const currentUnit = unitProgresses.find((p) => unitStatus(p.unit, passed) === 'unlocked') ?? null;
+  const currentNum = currentUnitNumber(passed, units.length);
+  const currentUnit = currentNum != null ? (unitProgresses.find((p) => p.unit === currentNum) ?? null) : null;
 
   const dueRawCount = dueRows.length;
   const cappedDueCount = Math.min(dueRawCount, REVIEW_CAP);
@@ -125,6 +127,7 @@ export async function loadPathData(db: SQLite.SQLiteDatabase, now: Date = new Da
     newItemsAllowedToday,
     goalMetToday,
     exitTestPassed: exitPassed,
+    exitTestAvailable: units.length >= A1_UNIT_COUNT,
   };
 
   return { path, unitRows, dailyN, reviewedTodayCount, introducedTodayCount, dueRawCount };

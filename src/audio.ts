@@ -391,6 +391,23 @@ export async function requestMicPermission(): Promise<boolean> {
   return granted;
 }
 
+/**
+ * Dedicated cache subdirectory for speaking recordings only — keeps the
+ * privacy sweep from ever touching expo-asset's own cached bundled audio
+ * (e.g. dev-build `ExponentAsset-*.m4a`) or anything else in `Paths.cache`.
+ */
+const RECORDINGS_DIR_NAME = 'kal-recordings';
+
+function recordingsDir(): Directory {
+  const dir = new Directory(Paths.cache, RECORDINGS_DIR_NAME);
+  try {
+    dir.create({ intermediates: true, idempotent: true });
+  } catch {
+    // Best-effort — if this fails, the move below will surface the error.
+  }
+  return dir;
+}
+
 /** Delete a recorded clip's temp file. Best-effort; never throws — callers
  *  fire this on rating, on leaving a line/screen, and on app background. */
 export function deleteRecording(uri: string | null | undefined): void {
@@ -403,27 +420,21 @@ export function deleteRecording(uri: string | null | undefined): void {
 }
 
 /**
- * Privacy sweep: speaking recordings are temp files in the cache dir,
- * meant to be deleted right after use (see `deleteRecording`). Call once
- * on app start to catch anything left behind by a crash or force-quit.
- *
- * ponytail: expo-audio's recording presets always write `.m4a` into the
- * cache directory (no subdirectory control), and nothing else in this app
- * writes `.m4a` there — so "delete every top-level .m4a in cache" is a
- * safe, simple sweep. Revisit only if that stops being true (e.g. some
- * other feature starts caching .m4a files).
+ * Privacy sweep: speaking recordings live only in `Paths.cache/kal-recordings/`
+ * (see `startRecording`), meant to be deleted right after use (see
+ * `deleteRecording`). Call once on app start to catch anything left behind
+ * by a crash or force-quit — deletes only the contents of that directory,
+ * never anything else in the shared cache dir.
  */
 export function sweepLeftoverRecordings(): void {
   try {
-    const dir = new Directory(Paths.cache);
+    const dir = new Directory(Paths.cache, RECORDINGS_DIR_NAME);
     if (!dir.exists) return;
     for (const entry of dir.list()) {
-      if (entry instanceof File && entry.uri.endsWith('.m4a')) {
-        try {
-          entry.delete();
-        } catch {
-          // Best-effort.
-        }
+      try {
+        entry.delete();
+      } catch {
+        // Best-effort.
       }
     }
   } catch {
@@ -453,7 +464,19 @@ export async function startRecording(): Promise<ActiveRecording> {
       stopped = true;
       try {
         await recorder.stop();
-        return recorder.uri;
+        const uri = recorder.uri;
+        if (!uri) return null;
+        // Move (never copy) the recording into its own cache subdirectory so
+        // the privacy sweep can safely delete "everything in here" without
+        // risking any other cached audio (see sweepLeftoverRecordings).
+        try {
+          const file = new File(uri);
+          file.moveSync(recordingsDir());
+          return file.uri;
+        } catch (e) {
+          console.warn('[audio] failed to move recording into kal-recordings/:', e);
+          return uri;
+        }
       } finally {
         // Restore a clean playback session so the recorded clip is audible.
         await setPlaybackMode().catch(() => undefined);

@@ -1,16 +1,9 @@
 /**
- * Pronunciation matching — pure string logic for the Learn tab's
- * "say the word" game. Compares what the speech recognizer heard against
- * the target word, tolerating punctuation, case, diacritics and small
- * typos (young voices are imprecise).
+ * String-matching primitives shared by the typing grader (core/typing.ts)
+ * and the recall/typed-answer graders (core/questions.ts): normalize text
+ * for comparison and score edit-similarity, tolerating punctuation, case,
+ * diacritics and small typos.
  */
-
-const DEFAULT_THRESHOLD = 0.7;
-
-/** Per-word difficulty nudges the match threshold: harder words demand a closer match. */
-export function thresholdForDifficulty(difficulty: 1 | 2 | 3): number {
-  return difficulty === 1 ? 0.6 : difficulty === 3 ? 0.8 : DEFAULT_THRESHOLD;
-}
 
 /** Lowercase, strip diacritics/punctuation, collapse whitespace. */
 export function normalizeForMatch(s: string): string {
@@ -50,30 +43,4 @@ export function similarity(a: string, b: string): number {
   if (!na || !nb) return 0;
   const distance = levenshtein(na, nb);
   return 1 - distance / Math.max(na.length, nb.length);
-}
-
-export interface PronunciationVerdict {
-  correct: boolean;
-  similarity: number;
-}
-
-/**
- * Judge a spoken attempt against the target word. Correct when:
- * - the recognizer heard the word (possibly among other speech), or
- * - the transcript is close enough to the target (edit similarity).
- */
-export function judgePronunciation(
-  transcript: string,
-  target: string,
-  threshold: number = DEFAULT_THRESHOLD,
-): PronunciationVerdict {
-  const said = normalizeForMatch(transcript);
-  const want = normalizeForMatch(target);
-  if (!said || !want) return { correct: false, similarity: 0 };
-  const words = said.split(' ');
-  if (words.includes(want) || (want.length >= 3 && said.includes(want))) {
-    return { correct: true, similarity: 1 };
-  }
-  const score = similarity(said, want);
-  return { correct: score >= threshold, similarity: score };
 }

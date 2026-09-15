@@ -11,6 +11,11 @@
 import raw from './a1.json';
 import { audio, images } from './media';
 
+/** The A1 curriculum's full size per the design spec — NOT `units.length`
+ *  (the authored count so far). Gates the A1 exit test: it's only offered
+ *  once this many units exist and the last of them is passed. */
+export const A1_UNIT_COUNT = 10;
+
 export interface Unit {
   unit: number;
   titleSetswana: string;

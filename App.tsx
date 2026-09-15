@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import type * as SQLite from 'expo-sqlite';
@@ -12,6 +12,9 @@ import WordsStep from './src/screens/a1/WordsStep';
 import GrammarStep from './src/screens/a1/GrammarStep';
 import UseItStep from './src/screens/a1/UseItStep';
 import CheckpointScreen from './src/screens/a1/CheckpointScreen';
+import PracticeScreen from './src/screens/a1/PracticeScreen';
+import LibraryScreen from './src/screens/a1/LibraryScreen';
+import ProgressScreen from './src/screens/a1/ProgressScreen';
 import TabBar, { type TabKey } from './src/components/TabBar';
 import AppHeader from './src/components/AppHeader';
 import SplashScreen from './src/components/SplashScreen';
@@ -132,9 +135,9 @@ function Shell({ db }: { db: SQLite.SQLiteDatabase | null }) {
             onCheckpoint={(unit) => setStack({ kind: 'checkpoint', unit })}
           />
         )}
-        {stack === null && tab === 'practice' && <Placeholder label="Practice — coming soon" />}
-        {stack === null && tab === 'library' && <Placeholder label="Library — coming soon" />}
-        {stack === null && tab === 'progress' && <Placeholder label="Progress — coming soon" />}
+        {stack === null && tab === 'practice' && <PracticeScreen db={db} />}
+        {stack === null && tab === 'library' && <LibraryScreen db={db} />}
+        {stack === null && tab === 'progress' && <ProgressScreen db={db} />}
 
         {stack?.kind === 'review' && <ReviewScreen db={db} onFinish={finishStack} />}
         {stack?.kind === 'checkpoint' && <CheckpointScreen db={db} unit={stack.unit} onDone={finishStack} />}
@@ -149,16 +152,6 @@ function Shell({ db }: { db: SQLite.SQLiteDatabase | null }) {
       <TabBar active={tab} onSelect={selectTab} />
 
       {splash && <SplashScreen onDone={hideSplash} />}
-    </View>
-  );
-}
-
-/** Minimal centered placeholder — the next agent replaces this with the real tab. */
-function Placeholder({ label }: { label: string }) {
-  const { colors: c } = useTheme();
-  return (
-    <View style={[styles.center, { backgroundColor: c.background }]}>
-      <Text style={{ fontSize: 15, fontWeight: '600', color: c.muted }}>{label}</Text>
     </View>
   );
 }
