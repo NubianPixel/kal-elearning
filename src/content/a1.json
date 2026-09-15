@@ -62,6 +62,13 @@
       "title_english": "It is cold",
       "can_do": "Talk about weather, feelings, and simple aches",
       "grammar_title": "Impersonal go (go a fisa"
+    },
+    {
+      "unit": 10,
+      "title_setswana": "Maabane le ka moso",
+      "title_english": "Yesterday and tomorrow",
+      "can_do": "Say what you did and what you will do",
+      "grammar_title": "Past -ile with common irregulars"
     }
   ],
   "items": [
@@ -5420,6 +5427,460 @@
       "plural": [],
       "image": null,
       "note": "A fixed phrase — learn it as it is."
+    },
+    {
+      "id": "a1-u10-w001",
+      "unit": 10,
+      "order": 1,
+      "kind": "word",
+      "setswana": "lwala",
+      "setswana_alt": null,
+      "english": [
+        "be sick",
+        "be ill"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Past: Ke lwetse."
+    },
+    {
+      "id": "a1-u10-w002",
+      "unit": 10,
+      "order": 2,
+      "kind": "word",
+      "setswana": "tla",
+      "setswana_alt": null,
+      "english": [
+        "come"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Past: Ke tlile."
+    },
+    {
+      "id": "a1-u10-w003",
+      "unit": 10,
+      "order": 3,
+      "kind": "word",
+      "setswana": "tsamaa",
+      "setswana_alt": null,
+      "english": [
+        "walk",
+        "go"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Past: Ke tsamaile."
+    },
+    {
+      "id": "a1-u10-w004",
+      "unit": 10,
+      "order": 4,
+      "kind": "word",
+      "setswana": "rata",
+      "setswana_alt": null,
+      "english": [
+        "like",
+        "love"
+      ],
+      "hint": null,
+      "pos": "verb",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u10-w005",
+      "unit": 10,
+      "order": 5,
+      "kind": "word",
+      "setswana": "phomolo",
+      "setswana_alt": null,
+      "english": [
+        "rest",
+        "holiday"
+      ],
+      "hint": null,
+      "pos": "noun",
+      "noun_class": "9",
+      "plural": [
+        "diphomolo"
+      ],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u10-w006",
+      "unit": 10,
+      "order": 6,
+      "kind": "phrase",
+      "setswana": "Ke jele",
+      "setswana_alt": null,
+      "english": [
+        "I ate",
+        "I have eaten"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "ja → jele (irregular)."
+    },
+    {
+      "id": "a1-u10-w007",
+      "unit": 10,
+      "order": 7,
+      "kind": "phrase",
+      "setswana": "Ke nwele",
+      "setswana_alt": null,
+      "english": [
+        "I drank"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "nwa → nwele (irregular)."
+    },
+    {
+      "id": "a1-u10-w008",
+      "unit": 10,
+      "order": 8,
+      "kind": "phrase",
+      "setswana": "Ke ile",
+      "setswana_alt": null,
+      "english": [
+        "I went"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "ya → ile (irregular)."
+    },
+    {
+      "id": "a1-u10-w009",
+      "unit": 10,
+      "order": 9,
+      "kind": "phrase",
+      "setswana": "Ke tlile",
+      "setswana_alt": null,
+      "english": [
+        "I came"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "tla → tlile (irregular)."
+    },
+    {
+      "id": "a1-u10-w010",
+      "unit": 10,
+      "order": 10,
+      "kind": "phrase",
+      "setswana": "Ke robetse",
+      "setswana_alt": null,
+      "english": [
+        "I slept",
+        "I am asleep"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "robala → robetse (irregular)."
+    },
+    {
+      "id": "a1-u10-w011",
+      "unit": 10,
+      "order": 11,
+      "kind": "phrase",
+      "setswana": "Ke tsamaile",
+      "setswana_alt": null,
+      "english": [
+        "I walked",
+        "I went (on foot)"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "tsamaa → tsamaile (irregular)."
+    },
+    {
+      "id": "a1-u10-w012",
+      "unit": 10,
+      "order": 12,
+      "kind": "phrase",
+      "setswana": "Ke lwetse",
+      "setswana_alt": null,
+      "english": [
+        "I was sick"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "lwala → lwetse (irregular)."
+    },
+    {
+      "id": "a1-u10-w013",
+      "unit": 10,
+      "order": 13,
+      "kind": "phrase",
+      "setswana": "Ke berekile",
+      "setswana_alt": null,
+      "english": [
+        "I worked"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "bereka + -ile (regular)."
+    },
+    {
+      "id": "a1-u10-w014",
+      "unit": 10,
+      "order": 14,
+      "kind": "phrase",
+      "setswana": "Ke apile",
+      "setswana_alt": null,
+      "english": [
+        "I cooked"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "apaya + -ile (regular)."
+    },
+    {
+      "id": "a1-u10-w015",
+      "unit": 10,
+      "order": 15,
+      "kind": "phrase",
+      "setswana": "Ke ithutile",
+      "setswana_alt": null,
+      "english": [
+        "I learned",
+        "I studied"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "ithuta + -ile (regular)."
+    },
+    {
+      "id": "a1-u10-w016",
+      "unit": 10,
+      "order": 16,
+      "kind": "phrase",
+      "setswana": "Ke rekile",
+      "setswana_alt": null,
+      "english": [
+        "I bought"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "reka + -ile (regular)."
+    },
+    {
+      "id": "a1-u10-w017",
+      "unit": 10,
+      "order": 17,
+      "kind": "phrase",
+      "setswana": "Ke tsogile",
+      "setswana_alt": null,
+      "english": [
+        "I woke up"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "tsoga + -ile; Unit 1's Ke tsogile sentle is this past."
+    },
+    {
+      "id": "a1-u10-w018",
+      "unit": 10,
+      "order": 18,
+      "kind": "phrase",
+      "setswana": "Re ile",
+      "setswana_alt": null,
+      "english": [
+        "we went"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u10-w019",
+      "unit": 10,
+      "order": 19,
+      "kind": "phrase",
+      "setswana": "Ba tlile",
+      "setswana_alt": null,
+      "english": [
+        "they came"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u10-w020",
+      "unit": 10,
+      "order": 20,
+      "kind": "phrase",
+      "setswana": "Ga ke a robala sentle",
+      "setswana_alt": null,
+      "english": [
+        "I did not sleep well"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Past negation pattern — fixed item"
+    },
+    {
+      "id": "a1-u10-w021",
+      "unit": 10,
+      "order": 21,
+      "kind": "phrase",
+      "setswana": "Ga ke a je nama",
+      "setswana_alt": null,
+      "english": [
+        "I did not eat meat"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": "Past negation pattern — fixed item."
+    },
+    {
+      "id": "a1-u10-w022",
+      "unit": 10,
+      "order": 22,
+      "kind": "phrase",
+      "setswana": "letsatsi la phomolo",
+      "setswana_alt": null,
+      "english": [
+        "rest day",
+        "holiday"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u10-w023",
+      "unit": 10,
+      "order": 23,
+      "kind": "phrase",
+      "setswana": "ka moso",
+      "setswana_alt": null,
+      "english": [
+        "tomorrow",
+        "in the future"
+      ],
+      "hint": null,
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u10-w024",
+      "unit": 10,
+      "order": 24,
+      "kind": "phrase",
+      "setswana": "O jele eng?",
+      "setswana_alt": null,
+      "english": [
+        "what did you eat?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u10-w025",
+      "unit": 10,
+      "order": 25,
+      "kind": "phrase",
+      "setswana": "O ile kae?",
+      "setswana_alt": null,
+      "english": [
+        "where did you go?"
+      ],
+      "hint": "to one person",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
+    },
+    {
+      "id": "a1-u10-w026",
+      "unit": 10,
+      "order": 26,
+      "kind": "phrase",
+      "setswana": "Le jele eng?",
+      "setswana_alt": null,
+      "english": [
+        "what did you (several) eat?"
+      ],
+      "hint": "to several people",
+      "pos": "phrase",
+      "noun_class": null,
+      "plural": [],
+      "image": null,
+      "note": null
     }
   ],
   "grammar": [
@@ -6052,6 +6513,76 @@
       "type": "example",
       "text_or_setswana": "Ke a bolwa. Ke batla ngaka.",
       "english": "I am sick. I want a doctor."
+    },
+    {
+      "unit": 10,
+      "order": 1,
+      "type": "text",
+      "text_or_setswana": "The past uses -ile: bereka → berekile (worked). apaya → apile (cooked). ithuta → ithutile (studied). reka → rekile (bought). tsoga → tsogile (woke up).",
+      "english": null
+    },
+    {
+      "unit": 10,
+      "order": 2,
+      "type": "text",
+      "text_or_setswana": "Common irregulars: ja → jele (ate). nwa → nwele (drank). ya → ile (went). tla → tlile (came). robala → robetse (slept). tsamaa → tsamaile (walked). lwala → lwetse (was sick).",
+      "english": null
+    },
+    {
+      "unit": 10,
+      "order": 3,
+      "type": "text",
+      "text_or_setswana": "Questions about the past: O jele eng? (What did you eat?) O ile kae? (Where did you go?)",
+      "english": null
+    },
+    {
+      "unit": 10,
+      "order": 4,
+      "type": "text",
+      "text_or_setswana": "Past negation is Ga ke a + the verb: Ga ke a je nama. (I did not eat meat.) Only a few fixed phrases for now — more in A2.",
+      "english": null
+    },
+    {
+      "unit": 10,
+      "order": 5,
+      "type": "text",
+      "text_or_setswana": "The future uses ke tla + the verb: Ka moso ke tla ya gae. (Tomorrow I will go home.) — a pattern for now",
+      "english": "not tested."
+    },
+    {
+      "unit": 10,
+      "order": 6,
+      "type": "example",
+      "text_or_setswana": "Maabane ke jele nama le bogobe.",
+      "english": "Yesterday I ate meat and porridge."
+    },
+    {
+      "unit": 10,
+      "order": 7,
+      "type": "example",
+      "text_or_setswana": "Ke nwele metsi. Ga ke a nwa tee.",
+      "english": "I drank water. I did not drink tea."
+    },
+    {
+      "unit": 10,
+      "order": 8,
+      "type": "example",
+      "text_or_setswana": "Ke ile kwa toropong. Ke rekile apole.",
+      "english": "I went to town. I bought an apple."
+    },
+    {
+      "unit": 10,
+      "order": 9,
+      "type": "example",
+      "text_or_setswana": "Ke robetse sentle.",
+      "english": "I slept well."
+    },
+    {
+      "unit": 10,
+      "order": 10,
+      "type": "example",
+      "text_or_setswana": "Ka moso ke tla ithuta Setswana.",
+      "english": "Tomorrow I will learn Setswana."
     }
   ],
   "dialogues": [
@@ -6870,6 +7401,118 @@
       "speaker": "Bontle",
       "setswana": "Sala sentle. O robale sentle!",
       "english": "Stay well. Sleep well!"
+    },
+    {
+      "id": "a1-u10-d1-l01",
+      "unit": 10,
+      "order": 1,
+      "speaker": "Bontle",
+      "setswana": "Dumela Lesedi! O tsogile jang?",
+      "english": "Hello, Lesedi! How did you wake up?"
+    },
+    {
+      "id": "a1-u10-d1-l02",
+      "unit": 10,
+      "order": 2,
+      "speaker": "Lesedi",
+      "setswana": "Ke tsogile sentle ke a leboga.",
+      "english": "I woke up well, thank you."
+    },
+    {
+      "id": "a1-u10-d1-l03",
+      "unit": 10,
+      "order": 3,
+      "speaker": "Bontle",
+      "setswana": "O ile kae maabane?",
+      "english": "Where did you go yesterday?"
+    },
+    {
+      "id": "a1-u10-d1-l04",
+      "unit": 10,
+      "order": 4,
+      "speaker": "Lesedi",
+      "setswana": "Ke ile kwa toropong. Ke rekile apole le lerotse.",
+      "english": "I went to town. I bought an apple and a sweet melon."
+    },
+    {
+      "id": "a1-u10-d1-l05",
+      "unit": 10,
+      "order": 5,
+      "speaker": "Bontle",
+      "setswana": "O jele eng ka maitseboa?",
+      "english": "What did you eat in the evening?"
+    },
+    {
+      "id": "a1-u10-d1-l06",
+      "unit": 10,
+      "order": 6,
+      "speaker": "Lesedi",
+      "setswana": "Ke jele nama le bogobe. Ke nwele metsi fela.",
+      "english": "I ate meat and porridge. I drank only water."
+    },
+    {
+      "id": "a1-u10-d1-l07",
+      "unit": 10,
+      "order": 7,
+      "speaker": "Bontle",
+      "setswana": "A o robetse sentle?",
+      "english": "Did you sleep well?"
+    },
+    {
+      "id": "a1-u10-d1-l08",
+      "unit": 10,
+      "order": 8,
+      "speaker": "Lesedi",
+      "setswana": "Nnyaa ga ke a robala sentle. Ke lwetse.",
+      "english": "No, I did not sleep well. I was sick."
+    },
+    {
+      "id": "a1-u10-d1-l09",
+      "unit": 10,
+      "order": 9,
+      "speaker": "Bontle",
+      "setswana": "Aoo! Ke eng gape?",
+      "english": "Oh no! What is it again?"
+    },
+    {
+      "id": "a1-u10-d1-l10",
+      "unit": 10,
+      "order": 10,
+      "speaker": "Lesedi",
+      "setswana": "Tlhogo e botlhoko. Ke batla ngaka ka moso.",
+      "english": "My head hurts. I want a doctor tomorrow."
+    },
+    {
+      "id": "a1-u10-d1-l11",
+      "unit": 10,
+      "order": 11,
+      "speaker": "Bontle",
+      "setswana": "Ka moso o tla ithuta Setswana le nna?",
+      "english": "Tomorrow will you learn Setswana with me?"
+    },
+    {
+      "id": "a1-u10-d1-l12",
+      "unit": 10,
+      "order": 12,
+      "speaker": "Lesedi",
+      "setswana": "Ee ke tla ithuta le wena.",
+      "english": "Yes, I will learn with you."
+    },
+    {
+      "id": "a1-u10-d1-l13",
+      "unit": 10,
+      "order": 13,
+      "speaker": "Bontle",
+      "setswana": "Go siame! Tsamaya sentle!",
+      "english": "Ok! Go well!"
+    },
+    {
+      "id": "a1-u10-d1-l14",
+      "unit": 10,
+      "order": 14,
+      "speaker": "Lesedi",
+      "setswana": "Sala sentle!",
+      "english": "Stay well!"
     }
   ],
   "questions": [
@@ -9344,6 +9987,294 @@
       "answer_alt": null,
       "distractors": "Tsamaya sentle|Sala sentle|Go a tsididi",
       "explanation": "Lesedi stays home sick; Bontle says Sala sentle. O robale sentle!"
+    },
+    {
+      "id": "a1-u10-q001",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the past of ja (ate)?",
+      "answer": "jele",
+      "answer_alt": null,
+      "distractors": "jile|jala|nwele",
+      "explanation": "ja → jele (irregular)."
+    },
+    {
+      "id": "a1-u10-q002",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the past of nwa (drank)?",
+      "answer": "nwele",
+      "answer_alt": null,
+      "distractors": "nwile|njele|nwea",
+      "explanation": "nwa → nwele (irregular)."
+    },
+    {
+      "id": "a1-u10-q003",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write in Setswana: I went.",
+      "answer": "Ke ile",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "ya → ile: Ke ile."
+    },
+    {
+      "id": "a1-u10-q004",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Fill in: Ke ___ kwa gae. (I came home)",
+      "answer": "tlile",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "tla → tlile."
+    },
+    {
+      "id": "a1-u10-q005",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the past of robala (slept)?",
+      "answer": "robetse",
+      "answer_alt": null,
+      "distractors": "robatile|robaile|robegile",
+      "explanation": "robala → robetse (irregular)."
+    },
+    {
+      "id": "a1-u10-q006",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What is the past of tsamaa (walked)?",
+      "answer": "tsamaile",
+      "answer_alt": null,
+      "distractors": "tsamile|tsamaila|tsamaane",
+      "explanation": "tsamaa → tsamaile (irregular)."
+    },
+    {
+      "id": "a1-u10-q007",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Ke rekile apole\" mean?",
+      "answer": "I bought an apple",
+      "answer_alt": null,
+      "distractors": "I want an apple|I am eating an apple|I sell apples",
+      "explanation": "reka → rekile."
+    },
+    {
+      "id": "a1-u10-q008",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"O ile kae?\" mean?",
+      "answer": "Where did you go?",
+      "answer_alt": null,
+      "distractors": "Where do you live?|What did you eat?|When did you come?",
+      "explanation": "ya → ile; kae asks the place."
+    },
+    {
+      "id": "a1-u10-q009",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "type",
+      "prompt": "Write in Setswana: I worked.",
+      "answer": "Ke berekile",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "bereka + -ile: Ke berekile."
+    },
+    {
+      "id": "a1-u10-q010",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "drill",
+      "format": "choice",
+      "prompt": "What does \"Ga ke a robala sentle\" mean?",
+      "answer": "I did not sleep well",
+      "answer_alt": null,
+      "distractors": "I slept well|I do not sleep|I will not sleep",
+      "explanation": "Past negation: Ga ke a + the verb."
+    },
+    {
+      "id": "a1-u10-q011",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is the past of lwala (was sick)?",
+      "answer": "lwetse",
+      "answer_alt": null,
+      "distractors": "lwile|lwalile|lwala",
+      "explanation": "lwala → lwetse (irregular)."
+    },
+    {
+      "id": "a1-u10-q012",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does \"Maabane ke tlile\" mean?",
+      "answer": "Yesterday I came",
+      "answer_alt": null,
+      "distractors": "Yesterday I went|Tomorrow I come|Yesterday I ate",
+      "explanation": "tla → tlile; maabane = yesterday."
+    },
+    {
+      "id": "a1-u10-q013",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which sentence means I ate meat?",
+      "answer": "Ke jele nama.",
+      "answer_alt": null,
+      "distractors": "Ke ja nama.|Ga ke a je nama.|Ke rekile nama.",
+      "explanation": "Past: ja → jele."
+    },
+    {
+      "id": "a1-u10-q014",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Write in Setswana: I slept.",
+      "answer": "Ke robetse",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "robala → robetse: Ke robetse."
+    },
+    {
+      "id": "a1-u10-q015",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Which sentence is past negation?",
+      "answer": "Ga ke a nwa tee.",
+      "answer_alt": null,
+      "distractors": "Ke nwele tee.|Ke nwa tee.|Ga ke nwe tee.",
+      "explanation": "Past negation is Ga ke a + the verb (Ga ke nwe is present negation)."
+    },
+    {
+      "id": "a1-u10-q016",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What is the past of ithuta (studied)?",
+      "answer": "ithutile",
+      "answer_alt": null,
+      "distractors": "ithutetse|ithutlwile|ithuta",
+      "explanation": "ithuta + -ile: ithutile."
+    },
+    {
+      "id": "a1-u10-q017",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "Fill in: Maabane ke ___ borotho. (I bought — reka past)",
+      "answer": "rekile",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "reka + -ile: Ke rekile."
+    },
+    {
+      "id": "a1-u10-q018",
+      "unit": 10,
+      "skill": "grammar",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "When is \"Ka moso ke tla ya gae\"?",
+      "answer": "Tomorrow",
+      "answer_alt": null,
+      "distractors": "Yesterday|Now|On Sunday",
+      "explanation": "ka moso + ke tla = future."
+    },
+    {
+      "id": "a1-u10-q019",
+      "unit": 10,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Where did Lesedi go?",
+      "answer": "To town",
+      "answer_alt": null,
+      "distractors": "To school|To the kgotla|Home",
+      "explanation": "She says Ke ile kwa toropong."
+    },
+    {
+      "id": "a1-u10-q020",
+      "unit": 10,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "type",
+      "prompt": "What did Lesedi buy? Write her words.",
+      "answer": "Ke rekile apole le lerotse",
+      "answer_alt": null,
+      "distractors": null,
+      "explanation": "She says Ke rekile apole le lerotse."
+    },
+    {
+      "id": "a1-u10-q021",
+      "unit": 10,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What did Lesedi eat in the evening?",
+      "answer": "Meat and porridge",
+      "answer_alt": null,
+      "distractors": "Bread and tea|An apple|Nothing",
+      "explanation": "She says Ke jele nama le bogobe."
+    },
+    {
+      "id": "a1-u10-q022",
+      "unit": 10,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "Did Lesedi sleep well?",
+      "answer": "No — she was sick too",
+      "answer_alt": null,
+      "distractors": "Yes — she slept well|No — she went to town|Yes — she ate well",
+      "explanation": "She says Ga ke a robala sentle. Ke lwetse."
+    },
+    {
+      "id": "a1-u10-q023",
+      "unit": 10,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What will Lesedi do tomorrow?",
+      "answer": "Look for a doctor and learn Setswana",
+      "answer_alt": null,
+      "distractors": "Buy food|Sleep all day|Go to town",
+      "explanation": "She wants a ngaka ka moso and says ke tla ithuta le wena."
+    },
+    {
+      "id": "a1-u10-q024",
+      "unit": 10,
+      "skill": "reading",
+      "use": "checkpoint",
+      "format": "choice",
+      "prompt": "What does Bontle propose for tomorrow?",
+      "answer": "Learning Setswana with her",
+      "answer_alt": null,
+      "distractors": "Cooking together|Going to the market|Visiting the doctor",
+      "explanation": "She asks Ka moso o tla ithuta Setswana le nna?"
     }
   ]
 }

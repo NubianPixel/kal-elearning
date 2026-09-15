@@ -89,3 +89,13 @@ unit,order,type,text_or_setswana,english
 9,6,example,Go na le ntša kwa gae.,There is a dog at home.
 9,7,example,Ga go na madi.,There is no money.
 9,8,example,Ke a bolwa. Ke batla ngaka.,I am sick. I want a doctor.
+10,1,text,The past uses -ile: bereka → berekile (worked). apaya → apile (cooked). ithuta → ithutile (studied). reka → rekile (bought). tsoga → tsogile (woke up).
+10,2,text,Common irregulars: ja → jele (ate). nwa → nwele (drank). ya → ile (went). tla → tlile (came). robala → robetse (slept). tsamaa → tsamaile (walked). lwala → lwetse (was sick).
+10,3,text,Questions about the past: O jele eng? (What did you eat?) O ile kae? (Where did you go?)
+10,4,text,Past negation is Ga ke a + the verb: Ga ke a je nama. (I did not eat meat.) Only a few fixed phrases for now — more in A2.
+10,5,text,The future uses ke tla + the verb: Ka moso ke tla ya gae. (Tomorrow I will go home.) — a pattern for now, not tested.
+10,6,example,Maabane ke jele nama le bogobe.,Yesterday I ate meat and porridge.
+10,7,example,Ke nwele metsi. Ga ke a nwa tee.,I drank water. I did not drink tea.
+10,8,example,Ke ile kwa toropong. Ke rekile apole.,I went to town. I bought an apple.
+10,9,example,Ke robetse sentle.,I slept well.
+10,10,example,Ka moso ke tla ithuta Setswana.,Tomorrow I will learn Setswana.

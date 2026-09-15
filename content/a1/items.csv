@@ -301,3 +301,29 @@ a1-u09-w027,9,27,phrase,Ke nyorilwe,,I am thirsty,,phrase,,,,
 a1-u09-w028,9,28,phrase,Ke a bolwa,,I am sick,,phrase,,,,
 a1-u09-w029,9,29,phrase,Ke a botlhoko,,I am in pain | I hurt,,phrase,,,,
 a1-u09-w030,9,30,phrase,Tlhogo e botlhoko,,my head hurts,,phrase,,,,A fixed phrase — learn it as it is.
+a1-u10-w001,10,1,word,lwala,,be sick | be ill,,verb,,,,Past: Ke lwetse.
+a1-u10-w002,10,2,word,tla,,come,,verb,,,,Past: Ke tlile.
+a1-u10-w003,10,3,word,tsamaa,,walk | go,,verb,,,,Past: Ke tsamaile.
+a1-u10-w004,10,4,word,rata,,like | love,,verb,,,,
+a1-u10-w005,10,5,word,phomolo,,rest | holiday,,noun,9,diphomolo,,
+a1-u10-w006,10,6,phrase,Ke jele,,I ate | I have eaten,,phrase,,,,ja → jele (irregular).
+a1-u10-w007,10,7,phrase,Ke nwele,,I drank,,phrase,,,,nwa → nwele (irregular).
+a1-u10-w008,10,8,phrase,Ke ile,,I went,,phrase,,,,ya → ile (irregular).
+a1-u10-w009,10,9,phrase,Ke tlile,,I came,,phrase,,,,tla → tlile (irregular).
+a1-u10-w010,10,10,phrase,Ke robetse,,I slept | I am asleep,,phrase,,,,robala → robetse (irregular).
+a1-u10-w011,10,11,phrase,Ke tsamaile,,I walked | I went (on foot),,phrase,,,,tsamaa → tsamaile (irregular).
+a1-u10-w012,10,12,phrase,Ke lwetse,,I was sick,,phrase,,,,lwala → lwetse (irregular).
+a1-u10-w013,10,13,phrase,Ke berekile,,I worked,,phrase,,,,bereka + -ile (regular).
+a1-u10-w014,10,14,phrase,Ke apile,,I cooked,,phrase,,,,apaya + -ile (regular).
+a1-u10-w015,10,15,phrase,Ke ithutile,,I learned | I studied,,phrase,,,,ithuta + -ile (regular).
+a1-u10-w016,10,16,phrase,Ke rekile,,I bought,,phrase,,,,reka + -ile (regular).
+a1-u10-w017,10,17,phrase,Ke tsogile,,I woke up,,phrase,,,,tsoga + -ile; Unit 1's Ke tsogile sentle is this past.
+a1-u10-w018,10,18,phrase,Re ile,,we went,,phrase,,,,
+a1-u10-w019,10,19,phrase,Ba tlile,,they came,,phrase,,,,
+a1-u10-w020,10,20,phrase,Ga ke a robala sentle,,I did not sleep well,,phrase,,,,Past negation pattern — fixed item, explained in A2.
+a1-u10-w021,10,21,phrase,Ga ke a je nama,,I did not eat meat,,phrase,,,,Past negation pattern — fixed item.
+a1-u10-w022,10,22,phrase,letsatsi la phomolo,,rest day | holiday,,phrase,,,,
+a1-u10-w023,10,23,phrase,ka moso,,tomorrow | in the future,,phrase,,,,
+a1-u10-w024,10,24,phrase,O jele eng?,,what did you eat?,to one person,phrase,,,,
+a1-u10-w025,10,25,phrase,O ile kae?,,where did you go?,to one person,phrase,,,,
+a1-u10-w026,10,26,phrase,Le jele eng?,,what did you (several) eat?,to several people,phrase,,,,

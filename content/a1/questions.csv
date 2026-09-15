@@ -205,3 +205,27 @@ a1-u09-q021,9,reading,checkpoint,choice,What does Lesedi want?,A doctor,,Water|A
 a1-u09-q022,9,reading,checkpoint,choice,How is the weather outside?,It is hot,,It is cold|It is raining|It is night,Bontle answers Nnyaa go a fisa — no it is hot.
 a1-u09-q023,9,reading,checkpoint,choice,"What does ""Ga go na pula"" mean?",It is not raining,,It is raining|There is no water|Go a fisa,Ga go na pula = there is no rain — it is not raining.
 a1-u09-q024,9,reading,checkpoint,choice,What does Bontle say at the end?,Robale sentle (sleep well),,Tsamaya sentle|Sala sentle|Go a tsididi,Lesedi stays home sick; Bontle says Sala sentle. O robale sentle!
+a1-u10-q001,10,grammar,drill,choice,What is the past of ja (ate)?,jele,,jile|jala|nwele,ja → jele (irregular).
+a1-u10-q002,10,grammar,drill,choice,What is the past of nwa (drank)?,nwele,,nwile|njele|nwea,nwa → nwele (irregular).
+a1-u10-q003,10,grammar,drill,type,Write in Setswana: I went.,Ke ile,,,ya → ile: Ke ile.
+a1-u10-q004,10,grammar,drill,type,"Fill in: Ke ___ kwa gae. (I came home)",tlile,,,tla → tlile.
+a1-u10-q005,10,grammar,drill,choice,What is the past of robala (slept)?,robetse,,robatile|robaile|robegile,robala → robetse (irregular).
+a1-u10-q006,10,grammar,drill,choice,What is the past of tsamaa (walked)?,tsamaile,,tsamile|tsamaila|tsamaane,tsamaa → tsamaile (irregular).
+a1-u10-q007,10,grammar,drill,choice,"What does ""Ke rekile apole"" mean?",I bought an apple,,I want an apple|I am eating an apple|I sell apples,reka → rekile.
+a1-u10-q008,10,grammar,drill,choice,"What does ""O ile kae?"" mean?",Where did you go?,,Where do you live?|What did you eat?|When did you come?,ya → ile; kae asks the place.
+a1-u10-q009,10,grammar,drill,type,Write in Setswana: I worked.,Ke berekile,,,bereka + -ile: Ke berekile.
+a1-u10-q010,10,grammar,drill,choice,"What does ""Ga ke a robala sentle"" mean?",I did not sleep well,,I slept well|I do not sleep|I will not sleep,Past negation: Ga ke a + the verb.
+a1-u10-q011,10,grammar,checkpoint,choice,What is the past of lwala (was sick)?,lwetse,,lwile|lwalile|lwala,lwala → lwetse (irregular).
+a1-u10-q012,10,grammar,checkpoint,choice,"What does ""Maabane ke tlile"" mean?",Yesterday I came,,Yesterday I went|Tomorrow I come|Yesterday I ate,tla → tlile; maabane = yesterday.
+a1-u10-q013,10,grammar,checkpoint,choice,Which sentence means "I ate meat"?,Ke jele nama.,,Ke ja nama.|Ga ke a je nama.|Ke rekile nama.,Past: ja → jele.
+a1-u10-q014,10,grammar,checkpoint,type,Write in Setswana: I slept.,Ke robetse,,,robala → robetse: Ke robetse.
+a1-u10-q015,10,grammar,checkpoint,choice,Which sentence is past negation?,Ga ke a nwa tee.,,Ke nwele tee.|Ke nwa tee.|Ga ke nwe tee.,Past negation is Ga ke a + the verb (Ga ke nwe is present negation).
+a1-u10-q016,10,grammar,checkpoint,choice,What is the past of ithuta (studied)?,ithutile,,ithutetse|ithutlwile|ithuta,ithuta + -ile: ithutile.
+a1-u10-q017,10,grammar,checkpoint,type,"Fill in: Maabane ke ___ borotho. (I bought — reka past)",rekile,,,reka + -ile: Ke rekile.
+a1-u10-q018,10,grammar,checkpoint,choice,"When is ""Ka moso ke tla ya gae""?",Tomorrow,,Yesterday|Now|On Sunday,ka moso + ke tla = future.
+a1-u10-q019,10,reading,checkpoint,choice,Where did Lesedi go?,To town,,To school|To the kgotla|Home,She says Ke ile kwa toropong.
+a1-u10-q020,10,reading,checkpoint,type,What did Lesedi buy? Write her words.,Ke rekile apole le lerotse,,,She says Ke rekile apole le lerotse.
+a1-u10-q021,10,reading,checkpoint,choice,What did Lesedi eat in the evening?,Meat and porridge,,Bread and tea|An apple|Nothing,She says Ke jele nama le bogobe.
+a1-u10-q022,10,reading,checkpoint,choice,Did Lesedi sleep well?,No — she was sick too,,Yes — she slept well|No — she went to town|Yes — she ate well,She says Ga ke a robala sentle. Ke lwetse.
+a1-u10-q023,10,reading,checkpoint,choice,What will Lesedi do tomorrow?,Look for a doctor and learn Setswana,,Buy food|Sleep all day|Go to town,She wants a ngaka ka moso and says ke tla ithuta le wena.
+a1-u10-q024,10,reading,checkpoint,choice,What does Bontle propose for tomorrow?,Learning Setswana with her,,Cooking together|Going to the market|Visiting the doctor,She asks Ka moso o tla ithuta Setswana le nna?
