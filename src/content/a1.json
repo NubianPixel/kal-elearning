@@ -2,14 +2,14 @@
   "units": [
     {
       "unit": 1,
-      "title_setswana": "Dumela",
+      "title_setswana": "Madume",
       "title_english": "Greetings",
       "can_do": "Greet politely, say how you are, say goodbye",
       "grammar_title": "Singular vs plural address and farewells"
     },
     {
       "unit": 2,
-      "title_setswana": "Ke nna…",
+      "title_setswana": "Matseno",
       "title_english": "Introductions",
       "can_do": "Say your name, where you're from, and what you speak",
       "grammar_title": "Subject concords and emphatic pronouns"
@@ -58,14 +58,14 @@
     },
     {
       "unit": 9,
-      "title_setswana": "Go a tsididi",
-      "title_english": "It is cold",
+      "title_setswana": "Seemo sa loapi",
+      "title_english": "Weather",
       "can_do": "Talk about weather, feelings, and simple aches",
-      "grammar_title": "Impersonal go (go a fisa"
+      "grammar_title": "Impersonal go (go a fisa, go na le …)"
     },
     {
       "unit": 10,
-      "title_setswana": "Maabane le ka moso",
+      "title_setswana": "Maabane le kamoso",
       "title_english": "Yesterday and tomorrow",
       "can_do": "Say what you did and what you will do",
       "grammar_title": "Past -ile with common irregulars"
