@@ -42,3 +42,6 @@ yarn-error.*
 
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
+
+# Play Store service-account key — secret, never commit (see eas.json submit).
+play-service-account-key.json
