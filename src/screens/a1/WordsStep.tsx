@@ -74,6 +74,9 @@ export default function WordsStep({ db, unit, onDone }: Props) {
         <Ionicons name="checkmark-circle" size={48} color={c.primary} />
         <Text style={styles.restTitle}>No new words right now</Text>
         <Text style={t.mutedText}>Come back after clearing today's reviews, or tomorrow for more.</Text>
+        <Text style={styles.unlockHint}>
+          Unit {unit + 1} unlocks once you pass Unit {unit}'s checkpoint.
+        </Text>
         <Pressable style={[primaryButton, styles.doneButton]} onPress={onDone} accessibilityLabel="Back to Home">
           <Text style={styles.doneText}>Back to Home</Text>
         </Pressable>
@@ -201,6 +204,7 @@ const makeStyles = (c: ThemeColors) =>
     nextButton: { flex: 1, backgroundColor: c.accent, flexDirection: 'row', gap: 8, marginVertical: 0 },
     nextText: { fontSize: 17, fontWeight: '800', color: c.onAccent },
     restTitle: { fontSize: 22, fontWeight: '800', color: c.text, marginTop: 8, textAlign: 'center' },
+    unlockHint: { fontSize: 13, fontWeight: '700', color: c.primaryDeep, marginTop: 4, textAlign: 'center' },
     doneButton: { backgroundColor: c.primary, marginTop: 12 },
     doneText: { fontSize: 16, fontWeight: '800', color: c.onPrimary },
   });

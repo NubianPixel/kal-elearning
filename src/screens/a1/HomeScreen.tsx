@@ -211,9 +211,12 @@ function UnitRowView({
       </View>
 
       {row.status === 'locked' && (
-        <Pressable style={styles.testOutButton} onPress={onTestOut} accessibilityLabel={`Test out of Unit ${row.unit}`}>
-          <Text style={styles.testOutText}>Test out</Text>
-        </Pressable>
+        <>
+          <Text style={styles.lockedHint}>Pass Unit {row.unit - 1}'s checkpoint to unlock</Text>
+          <Pressable style={styles.testOutButton} onPress={onTestOut} accessibilityLabel={`Test out of Unit ${row.unit}`}>
+            <Text style={styles.testOutText}>Test out</Text>
+          </Pressable>
+        </>
       )}
     </View>
   );
@@ -291,7 +294,12 @@ const makeStyles = (c: ThemeColors) =>
       minHeight: 40,
       justifyContent: 'center',
     },
-    testOutText: { fontSize: 13, fontWeight: '800', color: c.primaryDeep },
+    testOutText: {
+      fontSize: 13,
+      fontWeight: '800',
+      color: c.primaryDeep,
+    },
+    lockedHint: { marginTop: 10, fontSize: 12, fontWeight: '700', color: c.muted },
     comingSoonCard: { flexDirection: 'row', alignItems: 'center', gap: 10, opacity: 0.6 },
     comingSoonText: { fontSize: 14, fontWeight: '700', color: c.muted },
   });
