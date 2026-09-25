@@ -1,16 +1,19 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { View, Text, Pressable, ActivityIndicator, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { cardShadow, makeTextStyles, useTheme, type ThemeColors } from '../../theme';
 import { items, itemById, type Item } from '../../content';
-import { introducedItemIds, recentMistakeItemIds } from '../../db/progress';
+import {
+  introducedItemIds,
+  recentMistakeItemIds,
+  type ProgressDb,
+} from '../../db/progress';
 import { TAB_BAR_SPACE } from '../../components/TabBar';
 import PracticeQuiz from './PracticeQuiz';
 import PracticeTyping from './PracticeTyping';
 
 interface Props {
-  db: SQLite.SQLiteDatabase;
+  db: ProgressDb;
 }
 
 type Mode = 'mistakes' | 'flashcards' | 'typing';

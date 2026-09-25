@@ -2,10 +2,15 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, Pressable, ScrollView, StyleSheet, AppState } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { primaryButton, useTheme, type ThemeColors } from '../../theme';
 import { dialogueForUnit, type DialogueLine } from '../../content';
-import { markStepComplete, saveSpeakingRating, recentAgainItems, type SpeakingRating } from '../../db/progress';
+import {
+  markStepComplete,
+  saveSpeakingRating,
+  recentAgainItems,
+  type SpeakingRating,
+  type ProgressDb,
+} from '../../db/progress';
 import {
   playClip,
   stopActiveClip,
@@ -20,7 +25,7 @@ import DialoguePlayer from '../../components/DialoguePlayer';
 import { checkAndMarkGoal } from './pathData';
 
 interface Props {
-  db: SQLite.SQLiteDatabase;
+  db: ProgressDb;
   unit: number;
   onDone: () => void;
 }

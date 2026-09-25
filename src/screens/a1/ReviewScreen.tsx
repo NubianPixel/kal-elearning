@@ -2,10 +2,16 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { View, Text, ScrollView, ActivityIndicator, StyleSheet, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { cardShadow, makeTextStyles, primaryButton, useTheme, type ThemeColors } from '../../theme';
 import { items, type Question } from '../../content';
-import { loadDueCardStates, loadCardStates, reviewedToday, recordReview, type CardStateRow } from '../../db/progress';
+import {
+  loadDueCardStates,
+  loadCardStates,
+  reviewedToday,
+  recordReview,
+  type CardStateRow,
+  type ProgressDb,
+} from '../../db/progress';
 import { buildReviewQueue } from '../../core/daily';
 import { buildReviewQuestion } from '../../core/reviewQuestion';
 import { buildRecallQuestion, gradeRecallAnswer, type RecallQuestion } from '../../core/questions';
@@ -21,7 +27,7 @@ import FeedbackPanel from './questions/FeedbackPanel';
 import ListeningPrompt from './questions/ListeningPrompt';
 
 interface Props {
-  db: SQLite.SQLiteDatabase;
+  db: ProgressDb;
   /** Learner tapped "Back to Home" at the summary screen. */
   onFinish: () => void;
 }

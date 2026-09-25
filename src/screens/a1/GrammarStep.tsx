@@ -2,10 +2,12 @@ import React, { useMemo, useState } from 'react';
 import { View, Text, Pressable, ScrollView, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { cardShadow, makeTextStyles, primaryButton, useTheme, type ThemeColors } from '../../theme';
 import { grammarForUnit, questionsForUnit, units } from '../../content';
-import { markStepComplete } from '../../db/progress';
+import {
+  markStepComplete,
+  type ProgressDb,
+} from '../../db/progress';
 import { gradeTypedAnswer } from '../../core/typing';
 import { shuffle } from '../../core/choices';
 import { TAB_BAR_SPACE } from '../../components/TabBar';
@@ -15,7 +17,7 @@ import TypedAnswerInput from './questions/TypedAnswerInput';
 import FeedbackPanel from './questions/FeedbackPanel';
 
 interface Props {
-  db: SQLite.SQLiteDatabase;
+  db: ProgressDb;
   unit: number;
   onDone: () => void;
 }

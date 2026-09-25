@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import type { ProgressDb } from './src/db/progress';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { getProgressDb } from './src/db/progress';
 import { sweepLeftoverRecordings } from './src/audio';
 import type { UnitStep } from './src/core/path';
@@ -44,7 +44,7 @@ const STEP_TITLE: Record<UnitStep, string> = {
  * force-quit as soon as the app starts (see src/audio.ts).
  */
 export default function App() {
-  const [db, setDb] = useState<SQLite.SQLiteDatabase | null>(null);
+  const [db, setDb] = useState<ProgressDb | null>(null);
 
   useEffect(() => {
     sweepLeftoverRecordings();
@@ -62,7 +62,7 @@ export default function App() {
   );
 }
 
-function Shell({ db }: { db: SQLite.SQLiteDatabase | null }) {
+function Shell({ db }: { db: ProgressDb | null }) {
   const { colors: c } = useTheme();
   const [splash, setSplash] = useState(true);
   const hideSplash = useCallback(() => setSplash(false), []);

@@ -2,17 +2,19 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { View, Text, Pressable, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { cardShadow, makeTextStyles, primaryButton, useTheme, type ThemeColors } from '../../theme';
 import { units } from '../../content';
 import { nextAction, UNIT_STEPS, type UnitStatus, type UnitStep } from '../../core/path';
-import { currentStreak } from '../../db/progress';
+import {
+  currentStreak,
+  type ProgressDb,
+} from '../../db/progress';
 import { TAB_BAR_SPACE } from '../../components/TabBar';
 import ProgressBar from '../../components/ProgressBar';
 import { loadPathData, firstIncompleteStepFromRow, REVIEW_CAP, type UnitRow } from './pathData';
 
 interface Props {
-  db: SQLite.SQLiteDatabase;
+  db: ProgressDb;
   /** Bump this to force Home to recompute (spec: recompute on focus/return). */
   refreshKey: number;
   onReview: () => void;

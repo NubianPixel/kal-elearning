@@ -7,7 +7,6 @@
  * in one place.
  */
 
-import type * as SQLite from 'expo-sqlite';
 import { units, itemsForUnit, A1_UNIT_COUNT } from '../../content';
 import {
   currentUnitNumber,
@@ -30,6 +29,7 @@ import {
   allCompletedSteps,
   markGoalDay,
   localDay,
+  type ProgressDb,
 } from '../../db/progress';
 import type { PathState } from '../../core/path';
 
@@ -53,7 +53,7 @@ export interface PathData {
 
 const sortedUnits = () => [...units].sort((a, b) => a.unit - b.unit);
 
-export async function loadPathData(db: SQLite.SQLiteDatabase, now: Date = new Date()): Promise<PathData> {
+export async function loadPathData(db: ProgressDb, now: Date = new Date()): Promise<PathData> {
   const [cardStates, dueRows, reviewedTodayCount, introducedTodayCount, dailyN, passed, exitPassed, stepRows] =
     await Promise.all([
       loadCardStates(db),
@@ -144,7 +144,7 @@ export function firstIncompleteStepFromRow(row: UnitRow): UnitStep | null {
  * answer or Words-step introduction (spec: goal/streak recompute on every
  * such event, not just at session end).
  */
-export async function checkAndMarkGoal(db: SQLite.SQLiteDatabase, now: Date = new Date()): Promise<boolean> {
+export async function checkAndMarkGoal(db: ProgressDb, now: Date = new Date()): Promise<boolean> {
   const { path } = await loadPathData(db, now);
   if (path.goalMetToday) await markGoalDay(db, localDay(now));
   return path.goalMetToday;
