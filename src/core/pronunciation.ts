@@ -5,15 +5,26 @@
  * diacritics and small typos.
  */
 
-/** Lowercase, strip diacritics/punctuation, collapse whitespace. */
+/** Lowercase, strip diacritics/punctuation, collapse whitespace. Memoized:
+ *  the same short strings (answers, alternatives, typed input) are normalized
+ *  over and over by the graders; content is immutable so a bounded cache is
+ *  safe and turns per-submit work into a Map lookup after the first call. */
+const normalizeCache = new Map<string, string>();
+const NORMALIZE_CACHE_MAX = 2000;
+
 export function normalizeForMatch(s: string): string {
-  return s
+  const cached = normalizeCache.get(s);
+  if (cached !== undefined) return cached;
+  const out = s
     .toLowerCase()
     .normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9\s]/g, ' ')
     .trim()
     .replace(/\s+/g, ' ');
+  if (normalizeCache.size >= NORMALIZE_CACHE_MAX) normalizeCache.clear();
+  normalizeCache.set(s, out);
+  return out;
 }
 
 /** Classic edit distance (iterative, two rows). */

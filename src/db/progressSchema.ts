@@ -63,6 +63,9 @@ CREATE TABLE IF NOT EXISTS settings (
 
 CREATE INDEX IF NOT EXISTS idx_card_states_due ON card_states(due_date);
 CREATE INDEX IF NOT EXISTS idx_review_logs_item ON review_logs(item_id, card_type, reviewed_at);
+-- Daily-goal counts (reviewedToday) and the mistakes window both filter on
+-- reviewed_at alone; without this they'd full-scan every log ever written.
+CREATE INDEX IF NOT EXISTS idx_review_logs_reviewed_at ON review_logs(reviewed_at);
 CREATE INDEX IF NOT EXISTS idx_speaking_ratings_item ON speaking_ratings(item_id, rated_at);
 CREATE INDEX IF NOT EXISTS idx_checkpoint_attempts_unit ON checkpoint_attempts(unit, attempted_at);
 `;

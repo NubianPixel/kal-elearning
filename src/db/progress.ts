@@ -94,17 +94,22 @@ export async function introduceItems(
   itemIds: string[],
   now: Date = new Date(),
 ): Promise<void> {
+  if (itemIds.length === 0) return;
   const nowIso = now.toISOString();
-  for (const itemId of itemIds) {
-    for (const cardType of ['listen', 'recall'] as const) {
-      await db.runAsync(
-        `INSERT INTO card_states (item_id, card_type, ease, interval_days, repetitions, lapses, due_date, introduced_at)
-         VALUES (?, ?, 2.5, 0, 0, 0, ?, ?)
-         ON CONFLICT(item_id, card_type) DO NOTHING`,
-        [itemId, cardType, nowIso, nowIso],
-      );
+  // One transaction + one statement per card instead of N sequential
+  // round-trips (each awaited write used to pay its own JS↔native hop).
+  await db.withTransactionAsync(async () => {
+    for (const itemId of itemIds) {
+      for (const cardType of ['listen', 'recall'] as const) {
+        await db.runAsync(
+          `INSERT INTO card_states (item_id, card_type, ease, interval_days, repetitions, lapses, due_date, introduced_at)
+           VALUES (?, ?, 2.5, 0, 0, 0, ?, ?)
+           ON CONFLICT(item_id, card_type) DO NOTHING`,
+          [itemId, cardType, nowIso, nowIso],
+        );
+      }
     }
-  }
+  });
 }
 
 /** Add drill cards for a unit's authored drill questions (Grammar step finished once). */
@@ -113,15 +118,19 @@ export async function addDrillCardsForUnit(
   unit: number,
   now: Date = new Date(),
 ): Promise<void> {
+  const drillQuestions = questionsForUnit(unit, 'drill');
+  if (drillQuestions.length === 0) return;
   const nowIso = now.toISOString();
-  for (const q of questionsForUnit(unit, 'drill')) {
-    await db.runAsync(
-      `INSERT INTO card_states (item_id, card_type, ease, interval_days, repetitions, lapses, due_date, introduced_at)
-       VALUES (?, 'drill', 2.5, 0, 0, 0, ?, ?)
-       ON CONFLICT(item_id, card_type) DO NOTHING`,
-      [q.id, nowIso, nowIso],
-    );
-  }
+  await db.withTransactionAsync(async () => {
+    for (const q of drillQuestions) {
+      await db.runAsync(
+        `INSERT INTO card_states (item_id, card_type, ease, interval_days, repetitions, lapses, due_date, introduced_at)
+         VALUES (?, 'drill', 2.5, 0, 0, 0, ?, ?)
+         ON CONFLICT(item_id, card_type) DO NOTHING`,
+        [q.id, nowIso, nowIso],
+      );
+    }
+  });
 }
 
 export async function loadCardStates(db: SQLite.SQLiteDatabase): Promise<CardStateRow[]> {
@@ -132,10 +141,14 @@ export async function loadCardStates(db: SQLite.SQLiteDatabase): Promise<CardSta
 /** Ids of every item ever introduced (Words step) — recall cards are
  *  always created together with listen cards, so recall-card presence
  *  alone identifies "introduced". Used by Practice/Library (free
- *  practice/browsing over introduced items only). */
+ *  practice/browsing over introduced items only). Filtered in SQL: the
+ *  card_states table grows with drills + every future unit, and loading
+ *  all rows just to keep ~a third of them was pure waste. */
 export async function introducedItemIds(db: SQLite.SQLiteDatabase): Promise<Set<string>> {
-  const cardStates = await loadCardStates(db);
-  return new Set(cardStates.filter((c) => c.cardType === 'recall').map((c) => c.itemId));
+  const rows = await db.getAllAsync<{ item_id: string }>(
+    "SELECT item_id FROM card_states WHERE card_type = 'recall'",
+  );
+  return new Set(rows.map((r) => r.item_id));
 }
 
 export async function loadDueCardStates(
@@ -224,6 +237,12 @@ export async function markStepComplete(
 export async function completedSteps(db: SQLite.SQLiteDatabase, unit: number): Promise<UnitStep[]> {
   const rows = await db.getAllAsync<{ step: UnitStep }>('SELECT step FROM unit_steps WHERE unit = ?', [unit]);
   return rows.map((r) => r.step);
+}
+
+/** Every (unit, step) completion in one read — lets callers like the path
+ *  loader build all units' step sets without a query per unit. */
+export async function allCompletedSteps(db: SQLite.SQLiteDatabase): Promise<Array<{ unit: number; step: UnitStep }>> {
+  return db.getAllAsync<{ unit: number; step: UnitStep }>('SELECT unit, step FROM unit_steps');
 }
 
 // ---------------------------------------------------------------------------
@@ -383,6 +402,8 @@ function startOfDayIso(now: Date): string {
 }
 
 export async function reviewedToday(db: SQLite.SQLiteDatabase, now: Date = new Date()): Promise<number> {
+  // Indexed by reviewed_at; the >= bound lets SQLite use the index instead of
+  // scanning every review log ever written.
   const row = await db.getFirstAsync<{ n: number }>(
     'SELECT COUNT(*) AS n FROM review_logs WHERE reviewed_at >= ?',
     [startOfDayIso(now)],
@@ -411,8 +432,16 @@ export async function markGoalDay(db: SQLite.SQLiteDatabase, day: string): Promi
   await db.runAsync('INSERT INTO goal_days (day) VALUES (?) ON CONFLICT(day) DO NOTHING', [day]);
 }
 
+/** Streaks never reach back a year; capping the scan keeps the query (and
+ *  computeStreak's input) bounded no matter how long the app is used. */
+const STREAK_LOOKBACK_DAYS = 365;
+
 export async function currentStreak(db: SQLite.SQLiteDatabase, now: Date = new Date()): Promise<number> {
-  const rows = await db.getAllAsync<{ day: string }>('SELECT day FROM goal_days');
+  const since = new Date(now.getTime() - STREAK_LOOKBACK_DAYS * 24 * 60 * 60 * 1000);
+  const rows = await db.getAllAsync<{ day: string }>(
+    'SELECT day FROM goal_days WHERE day >= ? ORDER BY day DESC',
+    [localDay(since)],
+  );
   return computeStreak(rows.map((r) => r.day), now);
 }
 
@@ -447,23 +476,35 @@ export interface ProgressSummary {
 }
 
 export async function progressSummary(db: SQLite.SQLiteDatabase): Promise<ProgressSummary> {
+  // Aggregated in SQL (one row per item) instead of pulling every listen +
+  // recall card state into JS and grouping it there.
   const rows = await db.getAllAsync<{
     item_id: string;
-    card_type: 'listen' | 'recall';
-    repetitions: number;
-    interval_days: number;
-  }>("SELECT item_id, card_type, repetitions, interval_days FROM card_states WHERE card_type IN ('listen', 'recall')");
-
-  const byItem = new Map<string, { listen?: { repetitions: number; intervalDays: number }; recall?: { repetitions: number; intervalDays: number } }>();
-  for (const r of rows) {
-    const entry = byItem.get(r.item_id) ?? {};
-    entry[r.card_type] = { repetitions: r.repetitions, intervalDays: r.interval_days };
-    byItem.set(r.item_id, entry);
-  }
+    listen_reps: number | null;
+    listen_interval: number | null;
+    recall_reps: number | null;
+    recall_interval: number | null;
+  }>(
+    `SELECT item_id,
+            MAX(CASE WHEN card_type = 'listen' THEN repetitions END)   AS listen_reps,
+            MAX(CASE WHEN card_type = 'listen' THEN interval_days END) AS listen_interval,
+            MAX(CASE WHEN card_type = 'recall' THEN repetitions END)   AS recall_reps,
+            MAX(CASE WHEN card_type = 'recall' THEN interval_days END) AS recall_interval
+     FROM card_states
+     WHERE card_type IN ('listen', 'recall')
+     GROUP BY item_id`,
+  );
 
   let wordsMastered = 0;
-  for (const entry of byItem.values()) {
-    if (isItemMastered(entry.listen, entry.recall)) wordsMastered += 1;
+  for (const r of rows) {
+    if (
+      isItemMastered(
+        r.listen_reps != null ? { repetitions: r.listen_reps, intervalDays: r.listen_interval ?? 0 } : undefined,
+        r.recall_reps != null ? { repetitions: r.recall_reps, intervalDays: r.recall_interval ?? 0 } : undefined,
+      )
+    ) {
+      wordsMastered += 1;
+    }
   }
 
   const passed = await passedUnits(db);
