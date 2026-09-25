@@ -3,7 +3,6 @@ import { View, Text, Pressable, ScrollView, TextInput, ActivityIndicator, Share,
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Constants from 'expo-constants';
-import type * as SQLite from 'expo-sqlite';
 import { cardShadow, makeTextStyles, primaryButton, useTheme, type ThemeColors } from '../../theme';
 import { units, A1_UNIT_COUNT } from '../../content';
 import { currentUnitNumber } from '../../core/path';
@@ -19,12 +18,13 @@ import {
   exportProgress,
   importProgress,
   type UnitCheckpointBadge,
+  type ProgressDb,
 } from '../../db/progress';
 import { loadPathData } from './pathData';
 import { TAB_BAR_SPACE } from '../../components/TabBar';
 
 interface Props {
-  db: SQLite.SQLiteDatabase;
+  db: ProgressDb;
 }
 
 interface Summary {
@@ -37,7 +37,7 @@ interface Summary {
   speakingCount: number;
 }
 
-async function loadSummary(db: SQLite.SQLiteDatabase): Promise<Summary> {
+async function loadSummary(db: ProgressDb): Promise<Summary> {
   const [summary, streak, badges, speakingCount, passed, exitPassed, path] = await Promise.all([
     progressSummary(db),
     currentStreak(db),

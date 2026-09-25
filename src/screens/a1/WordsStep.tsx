@@ -2,10 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { View, Text, Pressable, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { cardShadow, makeTextStyles, primaryButton, useTheme, type ThemeColors } from '../../theme';
 import { itemsForUnit, audioFor, imageFor, type Item } from '../../content';
-import { introduceItems } from '../../db/progress';
+import {
+  introduceItems,
+  type ProgressDb,
+} from '../../db/progress';
 import { playClip, useClipToggle } from '../../audio';
 import { TAB_BAR_SPACE } from '../../components/TabBar';
 import { loadPathData, checkAndMarkGoal } from './pathData';
@@ -13,7 +15,7 @@ import WordImage from '../../components/WordImage';
 import CircleFrame from '../../components/CircleFrame';
 
 interface Props {
-  db: SQLite.SQLiteDatabase;
+  db: ProgressDb;
   unit: number;
   onDone: () => void;
 }

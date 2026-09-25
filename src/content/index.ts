@@ -141,22 +141,45 @@ export const questions: Question[] = raw.questions.map((r) => ({
 
 const itemsById = new Map(items.map((i) => [i.id, i]));
 
-export function itemsForUnit(unit: number): Item[] {
-  return items.filter((i) => i.unit === unit).sort((a, b) => a.order - b.order);
+/* Content is immutable at runtime, so per-unit views are computed once on
+ * demand and cached — Home/Review/Checkpoint resolve the same units every
+ * session, and re-filtering + re-sorting the full arrays each call was pure
+ * repeated work on the mount path. */
+
+function memoizeByUnit<T>(build: (unit: number) => T[]): (unit: number) => T[] {
+  const cache = new Map<number, T[]>();
+  return (unit: number) => {
+    let value = cache.get(unit);
+    if (!value) {
+      value = build(unit);
+      cache.set(unit, value);
+    }
+    return value;
+  };
 }
 
-export function grammarForUnit(unit: number): GrammarRow[] {
-  return grammarRows.filter((g) => g.unit === unit).sort((a, b) => a.order - b.order);
-}
+export const itemsForUnit = memoizeByUnit((unit) =>
+  items.filter((i) => i.unit === unit).sort((a, b) => a.order - b.order),
+);
 
-export function dialogueForUnit(unit: number): DialogueLine[] {
-  return dialogueLines.filter((d) => d.unit === unit).sort((a, b) => a.order - b.order);
-}
+export const grammarForUnit = memoizeByUnit((unit) =>
+  grammarRows.filter((g) => g.unit === unit).sort((a, b) => a.order - b.order),
+);
+
+export const dialogueForUnit = memoizeByUnit((unit) =>
+  dialogueLines.filter((d) => d.unit === unit).sort((a, b) => a.order - b.order),
+);
 
 /** Questions for a unit, optionally filtered to `use` ('drill' | 'checkpoint'). */
 export function questionsForUnit(unit: number, use?: QuestionUse): Question[] {
-  return questions.filter((q) => q.unit === unit && (use === undefined || q.use === use));
+  if (use === undefined) return allQuestionsByUnit(unit);
+  if (use === 'checkpoint') return checkpointQuestionsByUnit(unit);
+  return drillQuestionsByUnit(unit);
 }
+
+const allQuestionsByUnit = memoizeByUnit((unit) => questions.filter((q) => q.unit === unit));
+const checkpointQuestionsByUnit = memoizeByUnit((unit) => questions.filter((q) => q.unit === unit && q.use === 'checkpoint'));
+const drillQuestionsByUnit = memoizeByUnit((unit) => questions.filter((q) => q.unit === unit && q.use === 'drill'));
 
 export function itemById(id: string): Item | undefined {
   return itemsById.get(id);

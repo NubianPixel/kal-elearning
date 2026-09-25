@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { View, Text, Pressable, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { cardShadow, makeTextStyles, primaryButton, useTheme, type ThemeColors } from '../../theme';
 import { items, itemById, itemsForUnit, dialogueForUnit, type DialogueLine, type Question } from '../../content';
 import { buildCheckpoint, scoreCheckpoint, type CheckpointQuestion, type CheckpointResult, type Skill } from '../../core/checkpoint';
@@ -11,7 +10,12 @@ import { gradeRecallAnswer } from '../../core/questions';
 import { gradeTypedAnswer } from '../../core/typing';
 import { shuffle } from '../../core/choices';
 import { unitStatus } from '../../core/path';
-import { loadCardStates, passedUnits, saveCheckpointAttempt } from '../../db/progress';
+import {
+  loadCardStates,
+  passedUnits,
+  saveCheckpointAttempt,
+  type ProgressDb,
+} from '../../db/progress';
 import { TAB_BAR_SPACE } from '../../components/TabBar';
 import ChoiceOptions from './questions/ChoiceOptions';
 import TypedAnswerInput from './questions/TypedAnswerInput';
@@ -19,7 +23,7 @@ import FeedbackPanel from './questions/FeedbackPanel';
 import ListeningPrompt from './questions/ListeningPrompt';
 
 interface Props {
-  db: SQLite.SQLiteDatabase;
+  db: ProgressDb;
   /** Unit being checkpointed/tested-out, or null for the A1 exit test. */
   unit: number | null;
   onDone: () => void;
@@ -73,13 +77,13 @@ function buildActiveCard(cq: CheckpointQuestion): ActiveCard {
 }
 
 /** Every item ever introduced (any unit) — the checkpoint's listening distractor pool, when the unit has been studied. */
-async function introducedPool(db: SQLite.SQLiteDatabase) {
+async function introducedPool(db: ProgressDb) {
   const cardStates = await loadCardStates(db);
   const ids = new Set(cardStates.filter((c) => c.cardType === 'recall').map((c) => c.itemId));
   return items.filter((i) => ids.has(i.id));
 }
 
-async function resolvePool(db: SQLite.SQLiteDatabase, unit: number | null) {
+async function resolvePool(db: ProgressDb, unit: number | null) {
   const pool = await introducedPool(db);
   if (unit === null) return pool.length ? pool : items;
   const passed = await passedUnits(db);

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import type { ProgressDb } from './src/db/progress';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { getProgressDb } from './src/db/progress';
 import { sweepLeftoverRecordings } from './src/audio';
 import type { UnitStep } from './src/core/path';
@@ -44,7 +44,7 @@ const STEP_TITLE: Record<UnitStep, string> = {
  * force-quit as soon as the app starts (see src/audio.ts).
  */
 export default function App() {
-  const [db, setDb] = useState<SQLite.SQLiteDatabase | null>(null);
+  const [db, setDb] = useState<ProgressDb | null>(null);
 
   useEffect(() => {
     sweepLeftoverRecordings();
@@ -62,7 +62,7 @@ export default function App() {
   );
 }
 
-function Shell({ db }: { db: SQLite.SQLiteDatabase | null }) {
+function Shell({ db }: { db: ProgressDb | null }) {
   const { colors: c } = useTheme();
   const [splash, setSplash] = useState(true);
   const hideSplash = useCallback(() => setSplash(false), []);
@@ -70,6 +70,14 @@ function Shell({ db }: { db: SQLite.SQLiteDatabase | null }) {
   const [tab, setTab] = useState<TabKey>('home');
   const [stack, setStack] = useState<StackScreen | null>(null);
   const [homeRefreshKey, setHomeRefreshKey] = useState(0);
+  // Tabs stay mounted (hidden with display:none) so switching back to one
+  // shows it instantly instead of re-running its DB load + spinner. Stacked
+  // screens still mount/unmount normally — they're single-use sessions.
+  const [seenTabs, setSeenTabs] = useState<Set<TabKey>>(() => new Set<TabKey>(['home']));
+
+  useEffect(() => {
+    if (!seenTabs.has(tab)) setSeenTabs((prev) => new Set(prev).add(tab));
+  }, [tab, seenTabs]);
 
   /** Pop any stacked screen, land back on Home, and force it to recompute. */
   const finishStack = useCallback(() => {
@@ -126,18 +134,32 @@ function Shell({ db }: { db: SQLite.SQLiteDatabase | null }) {
       />
 
       <View style={styles.body}>
-        {stack === null && tab === 'home' && (
-          <HomeScreen
-            db={db}
-            refreshKey={homeRefreshKey}
-            onReview={() => setStack({ kind: 'review' })}
-            onStep={(unit, step) => setStack({ kind: 'step', unit, step })}
-            onCheckpoint={(unit) => setStack({ kind: 'checkpoint', unit })}
-          />
+        {seenTabs.has('home') && (
+          <View style={[styles.tabPane, tab === 'home' && stack === null ? styles.tabPaneVisible : styles.tabPaneHidden]}>
+            <HomeScreen
+              db={db}
+              refreshKey={homeRefreshKey}
+              onReview={() => setStack({ kind: 'review' })}
+              onStep={(unit, step) => setStack({ kind: 'step', unit, step })}
+              onCheckpoint={(unit) => setStack({ kind: 'checkpoint', unit })}
+            />
+          </View>
         )}
-        {stack === null && tab === 'practice' && <PracticeScreen db={db} />}
-        {stack === null && tab === 'library' && <LibraryScreen db={db} />}
-        {stack === null && tab === 'progress' && <ProgressScreen db={db} />}
+        {seenTabs.has('practice') && (
+          <View style={[styles.tabPane, tab === 'practice' && stack === null ? styles.tabPaneVisible : styles.tabPaneHidden]}>
+            <PracticeScreen db={db} />
+          </View>
+        )}
+        {seenTabs.has('library') && (
+          <View style={[styles.tabPane, tab === 'library' && stack === null ? styles.tabPaneVisible : styles.tabPaneHidden]}>
+            <LibraryScreen db={db} />
+          </View>
+        )}
+        {seenTabs.has('progress') && (
+          <View style={[styles.tabPane, tab === 'progress' && stack === null ? styles.tabPaneVisible : styles.tabPaneHidden]}>
+            <ProgressScreen db={db} />
+          </View>
+        )}
 
         {stack?.kind === 'review' && <ReviewScreen db={db} onFinish={finishStack} />}
         {stack?.kind === 'checkpoint' && <CheckpointScreen db={db} unit={stack.unit} onDone={finishStack} />}
@@ -160,4 +182,7 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   body: { flex: 1 },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  tabPane: { flex: 1 },
+  tabPaneVisible: { display: 'flex' },
+  tabPaneHidden: { display: 'none' },
 });

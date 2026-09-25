@@ -100,6 +100,30 @@ export function buildRecallQuestion(item: Item): RecallQuestion {
  * not this item's own answer/alts — it's graded wrong outright, before
  * similarity gets a chance to call it a typo.
  */
+/**
+ * Normalized setswana/alt forms of every item except `excludeId`, cached per
+ * id. The recall guard below runs on every typed answer; without the cache it
+ * re-normalized the whole 300+ item pool (NFKD + regex passes) per keystroke-
+ * submit. Content is immutable, so one entry per excluded id is safe.
+ */
+const normalizedFormsCache = new Map<string, Set<string>>();
+
+function normalizedFormsExcept(excludeId: string, pool: readonly Item[]): Set<string> {
+  let forms = normalizedFormsCache.get(excludeId);
+  if (!forms) {
+    forms = new Set<string>();
+    for (const other of pool) {
+      if (other.id === excludeId) continue;
+      forms.add(normalizeForMatch(other.setswana));
+      for (const alt of other.setswanaAlt) forms.add(normalizeForMatch(alt));
+    }
+    // Only cache when we actually walked the full default pool; a caller
+    // passing a custom subset must not poison the entry for later callers.
+    if (pool === items) normalizedFormsCache.set(excludeId, forms);
+  }
+  return forms;
+}
+
 export function gradeRecallAnswer(
   question: RecallQuestion,
   typed: string,
@@ -110,11 +134,14 @@ export function gradeRecallAnswer(
   const ownForms = new Set(candidates.map((c) => normalizeForMatch(c)));
 
   if (got && !ownForms.has(got)) {
-    const matchesAnotherItem = pool.some(
-      (other) =>
-        other.id !== question.itemId &&
-        (normalizeForMatch(other.setswana) === got || other.setswanaAlt.some((alt) => normalizeForMatch(alt) === got)),
-    );
+    // Exact normalized match with some *other* item's word → wrong outright.
+    const matchesAnotherItem = pool === items
+      ? normalizedFormsExcept(question.itemId, pool).has(got)
+      : pool.some(
+          (other) =>
+            other.id !== question.itemId &&
+            (normalizeForMatch(other.setswana) === got || other.setswanaAlt.some((alt) => normalizeForMatch(alt) === got)),
+        );
     if (matchesAnotherItem) return { grade: 'wrong', correct: false, score: 0 };
   }
 

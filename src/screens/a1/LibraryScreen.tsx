@@ -2,17 +2,20 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { View, Text, Pressable, TextInput, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { cardShadow, useTheme, type ThemeColors } from '../../theme';
 import { items, units, audioFor, dialogueForUnit, type Item, type Unit } from '../../content';
-import { introducedItemIds, passedUnits } from '../../db/progress';
+import {
+  introducedItemIds,
+  passedUnits,
+  type ProgressDb,
+} from '../../db/progress';
 import { unitStatus } from '../../core/path';
 import { playClip, useClipToggle } from '../../audio';
 import { TAB_BAR_SPACE } from '../../components/TabBar';
 import DialoguePlayer from '../../components/DialoguePlayer';
 
 interface Props {
-  db: SQLite.SQLiteDatabase;
+  db: ProgressDb;
 }
 
 type Segment = 'words' | 'stories';

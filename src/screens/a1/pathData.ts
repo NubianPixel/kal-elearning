@@ -7,7 +7,6 @@
  * in one place.
  */
 
-import type * as SQLite from 'expo-sqlite';
 import { units, itemsForUnit, A1_UNIT_COUNT } from '../../content';
 import {
   currentUnitNumber,
@@ -27,9 +26,10 @@ import {
   getDailyN,
   passedUnits,
   exitTestPassed,
-  completedSteps,
+  allCompletedSteps,
   markGoalDay,
   localDay,
+  type ProgressDb,
 } from '../../db/progress';
 import type { PathState } from '../../core/path';
 
@@ -53,27 +53,8 @@ export interface PathData {
 
 const sortedUnits = () => [...units].sort((a, b) => a.unit - b.unit);
 
-async function buildUnitProgress(
-  db: SQLite.SQLiteDatabase,
-  unitNum: number,
-  introducedRecallIds: Set<string>,
-  passed: Set<number>,
-): Promise<UnitProgress> {
-  const totalItemIds = itemsForUnit(unitNum).map((i) => i.id);
-  const introducedItemIds = new Set(totalItemIds.filter((id) => introducedRecallIds.has(id)));
-  const steps = await completedSteps(db, unitNum);
-  return {
-    unit: unitNum,
-    introducedItemIds,
-    totalItemIds,
-    grammarDone: steps.includes('grammar'),
-    useitDone: steps.includes('useit'),
-    checkpointPassed: passed.has(unitNum),
-  };
-}
-
-export async function loadPathData(db: SQLite.SQLiteDatabase, now: Date = new Date()): Promise<PathData> {
-  const [cardStates, dueRows, reviewedTodayCount, introducedTodayCount, dailyN, passed, exitPassed] =
+export async function loadPathData(db: ProgressDb, now: Date = new Date()): Promise<PathData> {
+  const [cardStates, dueRows, reviewedTodayCount, introducedTodayCount, dailyN, passed, exitPassed, stepRows] =
     await Promise.all([
       loadCardStates(db),
       loadDueCardStates(db, now),
@@ -82,14 +63,34 @@ export async function loadPathData(db: SQLite.SQLiteDatabase, now: Date = new Da
       getDailyN(db),
       passedUnits(db),
       exitTestPassed(db),
+      allCompletedSteps(db),
     ]);
   const introducedRecallIds = new Set(
     cardStates.filter((c) => c.cardType === 'recall').map((c) => c.itemId),
   );
 
-  const unitProgresses = await Promise.all(
-    sortedUnits().map((u) => buildUnitProgress(db, u.unit, introducedRecallIds, passed)),
-  );
+  // One read for every unit's steps (was a `completedSteps` query per unit).
+  const stepsByUnit = new Map<number, Set<UnitStep>>();
+  for (const r of stepRows) {
+    let set = stepsByUnit.get(r.unit);
+    if (!set) {
+      set = new Set<UnitStep>();
+      stepsByUnit.set(r.unit, set);
+    }
+    set.add(r.step);
+  }
+
+  const unitProgresses: UnitProgress[] = sortedUnits().map((u) => {
+    const totalItemIds = itemsForUnit(u.unit).map((i) => i.id);
+    return {
+      unit: u.unit,
+      introducedItemIds: new Set(totalItemIds.filter((id) => introducedRecallIds.has(id))),
+      totalItemIds,
+      grammarDone: stepsByUnit.get(u.unit)?.has('grammar') ?? false,
+      useitDone: stepsByUnit.get(u.unit)?.has('useit') ?? false,
+      checkpointPassed: passed.has(u.unit),
+    };
+  });
   const unitRows: UnitRow[] = unitProgresses.map((p) => ({
     unit: p.unit,
     status: unitStatus(p.unit, passed),
@@ -143,7 +144,7 @@ export function firstIncompleteStepFromRow(row: UnitRow): UnitStep | null {
  * answer or Words-step introduction (spec: goal/streak recompute on every
  * such event, not just at session end).
  */
-export async function checkAndMarkGoal(db: SQLite.SQLiteDatabase, now: Date = new Date()): Promise<boolean> {
+export async function checkAndMarkGoal(db: ProgressDb, now: Date = new Date()): Promise<boolean> {
   const { path } = await loadPathData(db, now);
   if (path.goalMetToday) await markGoalDay(db, localDay(now));
   return path.goalMetToday;

@@ -2,10 +2,16 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { View, Text, ScrollView, ActivityIndicator, StyleSheet, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type * as SQLite from 'expo-sqlite';
 import { cardShadow, makeTextStyles, primaryButton, useTheme, type ThemeColors } from '../../theme';
 import { items, type Question } from '../../content';
-import { loadDueCardStates, loadCardStates, reviewedToday, recordReview, type CardStateRow } from '../../db/progress';
+import {
+  loadDueCardStates,
+  loadCardStates,
+  reviewedToday,
+  recordReview,
+  type CardStateRow,
+  type ProgressDb,
+} from '../../db/progress';
 import { buildReviewQueue } from '../../core/daily';
 import { buildReviewQuestion } from '../../core/reviewQuestion';
 import { buildRecallQuestion, gradeRecallAnswer, type RecallQuestion } from '../../core/questions';
@@ -21,7 +27,7 @@ import FeedbackPanel from './questions/FeedbackPanel';
 import ListeningPrompt from './questions/ListeningPrompt';
 
 interface Props {
-  db: SQLite.SQLiteDatabase;
+  db: ProgressDb;
   /** Learner tapped "Back to Home" at the summary screen. */
   onFinish: () => void;
 }
@@ -96,6 +102,9 @@ export default function ReviewScreen({ db, onFinish }: Props) {
   const [answered, setAnswered] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [stats, setStats] = useState({ total: 0, correct: 0 });
+  // Reviews answered since the last queue (re)load — lets "continue" reuse
+  // the loaded queue instead of re-querying + rebuilding after every session.
+  const consumedRef = useRef(0);
 
   const shownAt = useRef(Date.now());
   const poolRef = useRef<typeof items>(items);
@@ -121,6 +130,7 @@ export default function ReviewScreen({ db, onFinish }: Props) {
       return;
     }
     const rows: QueueRow[] = capped.map((r) => ({ cardType: r.cardType, itemId: r.itemId }));
+    consumedRef.current = 0;
     setQueue(rows);
     setCard(buildActiveCard(rows[0], poolRef.current));
     setSelected(null);
@@ -139,6 +149,7 @@ export default function ReviewScreen({ db, onFinish }: Props) {
       if (!card || answered) return;
       setAnswered(true);
       setCorrect(isCorrect);
+      consumedRef.current += 1;
       setStats((s) => ({ total: s.total + 1, correct: s.correct + (isCorrect ? 1 : 0) }));
       playEffect(isCorrect ? 'correct' : 'wrong');
       const ms = Date.now() - shownAt.current;
@@ -168,7 +179,16 @@ export default function ReviewScreen({ db, onFinish }: Props) {
   function continueSession() {
     const rest = queue.slice(1);
     if (rest.length === 0) {
-      loadQueue().catch(() => setPhase('summary'));
+      // Cards answered since this queue was loaded are now due again
+      // (failed cards reschedule to interval 0), so only reload once every
+      // card has been answered; otherwise just move to the next queued row.
+      if (consumedRef.current >= stats.total) {
+        loadQueue().catch(() => setPhase('summary'));
+      } else {
+        setQueue([]);
+        setCard(null);
+        setPhase('summary');
+      }
       return;
     }
     setQueue(rest);
